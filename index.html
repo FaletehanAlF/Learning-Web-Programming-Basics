@@ -35,6 +35,7 @@
           <li><a href="#materi">Materi</a></li>
           <li><a href="#tools">Tools</a></li>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="URL_PROFIL_DICODING" target="_blank" rel="noopener">Profil Dicoding</a></li>
         </ul>
         <a href="#materi" class="btn btn-primary nav-cta">Mulai Belajar</a>
       </nav>
@@ -107,22 +108,22 @@
 
         <div class="value-grid">
           <article class="value-card">
-            <div class="value-icon" aria-hidden="true">🧩</div>
+            <div class="value-icon"><i data-feather="layers"></i></div>
             <h3>Terstruktur</h3>
             <p>Proses pengembangan dipecah menjadi tahapan yang jelas, dari analisis kebutuhan hingga pemeliharaan.</p>
           </article>
           <article class="value-card">
-            <div class="value-icon" aria-hidden="true">🤝</div>
+            <div class="value-icon"><i data-feather="users"></i></div>
             <h3>Kolaboratif</h3>
             <p>Melibatkan banyak peran seperti analis, desainer, developer, dan tester yang bekerja sama.</p>
           </article>
           <article class="value-card">
-            <div class="value-icon" aria-hidden="true">📈</div>
+            <div class="value-icon"><i data-feather="trending-up"></i></div>
             <h3>Terukur</h3>
             <p>Setiap tahapan punya standar kualitas dan dokumentasi agar progres bisa dipantau dengan jelas.</p>
           </article>
           <article class="value-card">
-            <div class="value-icon" aria-hidden="true">🔁</div>
+            <div class="value-icon"><i data-feather="refresh-cw"></i></div>
             <h3>Berkelanjutan</h3>
             <p>Perangkat lunak terus dievaluasi dan diperbarui mengikuti kebutuhan pengguna yang berkembang.</p>
           </article>
@@ -255,18 +256,55 @@
         </div>
 
         <div class="tools-grid">
-          <div class="tool-item"><span class="tool-icon" aria-hidden="true">🗂️</span><span>Git &amp; GitHub</span></div>
-          <div class="tool-item"><span class="tool-icon" aria-hidden="true">🎨</span><span>Figma</span></div>
-          <div class="tool-item"><span class="tool-icon" aria-hidden="true">🧪</span><span>Postman</span></div>
-          <div class="tool-item"><span class="tool-icon" aria-hidden="true">🗃️</span><span>MySQL</span></div>
-          <div class="tool-item"><span class="tool-icon" aria-hidden="true">📋</span><span>Trello / Jira</span></div>
-          <div class="tool-item"><span class="tool-icon" aria-hidden="true">💻</span><span>Visual Studio Code</span></div>
+          <div class="tool-item"><span class="tool-icon"><i data-feather="git-branch"></i></span><span>Git &amp; GitHub</span></div>
+          <div class="tool-item"><span class="tool-icon"><i data-feather="pen-tool"></i></span><span>Figma</span></div>
+          <div class="tool-item"><span class="tool-icon"><i data-feather="send"></i></span><span>Postman</span></div>
+          <div class="tool-item"><span class="tool-icon"><i data-feather="database"></i></span><span>MySQL</span></div>
+          <div class="tool-item"><span class="tool-icon"><i data-feather="clipboard"></i></span><span>Trello / Jira</span></div>
+          <div class="tool-item"><span class="tool-icon"><i data-feather="code"></i></span><span>Visual Studio Code</span></div>
         </div>
       </div>
     </section>
 
+    <!-- PROFIL PEMBUAT -->
+    <section class="section" id="profil" aria-labelledby="profil-title">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Tentang Pembuat</p>
+          <h2 id="profil-title">Di Balik RPL Insight</h2>
+          <p class="section-desc">Website ini dibuat sebagai bagian dari proses belajar dasar pemrograman web.</p>
+        </div>
+
+        <aside class="profile-card" aria-label="Profil pembuat website">
+          <img
+            src="assets/profile.jpg"
+            alt="Foto profil pembuat RPL Insight"
+            class="profile-photo"
+            width="120"
+            height="120"
+          />
+          <div class="profile-info">
+            <h3>Nama Pembuat</h3>
+            <p>Siswa Rekayasa Perangkat Lunak yang menyusun RPL Insight sebagai project submission Dicoding, berisi rangkuman materi dasar seputar dunia software development.</p>
+            <ul class="profile-links">
+              <li>
+                <a href="URL_PROFIL_DICODING" target="_blank" rel="noopener">
+                  <i data-feather="award"></i> Profil Dicoding
+                </a>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noopener">
+                  <i data-feather="github"></i> GitHub
+                </a>
+              </li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <!-- FAQ -->
-    <section class="section" id="faq" aria-labelledby="faq-title">
+    <section class="section section-muted" id="faq" aria-labelledby="faq-title">
       <div class="container container-narrow">
         <div class="section-head">
           <p class="eyebrow">Pertanyaan Umum</p>
@@ -327,7 +365,10 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/feather-icons"></script>
   <script>
+    feather.replace();
+
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     navToggle.addEventListener('click', () => {
