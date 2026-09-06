@@ -3,279 +3,250 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RPL Insight — Belajar Rekayasa Perangkat Lunak</title>
-  <meta name="description" content="Portal informasi seputar Rekayasa Perangkat Lunak (RPL): konsep dasar, tahapan SDLC, materi belajar, dan tools yang wajib dikuasai." />
+  <title>Panduan Jurusan — Membantu Orang Tua Mendampingi Pilihan Anak</title>
+  <meta name="description" content="Panduan Jurusan membantu orang tua memahami berbagai jurusan kuliah dengan bahasa sederhana, agar bisa mendampingi anak memilih jurusan dengan lebih tenang." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="asset/style/style.css" />
 </head>
-
 <body>
 
   <a class="skip-link" href="#konten-utama">Lompat ke konten utama</a>
 
+  <!-- HEADER: berisi logo dan navigasi utama -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="#" class="logo">
-        <span class="logo-mark">RPL</span>
-        <span class="logo-text">Insight</span>
+        <span class="logo-mark">PJ</span>
+        <span>Panduan Jurusan</span>
       </a>
 
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu navigasi">
         <span></span><span></span><span></span>
       </button>
 
+      <!-- NAV: menu ke tiap section + tautan wajib ke profil Dicoding -->
       <nav class="site-nav" id="navMenu" aria-label="Navigasi utama">
         <ul>
-          <li><a href="#tentang">Tentang RPL</a></li>
-          <li><a href="#tahapan">Tahapan SDLC</a></li>
-          <li><a href="#materi">Materi</a></li>
-          <li><a href="#tools">Tools</a></li>
+          <li><a href="#kenapa">Kenapa Penting</a></li>
+          <li><a href="#jurusan">Daftar Jurusan</a></li>
+          <li><a href="#tips">Tips Memilih</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">Profil Dicoding</a></li>
+          <li>
+            <a class="nav-dicoding" href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">
+              Profil Dicoding
+            </a>
+          </li>
         </ul>
-        <a href="#materi" class="btn btn-primary nav-cta">Mulai Belajar</a>
       </nav>
     </div>
   </header>
 
+  <!-- MAIN: seluruh konten inti halaman -->
   <main id="konten-utama">
 
+    <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-inner">
         <div class="hero-content">
-          <p class="eyebrow">Rekayasa Perangkat Lunak</p>
-          <h1 id="hero-title">Pahami cara membangun perangkat lunak yang benar, bukan cuma asal jadi.</h1>
-          <p class="hero-desc">RPL Insight merangkum konsep, tahapan, dan tools penting dalam siklus hidup pengembangan perangkat lunak — disusun sederhana untuk pemula yang baru mulai belajar.</p>
+          <h1 id="hero-title">Bingung anak mau ambil jurusan apa? Yuk, cari tahu bersama.</h1>
+          <p class="hero-desc">
+            Panduan Jurusan disusun khusus untuk Bapak/Ibu, agar lebih mudah memahami pilihan-pilihan jurusan
+            kuliah yang ada — tanpa istilah rumit — supaya bisa mendampingi anak mengambil keputusan dengan tenang.
+          </p>
           <div class="hero-actions">
-            <a href="#tahapan" class="btn btn-primary">Lihat Tahapan SDLC</a>
-            <a href="#materi" class="btn btn-outline">Jelajahi Materi</a>
+            <a href="#jurusan" class="btn btn-primary">Lihat Daftar Jurusan</a>
+            <a href="#tips" class="btn btn-outline">Baca Tips Memilih</a>
           </div>
-          <dl class="hero-stats">
-            <div>
-              <dt>6</dt>
-              <dd>Tahapan SDLC</dd>
-            </div>
-            <div>
-              <dt>8</dt>
-              <dd>Topik Materi</dd>
-            </div>
-            <div>
-              <dt>6</dt>
-              <dd>Tools Populer</dd>
-            </div>
-          </dl>
         </div>
         <div class="hero-visual">
-          <img src="asset/image/hero.svg" alt="Ilustrasi siklus hidup pengembangan perangkat lunak" class="hero-img" width="600" height="400" />
+          <img src="asset/image/hero.svg" alt="Ilustrasi orang tua dan anak menyusuri jalur bertanda menuju pilihan jurusan yang tepat" class="hero-img" width="560" height="520" />
         </div>
       </div>
     </section>
 
-    <section class="section" id="tentang" aria-labelledby="tentang-title">
+    <!-- SECTION: Kenapa peran orang tua penting, memakai <article> untuk tiap poin -->
+    <section class="section" id="kenapa" aria-labelledby="kenapa-title">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Tentang RPL</p>
-          <h2 id="tentang-title">Apa itu Rekayasa Perangkat Lunak?</h2>
-          <p class="section-desc">Rekayasa Perangkat Lunak (Software Engineering) adalah disiplin ilmu yang mempelajari cara merancang, membangun, menguji, dan memelihara perangkat lunak secara sistematis, terstruktur, dan terukur.</p>
+          <h2 id="kenapa-title">Kenapa Peran Orang Tua Penting?</h2>
+          <p class="section-desc">Anak sering merasa lebih yakin mengambil keputusan besar ketika ada orang tua yang mendengarkan dan ikut berdiskusi, bukan sekadar menentukan.</p>
         </div>
 
-        <div class="value-grid">
-          <article class="value-card">
-            <div class="value-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
-            <h3>Terstruktur</h3>
-            <p>Proses pengembangan dipecah menjadi tahapan yang jelas, dari analisis kebutuhan hingga pemeliharaan.</p>
+        <div class="reason-grid">
+          <article class="reason-card">
+            <h3>Menjadi Tempat Bercerita</h3>
+            <p>Anak butuh ruang aman untuk membicarakan minat dan kekhawatirannya tentang masa depan, tanpa takut dihakimi.</p>
           </article>
-          <article class="value-card">
-            <div class="value-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-            <h3>Kolaboratif</h3>
-            <p>Melibatkan banyak peran seperti analis, desainer, developer, dan tester yang bekerja sama.</p>
+          <article class="reason-card">
+            <h3>Memberi Sudut Pandang Lain</h3>
+            <p>Pengalaman hidup orang tua bisa membantu anak melihat sisi realistis dari sebuah pilihan jurusan.</p>
           </article>
-          <article class="value-card">
-            <div class="value-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-            <h3>Terukur</h3>
-            <p>Setiap tahapan punya standar kualitas dan dokumentasi agar progres bisa dipantau dengan jelas.</p>
-          </article>
-          <article class="value-card">
-            <div class="value-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
-            <h3>Berkelanjutan</h3>
-            <p>Perangkat lunak terus dievaluasi dan diperbarui mengikuti kebutuhan pengguna yang berkembang.</p>
+          <article class="reason-card">
+            <h3>Mendukung, Bukan Memaksa</h3>
+            <p>Dukungan yang tulus membuat anak lebih percaya diri menjalani jurusan pilihannya, apa pun hasilnya nanti.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section section-muted" id="tahapan" aria-labelledby="tahapan-title">
+    <!-- SECTION: Daftar jurusan populer, tiap jurusan adalah <article> mandiri -->
+    <section class="section section-soft" id="jurusan" aria-labelledby="jurusan-title">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Alur Kerja</p>
-          <h2 id="tahapan-title">Tahapan Software Development Life Cycle</h2>
-          <p class="section-desc">SDLC adalah tahapan berurutan yang menjadi panduan tim dalam mengembangkan perangkat lunak dari awal hingga siap digunakan.</p>
+          <h2 id="jurusan-title">Mengenal Beberapa Jurusan Populer</h2>
+          <p class="section-desc">Berikut gambaran singkat beberapa jurusan yang sering dipilih, dijelaskan dengan bahasa sederhana.</p>
         </div>
 
-        <ol class="timeline">
-          <li class="timeline-item">
-            <span class="timeline-number">01</span>
-            <div class="timeline-content">
-              <h3>Analisis Kebutuhan</h3>
-              <p>Mengumpulkan dan mendefinisikan kebutuhan pengguna serta batasan sistem yang akan dibangun.</p>
+        <div class="jurusan-grid">
+          <article class="jurusan-card">
+            <span class="label">Teknologi</span>
+            <h3>Teknik Informatika</h3>
+            <p>Belajar merancang dan membuat program komputer, aplikasi, hingga website. Cocok untuk anak yang suka logika dan memecahkan masalah.</p>
+            <div class="jurusan-tags">
+              <span>Logis</span>
+              <span>Peluang kerja luas</span>
+            </div>
+          </article>
+
+          <article class="jurusan-card">
+            <span class="label">Kesehatan</span>
+            <h3>Kedokteran</h3>
+            <p>Mempelajari tubuh manusia dan cara menangani penyakit. Membutuhkan waktu belajar yang panjang, tapi hasilnya sangat dibutuhkan masyarakat.</p>
+            <div class="jurusan-tags">
+              <span>Perlu ketekunan</span>
+              <span>Berdampak sosial</span>
+            </div>
+          </article>
+
+          <article class="jurusan-card">
+            <span class="label">Sosial Humaniora</span>
+            <h3>Psikologi</h3>
+            <p>Mempelajari cara kerja pikiran dan perilaku manusia. Cocok untuk anak yang senang mendengarkan dan memahami orang lain.</p>
+            <div class="jurusan-tags">
+              <span>Empati</span>
+              <span>Komunikasi</span>
+            </div>
+          </article>
+
+          <article class="jurusan-card">
+            <span class="label">Bisnis</span>
+            <h3>Akuntansi</h3>
+            <p>Belajar mengelola dan mencatat keuangan perusahaan. Jurusan ini banyak dicari karena hampir semua bisnis butuh pengelolaan keuangan yang rapi.</p>
+            <div class="jurusan-tags">
+              <span>Teliti</span>
+              <span>Kebutuhan tinggi</span>
+            </div>
+          </article>
+
+          <article class="jurusan-card">
+            <span class="label">Kreatif</span>
+            <h3>Desain Komunikasi Visual</h3>
+            <p>Belajar menyampaikan pesan lewat gambar, warna, dan tampilan visual. Cocok untuk anak yang senang menggambar atau berkreasi.</p>
+            <div class="jurusan-tags">
+              <span>Kreativitas</span>
+              <span>Industri kreatif</span>
+            </div>
+          </article>
+
+          <article class="jurusan-card">
+            <span class="label">Sosial Humaniora</span>
+            <h3>Hukum</h3>
+            <p>Mempelajari peraturan dan sistem keadilan di masyarakat. Cocok untuk anak yang senang berdiskusi, membaca, dan berargumen secara runtut.</p>
+            <div class="jurusan-tags">
+              <span>Analitis</span>
+              <span>Percaya diri</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: Tips memilih jurusan — memang berupa tahapan, jadi diberi nomor urut -->
+    <section class="section" id="tips" aria-labelledby="tips-title">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="tips-title">Tips Mendampingi Anak Memilih Jurusan</h2>
+          <p class="section-desc">Beberapa langkah sederhana yang bisa didiskusikan bersama anak di rumah.</p>
+        </div>
+
+        <ol class="tips-list">
+          <li class="tips-item">
+            <span class="tips-number">1</span>
+            <div class="tips-content">
+              <h3>Ajak Anak Mengenali Minatnya</h3>
+              <p>Tanyakan pelajaran atau kegiatan apa yang paling disukai anak selama ini, tanpa langsung menghubungkannya dengan jurusan tertentu.</p>
             </div>
           </li>
-          <li class="timeline-item">
-            <span class="timeline-number">02</span>
-            <div class="timeline-content">
-              <h3>Perancangan (Design)</h3>
-              <p>Menyusun arsitektur sistem, struktur data, dan tampilan antarmuka berdasarkan kebutuhan.</p>
+          <li class="tips-item">
+            <span class="tips-number">2</span>
+            <div class="tips-content">
+              <h3>Cari Informasi Bersama</h3>
+              <p>Luangkan waktu membaca tentang jurusan yang diminati anak, lalu diskusikan apa yang dipelajari dan prospeknya.</p>
             </div>
           </li>
-          <li class="timeline-item">
-            <span class="timeline-number">03</span>
-            <div class="timeline-content">
-              <h3>Implementasi</h3>
-              <p>Menerjemahkan rancangan menjadi kode program menggunakan bahasa pemrograman yang sesuai.</p>
+          <li class="tips-item">
+            <span class="tips-number">3</span>
+            <div class="tips-content">
+              <h3>Bicarakan Kemampuan dan Kondisi Keluarga</h3>
+              <p>Diskusikan secara terbuka soal biaya, lokasi kuliah, dan kesiapan anak, agar keputusan yang diambil realistis untuk semua pihak.</p>
             </div>
           </li>
-          <li class="timeline-item">
-            <span class="timeline-number">04</span>
-            <div class="timeline-content">
-              <h3>Pengujian (Testing)</h3>
-              <p>Memastikan perangkat lunak berjalan sesuai spesifikasi dan bebas dari bug kritis.</p>
-            </div>
-          </li>
-          <li class="timeline-item">
-            <span class="timeline-number">05</span>
-            <div class="timeline-content">
-              <h3>Deployment</h3>
-              <p>Merilis perangkat lunak ke lingkungan produksi agar dapat digunakan oleh pengguna akhir.</p>
-            </div>
-          </li>
-          <li class="timeline-item">
-            <span class="timeline-number">06</span>
-            <div class="timeline-content">
-              <h3>Pemeliharaan</h3>
-              <p>Memantau, memperbaiki, dan memperbarui sistem secara berkala setelah dirilis.</p>
+          <li class="tips-item">
+            <span class="tips-number">4</span>
+            <div class="tips-content">
+              <h3>Beri Ruang untuk Anak Memutuskan</h3>
+              <p>Setelah berdiskusi, biarkan anak yang mengambil keputusan akhir. Dukungan orang tua akan membuat anak lebih bertanggung jawab pada pilihannya.</p>
             </div>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="section" id="materi" aria-labelledby="materi-title">
+    <!-- SECTION: Profil pembuat website, gambar profil WAJIB memakai elemen <aside> -->
+    <section class="section section-soft" id="profil" aria-labelledby="profil-title">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Materi Belajar</p>
-          <h2 id="materi-title">Topik yang Perlu Kamu Kuasai</h2>
-          <p class="section-desc">Rangkuman topik inti dalam pembelajaran RPL, cocok untuk dijadikan checklist belajar.</p>
-        </div>
-
-        <div class="materi-grid">
-          <article class="materi-card">
-            <h3>Requirement Engineering</h3>
-            <p>Teknik menggali, menganalisis, dan mendokumentasikan kebutuhan sistem dari pengguna.</p>
-            <span class="tag">Dasar</span>
-          </article>
-          <article class="materi-card">
-            <h3>UML &amp; Pemodelan Sistem</h3>
-            <p>Menggambarkan struktur dan perilaku sistem lewat use case, class, dan activity diagram.</p>
-            <span class="tag">Desain</span>
-          </article>
-          <article class="materi-card">
-            <h3>Pemrograman Berorientasi Objek</h3>
-            <p>Konsep class, object, inheritance, dan polymorphism sebagai dasar coding modern.</p>
-            <span class="tag">Coding</span>
-          </article>
-          <article class="materi-card">
-            <h3>Basis Data</h3>
-            <p>Perancangan skema data, normalisasi, dan query menggunakan SQL maupun NoSQL.</p>
-            <span class="tag">Data</span>
-          </article>
-          <article class="materi-card">
-            <h3>Software Testing</h3>
-            <p>Unit test, integration test, hingga UAT untuk memastikan kualitas perangkat lunak.</p>
-            <span class="tag">QA</span>
-          </article>
-          <article class="materi-card">
-            <h3>Version Control</h3>
-            <p>Mengelola perubahan kode secara kolaboratif menggunakan Git dan platform seperti GitHub.</p>
-            <span class="tag">Tools</span>
-          </article>
-          <article class="materi-card">
-            <h3>Metodologi Agile &amp; Scrum</h3>
-            <p>Pendekatan pengembangan iteratif yang adaptif terhadap perubahan kebutuhan proyek.</p>
-            <span class="tag">Proses</span>
-          </article>
-          <article class="materi-card">
-            <h3>UI/UX Dasar</h3>
-            <p>Prinsip desain antarmuka yang membuat perangkat lunak mudah dan nyaman digunakan.</p>
-            <span class="tag">Desain</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-muted" id="tools" aria-labelledby="tools-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Perlengkapan</p>
-          <h2 id="tools-title">Tools yang Sering Dipakai</h2>
-          <p class="section-desc">Beberapa alat bantu yang umum digunakan di setiap tahapan pengembangan perangkat lunak.</p>
-        </div>
-
-        <div class="tools-grid">
-          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></span><span>Git &amp; GitHub</span></div>
-          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span><span>Figma</span></div>
-          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span>Postman</span></div>
-          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span><span>MySQL</span></div>
-          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><span>Trello / Jira</span></div>
-          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span>Visual Studio Code</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="profil" aria-labelledby="profil-title">
-      <div class="container">
-        <div class="section-head">
-          <p class="eyebrow">Tentang Pembuat</p>
-          <h2 id="profil-title">Di Balik RPL Insight</h2>
+          <h2 id="profil-title">Tentang Pembuat Panduan Ini</h2>
           <p class="section-desc">Website ini dibuat sebagai bagian dari proses belajar dasar pemrograman web.</p>
         </div>
 
         <aside class="profile-card" aria-label="Profil pembuat website">
-          <img src="asset/image/profile.svg" alt="Foto profil pembuat RPL Insight" class="profile-photo" width="120" height="120" />
+          <img src="asset/image/profile.svg" alt="Ilustrasi avatar pembuat website Panduan Jurusan" class="profile-photo" width="110" height="110" />
           <div class="profile-info">
             <h3>Faletehan Al Farabi</h3>
-            <p>Siswa Rekayasa Perangkat Lunak yang menyusun RPL Insight sebagai project submission Dicoding, berisi rangkuman materi dasar seputar dunia software development.</p>
-            <ul class="profile-links">
-              <li><a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Profil Dicoding</a></li>
-              <li><a href="https://github.com/FaletehanAlF" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> GitHub</a></li>
-            </ul>
+            <p>Menyusun Panduan Jurusan sebagai project submission Dicoding, dengan harapan bisa membantu orang tua memahami dunia perkuliahan lebih mudah.</p>
+            <div class="profile-links">
+              <a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">Profil Dicoding</a>
+              <a href="https://github.com/FaletehanAlF" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
           </div>
         </aside>
       </div>
     </section>
 
-    <section class="section section-muted" id="faq" aria-labelledby="faq-title">
-      <div class="container container-narrow">
+    <!-- SECTION: FAQ singkat untuk orang tua -->
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="container">
         <div class="section-head">
-          <p class="eyebrow">Pertanyaan Umum</p>
-          <h2 id="faq-title">Masih Ada yang Ingin Ditanyakan?</h2>
+          <h2 id="faq-title">Pertanyaan yang Sering Ditanyakan</h2>
         </div>
 
         <div class="faq-list">
           <details class="faq-item">
-            <summary>Apa perbedaan RPL dengan pemrograman biasa?</summary>
-            <p>Pemrograman hanya bagian kecil dari RPL. RPL mencakup keseluruhan proses mulai dari analisis kebutuhan, perancangan, pengujian, hingga pemeliharaan sistem secara sistematis.</p>
+            <summary>Bagaimana jika anak masih bingung sampai mendekati waktu pendaftaran?</summary>
+            <p>Itu wajar. Ajak anak fokus pada 2-3 pilihan yang paling mendekati minatnya, lalu bandingkan secara sederhana daripada mencoba memutuskan semuanya sekaligus.</p>
           </details>
           <details class="faq-item">
-            <summary>Apakah saya harus menguasai semua materi sekaligus?</summary>
-            <p>Tidak. Mulailah dari konsep dasar seperti SDLC dan requirement engineering, lalu perdalam topik lain secara bertahap sesuai kebutuhan proyek.</p>
+            <summary>Apakah jurusan menentukan pekerjaan anak nantinya?</summary>
+            <p>Jurusan memberi bekal ilmu, tapi banyak orang bekerja di bidang yang tidak selalu sama persis dengan jurusan kuliahnya. Yang penting anak terus belajar dan berkembang.</p>
           </details>
           <details class="faq-item">
-            <summary>Metodologi apa yang paling umum digunakan?</summary>
-            <p>Saat ini Agile dan Scrum menjadi metodologi paling populer karena sifatnya yang iteratif dan mudah beradaptasi dengan perubahan kebutuhan.</p>
+            <summary>Bagaimana kalau pilihan anak berbeda dengan harapan orang tua?</summary>
+            <p>Cobalah berdiskusi dengan tenang, dengarkan alasan anak, dan sampaikan juga kekhawatiran orang tua tanpa memaksakan keputusan.</p>
           </details>
         </div>
       </div>
@@ -283,28 +254,28 @@
 
   </main>
 
+  <!-- FOOTER: navigasi ulang dan informasi hak cipta -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a href="#" class="logo logo--light">
-          <span class="logo-mark">RPL</span>
-          <span class="logo-text">Insight</span>
+        <a href="#" class="logo">
+          <span class="logo-mark">PJ</span>
+          <span>Panduan Jurusan</span>
         </a>
-        <p>Portal belajar Rekayasa Perangkat Lunak untuk pemula. Dibuat sebagai project submission Dicoding.</p>
+        <p>Membantu orang tua mendampingi anak memilih jurusan kuliah dengan lebih tenang dan percaya diri.</p>
       </div>
 
       <nav class="footer-nav" aria-label="Tautan footer">
         <h3>Navigasi</h3>
         <ul>
-          <li><a href="#tentang">Tentang RPL</a></li>
-          <li><a href="#tahapan">Tahapan SDLC</a></li>
-          <li><a href="#materi">Materi</a></li>
-          <li><a href="#tools">Tools</a></li>
+          <li><a href="#kenapa">Kenapa Penting</a></li>
+          <li><a href="#jurusan">Daftar Jurusan</a></li>
+          <li><a href="#tips">Tips Memilih</a></li>
         </ul>
       </nav>
 
       <nav class="footer-nav" aria-label="Sumber footer">
-        <h3>Sumber</h3>
+        <h3>Lainnya</h3>
         <ul>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#konten-utama">Kembali ke atas</a></li>
@@ -313,35 +284,21 @@
     </div>
 
     <div class="container footer-bottom">
-      <p>&copy; 2026 RPL Insight. Dibuat untuk tujuan pembelajaran.</p>
+      <p>&copy; 2026 Panduan Jurusan. Dibuat untuk tujuan pembelajaran.</p>
     </div>
   </footer>
 
-  <script src="https://unpkg.com/feather-icons"></script>
   <script>
-    feather.replace();
-
     const navToggle = document.getElementById('navToggle');
     const navMenu = document.getElementById('navMenu');
     navToggle.addEventListener('click', () => {
       const isOpen = navMenu.classList.toggle('is-open');
       navToggle.setAttribute('aria-expanded', String(isOpen));
     });
-    navMenu.querySelectorAll('a').forEach(link => {
+    navMenu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         navMenu.classList.remove('is-open');
         navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    const faqItems = document.querySelectorAll('.faq-item details');
-    faqItems.forEach(item => {
-      item.addEventListener('toggle', () => {
-        faqItems.forEach(other => {
-          if (other !== item && other.open) {
-            other.removeAttribute('open');
-          }
-        });
       });
     });
   </script>
