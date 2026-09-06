@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RPL Insight — Belajar Rekayasa Perangkat Lunak</title>
-  <meta name="description"
-    content="Portal informasi seputar Rekayasa Perangkat Lunak (RPL): konsep dasar, tahapan SDLC, materi belajar, dan tools yang wajib dikuasai." />
+  <meta name="description" content="Portal informasi seputar Rekayasa Perangkat Lunak (RPL): konsep dasar, tahapan SDLC, materi belajar, dan tools yang wajib dikuasai." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="/asset/style/style.css" />
+  <link rel="stylesheet" href="asset/style/style.css" />
 </head>
 
 <body>
 
   <a class="skip-link" href="#konten-utama">Lompat ke konten utama</a>
 
-  <!-- HEADER & NAVIGASI -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="#" class="logo">
@@ -29,8 +24,7 @@
         <span class="logo-text">Insight</span>
       </a>
 
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu"
-        aria-label="Buka menu navigasi">
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu navigasi">
         <span></span><span></span><span></span>
       </button>
 
@@ -41,9 +35,7 @@
           <li><a href="#materi">Materi</a></li>
           <li><a href="#tools">Tools</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">Profil
-              Dicoding</a>
-          </li>
+          <li><a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">Profil Dicoding</a></li>
         </ul>
         <a href="#materi" class="btn btn-primary nav-cta">Mulai Belajar</a>
       </nav>
@@ -52,21 +44,16 @@
 
   <main id="konten-utama">
 
-    <!-- HERO -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-inner">
         <div class="hero-content">
           <p class="eyebrow">Rekayasa Perangkat Lunak</p>
           <h1 id="hero-title">Pahami cara membangun perangkat lunak yang benar, bukan cuma asal jadi.</h1>
-          <p class="hero-desc">
-            RPL Insight merangkum konsep, tahapan, dan tools penting dalam siklus hidup
-            pengembangan perangkat lunak — disusun sederhana untuk pemula yang baru mulai belajar.
-          </p>
+          <p class="hero-desc">RPL Insight merangkum konsep, tahapan, dan tools penting dalam siklus hidup pengembangan perangkat lunak — disusun sederhana untuk pemula yang baru mulai belajar.</p>
           <div class="hero-actions">
             <a href="#tahapan" class="btn btn-primary">Lihat Tahapan SDLC</a>
             <a href="#materi" class="btn btn-outline">Jelajahi Materi</a>
           </div>
-
           <dl class="hero-stats">
             <div>
               <dt>6</dt>
@@ -82,56 +69,38 @@
             </div>
           </dl>
         </div>
-
-        <figure class="hero-visual" aria-hidden="true">
-          <div class="code-window">
-            <div class="code-window__bar">
-              <span></span><span></span><span></span>
-            </div>
-            <pre class="code-window__body"><code>class SoftwareProject {
-  requirement() { … }
-  design()      { … }
-  develop()     { … }
-  test()        { … }
-  deploy()      { … }
-  maintain()    { … }
-}</code></pre>
-          </div>
-        </figure>
+        <div class="hero-visual">
+          <img src="asset/image/hero.svg" alt="Ilustrasi siklus hidup pengembangan perangkat lunak" class="hero-img" width="600" height="400" />
+        </div>
       </div>
     </section>
 
-    <!-- TENTANG RPL -->
     <section class="section" id="tentang" aria-labelledby="tentang-title">
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">Tentang RPL</p>
           <h2 id="tentang-title">Apa itu Rekayasa Perangkat Lunak?</h2>
-          <p class="section-desc">
-            Rekayasa Perangkat Lunak (Software Engineering) adalah disiplin ilmu yang mempelajari
-            cara merancang, membangun, menguji, dan memelihara perangkat lunak secara sistematis,
-            terstruktur, dan terukur — agar hasilnya andal, efisien, dan mudah dikembangkan lebih lanjut.
-          </p>
+          <p class="section-desc">Rekayasa Perangkat Lunak (Software Engineering) adalah disiplin ilmu yang mempelajari cara merancang, membangun, menguji, dan memelihara perangkat lunak secara sistematis, terstruktur, dan terukur.</p>
         </div>
 
         <div class="value-grid">
           <article class="value-card">
-            <div class="value-icon"><i data-feather="layers"></i></div>
+            <div class="value-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
             <h3>Terstruktur</h3>
             <p>Proses pengembangan dipecah menjadi tahapan yang jelas, dari analisis kebutuhan hingga pemeliharaan.</p>
           </article>
           <article class="value-card">
-            <div class="value-icon"><i data-feather="users"></i></div>
+            <div class="value-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
             <h3>Kolaboratif</h3>
             <p>Melibatkan banyak peran seperti analis, desainer, developer, dan tester yang bekerja sama.</p>
           </article>
           <article class="value-card">
-            <div class="value-icon"><i data-feather="trending-up"></i></div>
+            <div class="value-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
             <h3>Terukur</h3>
             <p>Setiap tahapan punya standar kualitas dan dokumentasi agar progres bisa dipantau dengan jelas.</p>
           </article>
           <article class="value-card">
-            <div class="value-icon"><i data-feather="refresh-cw"></i></div>
+            <div class="value-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
             <h3>Berkelanjutan</h3>
             <p>Perangkat lunak terus dievaluasi dan diperbarui mengikuti kebutuhan pengguna yang berkembang.</p>
           </article>
@@ -139,16 +108,12 @@
       </div>
     </section>
 
-    <!-- TAHAPAN SDLC -->
     <section class="section section-muted" id="tahapan" aria-labelledby="tahapan-title">
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">Alur Kerja</p>
           <h2 id="tahapan-title">Tahapan Software Development Life Cycle</h2>
-          <p class="section-desc">
-            SDLC adalah tahapan berurutan yang menjadi panduan tim dalam mengembangkan
-            perangkat lunak dari awal hingga siap digunakan.
-          </p>
+          <p class="section-desc">SDLC adalah tahapan berurutan yang menjadi panduan tim dalam mengembangkan perangkat lunak dari awal hingga siap digunakan.</p>
         </div>
 
         <ol class="timeline">
@@ -198,15 +163,12 @@
       </div>
     </section>
 
-    <!-- MATERI PEMBELAJARAN -->
     <section class="section" id="materi" aria-labelledby="materi-title">
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">Materi Belajar</p>
           <h2 id="materi-title">Topik yang Perlu Kamu Kuasai</h2>
-          <p class="section-desc">
-            Rangkuman topik inti dalam pembelajaran RPL, cocok untuk dijadikan checklist belajar.
-          </p>
+          <p class="section-desc">Rangkuman topik inti dalam pembelajaran RPL, cocok untuk dijadikan checklist belajar.</p>
         </div>
 
         <div class="materi-grid">
@@ -254,31 +216,25 @@
       </div>
     </section>
 
-    <!-- TOOLS -->
     <section class="section section-muted" id="tools" aria-labelledby="tools-title">
       <div class="container">
         <div class="section-head">
           <p class="eyebrow">Perlengkapan</p>
           <h2 id="tools-title">Tools yang Sering Dipakai</h2>
-          <p class="section-desc">Beberapa alat bantu yang umum digunakan di setiap tahapan pengembangan perangkat
-            lunak.</p>
+          <p class="section-desc">Beberapa alat bantu yang umum digunakan di setiap tahapan pengembangan perangkat lunak.</p>
         </div>
 
         <div class="tools-grid">
-          <div class="tool-item"><span class="tool-icon"><i data-feather="git-branch"></i></span><span>Git &amp;
-              GitHub</span></div>
-          <div class="tool-item"><span class="tool-icon"><i data-feather="pen-tool"></i></span><span>Figma</span></div>
-          <div class="tool-item"><span class="tool-icon"><i data-feather="send"></i></span><span>Postman</span></div>
-          <div class="tool-item"><span class="tool-icon"><i data-feather="database"></i></span><span>MySQL</span></div>
-          <div class="tool-item"><span class="tool-icon"><i data-feather="clipboard"></i></span><span>Trello /
-              Jira</span></div>
-          <div class="tool-item"><span class="tool-icon"><i data-feather="code"></i></span><span>Visual Studio
-              Code</span></div>
+          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg></span><span>Git &amp; GitHub</span></div>
+          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></span><span>Figma</span></div>
+          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></span><span>Postman</span></div>
+          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span><span>MySQL</span></div>
+          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><span>Trello / Jira</span></div>
+          <div class="tool-item"><span class="tool-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span><span>Visual Studio Code</span></div>
         </div>
       </div>
     </section>
 
-    <!-- PROFIL PEMBUAT -->
     <section class="section" id="profil" aria-labelledby="profil-title">
       <div class="container">
         <div class="section-head">
@@ -288,31 +244,19 @@
         </div>
 
         <aside class="profile-card" aria-label="Profil pembuat website">
-          <img
-            src="https://dicoding-web-img.sgp1.digitaloceanspaces.com/small/avatar/dos-130a2ec6f3d074bae8e751d8aa7ab89220260729204319.png"
-            alt="Foto profil pembuat RPL Insight" class="profile-photo" width="120" height="120" />
+          <img src="asset/image/profile.svg" alt="Foto profil pembuat RPL Insight" class="profile-photo" width="120" height="120" />
           <div class="profile-info">
             <h3>Faletehan Al Farabi</h3>
-            <p>Siswa Rekayasa Perangkat Lunak yang menyusun RPL Insight sebagai project submission Dicoding, berisi
-              rangkuman materi dasar seputar dunia software development.</p>
+            <p>Siswa Rekayasa Perangkat Lunak yang menyusun RPL Insight sebagai project submission Dicoding, berisi rangkuman materi dasar seputar dunia software development.</p>
             <ul class="profile-links">
-              <li>
-                <a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">
-                  <i data-feather="award"></i> Profil Dicoding
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/FaletehanAlF" target="_blank" rel="noopener noreferrer">
-                  <i data-feather="github"></i> GitHub
-                </a>
-              </li>
+              <li><a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg> Profil Dicoding</a></li>
+              <li><a href="https://github.com/FaletehanAlF" target="_blank" rel="noopener noreferrer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg> GitHub</a></li>
             </ul>
           </div>
         </aside>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="section section-muted" id="faq" aria-labelledby="faq-title">
       <div class="container container-narrow">
         <div class="section-head">
@@ -323,18 +267,15 @@
         <div class="faq-list">
           <details class="faq-item">
             <summary>Apa perbedaan RPL dengan pemrograman biasa?</summary>
-            <p>Pemrograman hanya bagian kecil dari RPL. RPL mencakup keseluruhan proses mulai dari analisis kebutuhan,
-              perancangan, pengujian, hingga pemeliharaan sistem secara sistematis.</p>
+            <p>Pemrograman hanya bagian kecil dari RPL. RPL mencakup keseluruhan proses mulai dari analisis kebutuhan, perancangan, pengujian, hingga pemeliharaan sistem secara sistematis.</p>
           </details>
           <details class="faq-item">
             <summary>Apakah saya harus menguasai semua materi sekaligus?</summary>
-            <p>Tidak. Mulailah dari konsep dasar seperti SDLC dan requirement engineering, lalu perdalam topik lain
-              secara bertahap sesuai kebutuhan proyek.</p>
+            <p>Tidak. Mulailah dari konsep dasar seperti SDLC dan requirement engineering, lalu perdalam topik lain secara bertahap sesuai kebutuhan proyek.</p>
           </details>
           <details class="faq-item">
             <summary>Metodologi apa yang paling umum digunakan?</summary>
-            <p>Saat ini Agile dan Scrum menjadi metodologi paling populer karena sifatnya yang iteratif dan mudah
-              beradaptasi dengan perubahan kebutuhan.</p>
+            <p>Saat ini Agile dan Scrum menjadi metodologi paling populer karena sifatnya yang iteratif dan mudah beradaptasi dengan perubahan kebutuhan.</p>
           </details>
         </div>
       </div>
@@ -342,7 +283,6 @@
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
@@ -363,13 +303,13 @@
         </ul>
       </nav>
 
-      <div class="footer-nav">
+      <nav class="footer-nav" aria-label="Sumber footer">
         <h3>Sumber</h3>
         <ul>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#konten-utama">Kembali ke atas</a></li>
         </ul>
-      </div>
+      </nav>
     </div>
 
     <div class="container footer-bottom">
@@ -393,7 +333,17 @@
         navToggle.setAttribute('aria-expanded', 'false');
       });
     });
+
+    const faqItems = document.querySelectorAll('.faq-item details');
+    faqItems.forEach(item => {
+      item.addEventListener('toggle', () => {
+        faqItems.forEach(other => {
+          if (other !== item && other.open) {
+            other.removeAttribute('open');
+          }
+        });
+      });
+    });
   </script>
 </body>
-
 </html>
