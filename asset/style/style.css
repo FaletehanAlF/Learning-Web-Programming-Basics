@@ -1,15 +1,4 @@
-/* =====================================================================
-   PANDUAN JURUSAN — style.css
-   1. Variables  2. Reset  3. Base  4. Accessibility  5. Buttons
-   6. Header  7. Navigation  8. Hero  9. Sections  10. Cards (reason/jurusan)
-   11. Tips  12. Profile  13. FAQ  14. Footer  15. Back-to-top + Reveal
-   16. Responsive  17. Reduced motion
-   Layout utama memakai FLEXBOX. Tidak ada "float" di file ini.
-   ===================================================================== */
-
-/* ---------- 1. Variables ---------- */
 :root {
-  /* Palet hangat yang dipertahankan: cream + hijau tua + ochre */
   --color-paper: #f6f2ea;
   --color-paper-soft: #efe8d8;
   --color-card: #fdfbf5;
@@ -40,7 +29,6 @@
   --ease: cubic-bezier(0.2, 0.7, 0.3, 1);
 }
 
-/* ---------- 2. Reset ---------- */
 *,
 *::before,
 *::after {
@@ -88,7 +76,6 @@ button {
   font: inherit;
 }
 
-/* ---------- 3. Base ---------- */
 h1,
 h2,
 h3 {
@@ -116,7 +103,6 @@ section {
   scroll-margin-top: calc(var(--header-height) + 12px);
 }
 
-/* ---------- 4. Accessibility ---------- */
 .skip-link {
   position: absolute;
   left: -999px;
@@ -153,7 +139,6 @@ section {
   border: 0;
 }
 
-/* ---------- 5. Buttons ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -207,13 +192,11 @@ section {
   background-color: rgb(30 74 66 / 0.14);
 }
 
-/* ---------- 6. Header (kapsul melayang) ---------- */
 .site-header {
   position: sticky;
   top: 12px;
   z-index: 100;
   background-color: transparent;
-  border-bottom: none;
   padding-inline: 16px;
 }
 
@@ -264,7 +247,6 @@ section {
   letter-spacing: 0.02em;
 }
 
-/* ---------- 7. Navigation ---------- */
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -323,7 +305,6 @@ section {
 }
 
 .site-nav a {
-  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 40px;
@@ -347,11 +328,6 @@ section {
   font-weight: 600;
 }
 
-.site-nav ul a.active::after {
-  display: none;
-}
-
-/* CTA kecil Profil Dicoding — teks gelap di atas ochre agar kontras aman */
 .site-nav ul a.nav-dicoding {
   margin-left: 6px;
   min-height: 40px;
@@ -375,37 +351,31 @@ section {
   background-color: #b06f26;
 }
 
-.site-nav ul a.nav-dicoding.active::after {
-  display: none;
-}
-
-/* ---------- 8. Hero (tengah, bertumpuk) ---------- */
 .hero {
-  padding-block: 48px 60px;
+  padding-block: 56px 68px;
   border-bottom: 1px solid var(--color-border-soft);
   overflow: clip;
 }
 
 .hero-inner {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 36px;
+  gap: 56px;
 }
 
 .hero-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  max-width: 740px;
-  text-align: center;
+  align-items: flex-start;
+  flex: 1.08 1 0;
+  min-width: 0;
 }
 
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin: 0 0 18px;
+  margin: 0 0 20px;
   padding: 7px 14px;
   border-radius: 999px;
   background-color: #fff;
@@ -427,19 +397,22 @@ section {
 }
 
 .hero-content h1 {
-  font-size: clamp(2rem, 3.6vw, 2.75rem);
-  line-height: 1.14;
-  margin-bottom: 18px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.12;
+  margin-bottom: 20px;
   color: var(--color-ink);
 }
 
-.hero-content h1 .hl {
+.hero-content h1 em {
   position: relative;
+  z-index: 0;
+  font-style: italic;
+  font-weight: 500;
   white-space: nowrap;
   color: var(--color-teal);
 }
 
-.hero-content h1 .hl::after {
+.hero-content h1 em::after {
   content: "";
   position: absolute;
   left: 0;
@@ -451,53 +424,69 @@ section {
   z-index: -1;
 }
 
-.hero-content h1 .hl {
-  z-index: 0;
-}
-
 .hero-desc {
   font-size: 1.06rem;
   line-height: 1.7;
-  max-width: 58ch;
-  margin-bottom: 28px;
+  max-width: 52ch;
+  margin-bottom: 30px;
 }
 
 .hero-actions {
   display: flex;
-  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 24px;
+  margin-bottom: 34px;
 }
 
-.hero-points {
+.hero-stats {
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
-  gap: 8px 20px;
+  gap: 12px 36px;
+  max-width: 520px;
   margin: 0;
-  padding: 0;
+  padding: 22px 0 0;
+  border-top: 1px solid var(--color-border);
 }
 
-.hero-points li {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--color-muted);
+.hero-stats li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
-.hero-points svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
+.hero-stats strong {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
   color: var(--color-teal);
 }
 
+.hero-stats span {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
 .hero-visual {
-  width: 100%;
-  max-width: 640px;
+  position: relative;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 0.92 1 0;
+  min-width: 0;
+}
+
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 22px;
+  bottom: -14px;
+  left: 22px;
+  right: -14px;
+  border: 2px solid var(--color-ochre-line);
+  border-radius: var(--radius-lg);
 }
 
 .hero-figure {
@@ -519,12 +508,10 @@ section {
 .hero-figure figcaption {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
   padding: 12px 6px 2px;
   font-size: 0.88rem;
   color: var(--color-muted);
-  text-align: left;
 }
 
 .hero-figure figcaption strong {
@@ -541,7 +528,39 @@ section {
   flex-shrink: 0;
 }
 
-/* ---------- 9. Sections ---------- */
+.hero-badge {
+  position: absolute;
+  left: -28px;
+  bottom: 44px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 260px;
+  padding: 14px 18px;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.hero-badge strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  line-height: 1.4;
+}
+
+.hero-badge small {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+.hero-badge .stars {
+  font-size: 0.85rem;
+}
+
 .section {
   padding-block: 68px;
 }
@@ -576,8 +595,6 @@ section {
   max-width: 62ch;
 }
 
-/* ---------- 10. Cards ---------- */
-/* Alasan — article */
 .reason-grid {
   display: flex;
   flex-wrap: wrap;
@@ -663,7 +680,6 @@ section {
   line-height: 1.65;
 }
 
-/* Jurusan — article katalog */
 .jurusan-grid {
   display: flex;
   flex-wrap: wrap;
@@ -731,7 +747,6 @@ section {
   white-space: nowrap;
 }
 
-/* ---------- 11. Tips ---------- */
 .tips-list {
   display: flex;
   flex-direction: column;
@@ -783,7 +798,6 @@ section {
   max-width: 60ch;
 }
 
-/* ---------- 12. Profile (aside) ---------- */
 .profile-card {
   display: flex;
   align-items: center;
@@ -863,7 +877,6 @@ section {
   transform: translateY(0);
 }
 
-/* ---------- 13. FAQ (details/summary) ---------- */
 .faq-list {
   display: flex;
   flex-direction: column;
@@ -940,7 +953,6 @@ section {
   line-height: 1.7;
 }
 
-/* ---------- 14. Footer ---------- */
 .site-footer {
   background-color: var(--color-teal-deep);
   color: #d9e5df;
@@ -1009,7 +1021,7 @@ section {
 }
 
 .footer-nav a:hover {
-  color: var(--color-ochre-light, #f2c87a);
+  color: var(--color-ochre-soft);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -1025,7 +1037,6 @@ section {
   margin: 0;
 }
 
-/* ---------- 15. Back-to-top + Reveal ---------- */
 .back-to-top {
   position: fixed;
   right: 22px;
@@ -1069,9 +1080,6 @@ section {
   opacity: 1;
 }
 
-/* Reveal hanya disembunyikan saat JS aktif (progressive enhancement).
-   Memakai animation (bukan transition) supaya hover card tetap responsif
-   dan delay stagger tidak menempel setelah animasi selesai. */
 html.js .reveal {
   opacity: 0;
 }
@@ -1094,15 +1102,12 @@ html.js .reveal.is-visible {
   }
 }
 
-/* Stagger: kartu dalam satu grup muncul satu per satu */
 html.js .stagger > .reveal.is-visible:nth-child(2) { animation-delay: 0.08s; }
 html.js .stagger > .reveal.is-visible:nth-child(3) { animation-delay: 0.16s; }
 html.js .stagger > .reveal.is-visible:nth-child(4) { animation-delay: 0.24s; }
 html.js .stagger > .reveal.is-visible:nth-child(5) { animation-delay: 0.32s; }
 html.js .stagger > .reveal.is-visible:nth-child(6) { animation-delay: 0.4s; }
 
-/* Stagger saat halaman dibuka (hero): satu per satu dari atas.
-   Memakai animation supaya delay tidak menempel pada hover tombol. */
 html.js .hero-stagger > * {
   opacity: 0;
 }
@@ -1128,7 +1133,6 @@ html.js body.is-loaded .hero-fade {
   animation-delay: 0.42s;
 }
 
-/* ---------- 16. Testimoni ---------- */
 .split-head {
   display: flex;
   align-items: flex-end;
@@ -1313,20 +1317,59 @@ html.js body.is-loaded .hero-fade {
   color: var(--color-muted);
 }
 
-/* ---------- 17. Responsive ---------- */
 @media (max-width: 1024px) {
   .section {
     padding-block: 60px;
   }
+
+  .hero-inner {
+    gap: 44px;
+  }
 }
 
-@media (max-width: 860px) {
+@media (max-width: 960px) {
   body {
     font-size: 16px;
   }
 
   .hero {
-    padding-block: 40px 48px;
+    padding-block: 44px 52px;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .hero-content {
+    align-items: center;
+    max-width: 640px;
+    text-align: center;
+  }
+
+  .hero-desc {
+    max-width: 56ch;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    justify-content: center;
+    max-width: none;
+    text-align: left;
+  }
+
+  .hero-visual {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .hero-badge {
+    position: static;
+    max-width: none;
+    margin-top: 14px;
   }
 
   .reason-card,
@@ -1340,12 +1383,7 @@ html.js body.is-loaded .hero-fade {
   }
 }
 
-/* Navbar kapsul: menu jadi kartu dropdown di bawah kapsul */
 @media (max-width: 900px) {
-  .header-capsule {
-    flex-wrap: wrap;
-  }
-
   .logo span:last-child {
     font-size: 1.05rem;
   }
@@ -1391,13 +1429,30 @@ html.js body.is-loaded .hero-fade {
     margin: 6px 0 2px;
     justify-content: center;
   }
+}
 
+@media (max-width: 640px) {
   .hero-content h1 {
-    font-size: clamp(1.85rem, 7.4vw, 2.3rem);
+    font-size: clamp(1.8rem, 8.5vw, 2.2rem);
   }
 
   .hero-figure {
     padding: 10px;
+  }
+
+  .hero-visual::before {
+    top: 14px;
+    bottom: -10px;
+    left: 14px;
+    right: -10px;
+  }
+
+  .hero-stats {
+    gap: 12px 24px;
+  }
+
+  .hero-stats strong {
+    font-size: 1.25rem;
   }
 
   .reason-card,
@@ -1443,13 +1498,24 @@ html.js body.is-loaded .hero-fade {
     margin-bottom: 28px;
   }
 
+  .hero {
+    padding-block: 36px 44px;
+  }
+
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
+    width: 100%;
   }
 
   .hero-actions .btn {
     width: 100%;
+  }
+
+  .hero-stats {
+    width: 100%;
+    justify-content: space-between;
+    gap: 12px;
   }
 
   .tips-item {
@@ -1471,7 +1537,6 @@ html.js body.is-loaded .hero-fade {
   }
 }
 
-/* ---------- 18. Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
