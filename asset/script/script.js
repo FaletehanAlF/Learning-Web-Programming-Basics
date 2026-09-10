@@ -148,4 +148,43 @@
       });
     });
   });
+
+  /* ----- Testimoni: tombol geser + status disabled di ujung track ----- */
+  const testiTrack = document.getElementById('testiTrack');
+  const testiPrev = document.getElementById('testiPrev');
+  const testiNext = document.getElementById('testiNext');
+
+  function testiStep() {
+    if (!testiTrack) return 0;
+    const card = testiTrack.querySelector('.testi-card');
+    if (!card) return testiTrack.clientWidth * 0.8;
+    const gap = parseFloat(getComputedStyle(testiTrack).columnGap) || 16;
+    return card.offsetWidth + gap;
+  }
+
+  function updateTestiButtons() {
+    if (!testiTrack || !testiPrev || !testiNext) return;
+    const maxScroll = testiTrack.scrollWidth - testiTrack.clientWidth;
+    // Toleransi 2px agar tidak macet karena pembulatan sub-pixel.
+    testiPrev.disabled = testiTrack.scrollLeft <= 2;
+    testiNext.disabled = testiTrack.scrollLeft >= maxScroll - 2;
+  }
+
+  if (testiTrack && testiPrev && testiNext) {
+    const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+    testiPrev.addEventListener('click', () => {
+      testiTrack.scrollBy({ left: -testiStep(), behavior });
+    });
+    testiNext.addEventListener('click', () => {
+      testiTrack.scrollBy({ left: testiStep(), behavior });
+    });
+
+    testiTrack.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateTestiButtons);
+    }, { passive: true });
+    window.addEventListener('resize', updateTestiButtons);
+
+    updateTestiButtons();
+  }
 })();
