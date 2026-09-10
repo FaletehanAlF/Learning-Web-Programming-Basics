@@ -1306,10 +1306,6 @@ html.js body.is-loaded .hero-fade {
 
 /* ---------- 17. Responsive ---------- */
 @media (max-width: 1024px) {
-  .hero-inner {
-    gap: 36px;
-  }
-
   .section {
     padding-block: 60px;
   }
@@ -1324,29 +1320,45 @@ html.js body.is-loaded .hero-fade {
     padding-block: 40px 48px;
   }
 
-  .hero-inner {
-    gap: 28px;
-  }
-
   .reason-card,
   .jurusan-card {
     flex-basis: calc(50% - 10px);
   }
+
+  .split-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
 }
 
-@media (max-width: 760px) {
+/* Navbar kapsul: menu jadi kartu dropdown di bawah kapsul */
+@media (max-width: 900px) {
+  .header-capsule {
+    flex-wrap: wrap;
+  }
+
+  .logo span:last-child {
+    font-size: 1.05rem;
+  }
+
   .nav-toggle {
     display: inline-flex;
+    margin-left: auto;
   }
 
   .site-nav {
     display: none;
-    width: 100%;
-    flex-basis: 100%;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 16px;
+    right: 16px;
     flex-direction: column;
     align-items: stretch;
-    padding: 8px 0 10px;
-    border-top: 1px solid var(--color-border-soft);
+    padding: 10px;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    box-shadow: var(--shadow-md);
   }
 
   .site-nav.is-open {
@@ -1361,19 +1373,13 @@ html.js body.is-loaded .hero-fade {
 
   .site-nav a {
     min-height: 46px;
-    padding: 11px 14px;
-    font-size: 0.98rem;
-  }
-
-  .site-nav ul a.active::after {
-    left: 14px;
-    right: auto;
-    width: 22px;
-    bottom: 6px;
+    padding: 11px 16px;
+    border-radius: 12px;
+    font-size: 0.97rem;
   }
 
   .site-nav ul a.nav-dicoding {
-    margin: 8px 0 2px;
+    margin: 6px 0 2px;
     justify-content: center;
   }
 
