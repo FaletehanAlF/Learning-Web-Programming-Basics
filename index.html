@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Panduan Jurusan — Membantu Orang Tua Mendampingi Pilihan Anak</title>
-  <meta name="description" content="Panduan Jurusan membantu orang tua memahami berbagai jurusan kuliah dengan bahasa sederhana, agar bisa mendampingi anak memilih jurusan dengan lebih tenang." />
+  <meta name="description"
+    content="Panduan Jurusan membantu orang tua memahami berbagai jurusan kuliah dengan bahasa sederhana, agar bisa mendampingi anak memilih jurusan dengan lebih tenang." />
+  <meta name="theme-color" content="#1e4a42" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
 
   <link rel="stylesheet" href="asset/style/style.css" />
 </head>
+
 <body>
 
   <a class="skip-link" href="#konten-utama">Lompat ke konten utama</a>
 
   <!-- HEADER: berisi logo dan navigasi utama -->
-  <header class="site-header">
+  <header class="site-header" id="siteHeader">
     <div class="container header-inner">
-      <a href="#" class="logo">
-        <span class="logo-mark">PJ</span>
+      <a href="#konten-utama" class="logo" aria-label="Panduan Jurusan — kembali ke atas">
+        <span class="logo-mark" aria-hidden="true">PJ</span>
         <span>Panduan Jurusan</span>
       </a>
 
-      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu navigasi">
-        <span></span><span></span><span></span>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu"
+        aria-label="Buka menu navigasi">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
 
       <!-- NAV: menu ke tiap section + tautan wajib ke profil Dicoding -->
@@ -36,7 +43,8 @@
           <li><a href="#tips">Tips Memilih</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li>
-            <a class="nav-dicoding" href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">
+            <a class="nav-dicoding" href="https://www.dicoding.com/users/falennn_af" target="_blank"
+              rel="noopener noreferrer">
               Profil Dicoding
             </a>
           </li>
@@ -52,7 +60,8 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero-inner">
         <div class="hero-content">
-          <h1 id="hero-title">Bingung anak mau ambil jurusan apa? Yuk, cari tahu bersama.</h1>
+          <p class="hero-eyebrow">Panduan untuk orang tua siswa SMA</p>
+          <h1 id="hero-title">Bingung anak mau ambil jurusan apa? <span class="hl">Yuk, cari tahu</span> bersama.</h1>
           <p class="hero-desc">
             Panduan Jurusan disusun khusus untuk Bapak/Ibu, agar lebih mudah memahami pilihan-pilihan jurusan
             kuliah yang ada — tanpa istilah rumit — supaya bisa mendampingi anak mengambil keputusan dengan tenang.
@@ -61,9 +70,43 @@
             <a href="#jurusan" class="btn btn-primary">Lihat Daftar Jurusan</a>
             <a href="#tips" class="btn btn-outline">Baca Tips Memilih</a>
           </div>
+          <ul class="hero-points" aria-label="Keunggulan panduan ini">
+            <li>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6" />
+                <path d="m6.5 10.2 2.4 2.4 4.6-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Bahasa sederhana
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6" />
+                <path d="m6.5 10.2 2.4 2.4 4.6-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Tanpa istilah rumit
+            </li>
+            <li>
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false">
+                <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6" />
+                <path d="m6.5 10.2 2.4 2.4 4.6-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Bisa dibaca 10 menit
+            </li>
+          </ul>
         </div>
         <div class="hero-visual">
-          <img src="asset/image/image.png" alt="Ilustrasi orang tua dan anak menyusuri jalur bertanda menuju pilihan jurusan yang tepat" class="hero-img" width="560" height="520" />
+          <figure class="hero-figure">
+            <img src="asset/image/image.png"
+              alt="Ilustrasi orang tua dan anak menyusuri jalur bertanda menuju pilihan jurusan yang tepat"
+              class="hero-img" width="560" height="520" fetchpriority="high" />
+            <figcaption>
+              <span class="dot-live" aria-hidden="true"></span>
+              <span><strong>Didampingi, bukan diarahkan.</strong> Mulai dari memahami minat anak.</span>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -71,23 +114,57 @@
     <!-- SECTION: Kenapa peran orang tua penting, memakai <article> untuk tiap poin -->
     <section class="section" id="kenapa" aria-labelledby="kenapa-title">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
+          <p class="section-kicker">Untuk Bapak/Ibu</p>
           <h2 id="kenapa-title">Kenapa Peran Orang Tua Penting?</h2>
-          <p class="section-desc">Anak sering merasa lebih yakin mengambil keputusan besar ketika ada orang tua yang mendengarkan dan ikut berdiskusi, bukan sekadar menentukan.</p>
+          <p class="section-desc">Anak sering merasa lebih yakin mengambil keputusan besar ketika ada orang tua yang
+            mendengarkan dan ikut berdiskusi, bukan sekadar menentukan.</p>
         </div>
 
         <div class="reason-grid">
-          <article class="reason-card">
+          <article class="reason-card reveal">
+            <div class="reason-top">
+              <span class="reason-num" aria-hidden="true">01</span>
+              <span class="reason-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                  <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.5 0-3-.4-4.2-1L3 20l1.1-4.3A8.5 8.5 0 1 1 21 11.5Z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" />
+                </svg>
+              </span>
+            </div>
             <h3>Menjadi Tempat Bercerita</h3>
-            <p>Anak butuh ruang aman untuk membicarakan minat dan kekhawatirannya tentang masa depan, tanpa takut dihakimi.</p>
+            <p>Anak butuh ruang aman untuk membicarakan minat dan kekhawatirannya tentang masa depan, tanpa takut
+              dihakimi.</p>
           </article>
-          <article class="reason-card">
+          <article class="reason-card reveal">
+            <div class="reason-top">
+              <span class="reason-num" aria-hidden="true">02</span>
+              <span class="reason-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                  <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7" />
+                  <path d="M12 7.5v5l3.2 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
             <h3>Memberi Sudut Pandang Lain</h3>
             <p>Pengalaman hidup orang tua bisa membantu anak melihat sisi realistis dari sebuah pilihan jurusan.</p>
           </article>
-          <article class="reason-card">
+          <article class="reason-card reveal">
+            <div class="reason-top">
+              <span class="reason-num" aria-hidden="true">03</span>
+              <span class="reason-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                  <path d="M12 20s-7.5-4.7-7.5-10.3A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.7C19.5 15.3 12 20 12 20Z"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
             <h3>Mendukung, Bukan Memaksa</h3>
-            <p>Dukungan yang tulus membuat anak lebih percaya diri menjalani jurusan pilihannya, apa pun hasilnya nanti.</p>
+            <p>Dukungan yang tulus membuat anak lebih percaya diri menjalani jurusan pilihannya, apa pun hasilnya nanti.
+            </p>
           </article>
         </div>
       </div>
@@ -96,66 +173,74 @@
     <!-- SECTION: Daftar jurusan populer, tiap jurusan adalah <article> mandiri -->
     <section class="section section-soft" id="jurusan" aria-labelledby="jurusan-title">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
+          <p class="section-kicker">Katalog singkat</p>
           <h2 id="jurusan-title">Mengenal Beberapa Jurusan Populer</h2>
-          <p class="section-desc">Berikut gambaran singkat beberapa jurusan yang sering dipilih, dijelaskan dengan bahasa sederhana.</p>
+          <p class="section-desc">Berikut gambaran singkat beberapa jurusan yang sering dipilih, dijelaskan dengan
+            bahasa sederhana.</p>
         </div>
 
         <div class="jurusan-grid">
-          <article class="jurusan-card">
+          <article class="jurusan-card reveal">
             <span class="label">Teknologi</span>
             <h3>Teknik Informatika</h3>
-            <p>Belajar merancang dan membuat program komputer, aplikasi, hingga website. Cocok untuk anak yang suka logika dan memecahkan masalah.</p>
+            <p>Belajar merancang dan membuat program komputer, aplikasi, hingga website. Cocok untuk anak yang suka
+              logika dan memecahkan masalah.</p>
             <div class="jurusan-tags">
               <span>Logis</span>
               <span>Peluang kerja luas</span>
             </div>
           </article>
 
-          <article class="jurusan-card">
+          <article class="jurusan-card reveal">
             <span class="label">Kesehatan</span>
             <h3>Kedokteran</h3>
-            <p>Mempelajari tubuh manusia dan cara menangani penyakit. Membutuhkan waktu belajar yang panjang, tapi hasilnya sangat dibutuhkan masyarakat.</p>
+            <p>Mempelajari tubuh manusia dan cara menangani penyakit. Membutuhkan waktu belajar yang panjang, tapi
+              hasilnya sangat dibutuhkan masyarakat.</p>
             <div class="jurusan-tags">
               <span>Perlu ketekunan</span>
               <span>Berdampak sosial</span>
             </div>
           </article>
 
-          <article class="jurusan-card">
+          <article class="jurusan-card reveal">
             <span class="label">Sosial Humaniora</span>
             <h3>Psikologi</h3>
-            <p>Mempelajari cara kerja pikiran dan perilaku manusia. Cocok untuk anak yang senang mendengarkan dan memahami orang lain.</p>
+            <p>Mempelajari cara kerja pikiran dan perilaku manusia. Cocok untuk anak yang senang mendengarkan dan
+              memahami orang lain.</p>
             <div class="jurusan-tags">
               <span>Empati</span>
               <span>Komunikasi</span>
             </div>
           </article>
 
-          <article class="jurusan-card">
+          <article class="jurusan-card reveal">
             <span class="label">Bisnis</span>
             <h3>Akuntansi</h3>
-            <p>Belajar mengelola dan mencatat keuangan perusahaan. Jurusan ini banyak dicari karena hampir semua bisnis butuh pengelolaan keuangan yang rapi.</p>
+            <p>Belajar mengelola dan mencatat keuangan perusahaan. Jurusan ini banyak dicari karena hampir semua bisnis
+              butuh pengelolaan keuangan yang rapi.</p>
             <div class="jurusan-tags">
               <span>Teliti</span>
               <span>Kebutuhan tinggi</span>
             </div>
           </article>
 
-          <article class="jurusan-card">
+          <article class="jurusan-card reveal">
             <span class="label">Kreatif</span>
             <h3>Desain Komunikasi Visual</h3>
-            <p>Belajar menyampaikan pesan lewat gambar, warna, dan tampilan visual. Cocok untuk anak yang senang menggambar atau berkreasi.</p>
+            <p>Belajar menyampaikan pesan lewat gambar, warna, dan tampilan visual. Cocok untuk anak yang senang
+              menggambar atau berkreasi.</p>
             <div class="jurusan-tags">
               <span>Kreativitas</span>
               <span>Industri kreatif</span>
             </div>
           </article>
 
-          <article class="jurusan-card">
+          <article class="jurusan-card reveal">
             <span class="label">Sosial Humaniora</span>
             <h3>Hukum</h3>
-            <p>Mempelajari peraturan dan sistem keadilan di masyarakat. Cocok untuk anak yang senang berdiskusi, membaca, dan berargumen secara runtut.</p>
+            <p>Mempelajari peraturan dan sistem keadilan di masyarakat. Cocok untuk anak yang senang berdiskusi,
+              membaca, dan berargumen secara runtut.</p>
             <div class="jurusan-tags">
               <span>Analitis</span>
               <span>Percaya diri</span>
@@ -168,38 +253,43 @@
     <!-- SECTION: Tips memilih jurusan — memang berupa tahapan, jadi diberi nomor urut -->
     <section class="section" id="tips" aria-labelledby="tips-title">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
+          <p class="section-kicker">Langkah praktis</p>
           <h2 id="tips-title">Tips Mendampingi Anak Memilih Jurusan</h2>
           <p class="section-desc">Beberapa langkah sederhana yang bisa didiskusikan bersama anak di rumah.</p>
         </div>
 
-        <ol class="tips-list">
+        <ol class="tips-list reveal">
           <li class="tips-item">
-            <span class="tips-number">1</span>
+            <span class="tips-number" aria-hidden="true">1</span>
             <div class="tips-content">
               <h3>Ajak Anak Mengenali Minatnya</h3>
-              <p>Tanyakan pelajaran atau kegiatan apa yang paling disukai anak selama ini, tanpa langsung menghubungkannya dengan jurusan tertentu.</p>
+              <p>Tanyakan pelajaran atau kegiatan apa yang paling disukai anak selama ini, tanpa langsung
+                menghubungkannya dengan jurusan tertentu.</p>
             </div>
           </li>
           <li class="tips-item">
-            <span class="tips-number">2</span>
+            <span class="tips-number" aria-hidden="true">2</span>
             <div class="tips-content">
               <h3>Cari Informasi Bersama</h3>
-              <p>Luangkan waktu membaca tentang jurusan yang diminati anak, lalu diskusikan apa yang dipelajari dan prospeknya.</p>
+              <p>Luangkan waktu membaca tentang jurusan yang diminati anak, lalu diskusikan apa yang dipelajari dan
+                prospeknya.</p>
             </div>
           </li>
           <li class="tips-item">
-            <span class="tips-number">3</span>
+            <span class="tips-number" aria-hidden="true">3</span>
             <div class="tips-content">
               <h3>Bicarakan Kemampuan dan Kondisi Keluarga</h3>
-              <p>Diskusikan secara terbuka soal biaya, lokasi kuliah, dan kesiapan anak, agar keputusan yang diambil realistis untuk semua pihak.</p>
+              <p>Diskusikan secara terbuka soal biaya, lokasi kuliah, dan kesiapan anak, agar keputusan yang diambil
+                realistis untuk semua pihak.</p>
             </div>
           </li>
           <li class="tips-item">
-            <span class="tips-number">4</span>
+            <span class="tips-number" aria-hidden="true">4</span>
             <div class="tips-content">
               <h3>Beri Ruang untuk Anak Memutuskan</h3>
-              <p>Setelah berdiskusi, biarkan anak yang mengambil keputusan akhir. Dukungan orang tua akan membuat anak lebih bertanggung jawab pada pilihannya.</p>
+              <p>Setelah berdiskusi, biarkan anak yang mengambil keputusan akhir. Dukungan orang tua akan membuat anak
+                lebih bertanggung jawab pada pilihannya.</p>
             </div>
           </li>
         </ol>
@@ -209,18 +299,23 @@
     <!-- SECTION: Profil pembuat website, gambar profil WAJIB memakai elemen <aside> -->
     <section class="section section-soft" id="profil" aria-labelledby="profil-title">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
+          <p class="section-kicker">Tentang pembuat</p>
           <h2 id="profil-title">Tentang Pembuat Panduan Ini</h2>
           <p class="section-desc">Website ini dibuat sebagai bagian dari proses belajar dasar pemrograman web.</p>
         </div>
 
-        <aside class="profile-card" aria-label="Profil pembuat website">
-          <img src="asset/image/image copy.png" alt="Ilustrasi avatar pembuat website Panduan Jurusan" class="profile-photo" width="110" height="110" />
+        <aside class="profile-card reveal" aria-label="Profil pembuat website">
+          <img src="asset/image/image copy.png" alt="Ilustrasi avatar pembuat website Panduan Jurusan"
+            class="profile-photo" width="110" height="110" loading="lazy" />
           <div class="profile-info">
             <h3>Faletehan Al Farabi</h3>
-            <p>Menyusun Panduan Jurusan sebagai project submission Dicoding, dengan harapan bisa membantu orang tua memahami dunia perkuliahan lebih mudah.</p>
+            <p class="profile-role">Submission Dicoding — Belajar Dasar Pemrograman Web</p>
+            <p>Menyusun Panduan Jurusan sebagai project submission Dicoding, dengan harapan bisa membantu orang tua
+              memahami dunia perkuliahan lebih mudah.</p>
             <div class="profile-links">
-              <a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">Profil Dicoding</a>
+              <a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">Profil
+                Dicoding</a>
               <a href="https://github.com/FaletehanAlF" target="_blank" rel="noopener noreferrer">GitHub</a>
             </div>
           </div>
@@ -231,22 +326,27 @@
     <!-- SECTION: FAQ singkat untuk orang tua -->
     <section class="section" id="faq" aria-labelledby="faq-title">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head reveal">
+          <p class="section-kicker">Sering ditanyakan</p>
           <h2 id="faq-title">Pertanyaan yang Sering Ditanyakan</h2>
+          <p class="section-desc">Jawaban singkat atas kekhawatiran yang paling sering disampaikan orang tua.</p>
         </div>
 
-        <div class="faq-list">
-          <details class="faq-item">
+        <div class="faq-list reveal">
+          <details class="faq-item" name="faq-orangtua">
             <summary>Bagaimana jika anak masih bingung sampai mendekati waktu pendaftaran?</summary>
-            <p>Itu wajar. Ajak anak fokus pada 2-3 pilihan yang paling mendekati minatnya, lalu bandingkan secara sederhana daripada mencoba memutuskan semuanya sekaligus.</p>
+            <p>Itu wajar. Ajak anak fokus pada 2-3 pilihan yang paling mendekati minatnya, lalu bandingkan secara
+              sederhana daripada mencoba memutuskan semuanya sekaligus.</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" name="faq-orangtua">
             <summary>Apakah jurusan menentukan pekerjaan anak nantinya?</summary>
-            <p>Jurusan memberi bekal ilmu, tapi banyak orang bekerja di bidang yang tidak selalu sama persis dengan jurusan kuliahnya. Yang penting anak terus belajar dan berkembang.</p>
+            <p>Jurusan memberi bekal ilmu, tapi banyak orang bekerja di bidang yang tidak selalu sama persis dengan
+              jurusan kuliahnya. Yang penting anak terus belajar dan berkembang.</p>
           </details>
-          <details class="faq-item">
+          <details class="faq-item" name="faq-orangtua">
             <summary>Bagaimana kalau pilihan anak berbeda dengan harapan orang tua?</summary>
-            <p>Cobalah berdiskusi dengan tenang, dengarkan alasan anak, dan sampaikan juga kekhawatiran orang tua tanpa memaksakan keputusan.</p>
+            <p>Cobalah berdiskusi dengan tenang, dengarkan alasan anak, dan sampaikan juga kekhawatiran orang tua tanpa
+              memaksakan keputusan.</p>
           </details>
         </div>
       </div>
@@ -258,8 +358,8 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <a href="#" class="logo">
-          <span class="logo-mark">PJ</span>
+        <a href="#konten-utama" class="logo" aria-label="Panduan Jurusan — kembali ke atas">
+          <span class="logo-mark" aria-hidden="true">PJ</span>
           <span>Panduan Jurusan</span>
         </a>
         <p>Membantu orang tua mendampingi anak memilih jurusan kuliah dengan lebih tenang dan percaya diri.</p>
@@ -278,6 +378,7 @@
         <h3>Lainnya</h3>
         <ul>
           <li><a href="#faq">FAQ</a></li>
+          <li><a href="#profil">Tentang Pembuat</a></li>
           <li><a href="#konten-utama">Kembali ke atas</a></li>
         </ul>
       </nav>
@@ -288,19 +389,18 @@
     </div>
   </footer>
 
-  <script>
-    const navToggle = document.getElementById('navToggle');
-    const navMenu = document.getElementById('navMenu');
-    navToggle.addEventListener('click', () => {
-      const isOpen = navMenu.classList.toggle('is-open');
-      navToggle.setAttribute('aria-expanded', String(isOpen));
-    });
-    navMenu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('is-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  </script>
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <span aria-hidden="true">&#8593;</span>
+  </button>
+
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .back-to-top { display: none !important; }
+    </style>
+  </noscript>
+
+  <script src="asset/script/script.js" defer></script>
 </body>
+
 </html>
