@@ -1,11 +1,8 @@
-/* Panduan Jurusan — interaksi Vanilla JS: navigasi mobile, section aktif,
-   scroll reveal, back-to-top, dan FAQ single-open. */
 (function () {
   'use strict';
 
   document.documentElement.classList.add('js');
 
-  // Pemicu animasi stagger hero: tulisan muncul satu per satu saat dibuka.
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
       document.body.classList.add('is-loaded');
@@ -14,7 +11,6 @@
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ----- DOM references ----- */
   const header = document.getElementById('siteHeader');
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
@@ -23,7 +19,6 @@
   const revealEls = Array.from(document.querySelectorAll('.reveal'));
   const faqItems = Array.from(document.querySelectorAll('.faq-item'));
 
-  /* ----- Mobile navigation ----- */
   function setMenuOpen(open) {
     if (!navMenu || !navToggle) return;
     navMenu.classList.toggle('is-open', open);
@@ -33,11 +28,9 @@
 
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
-      const willOpen = !navMenu.classList.contains('is-open');
-      setMenuOpen(willOpen);
+      setMenuOpen(!navMenu.classList.contains('is-open'));
     });
 
-    // Tutup menu setelah user memilih tautan (termasuk CTA Dicoding).
     navMenu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => setMenuOpen(false));
     });
@@ -49,7 +42,6 @@
       }
     });
 
-    // Jika viewport kembali ke desktop, pastikan state mobile dibersihkan.
     window.addEventListener('resize', () => {
       if (window.innerWidth > 900 && navMenu.classList.contains('is-open')) {
         setMenuOpen(false);
@@ -57,7 +49,6 @@
     });
   }
 
-  /* ----- Header shadow + back-to-top (satu scroll handler ringan) ----- */
   let ticking = false;
 
   function onScroll() {
@@ -87,7 +78,6 @@
     });
   }
 
-  /* ----- Active navigation via IntersectionObserver ----- */
   const sectionIds = ['kenapa', 'jurusan', 'tips', 'testimoni', 'faq'];
   const linkById = new Map();
   navLinks.forEach((link) => {
@@ -119,7 +109,6 @@
     });
   }
 
-  /* ----- Scroll reveal (subtle, sekali tampil) ----- */
   if (revealEls.length > 0) {
     if (prefersReducedMotion || !('IntersectionObserver' in window)) {
       revealEls.forEach((el) => el.classList.add('is-visible'));
@@ -139,7 +128,6 @@
     }
   }
 
-  /* ----- FAQ: satu item terbuka dalam satu waktu, native <details> tetap dipakai ----- */
   faqItems.forEach((item) => {
     item.addEventListener('toggle', () => {
       if (!item.open) return;
@@ -149,7 +137,6 @@
     });
   });
 
-  /* ----- Testimoni: tombol geser + status disabled di ujung track ----- */
   const testiTrack = document.getElementById('testiTrack');
   const testiPrev = document.getElementById('testiPrev');
   const testiNext = document.getElementById('testiNext');
@@ -165,7 +152,6 @@
   function updateTestiButtons() {
     if (!testiTrack || !testiPrev || !testiNext) return;
     const maxScroll = testiTrack.scrollWidth - testiTrack.clientWidth;
-    // Toleransi 2px agar tidak macet karena pembulatan sub-pixel.
     testiPrev.disabled = testiTrack.scrollLeft <= 2;
     testiNext.disabled = testiTrack.scrollLeft >= maxScroll - 2;
   }
