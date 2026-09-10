@@ -1067,56 +1067,65 @@ section {
 
 .reveal {
   opacity: 1;
-  transform: none;
 }
 
-/* Reveal hanya disembunyikan saat JS aktif (progressive enhancement) */
+/* Reveal hanya disembunyikan saat JS aktif (progressive enhancement).
+   Memakai animation (bukan transition) supaya hover card tetap responsif
+   dan delay stagger tidak menempel setelah animasi selesai. */
 html.js .reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
 }
 
 html.js .reveal.is-visible {
   opacity: 1;
   transform: none;
+  animation: rise-in 0.6s var(--ease) backwards;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* Stagger: kartu dalam satu grup muncul satu per satu */
-html.js .stagger > .reveal:nth-child(2) { transition-delay: 0.08s; }
-html.js .stagger > .reveal:nth-child(3) { transition-delay: 0.16s; }
-html.js .stagger > .reveal:nth-child(4) { transition-delay: 0.24s; }
-html.js .stagger > .reveal:nth-child(5) { transition-delay: 0.32s; }
-html.js .stagger > .reveal:nth-child(6) { transition-delay: 0.4s; }
+html.js .stagger > .reveal.is-visible:nth-child(2) { animation-delay: 0.08s; }
+html.js .stagger > .reveal.is-visible:nth-child(3) { animation-delay: 0.16s; }
+html.js .stagger > .reveal.is-visible:nth-child(4) { animation-delay: 0.24s; }
+html.js .stagger > .reveal.is-visible:nth-child(5) { animation-delay: 0.32s; }
+html.js .stagger > .reveal.is-visible:nth-child(6) { animation-delay: 0.4s; }
 
-/* Stagger saat halaman dibuka (hero): satu per satu dari atas */
+/* Stagger saat halaman dibuka (hero): satu per satu dari atas.
+   Memakai animation supaya delay tidak menempel pada hover tombol. */
 html.js .hero-stagger > * {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
 }
 
 html.js body.is-loaded .hero-stagger > * {
   opacity: 1;
-  transform: none;
+  animation: rise-in 0.55s var(--ease) backwards;
 }
 
-html.js body.is-loaded .hero-stagger > *:nth-child(1) { transition-delay: 0.05s; }
-html.js body.is-loaded .hero-stagger > *:nth-child(2) { transition-delay: 0.13s; }
-html.js body.is-loaded .hero-stagger > *:nth-child(3) { transition-delay: 0.21s; }
-html.js body.is-loaded .hero-stagger > *:nth-child(4) { transition-delay: 0.29s; }
-html.js body.is-loaded .hero-stagger > *:nth-child(5) { transition-delay: 0.37s; }
+html.js body.is-loaded .hero-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+html.js body.is-loaded .hero-stagger > *:nth-child(2) { animation-delay: 0.13s; }
+html.js body.is-loaded .hero-stagger > *:nth-child(3) { animation-delay: 0.21s; }
+html.js body.is-loaded .hero-stagger > *:nth-child(4) { animation-delay: 0.29s; }
+html.js body.is-loaded .hero-stagger > *:nth-child(5) { animation-delay: 0.37s; }
 
 html.js .hero-fade {
   opacity: 0;
-  transform: translateY(18px) scale(0.99);
-  transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
-  transition-delay: 0.42s;
 }
 
 html.js body.is-loaded .hero-fade {
   opacity: 1;
-  transform: none;
+  animation: rise-in 0.65s var(--ease) backwards;
+  animation-delay: 0.42s;
 }
 
 /* ---------- 16. Testimoni ---------- */
@@ -1208,7 +1217,7 @@ html.js body.is-loaded .hero-fade {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   transition: transform 0.2s var(--ease), border-color 0.2s var(--ease),
-    box-shadow 0.2s var(--ease), opacity 0.6s var(--ease);
+    box-shadow 0.2s var(--ease);
 }
 
 .testi-card:hover {
@@ -1473,7 +1482,9 @@ html.js body.is-loaded .hero-fade {
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0s !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
   }
 
   html.js .reveal {
