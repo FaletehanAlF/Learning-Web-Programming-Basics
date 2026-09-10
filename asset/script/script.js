@@ -5,6 +5,13 @@
 
   document.documentElement.classList.add('js');
 
+  // Pemicu animasi stagger hero: tulisan muncul satu per satu saat dibuka.
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      document.body.classList.add('is-loaded');
+    });
+  });
+
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ----- DOM references ----- */
@@ -44,7 +51,7 @@
 
     // Jika viewport kembali ke desktop, pastikan state mobile dibersihkan.
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 760 && navMenu.classList.contains('is-open')) {
+      if (window.innerWidth > 900 && navMenu.classList.contains('is-open')) {
         setMenuOpen(false);
       }
     });
@@ -81,7 +88,7 @@
   }
 
   /* ----- Active navigation via IntersectionObserver ----- */
-  const sectionIds = ['kenapa', 'jurusan', 'tips', 'faq'];
+  const sectionIds = ['kenapa', 'jurusan', 'tips', 'testimoni', 'faq'];
   const linkById = new Map();
   navLinks.forEach((link) => {
     const id = link.getAttribute('href').slice(1);
