@@ -743,7 +743,7 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .reason-grid, .jurusan-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+  gap: 28px;
   align-items: stretch;
 }
 .jurusan-grid { grid-template-columns: repeat(3, 1fr); }
@@ -768,7 +768,7 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .reason-card:hover::after, .jurusan-card:hover::after { opacity: 1; }
 
 .reason-card {
-  padding: 26px 24px 24px;
+  padding: 34px 30px 32px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
