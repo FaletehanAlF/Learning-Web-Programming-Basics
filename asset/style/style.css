@@ -1476,23 +1476,23 @@ html.js body.is-loaded .hero-fade {
   to { opacity: 1; transform: none; filter: blur(0); }
 }
 
-/* ===== Responsive ===== */
+/* ===== Responsive — tetap lega di semua layar ===== */
 @media (max-width: 1024px) {
-  .section { padding-block: 68px; }
-  .hero-inner { gap: 44px; }
+  .section { padding-block: 88px; }
+  .hero-inner { gap: 60px; }
   .reason-grid, .jurusan-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 960px) {
   body { font-size: 16px; }
-  .hero { padding-block: 48px 56px; }
-  .hero-inner { flex-direction: column; gap: 40px; }
-  .hero-content { align-items: center; max-width: 640px; text-align: center; }
-  .hero-desc { max-width: 56ch; }
+  .hero { padding-block: 68px 80px; }
+  .hero-inner { flex-direction: column; gap: 56px; }
+  .hero-content { align-items: center; max-width: 660px; text-align: center; }
+  .hero-desc { max-width: 58ch; }
   .hero-actions { justify-content: center; }
   .hero-stats { justify-content: center; max-width: none; }
   .hero-visual { width: 100%; max-width: 560px; animation: none; }
-  .hero-badge { position: static; max-width: none; margin-top: 14px; animation: none; }
+  .hero-badge { position: static; max-width: none; margin-top: 18px; animation: none; }
   .split-head { align-items: flex-start; flex-direction: column; }
 }
 
