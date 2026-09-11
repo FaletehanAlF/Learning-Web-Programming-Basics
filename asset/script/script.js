@@ -15,6 +15,7 @@
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
   const backToTop = document.getElementById('backToTop');
+  const scrollProgress = document.getElementById('scrollProgress');
   const navLinks = Array.from(navMenu ? navMenu.querySelectorAll('a[href^="#"]') : []);
   const revealEls = Array.from(document.querySelectorAll('.reveal'));
   const faqItems = Array.from(document.querySelectorAll('.faq-item'));
@@ -56,6 +57,12 @@
 
     if (header) header.classList.toggle('is-scrolled', y > 8);
     if (backToTop) backToTop.classList.toggle('is-visible', y > 600);
+
+    if (scrollProgress) {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const p = max > 0 ? Math.min(Math.max(y / max, 0), 1) : 0;
+      scrollProgress.style.transform = `scaleX(${p})`;
+    }
 
     ticking = false;
   }
@@ -172,5 +179,77 @@
     window.addEventListener('resize', updateTestiButtons);
 
     updateTestiButtons();
+  }
+
+  /* --- Micro-interactions: count-up, spotlight, tilt tipis --- */
+
+  // Count-up halus untuk angka hero-stats
+  const counters = Array.from(document.querySelectorAll('[data-count]'));
+  if (counters.length > 0) {
+    const animateCount = (el) => {
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      if (Number.isNaN(target)) return;
+      if (prefersReducedMotion) {
+        el.textContent = String(target);
+        return;
+      }
+      const dur = 900;
+      const start = performance.now();
+      const from = 0;
+      function frame(now) {
+        const t = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = String(Math.round(from + (target - from) * eased));
+        if (t < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const cObs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            animateCount(e.target);
+            cObs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.6 });
+      counters.forEach((c) => cObs.observe(c));
+    } else {
+      counters.forEach(animateCount);
+    }
+  }
+
+  // Spotlight mengikuti mouse — efek glow tipis di cards
+  if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
+    const spotCards = document.querySelectorAll('.reason-card, .jurusan-card');
+    spotCards.forEach((card) => {
+      card.addEventListener('pointermove', (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+        card.style.setProperty('--my', `${e.clientY - r.top}px`);
+      });
+    });
+
+    // Tilt tipis hero figure (max ~4deg, sangat subtle)
+    const heroVisual = document.querySelector('.hero-visual');
+    const heroFigure = document.querySelector('.hero-figure');
+    if (heroVisual && heroFigure) {
+      let rafId = null;
+      heroVisual.addEventListener('pointermove', (e) => {
+        if (rafId) return;
+        rafId = requestAnimationFrame(() => {
+          const r = heroVisual.getBoundingClientRect();
+          const px = (e.clientX - r.left) / r.width - 0.5;
+          const py = (e.clientY - r.top) / r.height - 0.5;
+          heroFigure.style.transform =
+            `perspective(900px) rotateY(${px * 5}deg) rotateX(${py * -5}deg) translateY(-3px)`;
+          rafId = null;
+        });
+      });
+      heroVisual.addEventListener('pointerleave', () => {
+        heroFigure.style.transform = '';
+      });
+    }
   }
 })();

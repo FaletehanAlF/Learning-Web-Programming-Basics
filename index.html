@@ -12,13 +12,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Work+Sans:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet" />
 
   <link rel="stylesheet" href="asset/style/style.css" />
 </head>
 
 <body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 
   <a class="skip-link" href="#konten-utama">Lompat ke konten utama</a>
 
@@ -54,6 +55,12 @@
 
   <main id="konten-utama">
     <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true">
+        <span class="blob blob-1"></span>
+        <span class="blob blob-2"></span>
+        <span class="blob blob-3"></span>
+        <span class="hero-grid"></span>
+      </div>
       <div class="container hero-inner">
         <div class="hero-content hero-stagger">
           <p class="hero-eyebrow">Panduan untuk orang tua siswa SMA</p>
@@ -68,15 +75,15 @@
           </div>
           <ul class="hero-stats" aria-label="Isi panduan ini">
             <li>
-              <strong>6</strong>
+              <strong data-count="6">6</strong>
               <span>Jurusan populer dijelaskan</span>
             </li>
             <li>
-              <strong>4</strong>
+              <strong data-count="4">4</strong>
               <span>Langkah mendampingi anak</span>
             </li>
             <li>
-              <strong>5</strong>
+              <strong data-count="5">5</strong>
               <span>Cerita dari orang tua</span>
             </li>
           </ul>
