@@ -1093,14 +1093,14 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   box-shadow: var(--shadow-md);
 }
 
-.testi-quote { font-size: 0.94rem; line-height: 1.7; color: var(--ink); }
+.testi-quote { font-size: 0.97rem; line-height: 1.85; color: var(--ink); }
 
 .testi-person {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   margin-top: auto;
-  padding-top: 14px;
+  padding-top: 20px;
   border-top: 1px solid var(--border-soft);
 }
 
@@ -1129,8 +1129,8 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .testi-controls {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 12px;
+  margin-top: 14px;
 }
 
 .testi-btn {
