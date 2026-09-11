@@ -234,17 +234,8 @@
     }
   }
 
-  // Spotlight mengikuti mouse — efek glow tipis di cards
+  // Tilt tipis hero figure (sangat subtle, solid-friendly)
   if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
-    const spotCards = document.querySelectorAll('.reason-card, .jurusan-card');
-    spotCards.forEach((card) => {
-      card.addEventListener('pointermove', (e) => {
-        const r = card.getBoundingClientRect();
-        card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-        card.style.setProperty('--my', `${e.clientY - r.top}px`);
-      });
-    });
-
     // Tilt tipis hero figure (max ~4deg, sangat subtle)
     const heroVisual = document.querySelector('.hero-visual');
     const heroFigure = document.querySelector('.hero-figure');
