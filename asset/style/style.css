@@ -847,8 +847,8 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .jurusan-card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 26px 24px 22px;
+  gap: 14px;
+  padding: 34px 30px 30px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -899,14 +899,14 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   z-index: 1;
 }
 
-.jurusan-card > p { font-size: 0.94rem; line-height: 1.7; position: relative; z-index: 1; }
+.jurusan-card > p { font-size: 0.97rem; line-height: 1.85; position: relative; z-index: 1; }
 
 .jurusan-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
   margin-top: auto;
-  padding-top: 14px;
+  padding-top: 20px;
   border-top: 1px dashed var(--border);
   position: relative;
   z-index: 1;
