@@ -1355,11 +1355,11 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   box-shadow: none;
 }
 .footer-brand p {
-  margin-top: 14px;
+  margin-top: 18px;
   color: #9fb3ab;
-  font-size: 0.93rem;
-  line-height: 1.7;
-  max-width: 36ch;
+  font-size: 0.96rem;
+  line-height: 1.85;
+  max-width: 38ch;
 }
 
 .footer-nav { flex: 1 1 150px; min-width: 0; }
@@ -1374,13 +1374,13 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   margin-bottom: 14px;
 }
 
-.footer-nav ul { display: flex; flex-direction: column; gap: 2px; }
+.footer-nav ul { display: flex; flex-direction: column; gap: 8px; }
 
 .footer-nav a {
   display: inline-flex;
   align-items: center;
-  min-height: 36px;
-  padding: 4px 0;
+  min-height: 40px;
+  padding: 6px 0;
   color: #9fb3ab;
   font-size: 0.93rem;
   transition: color 0.2s var(--ease), transform 0.2s var(--ease);
