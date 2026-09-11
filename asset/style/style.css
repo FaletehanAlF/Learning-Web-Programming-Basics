@@ -1250,8 +1250,8 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .faq-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  max-width: 760px;
+  gap: 18px;
+  max-width: 780px;
 }
 
 .faq-item {
@@ -1275,8 +1275,8 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 16px;
-  padding: 19px 20px;
+  gap: 20px;
+  padding: 24px 26px;
   font-weight: 700;
   font-size: 0.98rem;
   line-height: 1.5;
