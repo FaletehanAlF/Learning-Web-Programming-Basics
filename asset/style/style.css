@@ -636,9 +636,10 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .hero-figure figcaption {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 14px 8px 4px;
-  font-size: 0.88rem;
+  gap: 12px;
+  padding: 18px 10px 8px;
+  font-size: 0.9rem;
+  line-height: 1.7;
   color: var(--muted);
 }
 
@@ -656,13 +657,13 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 
 .hero-badge {
   position: absolute;
-  left: -28px;
-  bottom: 42px;
+  left: -20px;
+  bottom: 48px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  max-width: 270px;
-  padding: 14px 18px;
+  gap: 14px;
+  max-width: 280px;
+  padding: 18px 22px;
   background: rgb(255 255 255 / 0.88);
   border: 1px solid rgb(255 255 255 / 0.8);
   outline: 1px solid var(--border);
@@ -694,8 +695,8 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 
 .hero-badge .stars { font-size: 0.82rem; }
 
-/* ===== Sections ===== */
-.section { padding-block: 84px; }
+/* ===== Sections — lega & mudah dipahami ===== */
+.section { padding-block: 112px; }
 
 .section-soft {
   background: linear-gradient(180deg, var(--bg-soft) 0%, #eceee9 100%);
