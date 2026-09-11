@@ -3,6 +3,20 @@
 
   document.documentElement.classList.add('js');
 
+  // Feather icons: render <i data-feather> jadi SVG. Aman jika CDN gagal.
+  function renderFeather() {
+    try {
+      if (window.feather && typeof window.feather.replace === 'function') {
+        window.feather.replace();
+      }
+    } catch (err) {
+      // abaikan — ikon bawaan tetap tampil sebagai fallback
+    }
+  }
+  renderFeather();
+  // Coba lagi setelah load penuh (untuk CDN defer yang lambat)
+  window.addEventListener('load', renderFeather);
+
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
       document.body.classList.add('is-loaded');
