@@ -1167,10 +1167,10 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .profile-card {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 36px;
   flex-wrap: wrap;
-  max-width: 800px;
-  padding: 30px;
+  max-width: 840px;
+  padding: 42px 40px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
@@ -1220,9 +1220,9 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   color: var(--teal);
 }
 
-.profile-info p { font-size: 0.95rem; margin-bottom: 16px; max-width: 52ch; }
+.profile-info p { font-size: 0.98rem; line-height: 1.85; margin-bottom: 22px; max-width: 54ch; }
 
-.profile-links { display: flex; flex-wrap: wrap; gap: 10px; }
+.profile-links { display: flex; flex-wrap: wrap; gap: 12px; }
 
 .profile-links a {
   display: inline-flex;
