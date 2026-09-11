@@ -996,10 +996,10 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 28px;
+  gap: 32px;
   flex-wrap: wrap;
   max-width: none;
-  margin-bottom: 28px;
+  margin-bottom: 40px;
 }
 
 .split-head > div:first-child { max-width: 620px; min-width: 0; }
@@ -1043,12 +1043,12 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 
 .testi-track {
   display: flex;
-  gap: 16px;
+  gap: 22px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-padding-inline: 4px;
-  padding: 6px 4px 16px;
-  margin-inline: -4px;
+  scroll-padding-inline: 6px;
+  padding: 10px 6px 22px;
+  margin-inline: -6px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: var(--border-strong) transparent;
@@ -1062,13 +1062,13 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .testi-track::-webkit-scrollbar-track { background: transparent; }
 
 .testi-card {
-  flex: 0 0 min(350px, 84vw);
+  flex: 0 0 min(360px, 84vw);
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   min-width: 0;
-  padding: 24px 22px;
+  padding: 30px 28px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
