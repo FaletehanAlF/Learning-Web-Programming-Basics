@@ -1391,7 +1391,7 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   transform: translateX(3px);
 }
 
-.footer-bottom { padding-block: 20px; text-align: center; }
+.footer-bottom { padding-block: 28px; text-align: center; }
 .footer-bottom p { color: #6f887f; font-size: 0.84rem; margin: 0; }
 
 /* ===== Back to top ===== */
