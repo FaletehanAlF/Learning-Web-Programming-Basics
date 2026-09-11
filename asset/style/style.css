@@ -1526,27 +1526,31 @@ html.js body.is-loaded .hero-fade {
 }
 
 @media (max-width: 640px) {
-  .hero-content h1 { font-size: clamp(1.85rem, 8.5vw, 2.25rem); }
-  .hero-figure { padding: 10px; }
+  .hero-content h1 { font-size: clamp(1.85rem, 8.5vw, 2.25rem); line-height: 1.25; }
+  .hero-figure { padding: 14px; }
   .hero-stats li { flex: 1 1 100%; }
-  .reason-grid, .jurusan-grid { grid-template-columns: 1fr; }
-  .profile-card { flex-direction: column; text-align: center; align-items: center; padding: 28px 22px; }
+  .reason-grid, .jurusan-grid { grid-template-columns: 1fr; gap: 20px; }
+  .reason-card, .jurusan-card { padding: 28px 24px; }
+  .tips-item { padding: 24px 22px; }
+  .profile-card { flex-direction: column; text-align: center; align-items: center; padding: 36px 26px; gap: 24px; }
   .profile-info { flex-basis: auto; }
   .profile-links { justify-content: center; }
-  .footer-inner { flex-direction: column; gap: 28px; }
+  .footer-inner { flex-direction: column; gap: 36px; }
   .tips-item:hover { transform: translateY(-3px); }
 }
 
 @media (max-width: 480px) {
-  .container { padding-inline: 18px; }
-  body { font-size: 15.5px; }
-  .section { padding-block: 56px; }
-  .section-head { margin-bottom: 28px; }
-  .hero { padding-block: 36px 44px; }
-  .hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
+  .container { padding-inline: 22px; }
+  body { font-size: 16px; line-height: 1.9; }
+  .section { padding-block: 72px; }
+  .section-head { margin-bottom: 40px; }
+  .hero { padding-block: 56px 68px; }
+  .hero-actions { flex-direction: column; align-items: stretch; width: 100%; gap: 14px; }
   .hero-actions .btn { width: 100%; }
-  .tips-item { gap: 14px; padding: 18px; }
-  .tips-number { width: 40px; height: 40px; font-size: 0.95rem; border-radius: 12px; }
+  .tips-item { gap: 18px; padding: 22px 20px; }
+  .tips-number { width: 44px; height: 44px; font-size: 1rem; border-radius: 12px; }
+  .faq-item summary { padding: 20px; }
+  .faq-item > p { padding: 0 20px 22px; }
   .back-to-top { right: 16px; bottom: 16px; width: 44px; height: 44px; }
 }
 
