@@ -53,10 +53,10 @@ body { overflow-x: clip; }
 body {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 16.5px;
+  font-size: 17px;
   color: var(--ink);
   background: var(--bg);
-  line-height: 1.7;
+  line-height: 1.85;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -86,7 +86,7 @@ p { margin: 0; color: var(--muted); }
   width: 100%;
   max-width: var(--container-width);
   margin-inline: auto;
-  padding-inline: 24px;
+  padding-inline: 32px;
 }
 
 section { scroll-margin-top: calc(var(--header-height) + 14px); }
@@ -139,9 +139,9 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  min-height: 50px;
-  padding: 13px 28px;
+  gap: 12px;
+  min-height: 54px;
+  padding: 15px 32px;
   border-radius: var(--radius-pill);
   font-weight: 700;
   font-size: 0.96rem;
@@ -376,7 +376,7 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 /* ===== Hero — clean + mesh ===== */
 .hero {
   position: relative;
-  padding-block: 64px 76px;
+  padding-block: 96px 112px;
   border-bottom: 1px solid var(--border-soft);
   overflow: clip;
   isolation: isolate;
@@ -440,7 +440,7 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .hero-inner {
   display: flex;
   align-items: center;
-  gap: 56px;
+  gap: 80px;
 }
 
 .hero-content {
@@ -454,9 +454,9 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  margin: 0 0 20px;
-  padding: 8px 16px 8px 12px;
+  gap: 10px;
+  margin: 0 0 28px;
+  padding: 10px 20px 10px 16px;
   border-radius: var(--radius-pill);
   background: rgb(255 255 255 / 0.85);
   border: 1px solid var(--border);
