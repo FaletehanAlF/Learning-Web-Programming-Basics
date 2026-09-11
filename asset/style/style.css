@@ -487,8 +487,8 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 
 .hero-content h1 {
   font-size: clamp(2.1rem, 4.2vw, 3.25rem);
-  line-height: 1.08;
-  margin-bottom: 18px;
+  line-height: 1.15;
+  margin-bottom: 26px;
   letter-spacing: -0.035em;
 }
 
@@ -523,25 +523,25 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 }
 
 .hero-desc {
-  font-size: 1.06rem;
-  line-height: 1.75;
-  max-width: 52ch;
-  margin-bottom: 30px;
+  font-size: 1.08rem;
+  line-height: 1.9;
+  max-width: 54ch;
+  margin-bottom: 38px;
   color: var(--muted);
 }
 
 .hero-actions {
   display: flex;
-  gap: 12px;
+  gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 32px;
+  margin-bottom: 44px;
 }
 
 .hero-stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px 14px;
-  max-width: 560px;
+  gap: 16px;
+  max-width: 580px;
   margin: 0;
   padding: 0;
 }
@@ -549,9 +549,9 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .hero-stats li {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   min-width: 0;
-  padding: 12px 18px 12px 14px;
+  padding: 16px 22px 16px 16px;
   background: rgb(255 255 255 / 0.75);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -608,7 +608,7 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 
 .hero-figure {
   margin: 0;
-  padding: 12px;
+  padding: 16px;
   background: rgb(255 255 255 / 0.9);
   border: 1px solid rgb(255 255 255 / 0.8);
   outline: 1px solid var(--border);
