@@ -898,14 +898,14 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   z-index: 1;
 }
 
-.jurusan-card > p { font-size: 0.97rem; line-height: 1.85; position: relative; z-index: 1; }
+.jurusan-card > p { font-size: 0.96rem; line-height: 1.75; position: relative; z-index: 1; }
 
 .jurusan-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   margin-top: auto;
-  padding-top: 20px;
+  padding-top: 18px;
   border-top: 1px dashed var(--border);
   position: relative;
   z-index: 1;
