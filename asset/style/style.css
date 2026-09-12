@@ -1078,13 +1078,13 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .testi-track::-webkit-scrollbar-track { background: transparent; }
 
 .testi-card {
-  flex: 0 0 min(360px, 84vw);
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   min-width: 0;
-  padding: 30px 28px;
+  min-height: 100%;
+  padding: 28px 26px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -1098,7 +1098,7 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   box-shadow: var(--shadow-md);
 }
 
-.testi-quote { font-size: 0.97rem; line-height: 1.85; color: var(--ink); }
+.testi-quote { font-size: 0.96rem; line-height: 1.75; color: var(--ink); }
 
 .testi-person {
   display: flex;
