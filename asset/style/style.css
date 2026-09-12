@@ -206,14 +206,14 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 }
 
 .header-capsule {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 24px;
   width: 100%;
   max-width: var(--container-width);
   margin-inline: auto;
-  padding: 8px 8px 8px 18px;
+  padding: 10px 10px 10px 20px;
   background: rgb(255 255 255 / 0.85);
   border: 1px solid var(--border);
   border-radius: var(--radius-pill);
@@ -233,6 +233,8 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   display: inline-flex;
   align-items: center;
   gap: 11px;
+  flex-shrink: 0;
+  margin-right: auto;
   font-family: var(--font-body);
   font-weight: 800;
   font-size: 1.02rem;
