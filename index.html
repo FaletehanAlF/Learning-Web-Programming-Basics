@@ -183,8 +183,25 @@
             bahasa sederhana.</p>
         </div>
 
-        <div class="jurusan-grid stagger">
-          <article class="jurusan-card reveal">
+        <div class="jurusan-toolbar reveal">
+          <div class="filter-chips" role="group" aria-label="Filter kategori jurusan">
+            <button class="chip is-active" type="button" data-filter="semua">Semua</button>
+            <button class="chip" type="button" data-filter="teknologi">Teknologi</button>
+            <button class="chip" type="button" data-filter="kesehatan">Kesehatan</button>
+            <button class="chip" type="button" data-filter="soshum">Sosial Humaniora</button>
+            <button class="chip" type="button" data-filter="bisnis">Bisnis</button>
+            <button class="chip" type="button" data-filter="kreatif">Kreatif</button>
+          </div>
+          <label class="jurusan-search">
+            <i data-feather="search" aria-hidden="true"></i>
+            <input id="jurusanSearch" type="search" placeholder="Cari jurusan… mis. psikologi"
+              aria-label="Cari jurusan" autocomplete="off" />
+          </label>
+        </div>
+        <p class="jurusan-count" id="jurusanCount" aria-live="polite">Menampilkan 6 dari 6 jurusan</p>
+
+        <div class="jurusan-grid stagger" id="jurusanGrid">
+          <article class="jurusan-card reveal" data-kategori="teknologi" data-nama="teknik informatika teknologi komputer aplikasi website logika">
             <span class="jurusan-icon" aria-hidden="true"><i data-feather="cpu"></i></span>
             <span class="label">Teknologi</span>
             <h3>Teknik Informatika</h3>
@@ -196,7 +213,7 @@
             </div>
           </article>
 
-          <article class="jurusan-card reveal">
+          <article class="jurusan-card reveal" data-kategori="kesehatan" data-nama="kedokteran kesehatan dokter tubuh penyakit">
             <span class="jurusan-icon" aria-hidden="true"><i data-feather="activity"></i></span>
             <span class="label">Kesehatan</span>
             <h3>Kedokteran</h3>
@@ -208,7 +225,7 @@
             </div>
           </article>
 
-          <article class="jurusan-card reveal">
+          <article class="jurusan-card reveal" data-kategori="soshum" data-nama="psikologi sosial humaniora pikiran perilaku empati">
             <span class="jurusan-icon" aria-hidden="true"><i data-feather="users"></i></span>
             <span class="label">Sosial Humaniora</span>
             <h3>Psikologi</h3>
@@ -220,7 +237,7 @@
             </div>
           </article>
 
-          <article class="jurusan-card reveal">
+          <article class="jurusan-card reveal" data-kategori="bisnis" data-nama="akuntansi bisnis keuangan perusahaan teliti">
             <span class="jurusan-icon" aria-hidden="true"><i data-feather="briefcase"></i></span>
             <span class="label">Bisnis</span>
             <h3>Akuntansi</h3>
@@ -232,7 +249,7 @@
             </div>
           </article>
 
-          <article class="jurusan-card reveal">
+          <article class="jurusan-card reveal" data-kategori="kreatif" data-nama="desain komunikasi visual dkv kreatif gambar warna">
             <span class="jurusan-icon" aria-hidden="true"><i data-feather="pen-tool"></i></span>
             <span class="label">Kreatif</span>
             <h3>Desain Komunikasi Visual</h3>
@@ -244,7 +261,7 @@
             </div>
           </article>
 
-          <article class="jurusan-card reveal">
+          <article class="jurusan-card reveal" data-kategori="soshum" data-nama="hukum sosial humaniora peraturan keadilan diskusi argumen">
             <span class="jurusan-icon" aria-hidden="true"><i data-feather="shield"></i></span>
             <span class="label">Sosial Humaniora</span>
             <h3>Hukum</h3>
@@ -256,6 +273,8 @@
             </div>
           </article>
         </div>
+        <p class="jurusan-empty" id="jurusanEmpty" hidden>Tidak ada jurusan yang cocok. Coba kata kunci atau kategori
+          lain.</p>
       </div>
     </section>
 
