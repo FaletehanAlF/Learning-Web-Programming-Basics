@@ -447,8 +447,11 @@
     resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     feather();
 
-    // store last result for share
-    try { localStorage.setItem(STORAGE_KEY + '-result', JSON.stringify({ top: top.key, scores, list })); } catch(e){}
+    // store last result for share + untuk auto-filter di beranda
+    try {
+      localStorage.setItem(STORAGE_KEY + '-result', JSON.stringify({ top: top.key, scores, list }));
+      localStorage.setItem('panduan-jurusan-quiz-filter', top.meta.filter);
+    } catch(e){}
 
     // bind actions
     const toJurusan = document.getElementById('resultToJurusan');
