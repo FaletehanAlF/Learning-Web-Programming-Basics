@@ -1568,6 +1568,62 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   animation: faq-in 0.35s var(--ease);
 }
 
+.faq-answer {
+  margin: 0;
+  padding: 0 26px 24px;
+  animation: faq-in 0.35s var(--ease);
+}
+
+.faq-answer > p {
+  margin: 0 0 10px;
+  font-size: 0.96rem;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+.faq-answer > p strong { color: var(--ink); }
+
+.faq-steps {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  counter-reset: faq-step;
+}
+
+.faq-steps li {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 0;
+  padding: 12px 14px 12px 12px;
+  font-size: 0.93rem;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  counter-increment: faq-step;
+}
+
+.faq-steps li::before {
+  content: counter(faq-step);
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--teal);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
 @keyframes faq-in {
   from { opacity: 0; transform: translateY(-6px); }
   to { opacity: 1; transform: none; }
