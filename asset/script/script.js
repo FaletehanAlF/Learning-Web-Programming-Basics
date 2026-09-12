@@ -740,14 +740,26 @@
   const ctaPrint = document.getElementById('ctaPrint');
   function buildSummaryText() {
     let parts = ['Ringkasan Panduan Jurusan\n'];
-    // quiz
+    // quiz (cek kuis 10 soal dulu, fallback ke kuis 4 soal lama)
     try {
-      const raw = localStorage.getItem(QUIZ_KEY);
-      if (raw) {
-        const d = JSON.parse(raw);
-        if (d.lastResultKey && resultMeta[d.lastResultKey]) {
-          parts.push(`Kuis minat: ${resultMeta[d.lastResultKey].title} — ${resultMeta[d.lastResultKey].desc}`);
-          parts.push(`Rekomendasi: ${resultMeta[d.lastResultKey].reco.map(r=>r.name).join(', ')}`);
+      const raw10Res = localStorage.getItem('panduan-jurusan-kuis-10-result');
+      if (raw10Res) {
+        const d10 = JSON.parse(raw10Res);
+        if (d10 && d10.top) {
+          const labelMap = { teknologi:'Teknologi', kesehatan:'Kesehatan', soshum:'Soshum', bisnis:'Bisnis', kreatif:'Kreatif' };
+          const label = labelMap[d10.top] || d10.top;
+          const topScore = d10.list ? (d10.list.find(x=>x.key===d10.top)?.score || '') : '';
+          parts.push(`Kuis 10 soal: dominan ${label} ${topScore?`(${topScore}/10)`:''}`);
+          if (d10.list) parts.push(`Skor: ${d10.list.map(x=>`${labelMap[x.key]||x.key} ${x.score}/10`).join(', ')}`);
+        }
+      } else {
+        const raw = localStorage.getItem(QUIZ_KEY);
+        if (raw) {
+          const d = JSON.parse(raw);
+          if (d.lastResultKey && resultMeta[d.lastResultKey]) {
+            parts.push(`Kuis minat: ${resultMeta[d.lastResultKey].title} — ${resultMeta[d.lastResultKey].desc}`);
+            parts.push(`Rekomendasi: ${resultMeta[d.lastResultKey].reco.map(r=>r.name).join(', ')}`);
+          }
         }
       }
     } catch(e){}
