@@ -1683,6 +1683,28 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 .result-actions .btn { flex: 1; min-width: 140px; justify-content: center; }
 .quiz-disclaimer { margin: 0 18px 18px; font-size: 11.5px; color: var(--muted-soft); line-height: 1.5; border-left: 3px solid var(--line); padding-left: 10px; }
 
+/* Smooth hover — non-colliding, unified */
+.btn, .chip, .preset, .quiz-option, .quiz-full-body .quiz-option, .reason-card, .jurusan-card, .testi-card, .tips-item, .site-nav a, .nav-dicoding, .profile-links a, .jurusan-cta, .testi-btn, .back-to-top {
+  transition: transform 0.22s var(--ease), background-color 0.22s var(--ease), border-color 0.22s var(--ease), color 0.22s var(--ease), box-shadow 0.22s var(--ease), opacity 0.22s var(--ease);
+  will-change: transform;
+}
+.reason-card, .jurusan-card, .testi-card, .tips-item {
+  position: relative;
+  isolation: isolate;
+}
+.reason-card:hover, .jurusan-card:hover, .testi-card:hover, .tips-item:hover {
+  transform: translateY(-2px);
+  z-index: 1;
+}
+.btn:hover, .chip:hover, .preset:hover, .quiz-option:hover, .testi-btn:hover, .back-to-top:hover {
+  transform: translateY(-1px);
+}
+.btn:active, .chip:active, .preset:active, .quiz-option:active {
+  transform: translateY(0);
+}
+.site-nav a:hover, .nav-dicoding:hover { transform: none; }
+.quiz-option.is-selected:hover, .chip.is-active:hover, .preset.is-active:hover { transform: none; }
+
 /* Responsive */
 @media (max-width: 1024px) {
   .section { padding: 64px 0; }
