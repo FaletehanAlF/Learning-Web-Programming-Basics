@@ -430,7 +430,7 @@
 
     // Actions
     html += `<div class="result-actions">`;
-    html += `<a href="index.html#jurusan" class="btn btn-primary" id="resultToJurusan"><i data-feather="layout" aria-hidden="true"></i> Lihat Jurusan ${top.meta.label} di Beranda</a>`;
+    html += `<a href="../index.html#jurusan" class="btn btn-primary" id="resultToJurusan"><i data-feather="layout" aria-hidden="true"></i> Lihat Jurusan ${top.meta.label} di Beranda</a>`;
     html += `<button class="btn btn-outline" id="resultShareWa" type="button"><i data-feather="share-2" aria-hidden="true"></i> Bagikan Hasil ke WhatsApp</button>`;
     html += `<button class="btn btn-ghost" id="resultRetry" type="button"><i data-feather="refresh-cw" aria-hidden="true"></i> Ulangi Kuis</button>`;
     html += `</div>`;
