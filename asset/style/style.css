@@ -1378,7 +1378,42 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .testi-btn:active:not(:disabled) { transform: translateY(0); }
 .testi-btn:disabled { opacity: 0.35; cursor: default; }
 
-.testi-hint { margin: 0 0 0 6px; font-size: 0.85rem; color: var(--muted-soft); }
+.testi-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 6px;
+}
+
+.testi-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.2s var(--ease), border-color 0.2s var(--ease), width 0.25s var(--ease);
+}
+
+.testi-dot:hover { border-color: var(--teal); }
+
+.testi-dot.is-active {
+  width: 28px;
+  background: var(--teal);
+  border-color: var(--teal-deep);
+}
+
+.testi-count {
+  margin: 0 0 0 auto;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.testi-hint { margin: 4px 0 0; font-size: 0.85rem; color: var(--muted-soft); }
 
 /* ===== Profile ===== */
 .profile-card {
