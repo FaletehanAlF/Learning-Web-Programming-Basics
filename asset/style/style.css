@@ -441,36 +441,43 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 
 .hero-grid { display: none; }
 
+/* Dekorasi hero: SOLID FLAT, tanpa gradient / tanpa blur */
 .blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.5;
-  animation: blob-drift 14s ease-in-out infinite alternate;
+  filter: none;
+  opacity: 1;
 }
 
 .blob-1 {
-  width: 420px; height: 420px;
-  left: -120px; top: -120px;
-  background: #cfe6e1;
+  width: 280px; height: 280px;
+  left: -90px; top: -90px;
+  background: #e6f4f1;
+  border: 1px solid #cfe6e1;
 }
 .blob-2 {
-  width: 380px; height: 380px;
-  right: -100px; top: 6%;
-  background: #fbeecb;
-  animation-delay: -4s;
+  width: 200px; height: 200px;
+  right: -60px; top: 12%;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
 }
 .blob-3 {
-  width: 520px; height: 320px;
-  left: 30%; bottom: -160px;
-  background: #e4ece9;
-  animation-delay: -8s;
+  width: 340px; height: 120px;
+  left: 32%; bottom: -60px;
+  border-radius: 999px;
+  background: #f4f5f3;
+  border: 1px solid var(--border);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .blob-1, .blob-2 { animation: blob-drift 14s ease-in-out infinite alternate; }
+  .blob-2 { animation-delay: -4s; }
 }
 
 @keyframes blob-drift {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(24px, 18px) scale(1.06); }
-  100% { transform: translate(-18px, 28px) scale(0.98); }
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(16px, 12px); }
+  100% { transform: translate(-12px, 18px); }
 }
 
 .hero-inner {
