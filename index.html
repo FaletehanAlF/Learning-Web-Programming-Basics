@@ -182,65 +182,53 @@
       </div>
     </section>
 
-    <!-- KUIS MINAT - Feature untuk target user orang tua -->
+    <!-- KUIS MINAT - Teaser ke halaman terpisah 10 soal -->
     <section class="section section-soft" id="kuis-minat" aria-labelledby="kuis-title">
       <div class="container">
         <div class="section-head reveal">
-          <p class="section-kicker">Alat bantu obrolan</p>
-          <h2 id="kuis-title">Kuis Minat 2 Menit</h2>
-          <p class="section-desc">Jawab 4 pertanyaan bareng anak di rumah. Tidak ada jawaban salah — hasilnya untuk membuka obrolan, bukan vonis.</p>
+          <p class="section-kicker">Alat bantu obrolan • Baru</p>
+          <h2 id="kuis-title">Kuis Minat 10 Soal — dengan Skor & Analisis</h2>
+          <p class="section-desc">Dikerjakan bareng anak di halaman khusus (~3 menit). Hasilnya bukan vonis, tapi skor per rumpun + grafik + penjelasan kenapa jurusan tertentu cocok untuk didiskusikan.</p>
         </div>
 
-        <div class="quiz-wrap reveal">
-          <div class="quiz-card" id="quizCard">
-            <div class="quiz-head">
-              <div class="quiz-progress">
-                <div class="quiz-progress-bar"><span id="quizProgressBar" style="width:25%"></span></div>
-                <span class="quiz-step" id="quizStep">1 dari 4</span>
-              </div>
-              <p class="quiz-time"><i data-feather="clock" aria-hidden="true"></i> ~2 menit • Bisa diulang</p>
+        <div class="quiz-teaser reveal">
+          <div class="quiz-teaser-main">
+            <div class="quiz-teaser-head">
+              <span class="quiz-badge">Halaman terpisah • 10 pertanyaan • Analisis lengkap</span>
+              <h3>Kenapa perlu 10 soal, bukan 2–3?</h3>
+              <p>Anak SMA sering jawab “tergantung mood”. Dengan 10 soal dari 5 sudut (kegiatan, pelajaran, cara belajar, lingkungan kerja, nilai), pola minat jadi lebih terlihat dan tidak mudah bias satu jawaban.</p>
             </div>
-
-            <div class="quiz-body" id="quizBody">
-              <!-- diisi JS -->
+            <ul class="quiz-teaser-points">
+              <li><i data-feather="bar-chart-2" aria-hidden="true"></i> <strong>Skor & persentase</strong> 5 rumpun (Teknologi, Kesehatan, Soshum, Bisnis, Kreatif)</li>
+              <li><i data-feather="pie-chart" aria-hidden="true"></i> <strong>Grafik batang & konsistensi</strong> — seberapa bulat arahnya</li>
+              <li><i data-feather="file-text" aria-hidden="true"></i> <strong>Analisis “kenapa cocok”</strong> + 2–3 jurusan + langkah coba 2 minggu</li>
+            </ul>
+            <div class="quiz-teaser-actions">
+              <a href="kuis.html" class="btn btn-primary">Buka Kuis 10 Soal <i data-feather="arrow-right" aria-hidden="true"></i></a>
+              <span class="quiz-teaser-meta"><i data-feather="clock" aria-hidden="true"></i> 3 menit • Gratis • Tanpa daftar</span>
             </div>
-
-            <div class="quiz-nav">
-              <button class="btn btn-outline quiz-btn" id="quizPrev" type="button" disabled><i data-feather="arrow-left" aria-hidden="true"></i> Sebelumnya</button>
-              <button class="btn btn-primary quiz-btn" id="quizNext" type="button">Selanjutnya <i data-feather="arrow-right" aria-hidden="true"></i></button>
-            </div>
-
-            <div class="quiz-result" id="quizResult" hidden>
-              <div class="quiz-result-head">
-                <span class="quiz-badge" id="quizBadge">Hasil untuk didiskusikan</span>
-                <h3 id="quizResultTitle">Anak cenderung ke Rumpun Teknologi</h3>
-                <p id="quizResultDesc">Suka logika, ngoprek, dan memecahkan masalah langkah demi langkah.</p>
-              </div>
-              <div class="quiz-reco" id="quizReco">
-                <!-- cards injected -->
-              </div>
-              <div class="quiz-result-actions">
-                <a href="#jurusan" class="btn btn-primary" id="quizToJurusan"><i data-feather="layout" aria-hidden="true"></i> Lihat jurusan terkait</a>
-                <button class="btn btn-outline" id="quizShareWa" type="button"><i data-feather="share-2" aria-hidden="true"></i> Bagikan ke WhatsApp</button>
-                <button class="btn btn-ghost" id="quizRetry" type="button"><i data-feather="refresh-cw" aria-hidden="true"></i> Ulangi kuis</button>
-              </div>
-              <p class="quiz-disclaimer">Catatan: Ini bukan tes psikologi formal. Gunakan sebagai pancingan ngobrol. Jika anak ragu, coba 1 proyek kecil 2 minggu di bidang tersebut.</p>
-            </div>
+            <p class="quiz-teaser-note"><i data-feather="lock" aria-hidden="true"></i> Hasil tersimpan di HP ini saja, bisa langsung bagikan ke pasangan/anak via WhatsApp.</p>
           </div>
-
-          <aside class="quiz-side">
+          <aside class="quiz-teaser-side">
             <div class="quiz-tip">
               <h4><i data-feather="lightbulb" aria-hidden="true"></i> Cara pakai biar enak</h4>
               <ol>
                 <li>Duduk bareng, HP di tengah — biar anak yang pencet.</li>
-                <li>Jangan dikoreksi. Tanya "kenapa pilih itu?" setelah selesai.</li>
-                <li>Hasil kuis = bahan tanya lanjut, bukan keputusan akhir.</li>
+                <li>Jangan dikoreksi. Tanya “kenapa pilih itu?” setelah semua selesai.</li>
+                <li>Hasil = bahan tanya lanjut. Cek skor tertinggi + kedua.</li>
               </ol>
             </div>
             <div class="quiz-stats">
               <span class="quiz-stats-num">1.240</span>
-              <span class="quiz-stats-label">keluarga sudah coba kuis ini</span>
+              <span class="quiz-stats-label">keluarga sudah coba</span>
               <span class="stars" aria-hidden="true"><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i><i data-feather="star"></i></span>
+              <small>4,8/5 kepuasan • Bukan tes psikologi formal</small>
+            </div>
+            <div class="quiz-mini-preview" aria-hidden="true">
+              <span class="quiz-mini-bar" style="width:72%"><b>Teknologi 40%</b></span>
+              <span class="quiz-mini-bar" style="width:48%"><b>Soshum 20%</b></span>
+              <span class="quiz-mini-bar" style="width:44%"><b>Bisnis 20%</b></span>
+              <small>Contoh tampilan skor & grafik di halaman kuis</small>
             </div>
           </aside>
         </div>
