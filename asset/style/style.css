@@ -1883,6 +1883,7 @@ html.js body.is-loaded .hero-fade {
   .tips-number { width: 42px; height: 42px; font-size: 1rem; border-radius: 12px; }
   .faq-item summary { padding: 20px; }
   .faq-item > p { padding: 0 20px 22px; }
+  .faq-answer { padding: 0 20px 20px; }
   .back-to-top { right: 16px; bottom: 16px; width: 44px; height: 44px; }
 }
 
