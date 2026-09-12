@@ -166,7 +166,8 @@
     if (!testiTrack) return 0;
     const card = testiTrack.querySelector('.testi-card');
     if (!card) return testiTrack.clientWidth * 0.8;
-    const gap = parseFloat(getComputedStyle(testiTrack).columnGap) || 16;
+    const styles = getComputedStyle(testiTrack);
+    const gap = parseFloat(styles.columnGap || styles.gap) || 20;
     return card.offsetWidth + gap;
   }
 
