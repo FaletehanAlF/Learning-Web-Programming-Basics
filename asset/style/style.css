@@ -361,31 +361,64 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 }
 .site-nav ul a.active::after { transform: scaleX(1); }
 
-.site-nav ul a.nav-dicoding {
-  margin-left: 8px;
-  min-height: 40px;
-  padding: 9px 20px;
-  border-radius: var(--radius-pill);
-  background: var(--ink);
-  border: 1px solid var(--ink);
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.87rem;
-  box-shadow: var(--shadow-xs);
-  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
+/* CTA kanan — dipisah dari menu agar tidak menghalangi nav */
+.header-cta {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-left: 16px;
+  border-left: 1px solid var(--border);
 }
 
-.site-nav ul a.nav-dicoding::after { display: none; }
+.nav-dicoding {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 9px 18px 9px 10px;
+  border-radius: var(--radius-pill);
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 0.86rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
+}
 
-.site-nav ul a.nav-dicoding .feather { width: 15px; height: 15px; }
+.nav-dicoding::after { display: none; }
 
-.site-nav ul a.nav-dicoding:hover {
-  background: #2a3648;
-  border-color: #2a3648;
+.nav-dicoding .feather { width: 15px; height: 15px; opacity: 0.7; }
+
+.nav-dicoding:hover {
+  background: var(--ink);
+  color: #fff;
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
-  color: #fff;
 }
+
+.nav-dicoding:hover .feather { opacity: 1; }
+
+.dicoding-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #d21f26;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* CTA versi mobile — hanya muncul di dalam menu hamburger */
+.nav-mobile-cta { display: none; }
 
 /* ===== Hero: solid + aksen lembut ===== */
 .hero {
