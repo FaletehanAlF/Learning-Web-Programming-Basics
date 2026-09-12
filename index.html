@@ -286,37 +286,53 @@
           <p class="section-desc">Beberapa langkah sederhana yang bisa didiskusikan bersama anak di rumah.</p>
         </div>
 
-        <ol class="tips-list reveal">
-          <li class="tips-item">
+        <div class="tips-progress reveal" role="status" aria-live="polite">
+          <div class="tips-progress-info">
+            <strong id="tipsProgressText">0 dari 4 langkah dibahas</strong>
+            <span>C途entang bersama anak, lalu tandai yang sudah dilakukan.</span>
+          </div>
+          <div class="progress-bar" aria-hidden="true"><span id="tipsProgressBar"></span></div>
+        </div>
+
+        <ol class="tips-list reveal" id="tipsList">
+          <li class="tips-item" data-tips="1">
             <span class="tips-number" aria-hidden="true">1</span>
             <div class="tips-content">
               <h3><i data-feather="heart" aria-hidden="true"></i> Ajak Anak Mengenali Minatnya</h3>
               <p>Tanyakan pelajaran atau kegiatan apa yang paling disukai anak selama ini, tanpa langsung
                 menghubungkannya dengan jurusan tertentu.</p>
+              <label class="tips-check"><input type="checkbox" data-tips-check="1" /> Sudah dibahas
+                bersama anak</label>
             </div>
           </li>
-          <li class="tips-item">
+          <li class="tips-item" data-tips="2">
             <span class="tips-number" aria-hidden="true">2</span>
             <div class="tips-content">
               <h3><i data-feather="search" aria-hidden="true"></i> Cari Informasi Bersama</h3>
               <p>Luangkan waktu membaca tentang jurusan yang diminati anak, lalu diskusikan apa yang dipelajari dan
                 prospeknya.</p>
+              <label class="tips-check"><input type="checkbox" data-tips-check="2" /> Sudah dibahas
+                bersama anak</label>
             </div>
           </li>
-          <li class="tips-item">
+          <li class="tips-item" data-tips="3">
             <span class="tips-number" aria-hidden="true">3</span>
             <div class="tips-content">
               <h3><i data-feather="clipboard" aria-hidden="true"></i> Bicarakan Kemampuan dan Kondisi Keluarga</h3>
               <p>Diskusikan secara terbuka soal biaya, lokasi kuliah, dan kesiapan anak, agar keputusan yang diambil
                 realistis untuk semua pihak.</p>
+              <label class="tips-check"><input type="checkbox" data-tips-check="3" /> Sudah dibahas
+                bersama anak</label>
             </div>
           </li>
-          <li class="tips-item">
+          <li class="tips-item" data-tips="4">
             <span class="tips-number" aria-hidden="true">4</span>
             <div class="tips-content">
               <h3><i data-feather="check-circle" aria-hidden="true"></i> Beri Ruang untuk Anak Memutuskan</h3>
               <p>Setelah berdiskusi, biarkan anak yang mengambil keputusan akhir. Dukungan orang tua akan membuat anak
                 lebih bertanggung jawab pada pilihannya.</p>
+              <label class="tips-check"><input type="checkbox" data-tips-check="4" /> Sudah dibahas
+                bersama anak</label>
             </div>
           </li>
         </ol>
