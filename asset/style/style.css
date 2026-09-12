@@ -600,8 +600,8 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 }
 
 .hero-figure {
-  margin: 0;
-  padding: 16px;
+  margin: 0 0 22px;
+  padding: 14px 14px 16px;
   background: #ffffff;
   border: 1px solid var(--border);
   border-radius: 24px;
@@ -620,7 +620,7 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
   height: auto;
   border-radius: 16px;
   background: var(--bg-soft);
-  aspect-ratio: 560 / 420;
+  aspect-ratio: 560 / 480;
   object-fit: cover;
 }
 
