@@ -161,6 +161,9 @@
   const testiTrack = document.getElementById('testiTrack');
   const testiPrev = document.getElementById('testiPrev');
   const testiNext = document.getElementById('testiNext');
+  const testiDots = document.getElementById('testiDots');
+  const testiCount = document.getElementById('testiCount');
+  const testiCards = testiTrack ? Array.from(testiTrack.querySelectorAll('.testi-card')) : [];
 
   function testiStep() {
     if (!testiTrack) return 0;
@@ -171,15 +174,48 @@
     return card.offsetWidth + gap;
   }
 
+  function testiIndex() {
+    if (!testiTrack || testiCards.length === 0) return 0;
+    const step = testiStep() || 1;
+    return Math.min(
+      testiCards.length - 1,
+      Math.max(0, Math.round(testiTrack.scrollLeft / step))
+    );
+  }
+
   function updateTestiButtons() {
     if (!testiTrack || !testiPrev || !testiNext) return;
     const maxScroll = testiTrack.scrollWidth - testiTrack.clientWidth;
     testiPrev.disabled = testiTrack.scrollLeft <= 2;
     testiNext.disabled = testiTrack.scrollLeft >= maxScroll - 2;
+    const idx = testiIndex();
+    if (testiDots) {
+      Array.from(testiDots.children).forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === idx);
+        dot.setAttribute('aria-selected', String(i === idx));
+      });
+    }
+    if (testiCount) testiCount.textContent = `${idx + 1} / ${testiCards.length}`;
   }
 
   if (testiTrack && testiPrev && testiNext) {
     const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+    // Dots: satu titik per kartu, solid tanpa gradient
+    if (testiDots && testiCards.length > 0) {
+      testiCards.forEach((card, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'testi-dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-selected', String(i === 0));
+        dot.setAttribute('aria-label', `Ke testimoni ${i + 1}`);
+        dot.addEventListener('click', () => {
+          testiTrack.scrollTo({ left: i * testiStep(), behavior });
+        });
+        testiDots.appendChild(dot);
+      });
+    }
 
     testiPrev.addEventListener('click', () => {
       testiTrack.scrollBy({ left: -testiStep(), behavior });
@@ -188,12 +224,132 @@
       testiTrack.scrollBy({ left: testiStep(), behavior });
     });
 
+    // Keyboard: panah kiri/kanan saat fokus di track
+    testiTrack.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        testiTrack.scrollBy({ left: testiStep(), behavior });
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        testiTrack.scrollBy({ left: -testiStep(), behavior });
+      }
+    });
+
+    // Drag / seret untuk slide (mouse + touch)
+    let isDown = false;
+    let startX = 0;
+    let startScroll = 0;
+    testiTrack.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      isDown = true;
+      startX = e.clientX;
+      startScroll = testiTrack.scrollLeft;
+      testiTrack.classList.add('is-dragging');
+    });
+    window.addEventListener('pointermove', (e) => {
+      if (!isDown) return;
+      testiTrack.scrollLeft = startScroll - (e.clientX - startX);
+    });
+    window.addEventListener('pointerup', () => {
+      if (!isDown) return;
+      isDown = false;
+      testiTrack.classList.remove('is-dragging');
+      updateTestiButtons();
+    });
+    testiTrack.addEventListener('pointercancel', () => {
+      isDown = false;
+      testiTrack.classList.remove('is-dragging');
+    });
+
     testiTrack.addEventListener('scroll', () => {
       window.requestAnimationFrame(updateTestiButtons);
     }, { passive: true });
     window.addEventListener('resize', updateTestiButtons);
 
     updateTestiButtons();
+  }
+
+  /* --- Fitur: filter kategori + pencarian jurusan --- */
+  const chips = Array.from(document.querySelectorAll('.filter-chips .chip'));
+  const jurusanSearch = document.getElementById('jurusanSearch');
+  const jurusanCards = Array.from(document.querySelectorAll('.jurusan-card'));
+  const jurusanCount = document.getElementById('jurusanCount');
+  const jurusanEmpty = document.getElementById('jurusanEmpty');
+  let activeFilter = 'semua';
+
+  function applyJurusanFilter() {
+    const q = (jurusanSearch && jurusanSearch.value ? jurusanSearch.value : '').trim().toLowerCase();
+    let shown = 0;
+    jurusanCards.forEach((card) => {
+      const kat = (card.getAttribute('data-kategori') || '').toLowerCase();
+      const nama = (card.getAttribute('data-nama') || card.textContent || '').toLowerCase();
+      const matchKat = activeFilter === 'semua' || kat === activeFilter;
+      const matchQ = !q || nama.includes(q);
+      const visible = matchKat && matchQ;
+      card.classList.toggle('is-hidden', !visible);
+      if (visible) shown += 1;
+    });
+    if (jurusanCount) jurusanCount.textContent = `Menampilkan ${shown} dari ${jurusanCards.length} jurusan`;
+    if (jurusanEmpty) jurusanEmpty.hidden = shown !== 0;
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      chips.forEach((c) => c.classList.remove('is-active'));
+      chip.classList.add('is-active');
+      activeFilter = chip.getAttribute('data-filter') || 'semua';
+      applyJurusanFilter();
+    });
+  });
+
+  if (jurusanSearch) {
+    jurusanSearch.addEventListener('input', applyJurusanFilter);
+  }
+
+  /* --- Fitur: checklist tips + progress tersimpan --- */
+  const tipsChecks = Array.from(document.querySelectorAll('[data-tips-check]'));
+  const tipsProgressText = document.getElementById('tipsProgressText');
+  const tipsProgressBar = document.getElementById('tipsProgressBar');
+  const TIPS_KEY = 'panduan-jurusan-tips';
+
+  function loadTips() {
+    try {
+      const raw = localStorage.getItem(TIPS_KEY);
+      if (!raw) return [];
+      const parsed = JSON.parse(raw);
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function saveTips(done) {
+    try {
+      localStorage.setItem(TIPS_KEY, JSON.stringify(done));
+    } catch (err) {
+      // abaikan jika storage tidak tersedia
+    }
+  }
+
+  function updateTipsProgress() {
+    const done = tipsChecks.filter((c) => c.checked).map((c) => c.getAttribute('data-tips-check'));
+    const total = tipsChecks.length;
+    if (tipsProgressText) tipsProgressText.textContent = `${done.length} dari ${total} langkah dibahas`;
+    if (tipsProgressBar) tipsProgressBar.style.width = total > 0 ? `${(done.length / total) * 100}%` : '0%';
+    tipsChecks.forEach((c) => {
+      const item = c.closest('.tips-item');
+      if (item) item.classList.toggle('is-done', c.checked);
+    });
+    saveTips(done);
+  }
+
+  if (tipsChecks.length > 0) {
+    const saved = loadTips();
+    tipsChecks.forEach((c) => {
+      c.checked = saved.includes(c.getAttribute('data-tips-check'));
+      c.addEventListener('change', updateTipsProgress);
+    });
+    updateTipsProgress();
   }
 
   /* --- Micro-interactions: count-up, spotlight, tilt tipis --- */
