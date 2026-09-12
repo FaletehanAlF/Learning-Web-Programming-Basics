@@ -932,15 +932,16 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .tips-list {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 840px;
+  gap: 16px;
+  max-width: 800px;
   position: relative;
 }
 
 .tips-item {
   display: flex;
-  gap: 26px;
-  padding: 30px 34px;
+  gap: 24px;
+  align-items: flex-start;
+  padding: 28px 30px;
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -994,20 +995,20 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 
 .tips-content h3 .feather { width: 19px; height: 19px; color: var(--teal); }
 
-.tips-content p { font-size: 0.98rem; line-height: 1.85; max-width: 60ch; }
+.tips-content p { font-size: 0.97rem; line-height: 1.75; max-width: 60ch; }
 
 /* ===== Testimoni ===== */
 .split-head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 32px;
+  gap: 24px;
   flex-wrap: wrap;
   max-width: none;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
 }
 
-.split-head > div:first-child { max-width: 620px; min-width: 0; }
+.split-head > div:first-child { max-width: 600px; min-width: 0; }
 
 .rating-summary {
   display: flex;
@@ -1055,13 +1056,15 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 }
 
 .testi-track {
-  display: flex;
-  gap: 22px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 340px);
+  gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scroll-padding-inline: 6px;
-  padding: 10px 6px 22px;
-  margin-inline: -6px;
+  scroll-padding-inline: 4px;
+  padding: 8px 4px 20px;
+  margin-inline: -4px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: var(--border-strong) transparent;
