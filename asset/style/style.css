@@ -1314,9 +1314,9 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 
 .faq-item > p {
   margin: 0;
-  padding: 0 26px 26px;
-  font-size: 0.97rem;
-  line-height: 1.85;
+  padding: 0 26px 24px;
+  font-size: 0.96rem;
+  line-height: 1.75;
   animation: faq-in 0.35s var(--ease);
 }
 
@@ -1329,19 +1329,20 @@ section { scroll-margin-top: calc(var(--header-height) + 14px); }
 .site-footer {
   background: var(--footer-bg);
   color: #d9e5df;
-  padding-top: 80px;
+  padding-top: 72px;
   border-top: 1px solid rgb(255 255 255 / 0.08);
 }
 
 .footer-inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 48px 64px;
-  padding-bottom: 52px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  padding-bottom: 48px;
   border-bottom: 1px solid rgb(255 255 255 / 0.1);
 }
 
-.footer-brand { flex: 1.5 1 280px; min-width: 0; }
+.footer-brand { min-width: 0; }
 .footer-brand .logo { color: #fff; }
 .footer-brand .logo-mark {
   background: var(--amber);
