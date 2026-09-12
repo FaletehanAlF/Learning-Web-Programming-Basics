@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kuis Minat 10 Soal — Analisis Jurusan | Panduan Jurusan</title>
+  <meta name="description" content="Kuis 10 pertanyaan untuk orang tua & anak. Dapatkan skor per rumpun, grafik, dan analisis kenapa jurusan tertentu cocok — gratis, 3 menit, tanpa daftar." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="asset/style/style.css" />
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <a class="skip-link" href="#kuis-app">Lompat ke kuis</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-capsule">
+      <a href="index.html" class="logo" aria-label="Kembali ke beranda">
+        <span class="logo-mark" aria-hidden="true"><i data-feather="compass"></i></span>
+        <span>Panduan Jurusan</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu navigasi">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="navMenu" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="index.html#kuis-minat"><i data-feather="arrow-left" aria-hidden="true"></i>Kembali</a></li>
+          <li><a href="index.html#jurusan"><i data-feather="layout" aria-hidden="true"></i>Daftar Jurusan</a></li>
+          <li><a href="index.html#kalkulator-biaya"><i data-feather="dollar-sign" aria-hidden="true"></i>Hitung Biaya</a></li>
+          <li><a href="index.html#tips"><i data-feather="compass" aria-hidden="true"></i>Tips</a></li>
+          <li class="nav-mobile-cta">
+            <a class="nav-dicoding-mobile" href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">
+              <span class="dicoding-dot" aria-hidden="true">D</span> Profil Dicoding <i data-feather="external-link" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a class="nav-dicoding" href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">
+          <span class="dicoding-dot" aria-hidden="true">D</span> Profil Dicoding <i data-feather="external-link" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="kuis-app">
+    <!-- Hero mini -->
+    <section class="quiz-hero">
+      <div class="container">
+        <a href="index.html" class="quiz-back"><i data-feather="arrow-left" aria-hidden="true"></i> Kembali ke panduan</a>
+        <div class="quiz-hero-inner">
+          <div>
+            <p class="section-kicker">Halaman terpisah • 10 soal</p>
+            <h1>Kuis Minat 10 Soal</h1>
+            <p class="quiz-hero-desc">Jawab bareng anak — tiap soal mewakili sudut berbeda (kegiatan, pelajaran, cara belajar, lingkungan kerja, nilai). Di akhir dapat <strong>skor, grafik, dan analisis kenapa cocok</strong> untuk bahan ngobrol.</p>
+            <ul class="quiz-hero-meta">
+              <li><i data-feather="clock" aria-hidden="true"></i> ~3 menit</li>
+              <li><i data-feather="check-circle" aria-hidden="true"></i> Tanpa daftar</li>
+              <li><i data-feather="share-2" aria-hidden="true"></i> Bagikan ke WA</li>
+            </ul>
+          </div>
+          <div class="quiz-hero-card" aria-hidden="true">
+            <span class="quiz-hero-card-kicker">Yang akan didapat</span>
+            <ul>
+              <li><span class="dot"></span> Skor 5 rumpun + persentase</li>
+              <li><span class="dot"></span> Grafik batang & konsistensi</li>
+              <li><span class="dot"></span> Analisis “kenapa cocok”</li>
+              <li><span class="dot"></span> 2–3 jurusan + langkah 2 minggu</li>
+            </ul>
+            <small>Bukan tes psikologi formal — gunakan sebagai pancingan diskusi.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- App -->
+    <section class="section quiz-app-section">
+      <div class="container">
+        <div class="quiz-full-wrap" id="quizFullWrap">
+          <!-- Progress -->
+          <div class="quiz-full-head" id="quizFullHead">
+            <div class="quiz-full-progress">
+              <span class="quiz-full-step" id="quizFullStep">1 dari 10</span>
+              <div class="quiz-full-bar"><span id="quizFullBar" style="width:10%"></span></div>
+              <span class="quiz-full-percent" id="quizFullPercent">10%</span>
+            </div>
+            <span class="quiz-full-time"><i data-feather="clock" aria-hidden="true"></i> <span id="quizFullTime">~3 menit</span></span>
+          </div>
+
+          <!-- Question -->
+          <div class="quiz-full-body" id="quizFullBody"></div>
+
+          <!-- Nav -->
+          <div class="quiz-full-nav" id="quizFullNav">
+            <button class="btn btn-outline" id="quizFullPrev" type="button" disabled><i data-feather="arrow-left" aria-hidden="true"></i> Sebelumnya</button>
+            <button class="btn btn-primary" id="quizFullNext" type="button" disabled>Selanjutnya <i data-feather="arrow-right" aria-hidden="true"></i></button>
+          </div>
+
+          <!-- Result -->
+          <div class="quiz-full-result" id="quizFullResult" hidden>
+            <!-- injected by JS -->
+          </div>
+        </div>
+
+        <p class="quiz-footnote"><i data-feather="shield" aria-hidden="true"></i> Jawaban tersimpan di perangkat ini saja. Tidak dikirim ke server. Bisa diulang kapan saja.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo"><span class="logo-mark"><i data-feather="compass"></i></span><span>Panduan Jurusan</span></a>
+        <p>Membantu orang tua mendampingi anak memilih jurusan dengan tenang. Kuis ini untuk membuka obrolan, bukan menentukan masa depan.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <h3>Navigasi</h3>
+        <ul>
+          <li><a href="index.html#kuis-minat">Tentang Kuis</a></li>
+          <li><a href="index.html#jurusan">Daftar Jurusan</a></li>
+          <li><a href="index.html#kalkulator-biaya">Hitung Biaya</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Footer lain">
+        <h3>Lainnya</h3>
+        <ul>
+          <li><a href="index.html#tips">Tips</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+          <li><a href="kuis.html">Ulangi Kuis</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom"><p>&copy; 2026 Panduan Jurusan. Bukan tes psikologi formal.</p></div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Kembali ke atas"><i data-feather="arrow-up" aria-hidden="true"></i></button>
+
+  <script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js" defer></script>
+  <script src="asset/script/script.js" defer></script>
+  <script src="asset/script/kuis.js" defer></script>
+</body>
+</html>
