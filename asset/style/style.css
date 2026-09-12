@@ -1802,11 +1802,16 @@ html.js body.is-loaded .hero-fade {
   .hero-stats { grid-template-columns: 1fr; }
   .reason-grid, .jurusan-grid { grid-template-columns: 1fr; gap: 16px; }
   .reason-card, .jurusan-card { padding: 26px 22px; }
+  .jurusan-toolbar { flex-direction: column; align-items: stretch; }
+  .jurusan-search { min-width: 0; width: 100%; }
   .tips-item { padding: 22px; gap: 18px; }
+  .tips-progress { padding: 16px; }
   .profile-card { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 32px 24px; gap: 20px; }
   .profile-links { justify-content: center; }
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
-  .testi-track { grid-auto-columns: minmax(0, 84vw); }
+  .testi-track { grid-auto-columns: 84vw; }
+  .testi-card { width: 84vw; min-height: 0; }
+  .testi-quote { min-height: 0; }
   .tips-item:hover { transform: translateY(-3px); }
 }
 
