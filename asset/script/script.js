@@ -243,6 +243,27 @@
     chips.forEach((c) => c.classList.toggle('is-active', (c.getAttribute('data-filter')||'').toLowerCase() === kat));
     applyJurusanFilter();
   };
+  // Jika datang dari kuis 10 soal (kuis.html) -> terapkan filter otomatis
+  try {
+    const savedFilter = localStorage.getItem('panduan-jurusan-quiz-filter');
+    if (savedFilter) {
+      const valid = Array.from(chips).some((c) => (c.getAttribute('data-filter')||'').toLowerCase() === savedFilter.toLowerCase());
+      if (valid) window._setJurusanFilter(savedFilter.toLowerCase());
+    }
+    // tampilkan ringkasan skor 10 soal di dekat katalog jika ada
+    const raw10 = localStorage.getItem('panduan-jurusan-kuis-10-result');
+    if (raw10 && jurusanCount) {
+      try {
+        const r = JSON.parse(raw10);
+        if (r && r.top) {
+          const labelMap = { teknologi:'Teknologi', kesehatan:'Kesehatan', soshum:'Soshum', bisnis:'Bisnis', kreatif:'Kreatif' };
+          const label = labelMap[r.top] || r.top;
+          const existing = jurusanCount.textContent;
+          jurusanCount.textContent = existing + ` • Hasil kuis 10 soal: dominan ${label}`;
+        }
+      } catch(e){}
+    }
+  } catch(e){}
 
   /* --- Checklist tips + progress --- */
   const tipsChecks = Array.from(document.querySelectorAll('[data-tips-check]'));
