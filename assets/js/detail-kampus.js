@@ -10,6 +10,7 @@
 
   var list = [];
   var currentId = '';
+  var lastItem = null;
 
   function getId() {
     try {
@@ -228,11 +229,18 @@
         }
         render(found);
         renderPrevNext();
+        lastItem = found;
       })
       .catch(function () {
         showError('Gagal memuat data', 'File data/ptn.json, data/pts.json & data/ptln.json tidak bisa dibaca. Jalankan lewat local server (Live Server), bukan double-click file.');
       });
   }
+
+  try {
+    window.addEventListener('pj:lang', function () {
+      if (lastItem) { render(lastItem); renderPrevNext(); }
+    });
+  } catch (e) {}
 
   load();
 })();

@@ -164,5 +164,9 @@
   });
   if (searchInput) searchInput.addEventListener('input', applyFilter);
 
+  try {
+    window.addEventListener('pj:lang', function () { applyFilter(); });
+  } catch (e) {}
+
   load();
 })();
