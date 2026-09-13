@@ -4,8 +4,38 @@
     "cara_ganti_gambar": "Ganti field 'gambar' dengan link gambar network (https://...). Bisa dari Unsplash, Cloudinary, imgbb, atau Google Drive (ubah ke link langsung). Ukuran ideal landscape 800x600.",
     "cara_ubah_detail": "Semua teks (deskripsi, UKT, jurusan, beasiswa, fasilitas, kontak) cukup diubah di file ini. Simpan file, lalu refresh browser — tanpa ubah kode lain.",
     "cara_tambah_kampus": "1) Duplikat satu objek {...} di dalam 'data'. 2) Ganti 'id' dengan slug unik huruf-kecil-tanpa-spasi (contoh: 'unsoed'). 3) Pastikan id TIDAK kembar dengan isi data/pts.json. 4) Sesuaikan field lain. Selesai — list & detail otomatis ikut.",
-    "daftar_field": ["id", "nama", "singkatan", "kota", "provinsi", "jenis", "akreditasi", "rating", "jumlah_mahasiswa", "gambar", "gambar_cadangan", "tagline", "deskripsi_singkat", "deskripsi_panjang", "unggulan[]", "jurusan_favorit[]", "jalur_masuk[]", "ukt_per_semester", "biaya_hidup_per_bulan", "beasiswa[]", "fasilitas[]", "prospek_karier", "website", "telepon", "alamat"],
-    "catatan_id": "'id' dipakai untuk URL detail, contoh: detail-kampus.html?id=ui. Jangan pakai spasi."
+    "daftar_field": [
+      "id",
+      "nama",
+      "singkatan",
+      "kota",
+      "provinsi",
+      "jenis",
+      "akreditasi",
+      "rating",
+      "jumlah_mahasiswa",
+      "gambar",
+      "gambar_cadangan",
+      "tagline",
+      "deskripsi_singkat",
+      "deskripsi_panjang",
+      "unggulan[]",
+      "jurusan_favorit[]",
+      "jalur_masuk[]",
+      "ukt_per_semester",
+      "biaya_hidup_per_bulan",
+      "beasiswa[]",
+      "fasilitas[]",
+      "prospek_karier",
+      "website",
+      "telepon",
+      "alamat",
+      "tentang_kampus",
+      "skor_utbk_minimal",
+      "prestasi_snbp[]"
+    ],
+    "catatan_id": "'id' dipakai untuk URL detail, contoh: detail-kampus.html?id=ui. Jangan pakai spasi.",
+    "sumber_data": "Data disusun merujuk website resmi tiap kampus (field website) dan portal SNPMB. Skor UTBK adalah ESTIMASI aman dari pola tahun sebelumnya — SNPMB tidak merilis passing grade resmi. Selalu verifikasi syarat terbaru di website resmi kampus karena berubah tiap tahun."
   },
   "jenis": "PTN",
   "data": [
@@ -24,17 +54,50 @@
       "tagline": "Kampus hijau terluas dengan reputasi riset #1 di Indonesia.",
       "deskripsi_singkat": "PTN favorit di Depok dengan kekuatan di Kedokteran, Hukum, Ekonomi, dan Teknik.",
       "deskripsi_panjang": "Universitas Indonesia (UI) adalah salah satu perguruan tinggi negeri tertua dan paling diminati di Indonesia. Berlokasi di kampus hijau seluas 320 hektar di Depok, UI unggul di bidang riset, kedokteran, hukum, ekonomi, dan teknik. Lulusannya banyak terserap di BUMN, kementerian, rumah sakit besar, dan perusahaan multinasional. Jalur masuk tersedia lewat SNBP (rapor), SNBT (UTBK), dan SIMAK UI (mandiri).",
-      "unggulan": ["Akreditasi Unggul BAN-PT", "Peringkat 1 nasional versi QS WUR", "RS Pendidikan UI + 100+ lab riset", "Koneksi BUMN & kementerian sangat kuat"],
-      "jurusan_favorit": ["Kedokteran", "Hukum", "Manajemen", "Teknik Informatika", "Psikologi"],
-      "jalur_masuk": ["SNBP", "SNBT", "SIMAK UI (Mandiri)"],
+      "unggulan": [
+        "Akreditasi Unggul BAN-PT",
+        "Peringkat 1 nasional versi QS WUR",
+        "RS Pendidikan UI + 100+ lab riset",
+        "Koneksi BUMN & kementerian sangat kuat"
+      ],
+      "jurusan_favorit": [
+        "Kedokteran",
+        "Hukum",
+        "Manajemen",
+        "Teknik Informatika",
+        "Psikologi"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "SIMAK UI (Mandiri)"
+      ],
       "ukt_per_semester": "Rp 2 jt – 20 jt (UKT berjenjang sesuai penghasilan)",
       "biaya_hidup_per_bulan": "Rp 1,5 jt – 3 jt (Depok)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa UI Peduli", "LPDP (S2/S3)", "Beasiswa prestasi fakultas"],
-      "fasilitas": ["Asrama UI", "Perpustakaan pusat terbesar", "Bus kuning kampus gratis", "Stadion & pusat kebugaran"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa UI Peduli",
+        "LPDP (S2/S3)",
+        "Beasiswa prestasi fakultas"
+      ],
+      "fasilitas": [
+        "Asrama UI",
+        "Perpustakaan pusat terbesar",
+        "Bus kuning kampus gratis",
+        "Stadion & pusat kebugaran"
+      ],
       "prospek_karier": "Dokter, pengacara, analis BUMN/perbankan, insinyur, peneliti, ASN kementerian.",
       "website": "https://www.ui.ac.id",
       "telepon": "(021) 7867222",
-      "alamat": "Jl. Margonda Raya, Pondok Cina, Depok, Jawa Barat"
+      "alamat": "Jl. Margonda Raya, Pondok Cina, Depok, Jawa Barat",
+      "tentang_kampus": "Berakar dari STOVIL (1849) dan resmi menjadi Universitas Indonesia pada 1950, UI adalah PTN BH dengan kampus utama seluas 320 hektar di Depok. Profil resminya menempatkan UI sebagai pusat riset dan inovasi dengan belasan fakultas plus sekolah vokasi dan pascasarjana.",
+      "skor_utbk_minimal": "± 650-700 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Finalis/juara OSN, O2SN, atau FLS2N tingkat nasional",
+        "Juara 1-3 lomba akademik/non-akademik tingkat provinsi",
+        "Nilai rapor stabil di 3 besar kelas selama 5 semester",
+        "Ketua OSIS/pengurus inti organisasi + sertifikat resmi"
+      ]
     },
     {
       "id": "ugm",
@@ -51,17 +114,50 @@
       "tagline": "Kampus kerakyatan di kota pelajar dengan biaya hidup paling ramah.",
       "deskripsi_singkat": "PTN tertua di Yogya, kuat di Kedokteran, Pertanian, Teknik, dan Fisipol.",
       "deskripsi_panjang": "Universitas Gadjah Mada (UGM) didirikan tahun 1949 dan menjadi simbol pendidikan kerakyatan Indonesia. Terletak di Sleman, Yogyakarta — kota pelajar dengan biaya hidup termurah di antara kota kampus besar. UGM unggul di Kedokteran, Kedokteran Hewan, Pertanian, Teknik, dan Ilmu Sosial-Politik. Kehidupan kampusnya sangat aktif dengan ratusan UKM dan komunitas riset.",
-      "unggulan": ["Akreditasi Unggul BAN-PT", "Kota pelajar, biaya hidup murah", "Terkuat di Agro & Kedokteran Hewan", "Jaringan alumni UGM tersebar nasional"],
-      "jurusan_favorit": ["Kedokteran", "Teknik Sipil", "Hubungan Internasional", "Manajemen", "Pertanian"],
-      "jalur_masuk": ["SNBP", "SNBT", "UM UGM (Mandiri)"],
+      "unggulan": [
+        "Akreditasi Unggul BAN-PT",
+        "Kota pelajar, biaya hidup murah",
+        "Terkuat di Agro & Kedokteran Hewan",
+        "Jaringan alumni UGM tersebar nasional"
+      ],
+      "jurusan_favorit": [
+        "Kedokteran",
+        "Teknik Sipil",
+        "Hubungan Internasional",
+        "Manajemen",
+        "Pertanian"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "UM UGM (Mandiri)"
+      ],
       "ukt_per_semester": "Rp 2 jt – 15 jt (UKT berjenjang)",
       "biaya_hidup_per_bulan": "Rp 1 jt – 2 jt (Yogyakarta)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa Supersemar", "Beasiswa Bank Indonesia", "Beasiswa alumni Kagama"],
-      "fasilitas": ["Asrama mahasiswa (Darmaputera)", "Wisma Kagama & Gelanggang", "Perpustakaan pusat 4 lantai", "Rumah Sakit Akademik UGM"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa Supersemar",
+        "Beasiswa Bank Indonesia",
+        "Beasiswa alumni Kagama"
+      ],
+      "fasilitas": [
+        "Asrama mahasiswa (Darmaputera)",
+        "Wisma Kagama & Gelanggang",
+        "Perpustakaan pusat 4 lantai",
+        "Rumah Sakit Akademik UGM"
+      ],
       "prospek_karier": "Dokter, insinyur, diplomat, ASN, peneliti pertanian, manajer perusahaan.",
       "website": "https://www.ugm.ac.id",
       "telepon": "(0274) 588688",
-      "alamat": "Bulaksumur, Caturtunggal, Sleman, DI Yogyakarta"
+      "alamat": "Bulaksumur, Caturtunggal, Sleman, DI Yogyakarta",
+      "tentang_kampus": "Didirikan 19 Desember 1949 sebagai universitas nasional pertama milik Indonesia, UGM mengusung jati diri kerakyatan. Kampus Bulaksumur menaungi 18 fakultas dan 1 sekolah vokasi dengan Rumah Sakit Akademik sebagai RS pendidikan.",
+      "skor_utbk_minimal": "± 650-700 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Finalis/juara OSN, O2SN, atau FLS2N tingkat nasional",
+        "Juara 1-3 lomba akademik/non-akademik tingkat provinsi",
+        "Nilai rapor stabil di 3 besar kelas selama 5 semester",
+        "Ketua OSIS/pengurus inti organisasi + sertifikat resmi"
+      ]
     },
     {
       "id": "itb",
@@ -78,17 +174,50 @@
       "tagline": "Kampus teknik #1 — surganya anak logika, sains, dan desain.",
       "deskripsi_singkat": "PTN teknologi terbaik untuk Informatika, Elektro, Arsitektur, dan Desain.",
       "deskripsi_panjang": "Institut Teknologi Bandung (ITB) adalah kampus teknologi paling prestisius di Indonesia. Terletak di pusat kota Bandung, ITB melahirkan banyak insinyur, pendiri startup, dan arsitek ternama. Jurusan Teknik Informatika, Teknik Elektro, Arsitektur, dan Desainnya selalu menjadi yang paling ketat persaingannya. Cocok untuk anak yang kuat di matematika/fisika dan suka memecahkan masalah.",
-      "unggulan": ["Teknik & sains peringkat 1 nasional", "Lulusan startup terbanyak (Gojek, Tokopedia)", "Lab & bengkel teknik terlengkap", "Iklim kompetisi akademik sehat"],
-      "jurusan_favorit": ["Teknik Informatika", "Teknik Elektro", "Arsitektur", "Desain Produk", "Teknik Industri"],
-      "jalur_masuk": ["SNBP", "SNBT", "SM ITB (Mandiri)"],
+      "unggulan": [
+        "Teknik & sains peringkat 1 nasional",
+        "Lulusan startup terbanyak (Gojek, Tokopedia)",
+        "Lab & bengkel teknik terlengkap",
+        "Iklim kompetisi akademik sehat"
+      ],
+      "jurusan_favorit": [
+        "Teknik Informatika",
+        "Teknik Elektro",
+        "Arsitektur",
+        "Desain Produk",
+        "Teknik Industri"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "SM ITB (Mandiri)"
+      ],
       "ukt_per_semester": "Rp 2 jt – 20 jt (UKT berjenjang)",
       "biaya_hidup_per_bulan": "Rp 1,5 jt – 2,8 jt (Bandung)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa ITB Unggul", "Beasiswa Sampoerna", "Beasiswa Ikatan Alumni ITB"],
-      "fasilitas": ["Asrama ITB Jatinangor & Ganesha", "Labtek & makerspace", "Perpustakaan CRCS", "Sarana olahraga Saraga"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa ITB Unggul",
+        "Beasiswa Sampoerna",
+        "Beasiswa Ikatan Alumni ITB"
+      ],
+      "fasilitas": [
+        "Asrama ITB Jatinangor & Ganesha",
+        "Labtek & makerspace",
+        "Perpustakaan CRCS",
+        "Sarana olahraga Saraga"
+      ],
       "prospek_karier": "Software engineer, data scientist, arsitek, insinyur BUMN energi, founder startup.",
       "website": "https://www.itb.ac.id",
       "telepon": "(022) 2500935",
-      "alamat": "Jl. Ganesha No. 10, Bandung, Jawa Barat"
+      "alamat": "Jl. Ganesha No. 10, Bandung, Jawa Barat",
+      "tentang_kampus": "Berdiri 1920 sebagai Technische Hoogeschool dan resmi menjadi institut pada 1959, ITB di Ganesha, Bandung, adalah pusat keunggulan sains-teknologi-seni dengan 12 fakultas/sekolah termasuk SBM dan FSRD.",
+      "skor_utbk_minimal": "± 650-700 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Finalis/juara OSN, O2SN, atau FLS2N tingkat nasional",
+        "Juara 1-3 lomba akademik/non-akademik tingkat provinsi",
+        "Nilai rapor stabil di 3 besar kelas selama 5 semester",
+        "Ketua OSIS/pengurus inti organisasi + sertifikat resmi"
+      ]
     },
     {
       "id": "its",
@@ -105,17 +234,50 @@
       "tagline": "Kampus maritim & robotik — juara kontes teknologi nasional.",
       "deskripsi_singkat": "PTN teknik di Surabaya, jago di Perkapalan, Informatika, dan Sistem Informasi.",
       "deskripsi_panjang": "Institut Teknologi Sepuluh Nopember (ITS) di Surabaya terkenal sebagai kampus pejuang teknologi dengan semangat kemaritiman. ITS langganan juara Kontes Robot Indonesia dan mobil hemat energi. Jurusan Teknik Perkapalan-nya satu-satunya yang paling lengkap di Indonesia, sementara Informatika dan Sistem Informasinya sangat diburu industri digital Jawa Timur.",
-      "unggulan": ["Nomor 1 maritim & perkapalan", "Langganan juara robotik nasional", "Kampus riset vokasi terkuat", "Dekat kawasan industri Surabaya"],
-      "jurusan_favorit": ["Teknik Informatika", "Sistem Informasi", "Teknik Perkapalan", "Teknik Elektro", "Desain Komunikasi Visual"],
-      "jalur_masuk": ["SNBP", "SNBT", "SM ITS (Mandiri)"],
+      "unggulan": [
+        "Nomor 1 maritim & perkapalan",
+        "Langganan juara robotik nasional",
+        "Kampus riset vokasi terkuat",
+        "Dekat kawasan industri Surabaya"
+      ],
+      "jurusan_favorit": [
+        "Teknik Informatika",
+        "Sistem Informasi",
+        "Teknik Perkapalan",
+        "Teknik Elektro",
+        "Desain Komunikasi Visual"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "SM ITS (Mandiri)"
+      ],
       "ukt_per_semester": "Rp 2 jt – 15 jt (UKT berjenjang)",
       "biaya_hidup_per_bulan": "Rp 1,3 jt – 2,5 jt (Surabaya)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa ITS IO", "Beasiswa Pertamina", "Beasiswa alumni ITS"],
-      "fasilitas": ["Asrama ITS", "Gedung robotik & riset", "Perpustakaan pusat", "Sport center & danau kampus"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa ITS IO",
+        "Beasiswa Pertamina",
+        "Beasiswa alumni ITS"
+      ],
+      "fasilitas": [
+        "Asrama ITS",
+        "Gedung robotik & riset",
+        "Perpustakaan pusat",
+        "Sport center & danau kampus"
+      ],
       "prospek_karier": "Insinyur galangan kapal, programmer, analis sistem, PNS Kemenhub, BUMN energi.",
       "website": "https://www.its.ac.id",
       "telepon": "(031) 5994251",
-      "alamat": "Kampus ITS Sukolilo, Surabaya, Jawa Timur"
+      "alamat": "Kampus ITS Sukolilo, Surabaya, Jawa Timur",
+      "tentang_kampus": "Didirikan 1957 dan menjadi PTN pada 1961, ITS di Sukolilo, Surabaya, adalah institut teknologi dengan 7 fakultas plus sekolah vokasi. Profil resminya menonjolkan kemaritiman, robotik, dan kendaraan hemat energi.",
+      "skor_utbk_minimal": "± 600-650 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Juara 1-3 OSN/lomba akademik tingkat kabupaten/kota atau provinsi",
+        "Hafiz Quran atau prestasi non-akademik tingkat provinsi/nasional",
+        "Nilai rapor 5 semester konsisten, rata-rata 90+",
+        "Pengurus inti OSIS/organisasi + portofolio kegiatan"
+      ]
     },
     {
       "id": "unair",
@@ -132,17 +294,50 @@
       "tagline": "Kampus kesehatan terbaik kedua — Kedokteran & Farmasi favorit.",
       "deskripsi_singkat": "PTN kesehatan unggulan di Surabaya dengan RS pendidikan sendiri.",
       "deskripsi_panjang": "Universitas Airlangga (UNAIR) adalah pusat pendidikan kesehatan terbaik di Indonesia Timur. Fakultas Kedokteran, Kedokteran Gigi, Farmasi, dan Kesehatan Masyarakatnya memiliki rumah sakit pendidikan sendiri (RSAU). Selain kesehatan, UNAIR juga kuat di Hukum, Ekonomi, dan Psikologi. Lokasinya strategis di Surabaya dengan akses magang rumah sakit yang melimpah.",
-      "unggulan": ["RS pendidikan universitas sendiri", "Kedokteran & Farmasi top nasional", "Riset vaksin & tropis terdepan", "Kampus A, B, C terintegrasi kota"],
-      "jurusan_favorit": ["Kedokteran", "Kedokteran Gigi", "Farmasi", "Hukum", "Psikologi"],
-      "jalur_masuk": ["SNBP", "SNBT", "Mandiri UNAIR"],
+      "unggulan": [
+        "RS pendidikan universitas sendiri",
+        "Kedokteran & Farmasi top nasional",
+        "Riset vaksin & tropis terdepan",
+        "Kampus A, B, C terintegrasi kota"
+      ],
+      "jurusan_favorit": [
+        "Kedokteran",
+        "Kedokteran Gigi",
+        "Farmasi",
+        "Hukum",
+        "Psikologi"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "Mandiri UNAIR"
+      ],
       "ukt_per_semester": "Rp 2 jt – 25 jt (Kedokteran tertinggi)",
       "biaya_hidup_per_bulan": "Rp 1,3 jt – 2,5 jt (Surabaya)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa Airlangga", "Beasiswa Djarum", "Beasiswa RS mitra"],
-      "fasilitas": ["RS UNAIR + RSGM", "Asrama Putra/Putri", "Airlangga Convention Center", "Perpustakaan kampus B"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa Airlangga",
+        "Beasiswa Djarum",
+        "Beasiswa RS mitra"
+      ],
+      "fasilitas": [
+        "RS UNAIR + RSGM",
+        "Asrama Putra/Putri",
+        "Airlangga Convention Center",
+        "Perpustakaan kampus B"
+      ],
       "prospek_karier": "Dokter, dokter gigi, apoteker, psikolog, pengacara, analis kesehatan.",
       "website": "https://www.unair.ac.id",
       "telepon": "(031) 5914042",
-      "alamat": "Kampus C Mulyorejo, Surabaya, Jawa Timur"
+      "alamat": "Kampus C Mulyorejo, Surabaya, Jawa Timur",
+      "tentang_kampus": "Diresmikan 10 November 1954, UNAIR adalah PTN BH di Surabaya dengan kekuatan kesehatan — Kedokteran, Kedokteran Gigi, Farmasi, dan Kesehatan Masyarakat — didukung RS Universitas Airlangga sebagai RS pendidikan.",
+      "skor_utbk_minimal": "± 600-650 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Juara 1-3 OSN/lomba akademik tingkat kabupaten/kota atau provinsi",
+        "Hafiz Quran atau prestasi non-akademik tingkat provinsi/nasional",
+        "Nilai rapor 5 semester konsisten, rata-rata 90+",
+        "Pengurus inti OSIS/organisasi + portofolio kegiatan"
+      ]
     },
     {
       "id": "undip",
@@ -159,17 +354,50 @@
       "tagline": "Kampus pesisir Jawa Tengah — Hukum, Ekonomi & Perikanan kuat.",
       "deskripsi_singkat": "PTN besar di Semarang dengan biaya hidup ringan dan jurusan lengkap.",
       "deskripsi_panjang": "Universitas Diponegoro (UNDIP) di Tembalang, Semarang, adalah PTN dengan pertumbuhan tercepat di Jawa Tengah. Kampusnya luas di kawasan bukit yang asri. UNDIP unggul di Hukum, Ekonomika & Bisnis, Perikanan & Kelautan, serta Kesehatan. Biaya hidup Semarang relatif ringan sehingga cocok untuk keluarga yang menghitung anggaran kuliah sampai lulus.",
-      "unggulan": ["Kampus Tembalang luas & asri", "Perikanan & kelautan terbaik", "Biaya hidup Semarang ringan", "RSND + teaching hospital"],
-      "jurusan_favorit": ["Hukum", "Manajemen", "Kedokteran", "Teknik Sipil", "Ilmu Kelautan"],
-      "jalur_masuk": ["SNBP", "SNBT", "UM UNDIP (Mandiri)"],
+      "unggulan": [
+        "Kampus Tembalang luas & asri",
+        "Perikanan & kelautan terbaik",
+        "Biaya hidup Semarang ringan",
+        "RSND + teaching hospital"
+      ],
+      "jurusan_favorit": [
+        "Hukum",
+        "Manajemen",
+        "Kedokteran",
+        "Teknik Sipil",
+        "Ilmu Kelautan"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "UM UNDIP (Mandiri)"
+      ],
       "ukt_per_semester": "Rp 2 jt – 20 jt (UKT berjenjang)",
       "biaya_hidup_per_bulan": "Rp 1,2 jt – 2,2 jt (Semarang)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa Undip Prestasi", "Beasiswa Bank Jateng", "Beasiswa PPA"],
-      "fasilitas": ["Asrama Rusunawa Undip", "RS Nasional Diponegoro", "Stadion & GOR", "Danau & hutan kampus"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa Undip Prestasi",
+        "Beasiswa Bank Jateng",
+        "Beasiswa PPA"
+      ],
+      "fasilitas": [
+        "Asrama Rusunawa Undip",
+        "RS Nasional Diponegoro",
+        "Stadion & GOR",
+        "Danau & hutan kampus"
+      ],
       "prospek_karier": "Pengacara, akuntan, dokter, insinyur, ahli kelautan, ASN pemda.",
       "website": "https://www.undip.ac.id",
       "telepon": "(024) 7460036",
-      "alamat": "Jl. Prof. Soedarto, Tembalang, Semarang, Jawa Tengah"
+      "alamat": "Jl. Prof. Soedarto, Tembalang, Semarang, Jawa Tengah",
+      "tentang_kampus": "Didirikan 1957 dan menjadi PTN pada 1961, UNDIP berpusat di kampus Tembalang, Semarang, dengan belasan fakultas dan Sekolah Vokasi serta RS Nasional Diponegoro sebagai RS pendidikan.",
+      "skor_utbk_minimal": "± 550-620 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Juara lomba akademik/non-akademik tingkat kabupaten/kota",
+        "Nilai rapor stabil di 10 besar kelas selama 5 semester",
+        "Aktif organisasi (OSIS, Pramuka, Rohis) + sertifikat resmi",
+        "Sertifikat kompetensi/kursus resmi yang relevan dengan prodi"
+      ]
     },
     {
       "id": "unpad",
@@ -186,17 +414,50 @@
       "tagline": "Kedokteran Gigi & Komunikasi terbaik — kampus Jatinangor yang hidup.",
       "deskripsi_singkat": "PTN di Jatinangor, unggul di Kedokteran, Komunikasi, dan Ekonomi.",
       "deskripsi_panjang": "Universitas Padjadjaran (UNPAD) berkampus utama di Jatinangor, Sumedang — kawasan mahasiswa yang hidup berdampingan dengan ITB dan IKOPIN. UNPAD terkenal dengan Fakultas Kedokteran Gigi terbaik nasional, Ilmu Komunikasi nomor satu, serta Ekonomi yang kuat. Suasana kampusnya santai khas anak Jatinangor dengan banyak pilihan kost terjangkau.",
-      "unggulan": ["Kedokteran Gigi #1 nasional", "Ilmu Komunikasi terbaik", "Kawasan Jatinangor murah & hidup", "RSGM + RS pendidikan"],
-      "jurusan_favorit": ["Kedokteran", "Kedokteran Gigi", "Ilmu Komunikasi", "Manajemen", "Hubungan Internasional"],
-      "jalur_masuk": ["SNBP", "SNBT", "SMUP (Mandiri Unpad)"],
+      "unggulan": [
+        "Kedokteran Gigi #1 nasional",
+        "Ilmu Komunikasi terbaik",
+        "Kawasan Jatinangor murah & hidup",
+        "RSGM + RS pendidikan"
+      ],
+      "jurusan_favorit": [
+        "Kedokteran",
+        "Kedokteran Gigi",
+        "Ilmu Komunikasi",
+        "Manajemen",
+        "Hubungan Internasional"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "SMUP (Mandiri Unpad)"
+      ],
       "ukt_per_semester": "Rp 2 jt – 25 jt (Kedokteran tertinggi)",
       "biaya_hidup_per_bulan": "Rp 1,2 jt – 2,2 jt (Jatinangor)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa Unpad Unggul", "Beasiswa Tanoto", "Beasiswa mitra media"],
-      "fasilitas": ["Asrama Bale Padjadjaran", "RSGM Unpad", "Gedung serba guna Bale Santika", "Perpustakaan CISRAL"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa Unpad Unggul",
+        "Beasiswa Tanoto",
+        "Beasiswa mitra media"
+      ],
+      "fasilitas": [
+        "Asrama Bale Padjadjaran",
+        "RSGM Unpad",
+        "Gedung serba guna Bale Santika",
+        "Perpustakaan CISRAL"
+      ],
       "prospek_karier": "Dokter gigi, dokter, jurnalis/PR, diplomat, manajer, ASN.",
       "website": "https://www.unpad.ac.id",
       "telepon": "(022) 84288888",
-      "alamat": "Jl. Raya Bandung–Sumedang KM 21, Jatinangor, Jawa Barat"
+      "alamat": "Jl. Raya Bandung–Sumedang KM 21, Jatinangor, Jawa Barat",
+      "tentang_kampus": "Diresmikan 11 September 1957, UNPAD adalah PTN BH dengan kampus utama Jatinangor (Sumedang) dan kampus Dipati Ukur Bandung, menaungi belasan fakultas termasuk FKG dan Ilmu Komunikasi yang bereputasi nasional.",
+      "skor_utbk_minimal": "± 600-650 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Juara 1-3 OSN/lomba akademik tingkat kabupaten/kota atau provinsi",
+        "Hafiz Quran atau prestasi non-akademik tingkat provinsi/nasional",
+        "Nilai rapor 5 semester konsisten, rata-rata 90+",
+        "Pengurus inti OSIS/organisasi + portofolio kegiatan"
+      ]
     },
     {
       "id": "ub",
@@ -213,17 +474,50 @@
       "tagline": "Kampus besar di kota sejuk Malang — pilihan aman semua jurusan.",
       "deskripsi_singkat": "PTN terlengkap di Malang, kuat di Pertanian, Hukum, Ekonomi, dan Teknologi.",
       "deskripsi_panjang": "Universitas Brawijaya (UB) di Malang adalah salah satu PTN dengan mahasiswa terbanyak di Indonesia. Keunggulannya adalah kelengkapan jurusan — dari Pertanian, Peternakan, Hukum, Ekonomi, hingga Kedokteran dan Vokasi. Kota Malang yang sejuk dan biaya hidup ringan membuat UB jadi pilihan aman banyak orang tua. Daya tampung besar sehingga peluang lolos SNBT/Mandiri lebih terbuka.",
-      "unggulan": ["Daya tampung besar, peluang lolos tinggi", "Pertanian & Peternakan terbaik", "Kota Malang sejuk & murah", "Kampus vokasi & kedokteran lengkap"],
-      "jurusan_favorit": ["Agribisnis", "Hukum", "Manajemen", "Teknik Informatika", "Kedokteran"],
-      "jalur_masuk": ["SNBP", "SNBT", "Mandiri UB"],
+      "unggulan": [
+        "Daya tampung besar, peluang lolos tinggi",
+        "Pertanian & Peternakan terbaik",
+        "Kota Malang sejuk & murah",
+        "Kampus vokasi & kedokteran lengkap"
+      ],
+      "jurusan_favorit": [
+        "Agribisnis",
+        "Hukum",
+        "Manajemen",
+        "Teknik Informatika",
+        "Kedokteran"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "Mandiri UB"
+      ],
       "ukt_per_semester": "Rp 2 jt – 20 jt (UKT berjenjang)",
       "biaya_hidup_per_bulan": "Rp 1,1 jt – 2 jt (Malang)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa Brawijaya", "Beasiswa Bank Indonesia", "Beasiswa PPA"],
-      "fasilitas": ["UB Guest House & asrama", "RS UB", "Gedung Samantha Krida", "Kebun percobaan & lab agro"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa Brawijaya",
+        "Beasiswa Bank Indonesia",
+        "Beasiswa PPA"
+      ],
+      "fasilitas": [
+        "UB Guest House & asrama",
+        "RS UB",
+        "Gedung Samantha Krida",
+        "Kebun percobaan & lab agro"
+      ],
       "prospek_karier": "Ahli agribisnis, pengacara, akuntan, programmer, dokter, ASN.",
       "website": "https://www.ub.ac.id",
       "telepon": "(0341) 551611",
-      "alamat": "Jl. Veteran, Ketawanggede, Malang, Jawa Timur"
+      "alamat": "Jl. Veteran, Ketawanggede, Malang, Jawa Timur",
+      "tentang_kampus": "Didirikan 5 Januari 1963 di Malang, UB termasuk PTN dengan mahasiswa terbanyak — belasan fakultas termasuk Kedokteran, Vokasi, dan Teknologi Pertanian — dengan RS UB sebagai penunjang.",
+      "skor_utbk_minimal": "± 550-620 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Juara lomba akademik/non-akademik tingkat kabupaten/kota",
+        "Nilai rapor stabil di 10 besar kelas selama 5 semester",
+        "Aktif organisasi (OSIS, Pramuka, Rohis) + sertifikat resmi",
+        "Sertifikat kompetensi/kursus resmi yang relevan dengan prodi"
+      ]
     },
     {
       "id": "ipb",
@@ -240,17 +534,51 @@
       "tagline": "Kampus pertanian & sains hayati terbaik se-Asia Tenggara.",
       "deskripsi_singkat": "PTN di Bogor, terkuat di Pertanian, Peternakan, Kehutanan, dan Teknologi Pangan.",
       "deskripsi_panjang": "IPB University di Dramaga, Bogor, adalah kampus pertanian terbaik Indonesia dan langganan peringkat teratas Asia Tenggara untuk sains pertanian. Semua mahasiswa baru dibina di asrama PPKU selama setahun — bagus untuk pembentukan karakter anak rantau. Selain agro, IPB juga kuat di Kedokteran Hewan, Ilmu Komputer, dan Bisnis (SB IPB). Jalur masuk lewat SNBP, SNBT, SM-IPB, dan seleksi UTM.",
-      "unggulan": ["Pertanian #1 Asia Tenggara", "Asrama PPKU wajib tahun pertama", "Teaching farm & kebun percobaan", "Riset pangan & bioenergi terdepan"],
-      "jurusan_favorit": ["Agribisnis", "Kedokteran Hewan", "Teknologi Pangan", "Ilmu Komputer", "Manajemen"],
-      "jalur_masuk": ["SNBP", "SNBT", "SM-IPB (Mandiri)", "UTM"],
+      "unggulan": [
+        "Pertanian #1 Asia Tenggara",
+        "Asrama PPKU wajib tahun pertama",
+        "Teaching farm & kebun percobaan",
+        "Riset pangan & bioenergi terdepan"
+      ],
+      "jurusan_favorit": [
+        "Agribisnis",
+        "Kedokteran Hewan",
+        "Teknologi Pangan",
+        "Ilmu Komputer",
+        "Manajemen"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "SM-IPB (Mandiri)",
+        "UTM"
+      ],
       "ukt_per_semester": "Rp 2 jt – 13 jt (UKT berjenjang)",
       "biaya_hidup_per_bulan": "Rp 1,2 jt – 2,2 jt (Bogor)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa IPB Cendekia", "Beasiswa Sawit", "Beasiswa PPA"],
-      "fasilitas": ["Asrama PPKU Dramaga", "Teaching farm & lab pangan", "Perpustakaan LSI", "RS Hewan Pendidikan"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa IPB Cendekia",
+        "Beasiswa Sawit",
+        "Beasiswa PPA"
+      ],
+      "fasilitas": [
+        "Asrama PPKU Dramaga",
+        "Teaching farm & lab pangan",
+        "Perpustakaan LSI",
+        "RS Hewan Pendidikan"
+      ],
       "prospek_karier": "Ahli agribisnis, dokter hewan, food technologist, peneliti, ASN Kementan.",
       "website": "https://www.ipb.ac.id",
       "telepon": "(0251) 8622642",
-      "alamat": "Jl. Raya Dramaga, Babakan, Bogor, Jawa Barat"
+      "alamat": "Jl. Raya Dramaga, Babakan, Bogor, Jawa Barat",
+      "tentang_kampus": "Diresmikan 1 September 1963, IPB University adalah PTN BH di Dramaga, Bogor, yang fokus pada pertanian, kelautan, dan biosains tropika dengan program pembinaan asrama PPKU di tahun pertama.",
+      "skor_utbk_minimal": "± 600-650 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Juara 1-3 OSN/lomba akademik tingkat kabupaten/kota atau provinsi",
+        "Hafiz Quran atau prestasi non-akademik tingkat provinsi/nasional",
+        "Nilai rapor 5 semester konsisten, rata-rata 90+",
+        "Pengurus inti OSIS/organisasi + portofolio kegiatan"
+      ]
     },
     {
       "id": "uns",
@@ -267,17 +595,50 @@
       "tagline": "Kampus hijau di kota budaya Solo dengan jurusan lengkap.",
       "deskripsi_singkat": "PTN di Surakarta, unggul di Kedokteran, Hukum, Pendidikan, dan Teknik.",
       "deskripsi_panjang": "Universitas Sebelas Maret (UNS) di Kentingan, Solo, adalah PTN dengan kampus hijau yang asri di jantung kota budaya. Fakultas Kedokterannya berkembang pesat dengan RS UNS sendiri, sementara FKIP-nya termasuk pencetak guru terbesar di Indonesia. Biaya hidup Solo termasuk termurah di Pulau Jawa — nilai plus besar untuk anggaran keluarga. Masuk lewat SNBP, SNBT, dan SM UNS.",
-      "unggulan": ["RS UNS + FK berkembang pesat", "Kota Solo murah & nyaman", "FKIP pencetak guru terbesar", "Kampus Kentingan hijau & luas"],
-      "jurusan_favorit": ["Kedokteran", "Hukum", "Pendidikan (PGSD)", "Teknik Sipil", "Manajemen"],
-      "jalur_masuk": ["SNBP", "SNBT", "SM UNS (Mandiri)"],
+      "unggulan": [
+        "RS UNS + FK berkembang pesat",
+        "Kota Solo murah & nyaman",
+        "FKIP pencetak guru terbesar",
+        "Kampus Kentingan hijau & luas"
+      ],
+      "jurusan_favorit": [
+        "Kedokteran",
+        "Hukum",
+        "Pendidikan (PGSD)",
+        "Teknik Sipil",
+        "Manajemen"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "SM UNS (Mandiri)"
+      ],
       "ukt_per_semester": "Rp 2 jt – 20 jt (UKT berjenjang)",
       "biaya_hidup_per_bulan": "Rp 1 jt – 2 jt (Surakarta)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa UNS", "Beasiswa Djarum", "Beasiswa Bank Indonesia"],
-      "fasilitas": ["RS UNS", "Asrama mahasiswa", "GOR & stadion kampus", "Perpustakaan pusat"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa UNS",
+        "Beasiswa Djarum",
+        "Beasiswa Bank Indonesia"
+      ],
+      "fasilitas": [
+        "RS UNS",
+        "Asrama mahasiswa",
+        "GOR & stadion kampus",
+        "Perpustakaan pusat"
+      ],
       "prospek_karier": "Dokter, guru/dosen, pengacara, insinyur, ASN.",
       "website": "https://www.uns.ac.id",
       "telepon": "(0271) 646994",
-      "alamat": "Jl. Ir. Sutami No. 36A, Surakarta, Jawa Tengah"
+      "alamat": "Jl. Ir. Sutami No. 36A, Surakarta, Jawa Tengah",
+      "tentang_kampus": "Diresmikan 11 Maret 1976 di Kentingan, Surakarta, UNS adalah PTN BH hasil gabungan sejumlah perguruan tinggi di Solo, kini dengan belasan fakultas plus sekolah vokasi dan pascasarjana serta RS UNS.",
+      "skor_utbk_minimal": "± 550-620 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Juara lomba akademik/non-akademik tingkat kabupaten/kota",
+        "Nilai rapor stabil di 10 besar kelas selama 5 semester",
+        "Aktif organisasi (OSIS, Pramuka, Rohis) + sertifikat resmi",
+        "Sertifikat kompetensi/kursus resmi yang relevan dengan prodi"
+      ]
     },
     {
       "id": "unhas",
@@ -294,17 +655,50 @@
       "tagline": "Pusat unggulan Indonesia Timur — gerbang riset maritim & kesehatan.",
       "deskripsi_singkat": "PTN terbesar di Indonesia Timur, kuat di Kedokteran, Teknik, dan Kelautan.",
       "deskripsi_panjang": "Universitas Hasanuddin (UNHAS) di Tamalanrea, Makassar, adalah PTN terbesar dan terbaik di Indonesia Timur — pilihan utama anak Sulawesi, Kalimantan, Maluku, dan Papua. Fakultas Kedokterannya didukung RS Unhas dan jejaring rumah sakit rujukan, sementara Teknik Geologi dan Ilmu Kelautannya yang terbaik untuk kawasan timur. Kampus merah seluas 220 hektar ini juga pusat riset kemaritiman nasional.",
-      "unggulan": ["RS Unhas + jejaring RS rujukan", "Terkuat di kelautan & geologi", "Kampus Tamalanrea 220 hektar", "Pusat riset Indonesia Timur"],
-      "jurusan_favorit": ["Kedokteran", "Teknik Geologi", "Ilmu Kelautan", "Hukum", "Manajemen"],
-      "jalur_masuk": ["SNBP", "SNBT", "Mandiri UNHAS"],
+      "unggulan": [
+        "RS Unhas + jejaring RS rujukan",
+        "Terkuat di kelautan & geologi",
+        "Kampus Tamalanrea 220 hektar",
+        "Pusat riset Indonesia Timur"
+      ],
+      "jurusan_favorit": [
+        "Kedokteran",
+        "Teknik Geologi",
+        "Ilmu Kelautan",
+        "Hukum",
+        "Manajemen"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "Mandiri UNHAS"
+      ],
       "ukt_per_semester": "Rp 2 jt – 20 jt (UKT berjenjang)",
       "biaya_hidup_per_bulan": "Rp 1,2 jt – 2,2 jt (Makassar)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa Unhas", "Beasiswa ADik", "Beasiswa Pemprov Sulsel"],
-      "fasilitas": ["RS Pendidikan Unhas", "Rusunawa & asrama", "GOR JK Arenatorium", "Perpustakaan pusat"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa Unhas",
+        "Beasiswa ADik",
+        "Beasiswa Pemprov Sulsel"
+      ],
+      "fasilitas": [
+        "RS Pendidikan Unhas",
+        "Rusunawa & asrama",
+        "GOR JK Arenatorium",
+        "Perpustakaan pusat"
+      ],
       "prospek_karier": "Dokter, insinyur tambang, ahli kelautan, pengacara, ASN.",
       "website": "https://www.unhas.ac.id",
       "telepon": "(0411) 586200",
-      "alamat": "Jl. Perintis Kemerdekaan KM 10, Makassar, Sulawesi Selatan"
+      "alamat": "Jl. Perintis Kemerdekaan KM 10, Makassar, Sulawesi Selatan",
+      "tentang_kampus": "Diresmikan 10 September 1956 di Makassar, UNHAS adalah PTN BH terbesar di Indonesia Timur dengan belasan fakultas dan sekolah pascasarjana, didukung RS Unhas dan kampus Tamalanrea.",
+      "skor_utbk_minimal": "± 550-620 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Juara lomba akademik/non-akademik tingkat kabupaten/kota",
+        "Nilai rapor stabil di 10 besar kelas selama 5 semester",
+        "Aktif organisasi (OSIS, Pramuka, Rohis) + sertifikat resmi",
+        "Sertifikat kompetensi/kursus resmi yang relevan dengan prodi"
+      ]
     },
     {
       "id": "unand",
@@ -321,17 +715,50 @@
       "tagline": "Kampus hijau terluas di kaki bukit Karang Putih, Padang.",
       "deskripsi_singkat": "PTN tertua di Sumatera Barat, unggul di Kedokteran, Hukum, Pertanian, dan Ekonomi.",
       "deskripsi_panjang": "Universitas Andalas (UNAND) di Limau Manis, Padang, adalah PTN tertua di Sumatera dengan kampus seluas 500+ hektar — termasuk yang terluas dan terhijau di Indonesia. Fakultas Kedokterannya didukung RS Unand, Fakultas Hukumnya terkenal dengan kajian hukum adat Minangkabau, dan Pertanian serta Ekonominya kuat. Biaya hidup Padang ringan dengan kuliner melimpah — cocok untuk anak rantau Sumatera.",
-      "unggulan": ["Kampus 500 ha terluas & hijau", "RS Unand + FK kuat", "Hukum adat & agraria khas", "Biaya hidup Padang ringan"],
-      "jurusan_favorit": ["Kedokteran", "Hukum", "Agroteknologi", "Akuntansi", "Teknik Industri"],
-      "jalur_masuk": ["SNBP", "SNBT", "Mandiri UNAND"],
+      "unggulan": [
+        "Kampus 500 ha terluas & hijau",
+        "RS Unand + FK kuat",
+        "Hukum adat & agraria khas",
+        "Biaya hidup Padang ringan"
+      ],
+      "jurusan_favorit": [
+        "Kedokteran",
+        "Hukum",
+        "Agroteknologi",
+        "Akuntansi",
+        "Teknik Industri"
+      ],
+      "jalur_masuk": [
+        "SNBP",
+        "SNBT",
+        "Mandiri UNAND"
+      ],
       "ukt_per_semester": "Rp 2 jt – 15 jt (UKT berjenjang)",
       "biaya_hidup_per_bulan": "Rp 1 jt – 2 jt (Padang)",
-      "beasiswa": ["KIP Kuliah", "Beasiswa Unand", "Beasiswa Pemprov Sumbar", "Beasiswa Bank Indonesia"],
-      "fasilitas": ["RS Unand", "Asrama mahasiswa", "Convention Hall", "Kebun percobaan Limau Manis"],
+      "beasiswa": [
+        "KIP Kuliah",
+        "Beasiswa Unand",
+        "Beasiswa Pemprov Sumbar",
+        "Beasiswa Bank Indonesia"
+      ],
+      "fasilitas": [
+        "RS Unand",
+        "Asrama mahasiswa",
+        "Convention Hall",
+        "Kebun percobaan Limau Manis"
+      ],
       "prospek_karier": "Dokter, pengacara/notaris, bankir, ahli agro, ASN.",
       "website": "https://www.unand.ac.id",
       "telepon": "(0751) 71181",
-      "alamat": "Limau Manis, Pauh, Padang, Sumatera Barat"
+      "alamat": "Limau Manis, Pauh, Padang, Sumatera Barat",
+      "tentang_kampus": "Didirikan 1955 di Padang dan termasuk universitas tertua di Sumatera, UNAND adalah PTN BH dengan kampus Limau Manis seluas 500+ hektar, belasan fakultas, dan RS Unand.",
+      "skor_utbk_minimal": "± 550-620 untuk prodi favorit (estimasi aman, bukan angka resmi)",
+      "prestasi_snbp": [
+        "Juara lomba akademik/non-akademik tingkat kabupaten/kota",
+        "Nilai rapor stabil di 10 besar kelas selama 5 semester",
+        "Aktif organisasi (OSIS, Pramuka, Rohis) + sertifikat resmi",
+        "Sertifikat kompetensi/kursus resmi yang relevan dengan prodi"
+      ]
     }
   ]
 }
