@@ -2096,3 +2096,210 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
   .quiz-app-section { background: #fff; padding: 0; }
   .quiz-full-wrap, .quiz-dashboard { box-shadow: none; max-width: 100%; }
 }
+
+/* ===== Pilihan tema: terang / gelap (diatur via [data-theme] + theme.js) ===== */
+:root { color-scheme: light; }
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0b1322;
+  --bg-soft: #0e1930;
+  --bg-warm: #0d1628;
+  --card: #12203a;
+  --ink: #edf2fa;
+  --ink-soft: #d7e1f2;
+  --muted: #9db0ca;
+  --muted-soft: #8296b3;
+  --line: #263c63;
+  --line-strong: #37507f;
+  --line-soft: #172747;
+  --accent: #2dd4bf;
+  --accent-deep: #5eead4;
+  --accent-soft: rgb(45 212 191 / 0.10);
+  --accent-border: rgb(45 212 191 / 0.30);
+  --accent-ring: rgb(45 212 191 / 0.18);
+  --footer-bg: #070d18;
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.30);
+  --shadow-sm: 0 1px 3px rgb(0 0 0 / 0.35), 0 4px 12px rgb(0 0 0 / 0.25);
+  --shadow-md: 0 4px 16px rgb(0 0 0 / 0.40);
+}
+
+/* Tombol alat header (tema + bahasa) */
+.header-tools { display: inline-flex; align-items: center; gap: 8px; margin-left: auto; }
+.header-tools + .nav-toggle { margin-left: 0; }
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px; height: 40px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.icon-btn .feather { width: 16px; height: 16px; }
+.icon-btn:hover { border-color: var(--line-strong); background: var(--bg-soft); transform: translateY(-1px); }
+
+[data-theme="dark"] .site-header { background: rgb(11 19 34 / 0.92); }
+
+/* Permukaan putih -> kartu */
+[data-theme="dark"] .btn-outline,
+[data-theme="dark"] .nav-toggle,
+[data-theme="dark"] .site-nav,
+[data-theme="dark"] .nav-dicoding,
+[data-theme="dark"] .hero-stats li,
+[data-theme="dark"] .hero-figure,
+[data-theme="dark"] .hero-badge,
+[data-theme="dark"] .section-kicker,
+[data-theme="dark"] .chip,
+[data-theme="dark"] .jurusan-search,
+[data-theme="dark"] .jurusan-empty,
+[data-theme="dark"] .tips-progress,
+[data-theme="dark"] .rating-summary,
+[data-theme="dark"] .testi-card,
+[data-theme="dark"] .testi-btn,
+[data-theme="dark"] .testi-dot,
+[data-theme="dark"] .profile-card,
+[data-theme="dark"] .profile-links a,
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .trustbar,
+[data-theme="dark"] .quiz-card,
+[data-theme="dark"] .quiz-progress-bar,
+[data-theme="dark"] .quiz-option,
+[data-theme="dark"] .quiz-result,
+[data-theme="dark"] .quiz-tip,
+[data-theme="dark"] .calc-card,
+[data-theme="dark"] .preset,
+[data-theme="dark"] .calc-input,
+[data-theme="dark"] .calc-field select,
+[data-theme="dark"] .calc-tip,
+[data-theme="dark"] .timeline-item,
+[data-theme="dark"] .cta-card,
+[data-theme="dark"] .cta-meta span,
+[data-theme="dark"] .back-to-top,
+[data-theme="dark"] .quiz-teaser-main,
+[data-theme="dark"] .quiz-mini-preview,
+[data-theme="dark"] .quiz-full-wrap,
+[data-theme="dark"] .quiz-full-bar,
+[data-theme="dark"] .quiz-full-body .quiz-option,
+[data-theme="dark"] .quiz-option-check,
+[data-theme="dark"] .stat-consistency,
+[data-theme="dark"] .result-second,
+[data-theme="dark"] .result-jurusan-card,
+[data-theme="dark"] .review-item,
+[data-theme="dark"] .flow-steps a,
+[data-theme="dark"] .compare-dialog,
+[data-theme="dark"] .sc-load,
+[data-theme="dark"] .quiz-dot,
+[data-theme="dark"] .quiz-dashboard,
+[data-theme="dark"] .dash-panel,
+[data-theme="dark"] .dash-hist-row,
+[data-theme="dark"] .dash-hist-del,
+[data-theme="dark"] .kontak-card,
+[data-theme="dark"] .kontak-form-card,
+[data-theme="dark"] .kontak-field input,
+[data-theme="dark"] .kontak-field textarea,
+[data-theme="dark"] .kampus-search,
+[data-theme="dark"] .kampus-card,
+[data-theme="dark"] .kampus-empty,
+[data-theme="dark"] .detail-panel,
+[data-theme="dark"] .detail-stat,
+[data-theme="dark"] .detail-error,
+[data-theme="dark"] .asst-panel,
+[data-theme="dark"] .asst-close,
+[data-theme="dark"] .asst-chip,
+[data-theme="dark"] .asst-bot,
+[data-theme="dark"] .dash-empty,
+[data-theme="dark"] .dash-card,
+[data-theme="dark"] .sc-empty,
+[data-theme="dark"] .sc-row {
+  background: var(--card);
+}
+
+/* Latar seksi terang -> latar halaman */
+[data-theme="dark"] .hero,
+[data-theme="dark"] .quiz-hero,
+[data-theme="dark"] .flow,
+[data-theme="dark"] .trustbar,
+[data-theme="dark"] .quiz-app-section {
+  background: var(--bg);
+}
+
+/* Komponen gelap berbasis --ink -> slate agar teks terang tetap terbaca */
+[data-theme="dark"] .btn-primary,
+[data-theme="dark"] .logo-mark,
+[data-theme="dark"] .jurusan-icon,
+[data-theme="dark"] .chip.is-active,
+[data-theme="dark"] .tips-number,
+[data-theme="dark"] .testi-avatar,
+[data-theme="dark"] .testi-dot.is-active,
+[data-theme="dark"] .profile-links a:hover,
+[data-theme="dark"] .faq-item[open] summary .feather,
+[data-theme="dark"] .faq-steps li::before,
+[data-theme="dark"] .quiz-tip li::before,
+[data-theme="dark"] .quiz-stats,
+[data-theme="dark"] .back-to-top:hover,
+[data-theme="dark"] .testi-btn:hover:not(:disabled),
+[data-theme="dark"] .cons-badge,
+[data-theme="dark"] .why-num,
+[data-theme="dark"] .review-num,
+[data-theme="dark"] .flow-num,
+[data-theme="dark"] .fav-btn.is-active,
+[data-theme="dark"] .quiz-dot.is-current,
+[data-theme="dark"] .nav-dicoding-mobile,
+[data-theme="dark"] .nav-dicoding:hover,
+[data-theme="dark"] .pj-toast,
+[data-theme="dark"] .compare-bar,
+[data-theme="dark"] .skip-link,
+[data-theme="dark"] .quiz-mini-bar::before,
+[data-theme="dark"] .timeline-item:nth-child(2)::before,
+[data-theme="dark"] .testi-card:nth-child(2) .testi-avatar,
+[data-theme="dark"] .testi-card:nth-child(4) .testi-avatar,
+[data-theme="dark"] .testi-card:nth-child(5) .testi-avatar,
+[data-theme="dark"] .flow-steps li:nth-child(2) .flow-num,
+[data-theme="dark"] .flow-steps li:nth-child(3) .flow-num,
+[data-theme="dark"] .asst-fab,
+[data-theme="dark"] .asst-user,
+[data-theme="dark"] .asst-input button {
+  background: #2b4066;
+  border-color: #2b4066;
+}
+[data-theme="dark"] .btn-primary:hover { background: #3a5a8f; border-color: #3a5a8f; }
+[data-theme="dark"] .btn-primary:disabled { background: #2b4066; border-color: #2b4066; opacity: 0.6; }
+[data-theme="dark"] .btn-outline:disabled { background: var(--card); }
+[data-theme="dark"] .calc-result { background: linear-gradient(160deg, #16263f, #0e1930); border-color: var(--line); }
+[data-theme="dark"] .compare-bar .btn-primary,
+[data-theme="dark"] .compare-bar .btn-primary:disabled { background: #fff; border-color: #fff; color: #0f172a; opacity: 1; }
+[data-theme="dark"] .compare-bar .btn-primary:disabled { opacity: 0.55; }
+[data-theme="dark"] .calc-actions .btn-outline:hover { background: #fff; border-color: #fff; color: #0f172a; }
+
+/* Aksen terang + teks putih -> teks gelap agar kontras */
+[data-theme="dark"] ::selection,
+[data-theme="dark"] .quiz-option.is-selected .quiz-option-letter,
+[data-theme="dark"] .quiz-option.is-selected .quiz-option-check,
+[data-theme="dark"] .cmp-btn.is-active,
+[data-theme="dark"] .sc-cheap,
+[data-theme="dark"] .quiz-mini-bar b,
+[data-theme="dark"] .testi-card:nth-child(3) .testi-avatar,
+[data-theme="dark"] .flow-steps li:nth-child(4) .flow-num {
+  color: #04302a;
+}
+
+/* Shimmer skeleton di kartu gelap */
+[data-theme="dark"] .kampus-skeleton .sk-img::after,
+[data-theme="dark"] .kampus-skeleton .sk-line::after {
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.08), transparent);
+}
+
+/* Gambar tidak terlalu menyala di mode gelap */
+[data-theme="dark"] .hero-img,
+[data-theme="dark"] .kampus-card-media img,
+[data-theme="dark"] .detail-hero-media img {
+  filter: brightness(0.92);
+}
