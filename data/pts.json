@@ -3,7 +3,7 @@
     "file_ini": "API khusus kampus SWASTA (PTS) — 12 kampus. Pasangannya: data/ptn.json (12 kampus negeri). Kedua file otomatis digabung di halaman.",
     "cara_ganti_gambar": "Ganti field 'gambar' dengan link gambar network (https://...). Bisa dari Unsplash, Cloudinary, imgbb, atau Google Drive (ubah ke link langsung). Ukuran ideal landscape 800x600.",
     "cara_ubah_detail": "Semua teks (deskripsi, UKT, jurusan, beasiswa, fasilitas, kontak) cukup diubah di file ini. Simpan file, lalu refresh browser — tanpa ubah kode lain.",
-    "cara_tambah_kampus": "1) Duplikat satu objek {...} di dalam 'data'. 2) Ganti 'id' dengan slug unik huruf-kecil-tanpa-spasi (contoh: 'um-surabaya'). 3) Pastikan id TIDAK kembar dengan isi data/ptn.json. 4) Sesuaikan field lain. Selesai — list & detail otomatis ikut.",
+    "cara_tambah_kampus": "1) Duplikat satu objek {...} di dalam 'data'. 2) Ganti 'id' dengan slug unik huruf-kecil-tanpa-spasi (contoh: 'um-surabaya'). 3) Pastikan id TIDAK kembar dengan isi data/ptn.json & data/ptln.json. 4) Sesuaikan field lain. Selesai — list & detail otomatis ikut.",
     "daftar_field": [
       "id",
       "nama",

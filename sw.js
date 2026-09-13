@@ -11,6 +11,7 @@ var CORE = [
   'views/kontak.html',
   'data/ptn.json',
   'data/pts.json',
+  'data/ptln.json',
   'assets/css/style.css',
   'assets/css/dashboard.css',
   'assets/css/kampus.css',
