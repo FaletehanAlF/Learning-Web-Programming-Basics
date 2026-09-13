@@ -6,10 +6,13 @@
   var trendEl = document.getElementById('dashTrend');
   var avgEl = document.getElementById('dashAvg');
   var histEl = document.getElementById('dashHistory');
+  var favEl = document.getElementById('dashFav');
+  var linkEl = document.getElementById('dashLink');
   var clearBtn = document.getElementById('dashClear');
   var wordBtn = document.getElementById('dashWord');
+  var linkBtn = document.getElementById('dashLinkBtn');
 
-  if (!statsEl && !trendEl && !avgEl && !histEl) return;
+  if (!statsEl && !trendEl && !avgEl && !histEl && !favEl && !linkEl) return;
 
   var HISTORY_KEY = 'panduan-jurusan-kuis-10-history';
   var ORDER = ['teknologi', 'kesehatan', 'soshum', 'bisnis', 'kreatif'];
@@ -222,10 +225,12 @@
 
   function renderAll() {
     var h = getHistory();
+    renderLinkPreview();
     renderStats(h);
     renderTrend(h);
     renderAvg(h);
     renderHistory(h);
+    renderFav();
     feather();
   }
 
