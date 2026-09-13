@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kontak & Tentang Pembuat | Panduan Jurusan</title>
+  <meta name="description" content="Hubungi pembuat Panduan Jurusan: profil Dicoding, GitHub, dan formulir masukan via WhatsApp." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/kontak.css" />
+  <link rel="stylesheet" href="../assets/css/assistant.css" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+  <link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <a class="skip-link" href="#konten-kontak">Lompat ke konten kontak</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-capsule">
+      <a href="../index.html" class="logo" aria-label="Kembali ke beranda">
+        <span class="logo-mark" aria-hidden="true"><i data-feather="compass"></i></span>
+        <span>Panduan Jurusan</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu navigasi">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="navMenu" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="../index.html"><i data-feather="arrow-left" aria-hidden="true"></i>Beranda</a></li>
+          <li><a href="kuis.html"><i data-feather="help-circle" aria-hidden="true"></i>Kuis 10 Soal</a></li>
+          <li><a href="kampus.html"><i data-feather="book" aria-hidden="true"></i>Kampus</a></li>
+          <li><a href="../index.html#kalkulator-biaya"><i data-feather="dollar-sign" aria-hidden="true"></i>Hitung Biaya</a></li>
+          <li><a href="kontak.html" aria-current="page"><i data-feather="mail" aria-hidden="true"></i>Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="konten-kontak">
+    <section class="quiz-hero">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="../index.html">Beranda</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Kontak</span>
+        </nav>
+        <p class="section-kicker">Kontak • Tentang pembuat</p>
+        <h1>Kontak & Tentang Panduan Ini</h1>
+        <p class="quiz-hero-desc">Website ini dibuat sebagai bagian dari proses belajar dasar pemrograman web — dengan tujuan membantu, bukan menggurui. Feedback Bapak/Ibu sangat berarti.</p>
+      </div>
+    </section>
+
+    <section class="section quiz-app-section">
+      <div class="container">
+        <aside class="profile-card reveal" aria-label="Profil pembuat website">
+          <img src="../assets/img/avatar.png" alt="Ilustrasi avatar pembuat website Panduan Jurusan"
+            class="profile-photo" width="110" height="110" loading="lazy" />
+          <div class="profile-info">
+            <h3>Faletehan Al Farabi</h3>
+            <p class="profile-role">Submission Dicoding — Belajar Dasar Pemrograman Web</p>
+            <p>Menyusun Panduan Jurusan sebagai project submission Dicoding, dengan harapan bisa membantu orang tua
+              memahami dunia perkuliahan lebih mudah. Feedback Bapak/Ibu sangat berarti.</p>
+            <div class="profile-links">
+              <a href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer"><i
+                  data-feather="award" aria-hidden="true"></i> Profil Dicoding</a>
+              <a href="https://github.com/FaletehanAlF" target="_blank" rel="noopener noreferrer"><i
+                  data-feather="github" aria-hidden="true"></i> GitHub</a>
+            </div>
+          </div>
+        </aside>
+
+        <div class="kontak-grid" style="margin-top:18px">
+          <article class="kontak-card">
+            <div class="kontak-card-top">
+              <span class="kontak-icon" aria-hidden="true"><i data-feather="award"></i></span>
+              <h3>Profil Dicoding</h3>
+            </div>
+            <p>Lihat progres belajar dan submission pembuat website ini di Dicoding.</p>
+            <a class="btn btn-outline" href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer"><i data-feather="external-link" aria-hidden="true"></i> Buka Profil Dicoding</a>
+          </article>
+          <article class="kontak-card">
+            <div class="kontak-card-top">
+              <span class="kontak-icon" aria-hidden="true"><i data-feather="github"></i></span>
+              <h3>GitHub</h3>
+            </div>
+            <p>Lihat kode sumber dan project lain yang sedang dikerjakan.</p>
+            <a class="btn btn-outline" href="https://github.com/FaletehanAlF" target="_blank" rel="noopener noreferrer"><i data-feather="external-link" aria-hidden="true"></i> Buka GitHub</a>
+          </article>
+        </div>
+
+        <div class="kontak-form-card">
+          <h2><i data-feather="message-circle" aria-hidden="true"></i>Kirim masukan</h2>
+          <p>Ada yang kurang jelas atau ingin usul kampus baru? Tulis di sini — terkirim via WhatsApp, tanpa perlu login.</p>
+          <form class="kontak-form" id="kontakForm" novalidate>
+            <label class="kontak-field">
+              <span>Nama / panggilan</span>
+              <input id="kontakNama" type="text" placeholder="mis. Ibu Ratna" maxlength="60" autocomplete="name" />
+            </label>
+            <label class="kontak-field">
+              <span>Pesan / masukan</span>
+              <textarea id="kontakPesan" placeholder="mis. Tambahkan kampus di Makassar ya…" maxlength="500"></textarea>
+            </label>
+            <p class="kontak-error" id="kontakError" role="alert" aria-live="polite"></p>
+            <div class="kontak-meta">
+              <span class="kontak-count" id="kontakCount">0 / 500 karakter</span>
+              <button class="btn btn-primary" type="submit"><i data-feather="send" aria-hidden="true"></i> Kirim via WhatsApp</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo"><span class="logo-mark"><i data-feather="compass"></i></span><span>Panduan Jurusan</span></a>
+        <p>Membantu orang tua mendampingi anak memilih jurusan dengan tenang.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <h3>Navigasi</h3>
+        <ul>
+          <li><a href="kuis.html">Kuis 10 Soal</a></li>
+          <li><a href="kampus.html">Rekomendasi Kampus</a></li>
+          <li><a href="../index.html#kalkulator-biaya">Hitung Biaya</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Footer lain">
+        <h3>Lainnya</h3>
+        <ul>
+          <li><a href="../index.html#jurusan">Daftar Jurusan</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+          <li><a href="kontak.html" aria-current="page">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom"><p>&copy; 2026 Panduan Jurusan. Dibuat untuk tujuan pembelajaran.</p></div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Kembali ke atas"><i data-feather="arrow-up" aria-hidden="true"></i></button>
+
+  <script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js" defer></script>
+  <script src="../assets/js/script.js" defer></script>
+  <script src="../assets/js/kontak.js" defer></script>
+  <script src="../assets/js/assistant.js" defer></script>
+</body>
+</html>
