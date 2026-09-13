@@ -695,6 +695,7 @@
       calcTip.querySelector('p').textContent = 'Tip jujur: ' + tip;
     }
     // save
+    try { window._calcLast = { ukt: ukt, hidup: hidup, smt: smt, beasiswa: beasiswa, total: total, perTahun: perTahun }; } catch(e){}
     try { localStorage.setItem('panduan-jurusan-calc', JSON.stringify({ ukt, hidup, smt, beasiswa })); } catch(e){}
   }
 
