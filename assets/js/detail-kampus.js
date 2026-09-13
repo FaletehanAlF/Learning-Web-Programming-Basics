@@ -90,6 +90,7 @@
     var prestasi = Array.isArray(k.prestasi_snbp) ? k.prestasi_snbp.map(function (x) { return li('award', x); }).join('') : '';
     var tentang1 = k.tentang_kampus || k.deskripsi_panjang || k.deskripsi_singkat || '';
     var tentang2 = (k.tentang_kampus && k.deskripsi_panjang) ? k.deskripsi_panjang : '';
+    var isPTS = String(k.jenis || '').toUpperCase() === 'PTS';
     var skorJudul = isPTS ? 'Jalur masuk & beasiswa prestasi' : 'Skor UTBK & syarat SNBP';
     var skorIkon = isPTS ? 'log-in' : 'target';
     var skorNote = isPTS
@@ -127,8 +128,8 @@
 
       + '<div class="detail-layout"><div class="detail-side" style="gap:18px">'
       + '<article class="detail-panel"><h2><i data-feather="info"></i>Tentang ' + esc(k.singkatan || k.nama) + '</h2>'
-      + '<p>' + esc(k.tentang_kampus || k.deskripsi_panjang || k.deskripsi_singkat || '') + '</p>'
-      + '<p>' + esc(k.deskripsi_panjang && k.tentang_kampus ? k.deskripsi_panjang : '') + '</p></article>'
+      + '<p>' + esc(tentang1) + '</p>'
+      + (tentang2 ? '<p>' + esc(tentang2) + '</p>' : '') + '</article>'
       + '<article class="detail-panel"><h2><i data-feather="' + skorIkon + '"></i>' + esc(skorJudul) + '</h2>'
       + '<div class="detail-skor"><span class="detail-skor-label">Skor UTBK minimal (estimasi aman)</span><strong>' + esc(k.skor_utbk_minimal || '-') + '</strong></div>'
       + '<ul class="detail-list">' + prestasi + '</ul>'
