@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Evaluasi — Panduan Jurusan</title>
+  <meta name="description" content="Pantau hasil kuis minat: tren skor, rata-rata per rumpun, dan riwayat percobaan. Unduh laporan Word." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../asset/style/style.css" />
+  <link rel="stylesheet" href="../asset/style/dashboard.css" />
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <a class="skip-link" href="#dash-app">Lompat ke dashboard</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-capsule">
+      <a href="../index.html" class="logo" aria-label="Kembali ke beranda">
+        <span class="logo-mark" aria-hidden="true"><i data-feather="compass"></i></span>
+        <span>Panduan Jurusan</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu navigasi">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="navMenu" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="kuis.html"><i data-feather="help-circle" aria-hidden="true"></i>Kuis 10 Soal</a></li>
+          <li><a href="../index.html#jurusan"><i data-feather="layout" aria-hidden="true"></i>Daftar Jurusan</a></li>
+          <li><a href="../index.html#kalkulator-biaya"><i data-feather="dollar-sign" aria-hidden="true"></i>Hitung Biaya</a></li>
+          <li><a href="../index.html#tips"><i data-feather="compass" aria-hidden="true"></i>Tips</a></li>
+          <li class="nav-mobile-cta">
+            <a class="nav-dicoding-mobile" href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">
+              <span class="dicoding-dot" aria-hidden="true">D</span> Profil Dicoding <i data-feather="external-link" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a class="nav-dicoding" href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">
+          <span class="dicoding-dot" aria-hidden="true">D</span> Profil Dicoding <i data-feather="external-link" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="dash-app">
+    <section class="quiz-hero dash-hero">
+      <div class="container">
+        <a href="kuis.html" class="quiz-back"><i data-feather="arrow-left" aria-hidden="true"></i> Kembali ke kuis</a>
+        <p class="section-kicker">Evaluasi • tersimpan otomatis</p>
+        <h1>Dashboard Hasil</h1>
+        <p class="quiz-hero-desc">Tren skor, rata-rata rumpun, dan riwayat percobaan — semua di perangkat ini.</p>
+        <div class="dash-hero-actions">
+          <a href="kuis.html" class="btn btn-primary"><i data-feather="play" aria-hidden="true"></i> Isi / Ulangi Kuis</a>
+          <button class="btn btn-outline" id="dashWord" type="button"><i data-feather="download" aria-hidden="true"></i> Unduh Word</button>
+          <button class="btn btn-ghost" id="dashClear" type="button"><i data-feather="trash-2" aria-hidden="true"></i> Hapus riwayat</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quiz-app-section">
+      <div class="container dash-wrap">
+        <div class="dash-stats" id="dashStats"></div>
+
+        <div class="dash-panel dash-trend">
+          <h3><i data-feather="trending-up" aria-hidden="true"></i> Tren dominansi per percobaan</h3>
+          <p class="dash-panel-desc">Persentase skor tertinggi tiap percobaan, dari terlama ke terbaru.</p>
+          <div id="dashTrend"></div>
+        </div>
+
+        <div class="dash-grid">
+          <div class="dash-panel">
+            <h3><i data-feather="bar-chart-2" aria-hidden="true"></i> Rata-rata per rumpun</h3>
+            <div id="dashAvg"></div>
+          </div>
+          <div class="dash-panel">
+            <h3><i data-feather="clock" aria-hidden="true"></i> Riwayat</h3>
+            <div id="dashHistory"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo"><span class="logo-mark"><i data-feather="compass"></i></span><span>Panduan Jurusan</span></a>
+        <p>Membantu orang tua mendampingi anak memilih jurusan dengan tenang.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <h3>Navigasi</h3>
+        <ul>
+          <li><a href="kuis.html">Kuis 10 Soal</a></li>
+          <li><a href="../index.html#jurusan">Daftar Jurusan</a></li>
+          <li><a href="../index.html#kalkulator-biaya">Hitung Biaya</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Footer lain">
+        <h3>Lainnya</h3>
+        <ul>
+          <li><a href="../index.html#tips">Tips</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom"><p>&copy; 2026 Panduan Jurusan. Bukan tes psikologi formal.</p></div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Kembali ke atas"><i data-feather="arrow-up" aria-hidden="true"></i></button>
+
+  <script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js" defer></script>
+  <script src="../asset/script/script.js" defer></script>
+  <script src="../asset/script/export-word.js" defer></script>
+  <script src="../asset/script/dashboard.js" defer></script>
+</body>
+</html>
