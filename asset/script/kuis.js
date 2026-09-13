@@ -347,6 +347,8 @@
   }
 
   function showResult() {
+    if (resultShown) return;
+    resultShown = true;
     const { scores, list, total } = computeScores();
     const top = list[0];
     const second = list[1];
