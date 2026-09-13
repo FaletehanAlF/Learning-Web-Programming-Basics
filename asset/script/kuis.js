@@ -490,11 +490,11 @@
 
   prevBtn.addEventListener('click', () => {
     if (resultEl && !resultEl.hidden) {
-      // from result back to last question
+      resultShown = false;
       resultEl.hidden = true;
       resultEl.innerHTML = '';
-      if (headEl) headEl.style.display = '';
-      if (navEl) navEl.style.display = '';
+      headEl.style.display = '';
+      navEl.style.display = '';
       bodyEl.style.display = '';
       render();
       return;
