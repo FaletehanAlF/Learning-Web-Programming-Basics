@@ -1,17 +1,23 @@
 /* Panduan Jurusan — service worker (offline-first ringan) */
-var CACHE = 'panduan-jurusan-v1';
+var CACHE = 'panduan-jurusan-v2';
 var CORE = [
   './',
   'index.html',
   'manifest.webmanifest',
   'views/kuis.html',
   'views/dashboard.html',
+  'views/kampus.html',
+  'views/detail-kampus.html',
+  'data/kampus.json',
   'assets/css/style.css',
   'assets/css/dashboard.css',
+  'assets/css/kampus.css',
   'assets/css/assistant.css',
   'assets/js/script.js',
   'assets/js/kuis.js',
   'assets/js/dashboard.js',
+  'assets/js/kampus.js',
+  'assets/js/detail-kampus.js',
   'assets/js/export-word.js',
   'assets/js/share.js',
   'assets/js/assistant.js',
