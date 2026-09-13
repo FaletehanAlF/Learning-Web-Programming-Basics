@@ -445,8 +445,8 @@
 
     resultEl.innerHTML = html;
     resultEl.hidden = false;
-    if (headEl) headEl.style.display = 'none';
-    if (navEl) navEl.style.display = 'none';
+    headEl.style.display = 'none';
+    navEl.style.display = 'none';
     bodyEl.style.display = 'none';
     bodyEl.innerHTML = '';
 
@@ -472,13 +472,14 @@
     });
     const retryBtn = document.getElementById('resultRetry');
     if (retryBtn) retryBtn.addEventListener('click', () => {
+      resultShown = false;
       answers = Array(quizData.length).fill(null);
       idx = 0;
       save();
       resultEl.hidden = true;
       resultEl.innerHTML = '';
-      if (headEl) headEl.style.display = '';
-      if (navEl) navEl.style.display = '';
+      headEl.style.display = '';
+      navEl.style.display = '';
       bodyEl.style.display = '';
       render();
     });
