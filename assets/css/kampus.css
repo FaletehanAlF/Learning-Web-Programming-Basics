@@ -41,6 +41,7 @@
   backdrop-filter: blur(4px);
 }
 .kampus-badge-jenis.pts { background: rgb(15 118 110 / .9); }
+.kampus-badge-jenis.ptln { background: rgb(79 70 229 / .92); }
 .kampus-rating {
   position: absolute; bottom: 10px; right: 10px;
   display: inline-flex; align-items: center; gap: 5px;
