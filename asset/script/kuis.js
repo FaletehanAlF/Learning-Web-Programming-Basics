@@ -413,6 +413,7 @@
     if (barEl) barEl.style.width = (((idx + 1) / quizData.length) * 100) + '%';
     if (percentEl) percentEl.textContent = Math.round(((idx + 1) / quizData.length) * 100) + '%';
     renderDots();
+    renderResume();
     updateNav();
     tick();
     feather();
@@ -540,19 +541,23 @@
   }
 
   /* ---------- dashboard ---------- */
+  function renderResume() {
+    if (!dashResumeEl) return;
+    var n = answeredCount();
+    if (!resultShown && n > 0 && n < quizData.length) {
+      dashResumeEl.innerHTML = '<div class="dash-resume"><i data-feather="play" aria-hidden="true"></i><span><strong>Lanjutkan kuis?</strong> Sudah ' + n + '/10 terjawab (soal ' + (idx + 1) + ').</span><button class="btn btn-primary btn-sm" id="dashResumeBtn" type="button">Lanjutkan</button></div>';
+      var rb = document.getElementById('dashResumeBtn');
+      if (rb) rb.addEventListener('click', function () { restoreQuizView(); scrollToEl(wrapEl); });
+      feather();
+    } else {
+      dashResumeEl.innerHTML = '';
+    }
+  }
+
   function renderDashboard() {
     var history = getHistory();
 
-    if (dashResumeEl) {
-      var n = answeredCount();
-      if (!resultShown && n > 0 && n < quizData.length) {
-        dashResumeEl.innerHTML = '<div class="dash-resume"><i data-feather="play" aria-hidden="true"></i><span><strong>Lanjutkan kuis?</strong> Sudah ' + n + '/10 terjawab (soal ' + (idx + 1) + ').</span><button class="btn btn-primary btn-sm" id="dashResumeBtn" type="button">Lanjutkan</button></div>';
-        var rb = document.getElementById('dashResumeBtn');
-        if (rb) rb.addEventListener('click', function () { restoreQuizView(); scrollToEl(wrapEl); });
-      } else {
-        dashResumeEl.innerHTML = '';
-      }
-    }
+    renderResume();
 
     if (dashStatsEl) {
       if (!history.length) {
