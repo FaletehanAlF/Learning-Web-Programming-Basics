@@ -59,9 +59,24 @@ function byId(id) {
   if (!registry[id]) registry[id] = mkEl(id);
   return registry[id];
 }
-// quiz body returns 5 fake option buttons per query
+// quiz body returns persistent option buttons (like real DOM)
 const bodyEl = byId('quizFullBody');
-bodyEl.querySelectorAll = () => ['teknologi', 'kesehatan', 'soshum', 'bisnis', 'kreatif'].map(mkBtn);
+const optBtns = ['teknologi', 'kesehatan', 'soshum', 'bisnis', 'kreatif'].map(mkBtn);
+bodyEl.querySelectorAll = (sel) => (sel === '.quiz-option' ? optBtns : []);
+// dots: persistent numbered buttons
+function mkDot(i) {
+  const handlers = {};
+  return {
+    getAttribute: (n) => (n === 'data-i' ? String(i) : null),
+    setAttribute: () => {},
+    addEventListener: (ev, fn) => { handlers[ev] = fn; },
+    click: () => { if (handlers.click) handlers.click(); },
+  };
+}
+const dotsEl = byId('quizDots');
+const dotBtns = [];
+for (let i = 0; i < 10; i++) dotBtns.push(mkDot(i));
+dotsEl.querySelectorAll = () => dotBtns;
 
 global.document = {
   getElementById: (id) => byId(id),
@@ -92,7 +107,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   // jawab 10 soal via klik opsi pertama, tunggu auto-advance
   for (let q = 0; q < 10; q++) {
-    bodyEl.querySelectorAll()[0].click();
+    optBtns[0].click();
     await sleep(420);
   }
   const st = JSON.parse(store['panduan-jurusan-kuis-10']);
@@ -134,12 +149,18 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   // jawab 3 soal lalu cek resume dashboard
   for (let q = 0; q < 3; q++) {
-    bodyEl.querySelectorAll()[0].click();
+    optBtns[0].click();
     await sleep(420);
   }
   assert(byId('dashResume').innerHTML.includes('Lanjutkan'), 'banner lanjutkan muncul (3/10)');
   byId('dashResumeBtn').click();
   assert(resultEl.hidden === true, 'klik lanjutkan tidak merusak state');
+
+  // navigasi dots: lompat ke soal 1
+  dotBtns[0].click();
+  assert(JSON.parse(store['panduan-jurusan-kuis-10']).idx === 0, 'dots melompat ke soal 1');
+  dotBtns[2].click();
+  assert(JSON.parse(store['panduan-jurusan-kuis-10']).idx === 2, 'dots melompat ke soal 3');
 
   // hapus riwayat
   byId('dashClear').click();
