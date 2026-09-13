@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var API_URLS = ['../data/ptn.json', '../data/pts.json'];
+  var API_URLS = ['../data/ptn.json', '../data/pts.json', '../data/ptln.json'];
   var FALLBACK_IMG = 'https://picsum.photos/seed/kampus/800/600';
 
   var grid = document.getElementById('kampusGrid');
@@ -54,7 +54,13 @@
     var kota = esc(k.kota || '');
     var prov = esc(k.provinsi || '');
     var jenis = esc(k.jenis || 'PTN');
-    var jenisCls = (String(k.jenis || '').toUpperCase() === 'PTS') ? 'pts' : '';
+    var jenisCls = (function () {
+      var j = String(k.jenis || '').toUpperCase();
+      if (j === 'PTS') return 'pts';
+      if (j === 'PTLN') return 'ptln';
+      return '';
+    })();
+    var akredLabel = String(k.jenis || '').toUpperCase() === 'PTLN' ? 'Peringkat' : 'Akreditasi';
     var akred = esc(k.akreditasi || '-');
     var desc = esc(k.deskripsi_singkat || '');
     var img = esc(k.gambar || FALLBACK_IMG);
@@ -79,7 +85,7 @@
       + '<span class="kampus-meta-row">' + pills + '</span>'
       + '<span class="kampus-card-foot">'
       + '<span class="kampus-cta">Lihat detail <i data-feather="arrow-right"></i></span>'
-      + '<span class="kampus-akred">Akreditasi ' + akred + '</span>'
+      + '<span class="kampus-akred">' + akredLabel + ' ' + akred + '</span>'
       + '</span>'
       + '</span>'
       + '</a>';
@@ -138,7 +144,7 @@
         .reduce(function (acc, arr) { return acc.concat(arr); }, [])
         .filter(function (k) { return k && k.id && k.nama; });
       if (allKampus.length === 0) {
-        showError('Kedua file API (data/ptn.json & data/pts.json) tidak terbaca atau kosong.');
+        showError('Ketiga file API (data/ptn.json, data/pts.json & data/ptln.json) tidak terbaca atau kosong.');
         return;
       }
       applyFilter();
