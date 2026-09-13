@@ -288,7 +288,7 @@
     });
     html += `</div></div>`;
     bodyEl.innerHTML = html;
-      bodyEl.querySelectorAll('.quiz-option').forEach(btn => {
+    bodyEl.querySelectorAll('.quiz-option').forEach(btn => {
       btn.addEventListener('click', () => {
         if (isAdvancing || resultShown) return;
         const key = btn.getAttribute('data-key');
