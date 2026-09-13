@@ -1,8 +1,8 @@
-/* Panduan Jurusan — detail kampus (pindah halaman via ?id=, data dari data/kampus.json) */
+/* Panduan Jurusan — detail kampus (pindah halaman via ?id=, data gabungan data/ptn.json + data/pts.json) */
 (function () {
   'use strict';
 
-  var API_URL = '../data/kampus.json';
+  var API_URLS = ['../data/ptn.json', '../data/pts.json'];
 
   var wrap = document.getElementById('detailWrap');
   var prevBtn = document.getElementById('detailPrev');
@@ -21,7 +21,11 @@
     }
   }
 
-  function esc(s) {
+  function normalize(payload) {
+    if (Array.isArray(payload)) return payload;
+    if (payload && Array.isArray(payload.data)) return payload.data;
+    return [];
+  }
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
