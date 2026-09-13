@@ -12,7 +12,7 @@
     var a = anchor || '';
     try {
       var inViews = location.pathname.indexOf('/views/') > -1;
-      if (page === 'index') return (inViews ? '../index.html' : '#').replace(/#$/, '') + a;
+      if (page === 'index') return (inViews ? '../index.html' : '') + a;
       if (page === 'kuis') return inViews ? 'kuis.html' + a : 'views/kuis.html' + a;
       if (page === 'dashboard') return inViews ? 'dashboard.html' + a : 'views/dashboard.html' + a;
     } catch (e) {}
