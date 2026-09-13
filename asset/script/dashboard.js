@@ -205,7 +205,7 @@
         consLabel: x.consistencyLabel, consValue: x.consistency, consDesc: x.detail.consDesc,
         rows: x.detail.rows, whys: x.detail.whys, pros: x.detail.pros, consList: x.detail.consList,
         jurusan: x.detail.jurusan, coba: x.detail.coba, tanya: x.detail.tanya,
-        review: (x.detail.rows || []).length ? undefined : undefined
+        review: x.detail.review || []
       };
     }
     return {
