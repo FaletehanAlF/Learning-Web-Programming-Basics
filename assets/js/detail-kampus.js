@@ -126,7 +126,12 @@
 
       + '<div class="detail-layout"><div class="detail-side" style="gap:18px">'
       + '<article class="detail-panel"><h2><i data-feather="info"></i>Tentang ' + esc(k.singkatan || k.nama) + '</h2>'
-      + '<p>' + esc(k.deskripsi_panjang || k.deskripsi_singkat || '') + '</p></article>'
+      + '<p>' + esc(k.tentang_kampus || k.deskripsi_panjang || k.deskripsi_singkat || '') + '</p>'
+      + '<p>' + esc(k.deskripsi_panjang && k.tentang_kampus ? k.deskripsi_panjang : '') + '</p></article>'
+      + '<article class="detail-panel"><h2><i data-feather="' + skorIkon + '"></i>' + esc(skorJudul) + '</h2>'
+      + '<div class="detail-skor"><span class="detail-skor-label">Skor UTBK minimal (estimasi aman)</span><strong>' + esc(k.skor_utbk_minimal || '-') + '</strong></div>'
+      + '<ul class="detail-list">' + prestasi + '</ul>'
+      + '<p class="detail-note"><i data-feather="info"></i><span>' + esc(skorNote) + '</span></p></article>'
       + '<article class="detail-panel"><h2><i data-feather="star"></i>Keunggulan</h2><ul class="detail-list">' + unggulan + '</ul></article>'
       + '<article class="detail-panel"><h2><i data-feather="briefcase"></i>Prospek karier lulusan</h2><p>' + esc(k.prospek_karier || '-') + '</p></article>'
       + '</div>'
