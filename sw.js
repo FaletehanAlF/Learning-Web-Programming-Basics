@@ -1,5 +1,5 @@
 /* Panduan Jurusan — service worker (offline-first ringan) */
-var CACHE = 'panduan-jurusan-v6';
+var CACHE = 'panduan-jurusan-v7';
 var CORE = [
   './',
   'index.html',
