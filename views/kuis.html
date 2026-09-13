@@ -90,12 +90,15 @@
           </div>
 
           <!-- Question -->
-          <div class="quiz-full-body" id="quizFullBody"></div>
+          <div class="quiz-full-body" id="quizFullBody" aria-live="polite"></div>
+
+          <!-- Question dots -->
+          <div class="quiz-dots" id="quizDots" role="tablist" aria-label="Navigasi nomor soal"></div>
 
           <!-- Nav -->
           <div class="quiz-full-nav" id="quizFullNav">
-            <button class="btn btn-outline" id="quizFullPrev" type="button" disabled><i data-feather="arrow-left" aria-hidden="true"></i> Sebelumnya</button>
-            <button class="btn btn-primary" id="quizFullNext" type="button" disabled>Selanjutnya <i data-feather="arrow-right" aria-hidden="true"></i></button>
+            <button class="btn btn-outline btn-prev" id="quizFullPrev" type="button" disabled><i data-feather="arrow-left" aria-hidden="true"></i> Sebelumnya</button>
+            <button class="btn btn-primary btn-next" id="quizFullNext" type="button" disabled><span id="quizFullNextLabel">Selanjutnya</span> <i data-feather="arrow-right" aria-hidden="true"></i></button>
           </div>
 
           <!-- Result -->
@@ -104,7 +107,35 @@
           </div>
         </div>
 
-        <p class="quiz-footnote"><i data-feather="shield" aria-hidden="true"></i> Jawaban tersimpan di perangkat ini saja. Tidak dikirim ke server. Bisa diulang kapan saja.</p>
+        <p class="quiz-footnote" id="quizFootnote"><i data-feather="shield" aria-hidden="true"></i> Jawaban tersimpan di perangkat ini saja. Tidak dikirim ke server. Bisa diulang kapan saja.</p>
+
+        <!-- Dashboard Statistik Hasil Evaluasi -->
+        <section class="quiz-dashboard" id="quizDashboard" aria-labelledby="dashTitle">
+          <div class="dash-head">
+            <div>
+              <p class="section-kicker">Evaluasi • tersimpan otomatis</p>
+              <h2 id="dashTitle">Dashboard Statistik Hasil</h2>
+              <p class="dash-desc">Setiap kuis yang selesai tercatat di perangkat ini. Pantau rumpun dominan, rata-rata skor, dan riwayat percobaan.</p>
+            </div>
+            <div class="dash-head-actions">
+              <button class="btn btn-outline btn-sm" id="dashClear" type="button"><i data-feather="trash-2" aria-hidden="true"></i> Hapus riwayat</button>
+            </div>
+          </div>
+          <div id="dashResume"></div>
+          <div class="dash-stats" id="dashStats"></div>
+          <div class="dash-grid">
+            <div class="dash-panel">
+              <h3><i data-feather="bar-chart-2" aria-hidden="true"></i> Rata-rata skor per rumpun</h3>
+              <p class="dash-panel-desc">Rata-rata dari semua percobaan yang tersimpan.</p>
+              <div id="dashAvg"></div>
+            </div>
+            <div class="dash-panel">
+              <h3><i data-feather="clock" aria-hidden="true"></i> Riwayat percobaan</h3>
+              <p class="dash-panel-desc">Klik hapus untuk membuang satu catatan.</p>
+              <div id="dashHistory"></div>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   </main>
