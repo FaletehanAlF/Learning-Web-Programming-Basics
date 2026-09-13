@@ -80,7 +80,8 @@
     var jenisCls = jenisUp === 'PTS' ? 'pts' : (jenisUp === 'PTLN' ? 'ptln' : '');
     var akredLabel = jenisUp === 'PTLN' ? 'Peringkat' : 'Akreditasi';
     var biayaLabel = jenisUp === 'PTLN' ? 'Biaya kuliah' : 'UKT / semester';
-    var ratingTxt = Number(k.rating) ? Number(k.rating).toFixed(1).replace('.', ',') : '-';
+    var dec = (window.__LANG === 'en') ? '.' : ',';
+    var ratingTxt = Number(k.rating) ? Number(k.rating).toFixed(1).replace('.', dec) : '-';
     var img = esc(k.gambar || 'https://picsum.photos/seed/' + esc(k.id) + '/1200/600');
     var cadangan = esc(k.gambar_cadangan || ('https://picsum.photos/seed/' + k.id + '/1200/600'));
 

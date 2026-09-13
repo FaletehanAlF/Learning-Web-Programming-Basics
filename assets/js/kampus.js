@@ -66,7 +66,8 @@
     var img = esc(k.gambar || FALLBACK_IMG);
     var cadangan = esc(k.gambar_cadangan || FALLBACK_IMG);
     var rating = Number(k.rating) || 0;
-    var ratingTxt = rating ? rating.toFixed(1).replace('.', ',') : '-';
+    var dec = (window.__LANG === 'en') ? '.' : ',';
+    var ratingTxt = rating ? rating.toFixed(1).replace('.', dec) : '-';
     var jurusan = Array.isArray(k.jurusan_favorit) ? k.jurusan_favorit.slice(0, 2) : [];
 
     var pills = jurusan.map(function (j) { return '<span class="kampus-pill">' + esc(j) + '</span>'; }).join('');
