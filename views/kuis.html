@@ -6,6 +6,7 @@
   <title>Kuis Minat 10 Soal — Analisis Jurusan | Panduan Jurusan</title>
   <meta name="description" content="Kuis 10 pertanyaan untuk orang tua & anak. Dapatkan skor per rumpun, grafik, dan analisis kenapa jurusan tertentu cocok — gratis, 3 menit, tanpa daftar." />
   <meta name="theme-color" content="#0f172a" />
+  <script>try{var t=localStorage.getItem('pj-theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -24,6 +25,10 @@
         <span class="logo-mark" aria-hidden="true"><i data-feather="compass"></i></span>
         <span>Panduan Jurusan</span>
       </a>
+      <div class="header-tools">
+        <button class="icon-btn" id="langToggle" type="button" aria-label="Ganti bahasa" title="ID/EN">EN</button>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Ganti tema"><i data-feather="moon" aria-hidden="true"></i></button>
+      </div>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu navigasi">
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
       </button>
@@ -148,6 +153,12 @@
   <script src="../assets/js/export-word.js" defer></script>
   <script src="../assets/js/share.js" defer></script>
   <script src="../assets/js/kuis.js" defer></script>
+  <script src="../assets/js/i18n-dict1.js" defer></script>
+  <script src="../assets/js/i18n-dict2.js" defer></script>
+  <script src="../assets/js/i18n-dict3.js" defer></script>
+  <script src="../assets/js/i18n-dict4.js" defer></script>
+  <script src="../assets/js/lang.js" defer></script>
+  <script src="../assets/js/theme.js" defer></script>
   <script src="../assets/js/assistant.js" defer></script>
 </body>
 </html>

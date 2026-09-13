@@ -8,6 +8,7 @@
   <meta name="description"
     content="Panduan Jurusan membantu orang tua memahami berbagai jurusan kuliah dengan bahasa sederhana, agar bisa mendampingi anak memilih jurusan dengan lebih tenang. Gratis, tanpa daftar." />
   <meta name="theme-color" content="#0f172a" />
+  <script>try{var t=localStorage.getItem('pj-theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,6 +34,10 @@
         <span>Panduan Jurusan</span>
       </a>
 
+      <div class="header-tools">
+        <button class="icon-btn" id="langToggle" type="button" aria-label="Ganti bahasa" title="ID/EN">EN</button>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Ganti tema"><i data-feather="moon" aria-hidden="true"></i></button>
+      </div>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu"
         aria-label="Buka menu navigasi">
         <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
@@ -896,6 +901,12 @@
   <script src="assets/js/script.js" defer></script>
   <script src="assets/js/favorit-compare.js" defer></script>
   <script src="assets/js/skenario.js" defer></script>
+  <script src="assets/js/i18n-dict1.js" defer></script>
+  <script src="assets/js/i18n-dict2.js" defer></script>
+  <script src="assets/js/i18n-dict3.js" defer></script>
+  <script src="assets/js/i18n-dict4.js" defer></script>
+  <script src="assets/js/lang.js" defer></script>
+  <script src="assets/js/theme.js" defer></script>
   <script src="assets/js/assistant.js" defer></script>
 </body>
 
