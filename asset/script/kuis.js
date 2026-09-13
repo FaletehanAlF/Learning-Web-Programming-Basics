@@ -706,7 +706,6 @@
     startedAt = Date.now();
     save();
     restoreQuizView();
-    renderDashboard();
     scrollToEl(wrapEl);
   }
 
