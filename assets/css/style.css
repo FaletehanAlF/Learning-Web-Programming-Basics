@@ -209,6 +209,7 @@ section { scroll-margin-top: calc(var(--header-h) + 12px); }
   background: #fff;
   cursor: pointer;
   margin-left: auto;
+  margin-right: 8px;
   flex-shrink: 0;
 }
 .nav-toggle span {
@@ -227,7 +228,7 @@ section { scroll-margin-top: calc(var(--header-h) + 12px); }
   display: none;
   position: absolute;
   top: calc(100% + 8px);
-  right: max(16px, calc((100vw - var(--container)) / 2 + 24px));
+  right: max(16px, calc((100vw - var(--container)) / 2 + 32px));
   width: min(340px, calc(100vw - 32px));
   max-height: min(70vh, 560px);
   overflow-y: auto;
