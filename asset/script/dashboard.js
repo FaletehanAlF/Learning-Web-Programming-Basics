@@ -200,7 +200,80 @@
     }
   }
 
-  function renderAll() {
+  /* ---------- hasil dari tautan + favorit ---------- */
+  function clearHash() {
+    try {
+      if (history.replaceState) history.replaceState(null, '', location.pathname + location.search);
+      else location.hash = '';
+    } catch (e) { try { location.hash = ''; } catch (err) {} }
+  }
+
+  function renderLinkPreview() {
+    if (!linkEl) return;
+    var data = null;
+    try { data = window.PanduanJurusanShare ? window.PanduanJurusanShare.decodeHash() : null; } catch (e) {}
+    if (!data) { linkEl.innerHTML = ''; return; }
+    var sc = (data.s && typeof data.s[data.t] === 'number') ? data.s[data.t] : 0;
+    linkEl.innerHTML = '<div class="dash-resume"><i data-feather="link" aria-hidden="true"></i>'
+      + '<span><strong>Hasil dari tautan:</strong> ' + esc(labelOf(data.t)) + ' • ' + sc + '/10.</span>'
+      + '<button class="btn btn-primary btn-sm" id="dashLinkSave" type="button">Simpan</button>'
+      + '<button class="btn btn-ghost btn-sm" id="dashLinkHide" type="button">Tutup</button></div>';
+    var saveB = document.getElementById('dashLinkSave');
+    var hideB = document.getElementById('dashLinkHide');
+    if (saveB) saveB.addEventListener('click', function () {
+      var h = getHistory();
+      h.unshift({ ts: Date.now(), top: data.t, score: sc, percent: sc * 10, consistency: sc * 10, consistencyLabel: data.c || '', scores: data.s, detail: null });
+      saveHistory(h);
+      clearHash();
+      renderAll();
+    });
+    if (hideB) hideB.addEventListener('click', function () { clearHash(); linkEl.innerHTML = ''; });
+    feather();
+  }
+
+  function renderFav() {
+    if (!favEl) return;
+    var list = [];
+    try {
+      if (window.PanduanJurusanFav && window.PanduanJurusanFav.list) list = window.PanduanJurusanFav.list() || [];
+      else { var raw = localStorage.getItem('panduan-jurusan-favorit'); list = raw ? JSON.parse(raw) : []; }
+      if (!Array.isArray(list)) list = [];
+    } catch (e) { list = []; }
+    if (!list.length) {
+      favEl.innerHTML = '<div class="dash-empty">Belum ada favorit. Tandai jurusan <a href="../index.html#jurusan">di katalog beranda</a>.</div>';
+      return;
+    }
+    var html = '<div class="dash-hist">';
+    list.forEach(function (name) {
+      var j = null;
+      try { if (window.JURUSAN_BY_NAME) j = window.JURUSAN_BY_NAME(name); } catch (e) {}
+      html += '<div class="dash-hist-row"><div class="dash-hist-main"><strong>' + esc(name) + '</strong>'
+        + '<span>' + esc(j ? j.catLabel + ' • ' + j.durasi : '') + '</span></div>'
+        + '<button type="button" class="dash-hist-del" data-fdel="' + esc(name) + '" aria-label="Hapus favorit ' + esc(name) + '"><i data-feather="x" aria-hidden="true"></i></button></div>';
+    });
+    favEl.innerHTML = html + '</div>';
+    var dels = favEl.querySelectorAll('[data-fdel]');
+    for (var d = 0; d < dels.length; d++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          var name = btn.getAttribute('data-fdel');
+          try {
+            if (window.PanduanJurusanFav && window.PanduanJurusanFav.toggle) window.PanduanJurusanFav.toggle(name);
+            else {
+              var r2 = localStorage.getItem('panduan-jurusan-favorit');
+              var cur = r2 ? JSON.parse(r2) : [];
+              var i = cur.indexOf(name);
+              if (i > -1) { cur.splice(i, 1); localStorage.setItem('panduan-jurusan-favorit', JSON.stringify(cur)); }
+            }
+          } catch (e) {}
+          renderFav();
+          feather();
+        });
+      })(dels[d]);
+    }
+  }
+
+  function docFromEntry(x) {
     if (x.detail) {
       return {
         dateStr: fmtDate(x.ts), topLabel: x.detail.topLabel, topTitle: x.detail.topTitle,
