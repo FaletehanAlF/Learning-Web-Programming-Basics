@@ -16,14 +16,21 @@
     return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
-  // Susun pola '#' -> regex, kunci terpanjang dulu agar pola spesifik menang
+  // Susun pola '#' -> regex, kunci terpanjang dulu agar pola spesifik menang.
+  // Tiap pola menyimpan potongan literal terpanjang sebagai penyaring cepat
+  // agar tidak menjalankan puluhan regex untuk setiap node teks.
   (function build() {
     try {
       var keys = Object.keys(DICT).filter(function (k) { return k.indexOf('#') > -1; });
       keys.sort(function (a, b) { return b.length - a.length; });
       PATTERNS = keys.map(function (k) {
         var parts = k.split('#').map(escRe);
-        return { key: k, en: DICT[k], re: new RegExp('^' + parts.join('(.+?)') + '$') };
+        var chunk = '';
+        for (var i = 0; i < parts.length; i++) {
+          var plain = parts[i].replace(/\\/g, '');
+          if (plain.length > chunk.length) chunk = plain;
+        }
+        return { key: k, en: DICT[k], re: new RegExp('^' + parts.join('(.+?)') + '$'), chunk: chunk.length >= 3 ? chunk : '' };
       });
     } catch (e) { PATTERNS = []; }
   })();
@@ -46,8 +53,10 @@
     if (!key) return null;
     if (Object.prototype.hasOwnProperty.call(DICT, key)) return { t: DICT[key], pat: null };
     for (var i = 0; i < PATTERNS.length; i++) {
-      var m = PATTERNS[i].re.exec(key);
-      if (m) return { t: PATTERNS[i].en, pat: m.slice(1) };
+      var p = PATTERNS[i];
+      if (p.chunk && key.indexOf(p.chunk) === -1) continue;
+      var m = p.re.exec(key);
+      if (m) return { t: p.en, pat: m.slice(1) };
     }
     return null;
   }
@@ -71,6 +80,8 @@
     try {
       var v = node.nodeValue;
       if (!v || !/\S/.test(v)) return;
+      // Jalur cepat: mode ID dan node belum pernah diterjemahkan = tidak ada kerjaan
+      if (window.__LANG !== 'en' && !origText.has(node)) return;
       if (window.__LANG === 'en') {
         var hit = lookup(v);
         if (hit) {
@@ -109,13 +120,9 @@
 
   function skipNode(node) {
     try {
-      var el = node.parentElement;
-      while (el) {
-        var t = el.tagName;
-        if (t === 'SCRIPT' || t === 'STYLE' || t === 'NOSCRIPT' || t === 'SVG') return true;
-        if (el.hasAttribute && el.hasAttribute('data-i18n-skip')) return true;
-        el = el.parentElement;
-      }
+      var el = node.nodeType === 1 ? node : node.parentElement;
+      if (!el || !el.closest) return false;
+      return !!el.closest('script,style,noscript,svg,[data-i18n-skip]');
     } catch (e) {}
     return false;
   }
@@ -137,23 +144,45 @@
 
   function observe() {
     try {
-      var obs = new MutationObserver(function (muts) {
-        for (var i = 0; i < muts.length; i++) {
-          var m = muts[i];
-          if (m.type === 'characterData') {
-            if (!skipNode(m.target)) translateNode(m.target);
-          } else if (m.type === 'attributes') {
-            if (ATTRS.indexOf(m.attributeName) > -1) translateElAttrs(m.target);
-          } else {
-            for (var j = 0; j < m.addedNodes.length; j++) {
-              var nd = m.addedNodes[j];
-              if (nd.nodeType === 3) { if (!skipNode(nd)) translateNode(nd); }
-              else if (nd.nodeType === 1) {
-                if (nd.tagName === 'SCRIPT' || nd.tagName === 'STYLE' || nd.tagName === 'NOSCRIPT') continue;
-                walk(nd);
+      // Antrekan perubahan diproses sekali per frame agar tidak lag
+      // saat banyak DOM disuntik sekaligus (mis. feather.replace).
+      var queued = [];
+      var scheduled = false;
+      var inProcess = false;
+      function process() {
+        scheduled = false;
+        if (inProcess) return;
+        inProcess = true;
+        try {
+          var muts = queued;
+          queued = [];
+          for (var i = 0; i < muts.length; i++) {
+            var m = muts[i];
+            if (m.type === 'characterData') {
+              if (!skipNode(m.target)) translateNode(m.target);
+            } else if (m.type === 'attributes') {
+              if (ATTRS.indexOf(m.attributeName) > -1) translateElAttrs(m.target);
+            } else {
+              for (var j = 0; j < m.addedNodes.length; j++) {
+                var nd = m.addedNodes[j];
+                if (nd.nodeType === 3) { if (!skipNode(nd)) translateNode(nd); }
+                else if (nd.nodeType === 1) {
+                  if (nd.tagName === 'SCRIPT' || nd.tagName === 'STYLE' || nd.tagName === 'NOSCRIPT') continue;
+                  walk(nd);
+                }
               }
             }
           }
+        } catch (e) {}
+        inProcess = false;
+      }
+      var obs = new MutationObserver(function (muts) {
+        for (var i = 0; i < muts.length; i++) queued.push(muts[i]);
+        if (queued.length > 2000) queued.splice(0, queued.length - 2000);
+        if (!scheduled) {
+          scheduled = true;
+          if (window.requestAnimationFrame) window.requestAnimationFrame(process);
+          else window.setTimeout(process, 0);
         }
       });
       obs.observe(document.documentElement, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ATTRS });
