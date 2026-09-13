@@ -87,6 +87,13 @@
     var jalur = Array.isArray(k.jalur_masuk)
       ? k.jalur_masuk.map(function (x) { return '<span class="kampus-pill">' + esc(x) + '</span>'; }).join('') : '';
     var beasiswa = Array.isArray(k.beasiswa) ? k.beasiswa.map(function (x) { return li('award', x); }).join('') : '';
+    var prestasi = Array.isArray(k.prestasi_snbp) ? k.prestasi_snbp.map(function (x) { return li('award', x); }).join('') : '';
+    var isPTS = String(k.jenis || '').toUpperCase() === 'PTS';
+    var skorJudul = isPTS ? 'Jalur masuk & beasiswa prestasi' : 'Skor UTBK & syarat SNBP';
+    var skorIkon = isPTS ? 'log-in' : 'target';
+    var skorNote = isPTS
+      ? 'PTS tidak memakai UTBK sebagai syarat wajib — seleksi lewat rapor/tes mandiri kampus. Prestasi di bawah ini berguna untuk merebut beasiswa masuk.'
+      : 'Skor di atas adalah ESTIMASI aman dari pola tahun sebelumnya — SNPMB tidak pernah merilis passing grade resmi. Syarat SNBP: nilai rapor 5 semester + maks. 3 sertifikat prestasi terbaik. Selalu verifikasi syarat terbaru di website resmi kampus & portal SNPMB.';
     var fasilitas = Array.isArray(k.fasilitas) ? k.fasilitas.map(function (x) { return li('check', x); }).join('') : '';
     var mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((k.nama || '') + ' ' + (k.kota || ''));
     var shareText = 'Info kampus ' + (k.nama || '') + ' (' + (k.kota || '') + ') — ' + (k.deskripsi_singkat || '')
