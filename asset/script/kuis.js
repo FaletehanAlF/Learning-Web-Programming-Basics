@@ -323,14 +323,15 @@
   function updateNav() {
     prevBtn.disabled = idx === 0;
     const has = answers[idx] !== null;
+    const iconHTML = '<i data-feather="arrow-right" aria-hidden="true"></i>';
     if (idx === quizData.length - 1) {
-      nextBtn.textContent = has ? 'Lihat Hasil Analisis' : 'Pilih jawaban dulu';
+      nextBtn.innerHTML = has ? 'Lihat Hasil Analisis ' + iconHTML : 'Pilih jawaban dulu ' + iconHTML;
       nextBtn.disabled = !has;
     } else {
-      nextBtn.textContent = 'Selanjutnya';
+      nextBtn.innerHTML = 'Selanjutnya ' + iconHTML;
       nextBtn.disabled = !has;
     }
-    // feather icon after text change? Keep text simple, no icon swap
+    feather();
   }
 
   function computeScores() {
