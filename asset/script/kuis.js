@@ -10,6 +10,7 @@
   const resultEl = document.getElementById('quizFullResult');
   const headEl = document.getElementById('quizFullHead');
   const navEl = document.getElementById('quizFullNav');
+  const footnoteEl = document.querySelector('.quiz-footnote');
 
   if (!bodyEl || !prevBtn || !nextBtn) return;
 
