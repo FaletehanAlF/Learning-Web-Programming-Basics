@@ -1,0 +1,84 @@
+/* Asisten Tanya-Jawab — mengambang, minimalis */
+.asst-fab {
+  position: fixed;
+  left: 20px; bottom: 20px;
+  z-index: 120;
+  width: 52px; height: 52px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  background: var(--ink);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.2s var(--ease), background 0.2s var(--ease);
+}
+.asst-fab:hover { transform: translateY(-2px); background: #1a2744; }
+.asst-fab .feather { width: 22px; height: 22px; }
+.asst-panel {
+  position: fixed;
+  left: 20px; bottom: 82px;
+  z-index: 120;
+  width: min(350px, calc(100vw - 40px));
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.asst-panel[hidden] { display: none !important; }
+.asst-head {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 14px;
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+.asst-head strong { font-size: 14px; color: var(--ink); }
+.asst-head span { font-size: 11px; color: var(--muted-soft); flex: 1; }
+.asst-close {
+  width: 30px; height: 30px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 8px; border: 1px solid var(--line); background: #fff;
+  color: var(--muted); cursor: pointer;
+}
+.asst-close:hover { color: var(--ink); border-color: var(--line-strong); }
+.asst-close .feather { width: 14px; height: 14px; }
+.asst-msgs {
+  display: flex; flex-direction: column; gap: 8px;
+  max-height: 300px; overflow-y: auto;
+  padding: 12px 14px;
+}
+.asst-msg { max-width: 88%; }
+.asst-msg p { margin: 0; font-size: 13px; line-height: 1.55; }
+.asst-bot { align-self: flex-start; background: var(--bg-soft); border: 1px solid var(--line-soft); border-radius: 4px 12px 12px 12px; padding: 9px 12px; }
+.asst-bot p { color: var(--ink-soft); }
+.asst-bot a { display: inline-block; margin-top: 6px; font-size: 12.5px; font-weight: 700; color: var(--accent-deep); }
+.asst-user { align-self: flex-end; background: var(--ink); border-radius: 12px 12px 4px 12px; padding: 9px 12px; }
+.asst-user p { color: #fff; }
+.asst-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px; }
+.asst-chip {
+  font-size: 12px; font-weight: 600; color: var(--ink);
+  padding: 6px 11px; border-radius: 999px;
+  border: 1px solid var(--line); background: #fff; cursor: pointer;
+}
+.asst-chip:hover { border-color: var(--accent); color: var(--accent-deep); background: var(--accent-soft); }
+.asst-input { display: flex; gap: 8px; padding: 10px 14px 14px; border-top: 1px solid var(--line-soft); }
+.asst-input input {
+  flex: 1; min-width: 0;
+  border: 1px solid var(--line); border-radius: 10px;
+  padding: 9px 12px; font: inherit; font-size: 13.5px; color: var(--ink);
+}
+.asst-input input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+.asst-input button {
+  width: 40px; height: 40px; flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px; border: 1px solid var(--ink);
+  background: var(--ink); color: #fff; cursor: pointer;
+}
+.asst-input button:hover { background: #1a2744; }
+.asst-input button .feather { width: 16px; height: 16px; }
+
+@media (max-width: 480px) {
+  .asst-fab { left: 14px; bottom: 14px; }
+  .asst-panel { left: 14px; bottom: 76px; }
+}
