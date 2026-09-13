@@ -3,6 +3,15 @@
 
   document.documentElement.classList.add('js');
 
+  try {
+    if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+      var swUrl = location.pathname.indexOf('/views/') > -1 ? '../sw.js' : 'sw.js';
+      window.addEventListener('load', function () {
+        try { navigator.serviceWorker.register(swUrl).catch(function () {}); } catch (e) {}
+      });
+    }
+  } catch (e) {}
+
   function renderFeather() {
     try {
       if (window.feather && typeof window.feather.replace === 'function') {
