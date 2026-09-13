@@ -222,14 +222,14 @@
           if (list[i] && String(list[i].id).toLowerCase() === currentId) { found = list[i]; break; }
         }
         if (!found) {
-          showError('Kampus tidak ditemukan', 'ID "' + currentId + '" tidak ada di data/ptn.json maupun data/pts.json. Periksa kembali id-nya.');
+          showError('Kampus tidak ditemukan', 'ID "' + currentId + '" tidak ada di data/ptn.json, data/pts.json & data/ptln.json. Periksa kembali id-nya.');
           return;
         }
         render(found);
         renderPrevNext();
       })
       .catch(function () {
-        showError('Gagal memuat data', 'File data/ptn.json & data/pts.json tidak bisa dibaca. Jalankan lewat local server (Live Server), bukan double-click file.');
+        showError('Gagal memuat data', 'File data/ptn.json, data/pts.json & data/ptln.json tidak bisa dibaca. Jalankan lewat local server (Live Server), bukan double-click file.');
       });
   }
 

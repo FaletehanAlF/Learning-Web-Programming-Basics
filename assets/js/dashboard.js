@@ -52,9 +52,10 @@
 
   function fmtDate(ts) {
     try {
+      var loc = (window.__LANG === 'en') ? 'en-GB' : 'id-ID';
       var dt = new Date(ts);
-      return dt.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })
-        + ' • ' + dt.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      return dt.toLocaleDateString(loc, { day: 'numeric', month: 'short', year: 'numeric' })
+        + ' • ' + dt.toLocaleTimeString(loc, { hour: '2-digit', minute: '2-digit' });
     } catch (e) { return ''; }
   }
 

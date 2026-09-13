@@ -527,8 +527,9 @@
 
   function fmtDateId(ts) {
     try {
+      var loc = (window.__LANG === 'en') ? 'en-GB' : 'id-ID';
       var dt = new Date(ts);
-      return dt.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      return dt.toLocaleDateString(loc, { day: 'numeric', month: 'long', year: 'numeric' });
     } catch (e) { return ''; }
   }
 
