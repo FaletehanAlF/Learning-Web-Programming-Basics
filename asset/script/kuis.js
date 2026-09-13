@@ -15,11 +15,6 @@
   var dotsEl = document.getElementById('quizDots');
   var timeEl = document.getElementById('quizFullTime');
   var footnoteEl = document.getElementById('quizFootnote');
-  var dashStatsEl = document.getElementById('dashStats');
-  var dashAvgEl = document.getElementById('dashAvg');
-  var dashHistEl = document.getElementById('dashHistory');
-  var dashResumeEl = document.getElementById('dashResume');
-  var dashClearBtn = document.getElementById('dashClear');
 
   if (!bodyEl || !prevBtn || !nextBtn) return;
 
@@ -318,15 +313,6 @@
     h.unshift(entry);
     saveHistory(h);
     return h;
-  }
-
-  function fmtDate(ts) {
-    try {
-      var dt = new Date(ts);
-      var date = dt.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-      var time = dt.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-      return date + ' • ' + time;
-    } catch (e) { return ''; }
   }
 
   function fmtElapsed(ms) {
