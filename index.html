@@ -16,6 +16,9 @@
     rel="stylesheet" />
 
   <link rel="stylesheet" href="asset/style/style.css" />
+  <link rel="stylesheet" href="asset/style/assistant.css" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="asset/image/icon.svg" type="image/svg+xml" />
 </head>
 
 <body>
@@ -417,6 +420,14 @@
             <div class="calc-actions">
               <button class="btn btn-primary" id="calcShareWa" type="button"><i data-feather="share-2" aria-hidden="true"></i> Bagikan hitungan ke WhatsApp</button>
               <a href="#faq" class="btn btn-outline"><i data-feather="help-circle" aria-hidden="true"></i> Lihat FAQ biaya</a>
+            </div>
+            <div class="calc-scenarios">
+              <div class="sc-head">
+                <strong>Bandingkan skenario</strong>
+                <button class="btn btn-outline btn-sm" id="calcSaveScenario" type="button"><i data-feather="plus" aria-hidden="true"></i> Simpan hitungan ini</button>
+              </div>
+              <div id="calcScenarioList"></div>
+              <div id="calcScenarioCompare"></div>
             </div>
             <p class="calc-note">Angka ini estimasi kasar. UKT asli tergantung kampus & penghasilan orang tua. Gunakan untuk ngobrol, bukan untuk takut duluan.</p>
           </div>
@@ -878,7 +889,11 @@
   </noscript>
 
   <script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js" defer></script>
+  <script src="asset/script/jurusan-data.js" defer></script>
   <script src="asset/script/script.js" defer></script>
+  <script src="asset/script/favorit-compare.js" defer></script>
+  <script src="asset/script/skenario.js" defer></script>
+  <script src="asset/script/assistant.js" defer></script>
 </body>
 
 </html>
