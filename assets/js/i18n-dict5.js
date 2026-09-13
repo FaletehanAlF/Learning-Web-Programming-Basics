@@ -75,6 +75,7 @@
     'Keperawatan / Farmasi': 'Nursing / Pharmacy',
     'Psikologi (kesehatan mental)': 'Psychology (mental health)',
     'DKV / UI-UX (irisan kreatif)': 'VCD / UI-UX (creative intersection)',
-    '# • # • #': '# • # • #'
+    '# • # • #': '# • # • #',
+    'Memuat detail kampus…': 'Loading campus details…'
   });
 })();
