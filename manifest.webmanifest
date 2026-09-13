@@ -1,0 +1,14 @@
+{
+  "name": "Panduan Jurusan — Bantu Anak Pilih Jurusan",
+  "short_name": "Panduan Jurusan",
+  "description": "Kuis minat, dashboard evaluasi, kalkulator biaya, dan tips memilih jurusan. Gratis, tanpa daftar.",
+  "start_url": "index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f172a",
+  "lang": "id",
+  "icons": [
+    { "src": "asset/image/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
