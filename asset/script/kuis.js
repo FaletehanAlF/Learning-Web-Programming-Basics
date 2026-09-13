@@ -399,7 +399,6 @@
     if (barEl) barEl.style.width = (((idx + 1) / quizData.length) * 100) + '%';
     if (percentEl) percentEl.textContent = Math.round(((idx + 1) / quizData.length) * 100) + '%';
     renderDots();
-    renderResume();
     updateNav();
     tick();
     feather();
@@ -524,6 +523,37 @@
         try { document.body.removeChild(a); URL.revokeObjectURL(url); } catch (e) {}
       }, 500);
     } catch (e) {}
+  }
+
+  function fmtDateId(ts) {
+    try {
+      var dt = new Date(ts);
+      return dt.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+    } catch (e) { return ''; }
+  }
+
+  function downloadResultWord(top, list, cons) {
+    var review = quizData.map(function (q, i) {
+      var ansKey = answers[i];
+      var opt = null;
+      for (var o = 0; o < q.options.length; o++) { if (q.options[o].key === ansKey) { opt = q.options[o]; break; } }
+      var m = ansKey ? meta[ansKey] : null;
+      return { q: q.title, answer: opt ? opt.label : '-', label: m ? m.label : '-' };
+    });
+    if (window.PanduanJurusanExport) {
+      var html = window.PanduanJurusanExport.buildWordDoc({
+        dateStr: fmtDateId(Date.now()),
+        topLabel: top.meta.label, topTitle: top.meta.title, topDesc: top.meta.desc,
+        topScore: top.score, topPercent: top.percent,
+        consLabel: cons.label, consValue: cons.value, consDesc: cons.desc,
+        rows: list.map(function (x) { return { label: x.meta.label, score: x.score, percent: x.percent }; }),
+        whys: top.meta.whys, pros: top.meta.pros, consList: top.meta.cons,
+        jurusan: top.meta.jurusan, coba: top.meta.coba, tanya: top.meta.tanya, review: review
+      });
+      window.PanduanJurusanExport.downloadWord('hasil-evaluasi-kuis.doc', html);
+    } else {
+      downloadTxt('hasil-evaluasi-kuis.txt', buildShareText(top, list, cons));
+    }
   }
 
   /* ---------- dashboard ---------- */
