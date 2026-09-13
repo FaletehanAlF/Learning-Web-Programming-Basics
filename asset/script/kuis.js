@@ -451,6 +451,7 @@
     navEl.style.display = 'none';
     bodyEl.style.display = 'none';
     bodyEl.innerHTML = '';
+    if (footnoteEl) footnoteEl.style.display = 'none';
 
     // scroll
     resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
