@@ -288,15 +288,16 @@
     });
     html += `</div></div>`;
     bodyEl.innerHTML = html;
-    bodyEl.querySelectorAll('.quiz-option').forEach(btn => {
+      bodyEl.querySelectorAll('.quiz-option').forEach(btn => {
       btn.addEventListener('click', () => {
+        if (isAdvancing || resultShown) return;
         const key = btn.getAttribute('data-key');
         answers[idx] = key;
         save();
         render();
         updateNav();
-        // auto advance slightly delayed for parents to see selection
         if (idx < quizData.length - 1) {
+          isAdvancing = true;
           setTimeout(() => {
             if (answers[idx]) {
               idx++;
@@ -305,6 +306,7 @@
               updateNav();
               bodyEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
+            isAdvancing = false;
           }, 320);
         } else {
           updateNav();
