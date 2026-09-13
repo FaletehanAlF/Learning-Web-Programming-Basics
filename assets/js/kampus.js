@@ -1,8 +1,8 @@
-/* Panduan Jurusan — daftar Rekomendasi Kampus (fetch dari data/kampus.json) */
+/* Panduan Jurusan — daftar Rekomendasi Kampus (fetch gabungan data/ptn.json + data/pts.json) */
 (function () {
   'use strict';
 
-  var API_URL = '../data/kampus.json';
+  var API_URLS = ['../data/ptn.json', '../data/pts.json'];
   var FALLBACK_IMG = 'https://picsum.photos/seed/kampus/800/600';
 
   var grid = document.getElementById('kampusGrid');
@@ -125,23 +125,26 @@
   function load() {
     if (!grid) return;
     showSkeleton();
-    fetch(API_URL, { cache: 'no-store' })
-      .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status + ' — file data/kampus.json tidak ditemukan.');
-        return res.json();
-      })
-      .then(function (payload) {
-        allKampus = normalize(payload).filter(function (k) { return k && k.id && k.nama; });
-        if (allKampus.length === 0) throw new Error('Isi data/kampus.json kosong.');
-        applyFilter();
-      })
-      .catch(function (err) {
-        var msg = (err && err.message) ? err.message : 'Tidak diketahui.';
-        if (String(msg).indexOf('Failed to fetch') > -1 || String(msg).indexOf('Load failed') > -1) {
-          msg = 'Fetch diblokir (kemungkinan dibuka via file://). Gunakan Live Server / localhost.';
-        }
-        showError(msg);
-      });
+    Promise.all(API_URLS.map(function (url) {
+      return fetch(url, { cache: 'no-store' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status + ' — ' + url);
+          return res.json();
+        })
+        .then(normalize)
+        .catch(function () { return []; });
+    })).then(function (parts) {
+      allKampus = parts
+        .reduce(function (acc, arr) { return acc.concat(arr); }, [])
+        .filter(function (k) { return k && k.id && k.nama; });
+      if (allKampus.length === 0) {
+        showError('Kedua file API (data/ptn.json & data/pts.json) tidak terbaca atau kosong.');
+        return;
+      }
+      applyFilter();
+    }).catch(function () {
+      showError('Gagal terhubung ke file API. Gunakan Live Server / localhost, bukan double-click file.');
+    });
   }
 
   chips.forEach(function (chip) {
