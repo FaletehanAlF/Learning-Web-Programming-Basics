@@ -17,6 +17,9 @@
     try { if (window.feather) window.feather.replace(); } catch(e){}
   }
 
+  let isAdvancing = false;
+  let resultShown = false;
+
   const quizData = [
     {
       title: 'Kalau ada waktu luang tanpa tugas, anak paling betah ngapain?',
