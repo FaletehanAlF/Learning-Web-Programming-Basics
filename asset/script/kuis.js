@@ -667,7 +667,17 @@
       localStorage.setItem('panduan-jurusan-quiz-filter', top.meta.filter);
     } catch (e) {}
 
-    pushHistory({ ts: Date.now(), top: top.key, score: top.score, percent: top.percent, consistency: cons.value, consistencyLabel: cons.label, scores: scores });
+    pushHistory({
+      ts: Date.now(), top: top.key, score: top.score, percent: top.percent,
+      consistency: cons.value, consistencyLabel: cons.label, scores: scores,
+      detail: {
+        topLabel: top.meta.label, topTitle: top.meta.title, topDesc: top.meta.desc,
+        consDesc: cons.desc,
+        rows: list.map(function (x) { return { label: x.meta.label, score: x.score, percent: x.percent }; }),
+        whys: top.meta.whys, pros: top.meta.pros, consList: top.meta.cons,
+        jurusan: top.meta.jurusan, coba: top.meta.coba, tanya: top.meta.tanya
+      }
+    });
 
     var toJurusan = document.getElementById('resultToJurusan');
     if (toJurusan) toJurusan.addEventListener('click', function () {
