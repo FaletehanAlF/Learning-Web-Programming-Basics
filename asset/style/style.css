@@ -1902,6 +1902,7 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
   .timeline { grid-template-columns: 1fr; }
   .trustbar-inner { justify-content: flex-start; }
   .cta-actions, .result-actions { flex-direction: column; }
+  .result-actions { grid-template-columns: 1fr; }
   .cta-actions .btn, .result-actions .btn { width: 100%; justify-content: center; }
   .stat-row { grid-template-columns: 80px 1fr 36px 36px; gap: 6px; }
   .review-item strong, .review-item span { white-space: normal; }
