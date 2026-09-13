@@ -102,7 +102,7 @@
       ? 'Tiap kampus punya portal admissions sendiri (link website resmi di bawah) — skor di atas estimasi aman dari profil mahasiswa diterima tahun sebelumnya, bukan syarat resmi. Cek deadline, dokumen & biaya terbaru di website resmi karena berubah tiap tahun.'
       : (isPTS
       ? 'PTS tidak memakai UTBK sebagai syarat wajib — seleksi lewat rapor/tes mandiri kampus. Prestasi di bawah ini berguna untuk merebut beasiswa masuk.'
-      : 'Skor di atas adalah ESTIMASI aman dari pola tahun sebelumnya — SNPMB tidak pernah merilis passing grade resmi. Syarat SNBP: nilai rapor 5 semester + maks. 3 sertifikat prestasi terbaik. Selalu verifikasi syarat terbaru di website resmi kampus & portal SNPMB.';
+      : 'Skor di atas adalah ESTIMASI aman dari pola tahun sebelumnya — SNPMB tidak pernah merilis passing grade resmi. Syarat SNBP: nilai rapor 5 semester + maks. 3 sertifikat prestasi terbaik. Selalu verifikasi syarat terbaru di website resmi kampus & portal SNPMB.');
     var fasilitas = Array.isArray(k.fasilitas) ? k.fasilitas.map(function (x) { return li('check', x); }).join('') : '';
     var mapsUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((k.nama || '') + ' ' + (k.kota || ''));
     var shareText = 'Info kampus ' + (k.nama || '') + ' (' + (k.kota || '') + ') — ' + (k.deskripsi_singkat || '')
