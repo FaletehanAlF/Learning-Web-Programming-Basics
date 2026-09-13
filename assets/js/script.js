@@ -59,10 +59,11 @@
         navToggle.focus();
       }
     });
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 900 && navMenu.classList.contains('is-open')) {
-        setMenuOpen(false);
-      }
+    // Hamburger berlaku di semua perangkat: tutup saat klik di luar menu
+    document.addEventListener('click', (event) => {
+      if (!navMenu.classList.contains('is-open')) return;
+      if (navMenu.contains(event.target) || navToggle.contains(event.target)) return;
+      setMenuOpen(false);
     });
   }
 
