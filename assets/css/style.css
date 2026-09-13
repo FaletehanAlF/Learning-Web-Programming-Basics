@@ -2303,3 +2303,12 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 [data-theme="dark"] .detail-hero-media img {
   filter: brightness(0.92);
 }
+
+/* ===== Performa: tunda render seksi bawah-lipat (aman: browser modern saja) ===== */
+.section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+@media print {
+  .section { content-visibility: visible; }
+}
