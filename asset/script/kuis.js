@@ -1,27 +1,54 @@
 (function () {
   'use strict';
 
-  const bodyEl = document.getElementById('quizFullBody');
-  const prevBtn = document.getElementById('quizFullPrev');
-  const nextBtn = document.getElementById('quizFullNext');
-  const stepEl = document.getElementById('quizFullStep');
-  const barEl = document.getElementById('quizFullBar');
-  const percentEl = document.getElementById('quizFullPercent');
-  const resultEl = document.getElementById('quizFullResult');
-  const headEl = document.getElementById('quizFullHead');
-  const navEl = document.getElementById('quizFullNav');
-  const footnoteEl = document.querySelector('.quiz-footnote');
+  var bodyEl = document.getElementById('quizFullBody');
+  var prevBtn = document.getElementById('quizFullPrev');
+  var nextBtn = document.getElementById('quizFullNext');
+  var nextLabel = document.getElementById('quizFullNextLabel');
+  var stepEl = document.getElementById('quizFullStep');
+  var barEl = document.getElementById('quizFullBar');
+  var percentEl = document.getElementById('quizFullPercent');
+  var resultEl = document.getElementById('quizFullResult');
+  var headEl = document.getElementById('quizFullHead');
+  var navEl = document.getElementById('quizFullNav');
+  var wrapEl = document.getElementById('quizFullWrap');
+  var dotsEl = document.getElementById('quizDots');
+  var timeEl = document.getElementById('quizFullTime');
+  var footnoteEl = document.getElementById('quizFootnote');
+  var dashStatsEl = document.getElementById('dashStats');
+  var dashAvgEl = document.getElementById('dashAvg');
+  var dashHistEl = document.getElementById('dashHistory');
+  var dashResumeEl = document.getElementById('dashResume');
+  var dashClearBtn = document.getElementById('dashClear');
 
   if (!bodyEl || !prevBtn || !nextBtn) return;
 
+  var prefersReduced = false;
+  try { prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+
   function feather() {
-    try { if (window.feather) window.feather.replace(); } catch(e){}
+    try { if (window.feather) window.feather.replace(); } catch (e) {}
   }
 
-  let isAdvancing = false;
-  let resultShown = false;
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
 
-  const quizData = [
+  function scrollToEl(el) {
+    if (!el) return;
+    try {
+      el.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+    } catch (e) {
+      el.scrollIntoView();
+    }
+  }
+
+  var isAdvancing = false;
+  var resultShown = false;
+
+  var quizData = [
     {
       title: 'Kalau ada waktu luang tanpa tugas, anak paling betah ngapain?',
       hint: 'Pilih yang paling sering dilakukan, bukan yang paling keren menurut orang lain.',
@@ -134,7 +161,7 @@
     },
   ];
 
-  const meta = {
+  var meta = {
     teknologi: {
       label: 'Teknologi',
       title: 'Rumpun Teknologi — Logis & Problem Solver',
@@ -149,7 +176,7 @@
       cons: ['Butuh jam terbang & portofolio, bukan hanya nilai', 'Harus nyaman duduk lama & update teknologi terus'],
       jurusan: [
         { name: 'Teknik Informatika', sub: 'Bikin aplikasi, website, AI', p: 'Cocok jika suka logika & debug. Banyak tugas proyek.' },
-        { name: 'Sistem Informasi', sub: 'Teknologi + bisnis', p: 'Pas jika suka atur sistem agar rapi &kepakai orang.' },
+        { name: 'Sistem Informasi', sub: 'Teknologi + bisnis', p: 'Pas jika suka atur sistem agar rapi & kepakai orang.' },
         { name: 'DKV / UI-UX (irisan kreatif)', sub: 'Desain aplikasi', p: 'Opsi jika suka teknologi tapi juga visual.' },
       ],
       coba: 'Ikut kelas gratis 2 minggu (logika pemrograman atau bikin landing page 1 halaman), lalu tanya: masih betah ngulik 3 jam tanpa disuruh?',
@@ -247,265 +274,550 @@
     }
   };
 
-  const ORDER = ['teknologi','kesehatan','soshum','bisnis','kreatif'];
+  var ORDER = ['teknologi', 'kesehatan', 'soshum', 'bisnis', 'kreatif'];
 
-  let idx = 0;
-  let answers = Array(quizData.length).fill(null);
-  const STORAGE_KEY = 'panduan-jurusan-kuis-10';
+  var idx = 0;
+  var answers = Array(quizData.length).fill(null);
+  var startedAt = Date.now();
+  var timerId = null;
+  var STORAGE_KEY = 'panduan-jurusan-kuis-10';
+  var HISTORY_KEY = 'panduan-jurusan-kuis-10-history';
 
   function save() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, idx })); } catch(e){}
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ answers: answers, idx: idx, startedAt: startedAt })); } catch (e) {}
   }
+
   function load() {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
+      var raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return;
-      const d = JSON.parse(raw);
-      if (Array.isArray(d.answers) && d.answers.length === quizData.length) {
+      var d = JSON.parse(raw);
+      if (d && Array.isArray(d.answers) && d.answers.length === quizData.length) {
         answers = d.answers;
-        if (typeof d.idx === 'number' && d.idx >=0 && d.idx < quizData.length) idx = d.idx;
+        if (typeof d.idx === 'number' && d.idx >= 0 && d.idx < quizData.length) idx = d.idx;
+        if (typeof d.startedAt === 'number' && d.startedAt > 0) startedAt = d.startedAt;
       }
-    } catch(e){}
+    } catch (e) {}
   }
-  load();
 
+  function getHistory() {
+    try {
+      var raw = localStorage.getItem(HISTORY_KEY);
+      if (!raw) return [];
+      var d = JSON.parse(raw);
+      return Array.isArray(d) ? d : [];
+    } catch (e) { return []; }
+  }
+
+  function saveHistory(h) {
+    try { localStorage.setItem(HISTORY_KEY, JSON.stringify(h.slice(0, 20))); } catch (e) {}
+  }
+
+  function pushHistory(entry) {
+    var h = getHistory();
+    h.unshift(entry);
+    saveHistory(h);
+    return h;
+  }
+
+  function fmtDate(ts) {
+    try {
+      var dt = new Date(ts);
+      var date = dt.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+      var time = dt.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+      return date + ' • ' + time;
+    } catch (e) { return ''; }
+  }
+
+  function fmtElapsed(ms) {
+    var s = Math.max(0, Math.floor(ms / 1000));
+    var m = Math.floor(s / 60);
+    var r = s % 60;
+    return (m < 10 ? '0' + m : '' + m) + ':' + (r < 10 ? '0' + r : '' + r);
+  }
+
+  function answeredCount() {
+    var n = 0;
+    for (var i = 0; i < answers.length; i++) { if (answers[i] !== null) n++; }
+    return n;
+  }
+
+  function tick() {
+    if (!timeEl || resultShown) return;
+    try { timeEl.textContent = fmtElapsed(Date.now() - startedAt) + ' • ' + answeredCount() + '/10 terjawab'; } catch (e) {}
+  }
+
+  function startTimer() {
+    if (timerId) return;
+    tick();
+    try { timerId = window.setInterval(tick, 1000); } catch (e) { timerId = null; }
+  }
+
+  function stopTimer() {
+    if (timerId) { try { window.clearInterval(timerId); } catch (e) {} timerId = null; }
+  }
+
+  /* ---------- render pertanyaan ---------- */
   function render() {
-    const q = quizData[idx];
-    const sel = answers[idx];
-    let html = `<div class="quiz-q-card">`;
-    html += `<p class="quiz-q-number">Pertanyaan ${idx+1} dari ${quizData.length}</p>`;
-    html += `<h2 class="quiz-q-title">${q.title}</h2>`;
-    html += `<p class="quiz-q-hint">${q.hint}</p>`;
-    html += `<div class="quiz-options" role="radiogroup" aria-label="${q.title}">`;
-    q.options.forEach((opt, i) => {
-      const letter = String.fromCharCode(65+i);
-      const isSel = sel === opt.key;
-      html += `<button type="button" class="quiz-option ${isSel ? 'is-selected' : ''}" data-key="${opt.key}" role="radio" aria-checked="${isSel?'true':'false'}">
-        <input type="radio" name="q${idx}" value="${opt.key}" ${isSel?'checked':''} tabindex="-1" aria-hidden="true">
-        <span class="quiz-option-letter">${letter}</span>
-        <span class="quiz-option-text"><strong>${opt.label}</strong><span>${opt.sub}</span></span>
-        <span class="quiz-option-check" aria-hidden="true"><i data-feather="check"></i></span>
-      </button>`;
+    var q = quizData[idx];
+    if (!q) return;
+    var sel = answers[idx];
+    var html = '<div class="quiz-q-card">';
+    html += '<p class="quiz-q-number">Pertanyaan ' + (idx + 1) + ' dari ' + quizData.length + '</p>';
+    html += '<h2 class="quiz-q-title">' + esc(q.title) + '</h2>';
+    html += '<p class="quiz-q-hint">' + esc(q.hint) + '</p>';
+    html += '<div class="quiz-options" role="radiogroup" aria-label="' + esc(q.title) + '">';
+    q.options.forEach(function (opt, i) {
+      var letter = String.fromCharCode(65 + i);
+      var isSel = sel === opt.key;
+      html += '<button type="button" class="quiz-option' + (isSel ? ' is-selected' : '') + '" data-key="' + esc(opt.key) + '" role="radio" aria-checked="' + (isSel ? 'true' : 'false') + '">'
+        + '<input type="radio" name="q' + idx + '" value="' + esc(opt.key) + '"' + (isSel ? ' checked' : '') + ' tabindex="-1" aria-hidden="true">'
+        + '<span class="quiz-option-letter">' + letter + '</span>'
+        + '<span class="quiz-option-text"><strong>' + esc(opt.label) + '</strong><span>' + esc(opt.sub) + '</span></span>'
+        + '<span class="quiz-option-check" aria-hidden="true"><i data-feather="check"></i></span>'
+        + '</button>';
     });
-    html += `</div></div>`;
+    html += '</div></div>';
     bodyEl.innerHTML = html;
-    bodyEl.querySelectorAll('.quiz-option').forEach(btn => {
-      btn.addEventListener('click', () => {
-        if (isAdvancing || resultShown) return;
-        const key = btn.getAttribute('data-key');
-        answers[idx] = key;
-        save();
-        render();
-        updateNav();
-        if (idx < quizData.length - 1) {
-          isAdvancing = true;
-          setTimeout(() => {
-            if (answers[idx]) {
-              idx++;
-              save();
-              render();
-              updateNav();
-              bodyEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-            isAdvancing = false;
-          }, 320);
-        } else {
-          updateNav();
-        }
-      });
-    });
-    if (stepEl) stepEl.textContent = `${idx+1} dari ${quizData.length}`;
-    if (barEl) barEl.style.width = `${((idx+1)/quizData.length)*100}%`;
-    if (percentEl) percentEl.textContent = `${Math.round(((idx+1)/quizData.length)*100)}%`;
-    feather();
+
+    var btns = bodyEl.querySelectorAll('.quiz-option');
+    for (var b = 0; b < btns.length; b++) {
+      (function (btn) {
+        btn.addEventListener('click', function () {
+          if (isAdvancing || resultShown) return;
+          var key = btn.getAttribute('data-key');
+          if (!key) return;
+          answers[idx] = key;
+          save();
+          render();
+          if (idx < quizData.length - 1) {
+            isAdvancing = true;
+            window.setTimeout(function () {
+              try {
+                if (answers[idx] && idx < quizData.length - 1) {
+                  idx++;
+                  save();
+                  render();
+                  scrollToEl(wrapEl);
+                }
+              } finally {
+                isAdvancing = false;
+              }
+            }, 320);
+          }
+        });
+      })(btns[b]);
+    }
+
+    if (stepEl) stepEl.textContent = (idx + 1) + ' dari ' + quizData.length;
+    if (barEl) barEl.style.width = (((idx + 1) / quizData.length) * 100) + '%';
+    if (percentEl) percentEl.textContent = Math.round(((idx + 1) / quizData.length) * 100) + '%';
+    renderDots();
     updateNav();
+    tick();
+    feather();
   }
 
-  function updateNav() {
-    prevBtn.disabled = idx === 0;
-    const has = answers[idx] !== null;
-    const iconHTML = '<i data-feather="arrow-right" aria-hidden="true"></i>';
-    if (idx === quizData.length - 1) {
-      nextBtn.innerHTML = has ? 'Lihat Hasil Analisis ' + iconHTML : 'Pilih jawaban dulu ' + iconHTML;
-      nextBtn.disabled = !has;
-    } else {
-      nextBtn.innerHTML = 'Selanjutnya ' + iconHTML;
-      nextBtn.disabled = !has;
+  function renderDots() {
+    if (!dotsEl) return;
+    var html = '';
+    for (var i = 0; i < quizData.length; i++) {
+      var cls = 'quiz-dot';
+      if (answers[i] !== null) cls += ' is-done';
+      if (i === idx) cls += ' is-current';
+      html += '<button type="button" class="' + cls + '" data-i="' + i + '" role="tab" aria-selected="' + (i === idx ? 'true' : 'false') + '" aria-label="Soal ' + (i + 1) + (answers[i] !== null ? ' (terjawab)' : '') + '">' + (i + 1) + '</button>';
     }
-    feather();
+    dotsEl.innerHTML = html;
+    var dots = dotsEl.querySelectorAll('.quiz-dot');
+    for (var d = 0; d < dots.length; d++) {
+      (function (dot) {
+        dot.addEventListener('click', function () {
+          if (isAdvancing || resultShown) return;
+          var i = parseInt(dot.getAttribute('data-i'), 10);
+          if (isNaN(i) || i < 0 || i >= quizData.length) return;
+          idx = i;
+          save();
+          render();
+        });
+      })(dots[d]);
+    }
+  }
+
+  var lastNavLabel = '';
+  function updateNav() {
+    prevBtn.disabled = idx === 0 || isAdvancing;
+    var has = answers[idx] !== null;
+    var label = idx === quizData.length - 1 ? (has ? 'Lihat Hasil Analisis' : 'Pilih jawaban dulu') : 'Selanjutnya';
+    if (label !== lastNavLabel) {
+      if (nextLabel) nextLabel.textContent = label;
+      else nextBtn.textContent = label;
+      lastNavLabel = label;
+      feather();
+    }
+    nextBtn.disabled = !has || isAdvancing;
   }
 
   function computeScores() {
-    const scores = { teknologi:0, kesehatan:0, soshum:0, bisnis:0, kreatif:0 };
-    answers.forEach(k => { if (k && scores.hasOwnProperty(k)) scores[k]++; });
-    const total = quizData.length;
-    const list = ORDER.map(k => ({
-      key: k,
-      score: scores[k],
-      percent: Math.round(scores[k]/total*100),
-      meta: meta[k]
-    })).sort((a,b) => b.score - a.score || ORDER.indexOf(a.key) - ORDER.indexOf(b.key));
-    return { scores, list, total };
+    var scores = { teknologi: 0, kesehatan: 0, soshum: 0, bisnis: 0, kreatif: 0 };
+    answers.forEach(function (k) { if (k && scores.hasOwnProperty(k)) scores[k]++; });
+    var total = quizData.length;
+    var list = ORDER.map(function (k) {
+      return { key: k, score: scores[k], percent: Math.round(scores[k] / total * 100), meta: meta[k] };
+    }).sort(function (a, b) { return b.score - a.score || ORDER.indexOf(a.key) - ORDER.indexOf(b.key); });
+    return { scores: scores, list: list, total: total };
   }
 
+  function consistencyInfo(top, list, total) {
+    var consistency = Math.round(top.score / total * 100);
+    var label = 'Menyebar';
+    var desc = 'Jawaban tersebar ke beberapa rumpun — wajar di usia SMA. Fokus eksplor 2 rumpun tertinggi dulu.';
+    if (top.score >= 5) { label = 'Cukup bulat'; desc = 'Lebih dari separuh jawaban mengarah ke 1 rumpun — sinyal minat yang cukup konsisten.'; }
+    if (top.score >= 7) { label = 'Sangat bulat'; desc = 'Dominan jelas. Tetap cek rumpun kedua sebagai opsi cadangan.'; }
+    if (top.score <= 3 && list.filter(function (x) { return x.score >= 2; }).length >= 3) { label = 'Menyebar'; }
+    return { value: consistency, label: label, desc: desc };
+  }
+
+  function buildShareText(top, list, cons) {
+    var lines = [];
+    lines.push('Hasil Kuis Minat 10 Soal — Panduan Jurusan');
+    lines.push('');
+    lines.push('Skor tertinggi: ' + top.meta.title + ' (' + top.score + '/10, ' + top.percent + '%)');
+    lines.push(top.meta.desc);
+    lines.push('');
+    lines.push('Rincian skor:');
+    list.forEach(function (x) { lines.push('- ' + x.meta.label + ': ' + x.score + '/10 (' + x.percent + '%)'); });
+    lines.push('');
+    lines.push('Konsistensi: ' + cons.label + ' (' + cons.value + '% dominan)');
+    lines.push('Rekomendasi: ' + top.meta.jurusan.map(function (j) { return j.name; }).join(', '));
+    lines.push('');
+    lines.push('Lihat kuis: ' + location.href);
+    lines.push('');
+    lines.push('Yuk diskusikan bareng anak — tanya "bagian mana yang paling bikin betah?"');
+    return lines.join('\n');
+  }
+
+  function copyText(text, btn) {
+    function done(ok) {
+      if (!btn) return;
+      var original = btn.getAttribute('data-label') || btn.innerHTML;
+      btn.setAttribute('data-label', original);
+      btn.innerHTML = ok ? '<i data-feather="check" aria-hidden="true"></i> Tersalin!' : '<i data-feather="alert-circle" aria-hidden="true"></i> Gagal menyalin';
+      feather();
+      window.setTimeout(function () { btn.innerHTML = original; feather(); }, 1800);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function () { done(true); }, function () { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        done(!!ok);
+      } catch (e) { done(false); }
+    }
+  }
+
+  function downloadTxt(filename, text) {
+    try {
+      var blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      window.setTimeout(function () {
+        try { document.body.removeChild(a); URL.revokeObjectURL(url); } catch (e) {}
+      }, 500);
+    } catch (e) {}
+  }
+
+  /* ---------- dashboard ---------- */
+  function renderDashboard() {
+    var history = getHistory();
+
+    if (dashResumeEl) {
+      var n = answeredCount();
+      if (!resultShown && n > 0 && n < quizData.length) {
+        dashResumeEl.innerHTML = '<div class="dash-resume"><i data-feather="play" aria-hidden="true"></i><span><strong>Lanjutkan kuis?</strong> Sudah ' + n + '/10 terjawab (soal ' + (idx + 1) + ').</span><button class="btn btn-primary btn-sm" id="dashResumeBtn" type="button">Lanjutkan</button></div>';
+        var rb = document.getElementById('dashResumeBtn');
+        if (rb) rb.addEventListener('click', function () { restoreQuizView(); scrollToEl(wrapEl); });
+      } else {
+        dashResumeEl.innerHTML = '';
+      }
+    }
+
+    if (dashStatsEl) {
+      if (!history.length) {
+        dashStatsEl.innerHTML =
+          '<div class="dash-card"><small>Percobaan</small><strong>0</strong><span>Selesaikan kuis untuk mengisi dashboard.</span></div>' +
+          '<div class="dash-card"><small>Dominan tersering</small><strong>—</strong><span>Belum ada data.</span></div>' +
+          '<div class="dash-card"><small>Rata-rata dominansi</small><strong>—</strong><span>Belum ada data.</span></div>' +
+          '<div class="dash-card"><small>Terakhir</small><strong>—</strong><span>Belum ada data.</span></div>';
+      } else {
+        var freq = {};
+        var domSum = 0;
+        history.forEach(function (h) {
+          freq[h.top] = (freq[h.top] || 0) + 1;
+          if (typeof h.consistency === 'number') domSum += h.consistency;
+        });
+        var fav = Object.keys(freq).sort(function (a, b) { return freq[b] - freq[a]; })[0];
+        var favLabel = (meta[fav] && meta[fav].label) || fav;
+        var avgDom = Math.round(domSum / history.length);
+        var last = history[0];
+        var lastLabel = (meta[last.top] && meta[last.top].label) || last.top;
+        dashStatsEl.innerHTML =
+          '<div class="dash-card"><small>Percobaan</small><strong>' + history.length + '×</strong><span>Tersimpan di perangkat ini.</span></div>' +
+          '<div class="dash-card"><small>Dominan tersering</small><strong>' + esc(favLabel) + '</strong><span>' + freq[fav] + '× dari ' + history.length + ' percobaan.</span></div>' +
+          '<div class="dash-card"><small>Rata-rata dominansi</small><strong>' + avgDom + '%</strong><span>Persentase skor tertinggi.</span></div>' +
+          '<div class="dash-card"><small>Terakhir</small><strong>' + esc(lastLabel) + '</strong><span>' + last.score + '/10 • ' + esc(last.consistencyLabel || '') + '</span></div>';
+      }
+    }
+
+    if (dashAvgEl) {
+      if (!history.length) {
+        dashAvgEl.innerHTML = '<div class="dash-empty">Belum ada data. Selesaikan kuis 10 soal — grafik rata-rata akan muncul di sini.</div>';
+      } else {
+        var sums = { teknologi: 0, kesehatan: 0, soshum: 0, bisnis: 0, kreatif: 0 };
+        history.forEach(function (h) {
+          ORDER.forEach(function (k) { if (h.scores && typeof h.scores[k] === 'number') sums[k] += h.scores[k]; });
+        });
+        var avgs = ORDER.map(function (k) { return { key: k, avg: sums[k] / history.length }; });
+        var total = avgs.reduce(function (a, x) { return a + x.avg; }, 0);
+        var acc = 0;
+        var stops = avgs.map(function (x) {
+          var p = total > 0 ? (x.avg / total) * 100 : 0;
+          var s = { key: x.key, from: acc, to: acc + p };
+          acc += p;
+          return s;
+        });
+        var donut = total > 0
+          ? 'background: conic-gradient(' + stops.map(function (s) { return meta[s.key].color + ' ' + s.from.toFixed(1) + '% ' + s.to.toFixed(1) + '%'; }).join(', ') + ');'
+          : 'background: var(--line-soft);';
+        var html = '<div class="dash-donut-wrap"><span class="dash-donut" style="' + donut + '" role="img" aria-label="Donut rata-rata skor"></span><div class="dash-legend">';
+        avgs.forEach(function (x) {
+          var pct = total > 0 ? Math.round((x.avg / total) * 100) : 0;
+          html += '<span><i style="background:' + meta[x.key].color + '"></i>' + esc(meta[x.key].label) + ' ' + pct + '%</span>';
+        });
+        html += '</div></div>';
+        avgs.slice().sort(function (a, b) { return b.avg - a.avg; }).forEach(function (x) {
+          var pct10 = Math.round((x.avg / 10) * 100);
+          html += '<div class="dash-avg-row"><span class="stat-label">' + esc(meta[x.key].label) + '</span>'
+            + '<div class="stat-bar-track"><span class="stat-bar-fill" style="width:' + pct10 + '%; background:' + meta[x.key].color + '"></span></div>'
+            + '<span class="stat-percent">' + x.avg.toFixed(1) + '</span></div>';
+        });
+        dashAvgEl.innerHTML = html;
+      }
+    }
+
+    if (dashHistEl) {
+      if (!history.length) {
+        dashHistEl.innerHTML = '<div class="dash-empty">Riwayat kosong. Hasil tiap percobaan tercatat otomatis setelah kuis selesai.</div>';
+      } else {
+        var hh = '<div class="dash-hist">';
+        history.forEach(function (h, i) {
+          var label = (meta[h.top] && meta[h.top].label) || h.top;
+          hh += '<div class="dash-hist-row"><div class="dash-hist-main"><strong>' + esc(label) + ' • ' + h.score + '/10</strong>'
+            + '<span>' + esc(fmtDate(h.ts)) + ' • ' + esc(h.consistencyLabel || '') + '</span></div>'
+            + '<span class="dash-hist-badge">' + h.percent + '%</span>'
+            + '<button type="button" class="dash-hist-del" data-hdel="' + i + '" aria-label="Hapus catatan ' + esc(label) + '"><i data-feather="trash-2" aria-hidden="true"></i></button></div>';
+        });
+        hh += '</div>';
+        dashHistEl.innerHTML = hh;
+        var dels = dashHistEl.querySelectorAll('[data-hdel]');
+        for (var d = 0; d < dels.length; d++) {
+          (function (btn) {
+            btn.addEventListener('click', function () {
+              var i = parseInt(btn.getAttribute('data-hdel'), 10);
+              var h = getHistory();
+              if (!isNaN(i) && i >= 0 && i < h.length) { h.splice(i, 1); saveHistory(h); renderDashboard(); }
+            });
+          })(dels[d]);
+        }
+      }
+    }
+    feather();
+  }
+
+  /* ---------- hasil ---------- */
   function showResult() {
     if (resultShown) return;
     resultShown = true;
-    const { scores, list, total } = computeScores();
-    const top = list[0];
-    const second = list[1];
-    const consistency = Math.round(top.score/total*100);
-    let consistencyLabel = 'Menyebar';
-    let consistencyDesc = 'Jawaban tersebar ke beberapa rumpun — wajar di usia SMA. Fokus eksplor 2 rumpun tertinggi dulu.';
-    if (top.score >= 5) { consistencyLabel = 'Cukup bulat'; consistencyDesc = 'Lebih dari separuh jawaban mengarah ke 1 rumpun — sinyal minat yang cukup konsisten.'; }
-    if (top.score >= 7) { consistencyLabel = 'Sangat bulat'; consistencyDesc = 'Dominan jelas. Tetap cek rumpun kedua sebagai opsi cadangan.'; }
-    if (top.score <= 3 && list.filter(x=>x.score>=2).length >=3) { consistencyLabel = 'Menyebar'; }
+    stopTimer();
+    var computed = computeScores();
+    var list = computed.list;
+    var total = computed.total;
+    var scores = computed.scores;
+    var top = list[0];
+    var second = list[1];
+    var cons = consistencyInfo(top, list, total);
+    var shareText = buildShareText(top, list, cons);
 
-    // Build result HTML
-    let html = `<div class="result-head">`;
-    html += `<span class="quiz-badge">Hasil analisis — untuk bahan ngobrol</span>`;
-    html += `<h2><span class="result-icon" style="background:${top.meta.color}"><i data-feather="${top.meta.icon}"></i></span> ${top.meta.title}</h2>`;
-    html += `<p class="result-desc">${top.meta.desc}</p>`;
-    html += `<div class="result-score-main">`;
-    html += `<div class="score-big"><strong>${top.score}</strong><span>/10</span></div>`;
-    html += `<div class="score-big-meta"><b>${top.percent}%</b> jawaban ke ${top.meta.label} • ${consistencyLabel}</div>`;
-    html += `</div></div>`;
+    var html = '<div class="result-head">';
+    html += '<span class="quiz-badge">Hasil analisis — untuk bahan ngobrol</span>';
+    html += '<h2><span class="result-icon" style="background:' + top.meta.color + '"><i data-feather="' + top.meta.icon + '"></i></span> ' + esc(top.meta.title) + '</h2>';
+    html += '<p class="result-desc">' + esc(top.meta.desc) + '</p>';
+    html += '<div class="result-score-main">';
+    html += '<div class="score-big"><strong>' + top.score + '</strong><span>/10</span></div>';
+    html += '<div class="score-big-meta"><b>' + top.percent + '%</b> jawaban ke ' + esc(top.meta.label) + ' • ' + esc(cons.label) + '</div>';
+    html += '</div></div>';
 
-    // Stats - bar chart
-    html += `<div class="result-stats">`;
-    html += `<h3><i data-feather="bar-chart-2" aria-hidden="true"></i> Skor per rumpun</h3>`;
-    html += `<p class="result-stats-desc">Batang = jumlah jawaban (${total} soal). Persentase di kanan.</p>`;
-    html += `<div class="stats-bars">`;
-    list.forEach(item => {
-      const isTop = item.key === top.key;
-      html += `<div class="stat-row ${isTop ? 'is-top' : ''}">`;
-      html += `<span class="stat-label">${item.meta.label}</span>`;
-      html += `<div class="stat-bar-track"><span class="stat-bar-fill" style="width:${item.percent}%; background:${item.meta.color}"></span></div>`;
-      html += `<span class="stat-score"><b>${item.score}</b>/10</span>`;
-      html += `<span class="stat-percent">${item.percent}%</span>`;
-      html += `</div>`;
+    html += '<div class="result-stats">';
+    html += '<h3><i data-feather="bar-chart-2" aria-hidden="true"></i> Skor per rumpun</h3>';
+    html += '<p class="result-stats-desc">Batang = jumlah jawaban (' + total + ' soal). Persentase di kanan.</p>';
+    html += '<div class="stats-bars">';
+    list.forEach(function (item) {
+      var isTop = item.key === top.key;
+      html += '<div class="stat-row' + (isTop ? ' is-top' : '') + '">';
+      html += '<span class="stat-label">' + esc(item.meta.label) + '</span>';
+      html += '<div class="stat-bar-track"><span class="stat-bar-fill" style="width:' + item.percent + '%; background:' + item.meta.color + '"></span></div>';
+      html += '<span class="stat-score"><b>' + item.score + '</b>/10</span>';
+      html += '<span class="stat-percent">' + item.percent + '%</span>';
+      html += '</div>';
     });
-    html += `</div>`;
-    html += `<div class="stat-consistency"><span class="cons-badge">${consistencyLabel} • ${consistency}% dominan</span><p>${consistencyDesc}</p></div>`;
-    html += `</div>`;
+    html += '</div>';
+    html += '<div class="stat-consistency"><span class="cons-badge">' + esc(cons.label) + ' • ' + cons.value + '% dominan</span><p>' + esc(cons.desc) + '</p></div>';
+    html += '</div>';
 
-    // Why cocok
-    html += `<div class="result-why">`;
-    html += `<h3><i data-feather="check-circle" aria-hidden="true"></i> Kenapa ${top.meta.label} terlihat cocok?</h3>`;
-    html += `<p class="result-why-intro">Diambil dari pola 10 jawaban — bukan satu soal saja.</p>`;
-    html += `<ol class="why-list">`;
-    top.meta.whys.forEach((w, i) => { html += `<li><span class="why-num">${i+1}</span><span>${w}</span></li>`; });
-    html += `</ol>`;
-    html += `<div class="why-procons"><div><strong><i data-feather="thumbs-up" aria-hidden="true"></i> Kelebihan jika lanjut</strong><ul>${top.meta.pros.map(p=>`<li>${p}</li>`).join('')}</ul></div><div><strong><i data-feather="alert-circle" aria-hidden="true"></i> Tantangan jujur</strong><ul>${top.meta.cons.map(c=>`<li>${c}</li>`).join('')}</ul></div></div>`;
-    html += `</div>`;
+    html += '<div class="result-why">';
+    html += '<h3><i data-feather="check-circle" aria-hidden="true"></i> Kenapa ' + esc(top.meta.label) + ' terlihat cocok?</h3>';
+    html += '<p class="result-why-intro">Diambil dari pola 10 jawaban — bukan satu soal saja.</p>';
+    html += '<ol class="why-list">';
+    top.meta.whys.forEach(function (w, i) { html += '<li><span class="why-num">' + (i + 1) + '</span><span>' + esc(w) + '</span></li>'; });
+    html += '</ol>';
+    html += '<div class="why-procons"><div><strong><i data-feather="thumbs-up" aria-hidden="true"></i> Kelebihan jika lanjut</strong><ul>' + top.meta.pros.map(function (p) { return '<li>' + esc(p) + '</li>'; }).join('') + '</ul></div><div><strong><i data-feather="alert-circle" aria-hidden="true"></i> Tantangan jujur</strong><ul>' + top.meta.cons.map(function (c) { return '<li>' + esc(c) + '</li>'; }).join('') + '</ul></div></div>';
+    html += '</div>';
 
-    // Runner up if second score >=2
     if (second.score >= 2 && second.key !== top.key) {
-      html += `<div class="result-second">`;
-      html += `<h3><i data-feather="layers" aria-hidden="true"></i> Rumpun kedua: ${second.meta.label} (${second.score}/10)</h3>`;
-      html += `<p>${second.meta.desc}</p>`;
-      html += `<small>Jika anak ragu di ${top.meta.label}, ${second.meta.label} bisa jadi opsi cadangan atau kombinasi (mis. ${top.meta.label} + ${second.meta.label}).</small>`;
-      html += `</div>`;
+      html += '<div class="result-second">';
+      html += '<h3><i data-feather="layers" aria-hidden="true"></i> Rumpun kedua: ' + esc(second.meta.label) + ' (' + second.score + '/10)</h3>';
+      html += '<p>' + esc(second.meta.desc) + '</p>';
+      html += '<small>Jika anak ragu di ' + esc(top.meta.label) + ', ' + esc(second.meta.label) + ' bisa jadi opsi cadangan atau kombinasi (mis. ' + esc(top.meta.label) + ' + ' + esc(second.meta.label) + ').</small>';
+      html += '</div>';
     }
 
-    // Jurusan recommendations
-    html += `<div class="result-jurusan">`;
-    html += `<h3><i data-feather="layout" aria-hidden="true"></i> Jurusan yang bisa dilihat dulu</h3>`;
-    html += `<p class="result-jurusan-desc">Bukan harus pilih ini — tapi 3 ini paling nyambung dengan pola jawaban. Klik untuk filter katalog di beranda.</p>`;
-    html += `<div class="result-jurusan-grid">`;
-    top.meta.jurusan.forEach(j => {
-      html += `<article class="result-jurusan-card"><span class="label">${top.meta.label}</span><h4>${j.name}</h4><small>${j.sub}</small><p>${j.p}</p></article>`;
+    html += '<div class="result-jurusan">';
+    html += '<h3><i data-feather="layout" aria-hidden="true"></i> Jurusan yang bisa dilihat dulu</h3>';
+    html += '<p class="result-jurusan-desc">Bukan harus pilih ini — tapi 3 ini paling nyambung dengan pola jawaban. Klik untuk filter katalog di beranda.</p>';
+    html += '<div class="result-jurusan-grid">';
+    top.meta.jurusan.forEach(function (j) {
+      html += '<article class="result-jurusan-card"><span class="label">' + esc(top.meta.label) + '</span><h4>' + esc(j.name) + '</h4><small>' + esc(j.sub) + '</small><p>' + esc(j.p) + '</p></article>';
     });
-    html += `</div></div>`;
+    html += '</div></div>';
 
-    // Coba 2 minggu
-    html += `<div class="result-try">`;
-    html += `<h3><i data-feather="clock" aria-hidden="true"></i> Langkah coba 2 minggu</h3>`;
-    html += `<p>${top.meta.coba}</p>`;
-    html += `<div class="try-questions"><strong>Tanya ke anak setelah coba:</strong><ul>${top.meta.tanya.map(t=>`<li>“${t}”</li>`).join('')}</ul></div>`;
-    html += `</div>`;
+    html += '<div class="result-try">';
+    html += '<h3><i data-feather="clock" aria-hidden="true"></i> Langkah coba 2 minggu</h3>';
+    html += '<p>' + esc(top.meta.coba) + '</p>';
+    html += '<div class="try-questions"><strong>Tanya ke anak setelah coba:</strong><ul>' + top.meta.tanya.map(function (t) { return '<li>“' + esc(t) + '”</li>'; }).join('') + '</ul></div>';
+    html += '</div>';
 
-    // Answers review
-    html += `<div class="result-review">`;
-    html += `<h3><i data-feather="list" aria-hidden="true"></i> Rincian jawaban (10 soal)</h3>`;
-    html += `<div class="review-list">`;
-    quizData.forEach((q, i) => {
-      const ansKey = answers[i];
-      const opt = q.options.find(o=>o.key===ansKey);
-      const m = ansKey ? meta[ansKey] : null;
-      html += `<div class="review-item"><span class="review-num">${i+1}</span><div><strong>${q.title}</strong><span>Jawab: ${opt ? opt.label : '-'} • ${m ? m.label : ''}</span></div><span class="review-badge" style="background:${m?m.color:'#e2e8f0'}">${m?m.label:'-'}</span></div>`;
+    html += '<div class="result-review">';
+    html += '<h3><i data-feather="list" aria-hidden="true"></i> Rincian jawaban (10 soal)</h3>';
+    html += '<div class="review-list">';
+    quizData.forEach(function (q, i) {
+      var ansKey = answers[i];
+      var opt = null;
+      for (var o = 0; o < q.options.length; o++) { if (q.options[o].key === ansKey) { opt = q.options[o]; break; } }
+      var m = ansKey ? meta[ansKey] : null;
+      html += '<div class="review-item"><span class="review-num">' + (i + 1) + '</span><div><strong>' + esc(q.title) + '</strong><span>Jawab: ' + esc(opt ? opt.label : '-') + ' • ' + esc(m ? m.label : '') + '</span></div><span class="review-badge" style="background:' + (m ? m.color : '#e2e8f0') + '">' + esc(m ? m.label : '-') + '</span></div>';
     });
-    html += `</div></div>`;
+    html += '</div></div>';
 
-    // Actions
-    html += `<div class="result-actions">`;
-    html += `<a href="../index.html#jurusan" class="btn btn-primary" id="resultToJurusan"><i data-feather="layout" aria-hidden="true"></i> Lihat Jurusan ${top.meta.label} di Beranda</a>`;
-    html += `<button class="btn btn-outline" id="resultShareWa" type="button"><i data-feather="share-2" aria-hidden="true"></i> Bagikan Hasil ke WhatsApp</button>`;
-    html += `<button class="btn btn-ghost" id="resultRetry" type="button"><i data-feather="refresh-cw" aria-hidden="true"></i> Ulangi Kuis</button>`;
-    html += `</div>`;
-    html += `<p class="quiz-disclaimer">Bukan tes psikologi formal. Skor = jumlah jawaban per rumpun dari 10 soal. Gunakan untuk membuka obrolan hidup—mis. “kok 4 jawaban ke Teknologi ya? Bagian mana yang bikin betah?”</p>`;
+    html += '<div class="result-actions">';
+    html += '<a href="../index.html#jurusan" class="btn btn-primary" id="resultToJurusan"><i data-feather="layout" aria-hidden="true"></i> Lihat Jurusan ' + esc(top.meta.label) + ' di Beranda</a>';
+    html += '<button class="btn btn-outline" id="resultShareWa" type="button"><i data-feather="share-2" aria-hidden="true"></i> Bagikan ke WhatsApp</button>';
+    html += '<button class="btn btn-outline" id="resultCopy" type="button"><i data-feather="copy" aria-hidden="true"></i> Salin Hasil</button>';
+    html += '<button class="btn btn-outline" id="resultDownload" type="button"><i data-feather="download" aria-hidden="true"></i> Unduh TXT</button>';
+    html += '<button class="btn btn-outline" id="resultPrint" type="button"><i data-feather="printer" aria-hidden="true"></i> Cetak</button>';
+    html += '<button class="btn btn-outline" id="resultDash" type="button"><i data-feather="bar-chart-2" aria-hidden="true"></i> Lihat Dashboard</button>';
+    html += '<button class="btn btn-ghost" id="resultRetry" type="button"><i data-feather="refresh-cw" aria-hidden="true"></i> Ulangi Kuis</button>';
+    html += '</div>';
+    html += '<p class="quiz-disclaimer">Bukan tes psikologi formal. Skor = jumlah jawaban per rumpun dari 10 soal. Gunakan untuk membuka obrolan hidup—mis. “kok 4 jawaban ke Teknologi ya? Bagian mana yang bikin betah?”</p>';
 
     resultEl.innerHTML = html;
     resultEl.hidden = false;
-    headEl.style.display = 'none';
-    navEl.style.display = 'none';
+    if (headEl) headEl.style.display = 'none';
+    if (navEl) navEl.style.display = 'none';
+    if (dotsEl) dotsEl.style.display = 'none';
     bodyEl.style.display = 'none';
     bodyEl.innerHTML = '';
     if (footnoteEl) footnoteEl.style.display = 'none';
 
-    // scroll
-    resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollToEl(resultEl);
     feather();
 
-    // store last result for share + untuk auto-filter di beranda
     try {
-      localStorage.setItem(STORAGE_KEY + '-result', JSON.stringify({ top: top.key, scores, list }));
+      localStorage.setItem(STORAGE_KEY + '-result', JSON.stringify({ top: top.key, scores: scores, list: list }));
       localStorage.setItem('panduan-jurusan-quiz-filter', top.meta.filter);
-    } catch(e){}
+    } catch (e) {}
 
-    // bind actions
-    const toJurusan = document.getElementById('resultToJurusan');
-    if (toJurusan) toJurusan.addEventListener('click', () => {
-      try { localStorage.setItem('panduan-jurusan-quiz-filter', top.meta.filter); } catch(e){}
+    pushHistory({ ts: Date.now(), top: top.key, score: top.score, percent: top.percent, consistency: cons.value, consistencyLabel: cons.label, scores: scores });
+    renderDashboard();
+
+    var toJurusan = document.getElementById('resultToJurusan');
+    if (toJurusan) toJurusan.addEventListener('click', function () {
+      try { localStorage.setItem('panduan-jurusan-quiz-filter', top.meta.filter); } catch (e) {}
     });
-    const shareBtn = document.getElementById('resultShareWa');
-    if (shareBtn) shareBtn.addEventListener('click', () => {
-      const plain = `Hasil Kuis Minat 10 Soal — Panduan Jurusan\n\nSkor tertinggi: ${top.meta.title} (${top.score}/10, ${top.percent}%)\n${top.meta.desc}\n\nRincian skor:\n${list.map(x=>`- ${x.meta.label}: ${x.score}/10 (${x.percent}%)`).join('\n')}\n\nRekomendasi: ${top.meta.jurusan.map(j=>j.name).join(', ')}\n\nLihat kuis: ${location.href}\n\nYuk diskusikan bareng anak — tanya “bagian mana yang paling bikin betah?”`;
-      window.open(`https://wa.me/?text=${encodeURIComponent(plain)}`, '_blank', 'noopener');
+    var shareBtn = document.getElementById('resultShareWa');
+    if (shareBtn) shareBtn.addEventListener('click', function () {
+      window.open('https://wa.me/?text=' + encodeURIComponent(shareText), '_blank', 'noopener');
     });
-    const retryBtn = document.getElementById('resultRetry');
-    if (retryBtn) retryBtn.addEventListener('click', () => {
-      resultShown = false;
-      answers = Array(quizData.length).fill(null);
-      idx = 0;
-      save();
-      resultEl.hidden = true;
-      resultEl.innerHTML = '';
-      headEl.style.display = '';
-      navEl.style.display = '';
-      bodyEl.style.display = '';
-      render();
+    var copyBtn = document.getElementById('resultCopy');
+    if (copyBtn) copyBtn.addEventListener('click', function () { copyText(shareText, copyBtn); });
+    var dlBtn = document.getElementById('resultDownload');
+    if (dlBtn) dlBtn.addEventListener('click', function () { downloadTxt('hasil-kuis-minat.txt', shareText); });
+    var printBtn = document.getElementById('resultPrint');
+    if (printBtn) printBtn.addEventListener('click', function () { try { window.print(); } catch (e) {} });
+    var dashBtn = document.getElementById('resultDash');
+    if (dashBtn) dashBtn.addEventListener('click', function () {
+      var dash = document.getElementById('quizDashboard');
+      if (dash) scrollToEl(dash);
     });
+    var retryBtn = document.getElementById('resultRetry');
+    if (retryBtn) retryBtn.addEventListener('click', function () { resetQuiz(); });
   }
 
-  // init
-  render();
+  function restoreQuizView() {
+    resultShown = false;
+    isAdvancing = false;
+    resultEl.hidden = true;
+    resultEl.innerHTML = '';
+    if (headEl) headEl.style.display = '';
+    if (navEl) navEl.style.display = '';
+    if (dotsEl) dotsEl.style.display = '';
+    bodyEl.style.display = '';
+    if (footnoteEl) footnoteEl.style.display = '';
+    lastNavLabel = '';
+    render();
+    startTimer();
+  }
 
-  prevBtn.addEventListener('click', () => {
-    if (resultEl && !resultEl.hidden) {
-      resultShown = false;
-      resultEl.hidden = true;
-      resultEl.innerHTML = '';
-      headEl.style.display = '';
-      navEl.style.display = '';
-      bodyEl.style.display = '';
-      render();
-      return;
-    }
+  function resetQuiz() {
+    answers = Array(quizData.length).fill(null);
+    idx = 0;
+    startedAt = Date.now();
+    save();
+    restoreQuizView();
+    renderDashboard();
+    scrollToEl(wrapEl);
+  }
+
+  /* ---------- events ---------- */
+  prevBtn.addEventListener('click', function () {
+    if (isAdvancing) return;
+    if (resultEl && !resultEl.hidden) { restoreQuizView(); return; }
     if (idx > 0) { idx--; save(); render(); }
   });
 
-  nextBtn.addEventListener('click', () => {
+  nextBtn.addEventListener('click', function () {
+    if (isAdvancing) return;
     if (resultEl && !resultEl.hidden) return;
     if (!answers[idx]) return;
     if (idx < quizData.length - 1) {
@@ -515,9 +827,47 @@
     }
   });
 
-  // handle direct load with saved answers? If all answered, show button to view result directly? Keep manual.
+  document.addEventListener('keydown', function (e) {
+    if (resultShown || !resultEl || !resultEl.hidden) return;
+    if (!e || !e.key) return;
+    var tag = (e.target && e.target.tagName) || '';
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+    if (e.key >= '1' && e.key <= '5') {
+      var i = parseInt(e.key, 10) - 1;
+      var q = quizData[idx];
+      if (q && q.options[i]) {
+        var btns = bodyEl.querySelectorAll('.quiz-option');
+        if (btns[i]) { try { btns[i].click(); } catch (err) {} }
+      }
+    } else if (e.key === 'ArrowRight') {
+      if (!nextBtn.disabled) { try { nextBtn.click(); } catch (err) {} }
+    } else if (e.key === 'ArrowLeft') {
+      if (!prevBtn.disabled) { try { prevBtn.click(); } catch (err) {} }
+    }
+  });
 
-  // Feather initial
+  if (dashClearBtn) {
+    dashClearBtn.addEventListener('click', function () {
+      var h = getHistory();
+      if (!h.length) return;
+      var ok = true;
+      try { ok = window.confirm('Hapus seluruh riwayat hasil kuis di perangkat ini?'); } catch (e) { ok = true; }
+      if (!ok) return;
+      saveHistory([]);
+      renderDashboard();
+    });
+  }
+
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { stopTimer(); }
+    else if (!resultShown) { startTimer(); }
+  });
+
+  /* ---------- init ---------- */
+  load();
+  render();
+  renderDashboard();
+  startTimer();
   feather();
   window.addEventListener('load', feather);
 
