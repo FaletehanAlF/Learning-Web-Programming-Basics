@@ -1,0 +1,138 @@
+/* Panduan Jurusan — halaman Rekomendasi Kampus (list + detail) */
+
+.kampus-hero { padding: 28px 0 8px; }
+.kampus-hero-inner { display: grid; gap: 18px; }
+.kampus-hero-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 18px;
+}
+.kampus-hero-card ul { display: grid; gap: 10px; margin-top: 12px; }
+.kampus-hero-card li { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); font-size: 14px; }
+.kampus-hero-card .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex: none; }
+.kampus-hero-card small { display: block; margin-top: 12px; color: var(--muted-soft); font-size: 12.5px; }
+.kampus-hero-card-kicker { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--accent-deep); }
+
+.crumbs { display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted-soft); margin-bottom: 14px; }
+.crumbs a { color: var(--accent-deep); font-weight: 700; text-decoration: none; }
+.crumbs a:hover { text-decoration: underline; }
+
+.kampus-toolbar {
+  display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;
+  margin: 18px 0 8px;
+}
+.kampus-search {
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--line); border-radius: var(--radius-pill);
+  padding: 9px 14px; background: var(--card); min-width: min(340px, 100%);
+}
+.kampus-search .feather { width: 16px; height: 16px; color: var(--muted-soft); flex: none; }
+.kampus-search input { border: 0; outline: 0; background: transparent; width: 100%; font: inherit; font-size: 14px; color: var(--ink); }
+.kampus-count { font-size: 13.5px; color: var(--muted-soft); margin: 6px 0 14px; }
+.kampus-empty {
+  border: 1px dashed var(--line-strong); border-radius: var(--radius-md);
+  padding: 28px; text-align: center; color: var(--muted); background: var(--card);
+}
+
+.kampus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.kampus-card {
+  display: flex; flex-direction: column; overflow: hidden;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-md);
+  text-decoration: none; color: inherit;
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease), transform .2s var(--ease);
+}
+.kampus-card:hover { border-color: var(--line-strong); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+.kampus-card-media { position: relative; aspect-ratio: 16/10; background: var(--bg-soft); overflow: hidden; }
+.kampus-card-media img { width: 100%; height: 100%; object-fit: cover; }
+.kampus-badge-jenis {
+  position: absolute; top: 10px; left: 10px;
+  font-size: 11.5px; font-weight: 800; letter-spacing: .04em;
+  background: rgb(15 23 42 / .82); color: #fff; padding: 5px 10px; border-radius: var(--radius-pill);
+  backdrop-filter: blur(4px);
+}
+.kampus-badge-jenis.pts { background: rgb(15 118 110 / .9); }
+.kampus-rating {
+  position: absolute; bottom: 10px; right: 10px;
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgb(255 255 255 / .94); border: 1px solid var(--line);
+  font-size: 12px; font-weight: 800; color: var(--ink);
+  padding: 4px 10px; border-radius: var(--radius-pill);
+}
+.kampus-rating .feather { width: 13px; height: 13px; color: #d97706; fill: #f59e0b; }
+.kampus-card-body { display: flex; flex-direction: column; gap: 8px; padding: 16px 16px 18px; flex: 1; }
+.kampus-loc { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted-soft); font-weight: 600; }
+.kampus-loc .feather { width: 14px; height: 14px; }
+.kampus-card-body h3 { margin: 0; font-size: 18px; line-height: 1.35; }
+.kampus-card-body > p { font-size: 14px; }
+.kampus-meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+.kampus-pill {
+  font-size: 12px; font-weight: 700; color: var(--accent-deep);
+  background: var(--accent-soft); border: 1px solid var(--accent-border);
+  padding: 4px 10px; border-radius: var(--radius-pill);
+}
+.kampus-card-foot {
+  margin-top: auto; padding-top: 10px;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  border-top: 1px solid var(--line-soft);
+}
+.kampus-cta { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 800; color: var(--accent-deep); }
+.kampus-cta .feather { width: 15px; height: 15px; }
+.kampus-akred { font-size: 12px; color: var(--muted-soft); font-weight: 600; }
+
+/* Skeleton */
+.kampus-skeleton { border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; background: var(--card); }
+.kampus-skeleton .sk-img, .kampus-skeleton .sk-line { position: relative; overflow: hidden; background: var(--line-soft); }
+.kampus-skeleton .sk-img { aspect-ratio: 16/10; }
+.kampus-skeleton .sk-body { padding: 16px; display: grid; gap: 10px; }
+.kampus-skeleton .sk-line { height: 14px; border-radius: 6px; }
+.kampus-skeleton .sk-img::after, .kampus-skeleton .sk-line::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .7), transparent);
+  animation: sk-shimmer 1.2s infinite;
+}
+@keyframes sk-shimmer { from { transform: translateX(-100%);} to { transform: translateX(100%);} }
+
+/* ===== DETAIL ===== */
+.detail-hero-media { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); background: var(--bg-soft); }
+.detail-hero-media img { width: 100%; aspect-ratio: 21/9; object-fit: cover; }
+.detail-title-wrap { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 18px 0 6px; }
+.detail-title-wrap h1 { margin: 0; font-size: clamp(26px, 4vw, 38px); line-height: 1.2; }
+.detail-tagline { font-size: 16px; color: var(--muted); max-width: 70ch; }
+.detail-badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+.detail-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
+.detail-stat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 14px; }
+.detail-stat small { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--muted-soft); text-transform: uppercase; letter-spacing: .05em; }
+.detail-stat small .feather { width: 14px; height: 14px; }
+.detail-stat strong { display: block; margin-top: 6px; font-size: 15px; line-height: 1.5; }
+.detail-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: 18px; align-items: start; }
+.detail-panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 20px; }
+.detail-panel h2 { display: flex; align-items: center; gap: 8px; font-size: 18px; margin: 0 0 12px; }
+.detail-panel h2 .feather { width: 18px; height: 18px; color: var(--accent); }
+.detail-panel p { font-size: 15px; }
+.detail-list { display: grid; gap: 10px; margin: 0; padding: 0; }
+.detail-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--ink-soft); }
+.detail-list .feather { width: 16px; height: 16px; color: var(--accent); flex: none; margin-top: 3px; }
+.detail-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.detail-side { display: grid; gap: 18px; }
+.detail-cta { display: grid; gap: 10px; }
+.detail-cta .btn { justify-content: center; }
+.detail-contact { display: grid; gap: 8px; font-size: 14px; color: var(--muted); }
+.detail-contact strong { color: var(--ink); }
+.detail-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; margin-top: 22px; }
+.detail-error { text-align: center; padding: 40px 20px; border: 1px dashed var(--line-strong); border-radius: var(--radius-md); background: var(--card); }
+
+@media (max-width: 960px) {
+  .kampus-grid { grid-template-columns: repeat(2, 1fr); }
+  .detail-stats { grid-template-columns: repeat(2, 1fr); }
+  .detail-layout { grid-template-columns: 1fr; }
+  .detail-hero-media img { aspect-ratio: 16/9; }
+}
+@media (max-width: 620px) {
+  .kampus-grid { grid-template-columns: 1fr; }
+  .kampus-hero { padding-top: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kampus-skeleton .sk-img::after, .kampus-skeleton .sk-line::after { animation: none; }
+  .kampus-card { transition: none; }
+}
