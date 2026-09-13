@@ -26,6 +26,8 @@
     if (payload && Array.isArray(payload.data)) return payload.data;
     return [];
   }
+
+  function esc(s) {
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
