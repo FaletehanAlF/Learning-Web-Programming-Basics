@@ -76,6 +76,8 @@
     'Psikologi (kesehatan mental)': 'Psychology (mental health)',
     'DKV / UI-UX (irisan kreatif)': 'VCD / UI-UX (creative intersection)',
     '# • # • #': '# • # • #',
-    'Memuat detail kampus…': 'Loading campus details…'
+    'Memuat detail kampus…': 'Loading campus details…',
+    '8 semester (4 tahun)': '8 semesters (4 years)',
+    '8 semester (4 thn)': '8 semesters (4 yrs)'
   });
 })();
