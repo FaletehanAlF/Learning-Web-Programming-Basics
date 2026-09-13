@@ -353,6 +353,14 @@
   "Dukungan yang tulus membuat anak lebih percaya diri menjalani jurusan pilihannya, apa pun hasilnya nanti.": [
    "index.html"
   ],
+  "EN": [
+   "index.html",
+   "views/dashboard.html",
+   "views/detail-kampus.html",
+   "views/kampus.html",
+   "views/kontak.html",
+   "views/kuis.html"
+  ],
   "Empati": [
    "index.html"
   ],
@@ -399,6 +407,22 @@
    "views/kuis.html"
   ],
   "Footer lain": [
+   "views/dashboard.html",
+   "views/detail-kampus.html",
+   "views/kampus.html",
+   "views/kontak.html",
+   "views/kuis.html"
+  ],
+  "Ganti bahasa": [
+   "index.html",
+   "views/dashboard.html",
+   "views/detail-kampus.html",
+   "views/kampus.html",
+   "views/kontak.html",
+   "views/kuis.html"
+  ],
+  "Ganti tema": [
+   "index.html",
    "views/dashboard.html",
    "views/detail-kampus.html",
    "views/kampus.html",
@@ -470,6 +494,14 @@
   ],
   "Hukum": [
    "index.html"
+  ],
+  "ID/EN": [
+   "index.html",
+   "views/dashboard.html",
+   "views/detail-kampus.html",
+   "views/kampus.html",
+   "views/kontak.html",
+   "views/kuis.html"
   ],
   "Ibu dari siswa kelas 12 · Bandung": [
    "index.html"
@@ -939,7 +971,7 @@
    "views/kampus.html",
    "views/kontak.html"
   ],
-  "Rekomendasi Kampus — PTN + PTS + Luar Negeri | Panduan Jurusan": [
+  "Rekomendasi Kampus — PTN + PTS + PTLN | Panduan Jurusan": [
    "views/kampus.html"
   ],
   "Rekomendasi kampus untuk bahan diskusi keluarga — bukan peringkat resmi pemerintah.": [
@@ -1251,7 +1283,7 @@
   ]
  },
  "js_only": {
-  "\" tidak ada di data/ptn.json maupun data/pts.json. Periksa kembali id-nya.": [
+  "\" tidak ada di data/ptn.json, data/pts.json & data/ptln.json. Periksa kembali id-nya.": [
    "assets/js/detail-kampus.js"
   ],
   "\"Plus Jakarta Sans\", system-ui, -apple-system, \"Segoe UI\", sans-serif": [
