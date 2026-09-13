@@ -746,18 +746,6 @@
     }
   });
 
-  if (dashClearBtn) {
-    dashClearBtn.addEventListener('click', function () {
-      var h = getHistory();
-      if (!h.length) return;
-      var ok = true;
-      try { ok = window.confirm('Hapus seluruh riwayat hasil kuis di perangkat ini?'); } catch (e) { ok = true; }
-      if (!ok) return;
-      saveHistory([]);
-      renderDashboard();
-    });
-  }
-
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) { stopTimer(); }
     else if (!resultShown) { startTimer(); }
@@ -766,7 +754,6 @@
   /* ---------- init ---------- */
   load();
   render();
-  renderDashboard();
   startTimer();
   feather();
   window.addEventListener('load', feather);
