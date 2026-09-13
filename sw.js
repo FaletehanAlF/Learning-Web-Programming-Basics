@@ -1,5 +1,5 @@
 /* Panduan Jurusan — service worker (offline-first ringan) */
-var CACHE = 'panduan-jurusan-v5';
+var CACHE = 'panduan-jurusan-v6';
 var CORE = [
   './',
   'index.html',
@@ -23,6 +23,13 @@ var CORE = [
   'assets/js/kampus.js',
   'assets/js/detail-kampus.js',
   'assets/js/kontak.js',
+  'assets/js/i18n-dict1.js',
+  'assets/js/i18n-dict2.js',
+  'assets/js/i18n-dict3.js',
+  'assets/js/i18n-dict4.js',
+  'assets/js/i18n-dict5.js',
+  'assets/js/lang.js',
+  'assets/js/theme.js',
   'assets/js/export-word.js',
   'assets/js/share.js',
   'assets/js/assistant.js',
