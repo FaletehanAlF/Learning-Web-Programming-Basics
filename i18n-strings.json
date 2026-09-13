@@ -1260,14 +1260,11 @@
   "% jawaban": [
    "assets/js/share.js"
   ],
-  "+ PL +": [
-   "assets/js/dashboard.js"
+  "%0A%0ADicoba bareng di:": [
+   "assets/js/script.js"
   ],
-  "+ area +": [
-   "assets/js/dashboard.js"
-  ],
-  "+ cls +": [
-   "assets/js/kuis.js"
+  "%0A%0AYuk diskusikan bareng anak malam ini.": [
+   "assets/js/script.js"
   ],
   "+ icon +": [
    "assets/js/detail-kampus.js"
@@ -1275,51 +1272,12 @@
   "+ id +": [
    "assets/js/kampus.js"
   ],
-  "+ idx +": [
-   "assets/js/kuis.js"
-  ],
   "+ img +": [
    "assets/js/detail-kampus.js",
    "assets/js/kampus.js"
   ],
-  "+ item.meta.color +": [
-   "assets/js/kuis.js"
-  ],
-  "+ item.percent +": [
-   "assets/js/kuis.js"
-  ],
-  "+ line +": [
-   "assets/js/dashboard.js"
-  ],
   "+ nama +": [
    "assets/js/kampus.js"
-  ],
-  "+ rev +": [
-   "assets/js/export-word.js"
-  ],
-  "+ top.meta.color +": [
-   "assets/js/kuis.js"
-  ],
-  "+ top.meta.icon +": [
-   "assets/js/kuis.js"
-  ],
-  ", bisnis:": [
-   "assets/js/script.js"
-  ],
-  ", currency:": [
-   "assets/js/script.js"
-  ],
-  ", html ||": [
-   "assets/js/export-word.js"
-  ],
-  ", kesehatan:": [
-   "assets/js/script.js"
-  ],
-  ", kreatif:": [
-   "assets/js/script.js"
-  ],
-  ", soshum:": [
-   "assets/js/script.js"
   ],
   "-38% 0px -55% 0px": [
    "assets/js/script.js"
@@ -1336,6 +1294,9 @@
   ".filter-chips .chip": [
    "assets/js/script.js"
   ],
+  "/10 terjawab": [
+   "assets/js/kuis.js"
+  ],
   "0px 0px -6% 0px": [
    "assets/js/script.js"
   ],
@@ -1344,6 +1305,9 @@
   ],
   "400 32px": [
    "assets/js/share.js"
+  ],
+  "5 tahun lagi ingin dikenal sebagai?": [
+   "assets/js/kuis.js"
   ],
   "700 30px": [
    "assets/js/share.js"
@@ -1363,8 +1327,35 @@
   "800 64px": [
    "assets/js/share.js"
   ],
+  "Ajak ngobrol, tanya pendapat orang": [
+   "assets/js/kuis.js"
+  ],
+  "Aksi sosial": [
+   "assets/js/kuis.js"
+  ],
   "Alternatif jika suka bantu lewat pikiran & perilaku.": [
    "assets/js/script.js"
+  ],
+  "Amati & catat": [
+   "assets/js/kuis.js"
+  ],
+  "Anak masih bingung": [
+   "assets/js/assistant.js"
+  ],
+  "Anak terlihat betah fokus sendiri dan puas saat sesuatu yang dibuat akhirnya berfungsi.": [
+   "assets/js/kuis.js"
+  ],
+  "Analisis pasar": [
+   "assets/js/kuis.js"
+  ],
+  "Angka jelas": [
+   "assets/js/kuis.js"
+  ],
+  "Aplikasi / alat jadi": [
+   "assets/js/kuis.js"
+  ],
+  "Asisten Panduan Jurusan": [
+   "assets/js/assistant.js"
   ],
   "Atur bisnis & strategi": [
    "assets/js/script.js"
@@ -1372,8 +1363,21 @@
   "Atur tim & bisnis agar jalan.": [
    "assets/js/script.js"
   ],
+  "Aturan & keadilan": [
+   "assets/js/kuis.js"
+  ],
+  "Bagian hitung mana yang tidak membosankan?": [
+   "assets/js/kuis.js"
+  ],
+  "Bagian ngoprek mana yang paling bikin betah?": [
+   "assets/js/kuis.js"
+  ],
   "Bahasa / Sosiologi / Sejarah": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Bangga saat angka klop dan untung jelas.": [
+   "assets/js/kuis.js"
   ],
   "Bayangan kerja yang bikin semangat?": [
    "assets/js/script.js"
@@ -1381,44 +1385,114 @@
   "Bayangkan anak mengerjakan tugas kelompok.": [
    "assets/js/script.js"
   ],
+  "Bayangkan mengerjakan tugas kelompok 3 orang.": [
+   "assets/js/kuis.js"
+  ],
+  "Bebas & ekspresif": [
+   "assets/js/kuis.js"
+  ],
+  "Bebas pindah tempat & jam fleksibel": [
+   "assets/js/kuis.js"
+  ],
   "Bebas, coba gaya baru": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
   ],
   "Belajar dari cerita": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
   ],
   "Belajar tubuh & penyakit. Lama, tapi dampaknya besar.": [
    "assets/js/script.js"
   ],
+  "Belum ada hasil. Isi kuis dulu.": [
+   "assets/js/dashboard.js"
+  ],
+  "Bentuk & fungsi": [
+   "assets/js/kuis.js"
+  ],
+  "Berhasil bikin sesuatu yang jalan": [
+   "assets/js/kuis.js"
+  ],
   "Betah dengar cerita orang lain": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
   ],
   "Biaya kuliah beda tiap kampus & penghasilan ortu. Hitung estimasi sampai lulus di kalkulator, lalu bandingkan PTN vs PTS.": [
    "assets/js/assistant.js"
   ],
+  "Biaya kuliah?": [
+   "assets/js/assistant.js"
+  ],
+  "Bikin aplikasi, website, AI": [
+   "assets/js/kuis.js"
+  ],
   "Bikin aplikasi/website. Butuh logika kuat & tahan ngulik.": [
    "assets/js/script.js"
+  ],
+  "Bikin karya": [
+   "assets/js/kuis.js"
+  ],
+  "Bikin poster / video / karya": [
+   "assets/js/kuis.js"
+  ],
+  "Bikin sistem": [
+   "assets/js/kuis.js"
   ],
   "Bikin sistem/jaringan": [
    "assets/js/script.js"
   ],
   "Biologi / Kimia": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
   ],
+  "Bongkar, debug, cari sumber error": [
+   "assets/js/kuis.js"
+  ],
   "Buka Dashboard": [
+   "assets/js/assistant.js"
+  ],
+  "Buka asisten tanya-jawab": [
    "assets/js/assistant.js"
   ],
   "Bukan tes psikologi formal — bahan diskusi keluarga.": [
    "assets/js/share.js"
   ],
+  "Butuh jam terbang & kritik yang tidak enak": [
+   "assets/js/kuis.js"
+  ],
+  "Butuh jam terbang & portofolio, bukan hanya nilai": [
+   "assets/js/kuis.js"
+  ],
+  "Butuh ketahanan mental & fisik": [
+   "assets/js/kuis.js"
+  ],
+  "Butuh ketekunan 5–6 tahun + koas. Diskusikan biaya dengan kalkulator.": [
+   "assets/js/kuis.js"
+  ],
+  "Cara belajar yang paling cocok untuk anak?": [
+   "assets/js/kuis.js"
+  ],
   "Cara belajar yang paling cocok?": [
    "assets/js/script.js"
+  ],
+  "Cari cara baru yang belum dicoba": [
+   "assets/js/kuis.js"
+  ],
+  "Cari penyebab logis": [
+   "assets/js/kuis.js"
+  ],
+  "Cari perspektif": [
+   "assets/js/kuis.js"
   ],
   "Catat & kelola keuangan. Dicari di semua perusahaan.": [
    "assets/js/script.js"
   ],
   "Cek KIP Kuliah, beasiswa prestasi, dan UKT berjenjang sejak kelas 11–12. Di kalkulator ada simulasi potongan 50% UKT.": [
    "assets/js/assistant.js"
+  ],
+  "Cek detail, pastikan aman dulu": [
+   "assets/js/kuis.js"
   ],
   "Cenderung ke Rumpun Bisnis": [
    "assets/js/script.js"
@@ -1435,20 +1509,128 @@
   "Cenderung ke Rumpun Teknologi": [
    "assets/js/script.js"
   ],
+  "Cerita & argumen": [
+   "assets/js/kuis.js"
+  ],
+  "Cerita visual": [
+   "assets/js/kuis.js"
+  ],
+  "Coba jadi pewawancara: wawancara 2 kakak tingkat soshum 15 menit, lalu bandingkan ceritanya.": [
+   "assets/js/kuis.js"
+  ],
+  "Coba kelola uang kas kelas 2 minggu atau bikin business plan 1 halaman untuk ide jualan.": [
+   "assets/js/kuis.js"
+  ],
   "Coba langsung, pecahkan masalah": [
    "assets/js/script.js"
+  ],
+  "Coba sudut beda": [
+   "assets/js/kuis.js"
+  ],
+  "Cocok jika betah mendengarkan tanpa menghakimi.": [
+   "assets/js/kuis.js"
+  ],
+  "Cocok jika betah revisi desain berjam-jam.": [
+   "assets/js/kuis.js"
+  ],
+  "Cocok jika suka logika & debug. Banyak tugas proyek.": [
+   "assets/js/kuis.js"
+  ],
+  "Cocok jika teliti & suka angka rapi. Butuh konsistensi.": [
+   "assets/js/kuis.js"
+  ],
+  "Cocok untuk": [
+   "assets/js/favorit-compare.js"
+  ],
+  "Cukup bulat": [
+   "assets/js/kuis.js"
+  ],
+  "Dampak sosial jelas & dibutuhkan": [
+   "assets/js/kuis.js"
+  ],
+  "Dapat untung / kelola uang dengan rapi": [
+   "assets/js/kuis.js"
+  ],
+  "Debat / OSIS / jurnalistik": [
+   "assets/js/kuis.js"
+  ],
+  "Deep work": [
+   "assets/js/kuis.js"
   ],
   "Dengarkan alasan anak sampai selesai, sampaikan khawatir dengan kalimat \"Ayah/Ibu khawatir soal…\", cari jalan tengah.": [
    "assets/js/assistant.js"
   ],
+  "Desain Produk / Interior": [
+   "assets/js/kuis.js"
+  ],
+  "Desain aplikasi": [
+   "assets/js/kuis.js"
+  ],
+  "Di atas 200 jt sampai lulus — wajar jika terasa berat. Cek opsi PTN UKT berjenjang, KIP Kuliah, atau kampus dekat rumah untuk tekan biaya hidup.": [
+   "assets/js/script.js"
+  ],
   "Di depan komputer, bikin aplikasi": [
    "assets/js/script.js"
+  ],
+  "Di depan komputer, bikin aplikasi/sistem": [
+   "assets/js/kuis.js"
+  ],
+  "Dibutuhkan hampir semua perusahaan": [
+   "assets/js/kuis.js"
+  ],
+  "Didengarkan & dipercaya teman": [
+   "assets/js/kuis.js"
+  ],
+  "Dihapus dari favorit": [
+   "assets/js/favorit-compare.js"
+  ],
+  "Dipercaya urus uang": [
+   "assets/js/kuis.js"
+  ],
+  "Dipuji karena membantu orang": [
+   "assets/js/kuis.js"
   ],
   "Diskusi & dengarkan orang": [
    "assets/js/script.js"
   ],
+  "Diskusi & dengarkan pendapat": [
+   "assets/js/kuis.js"
+  ],
+  "Diskusi kelompok besar, banyak ide": [
+   "assets/js/kuis.js"
+  ],
+  "Ditambah ke favorit": [
+   "assets/js/favorit-compare.js"
+  ],
+  "Dominan jelas. Tetap cek rumpun kedua sebagai opsi cadangan.": [
+   "assets/js/kuis.js"
+  ],
   "Ekonomi / Akuntansi / KWU": [
    "assets/js/script.js"
+  ],
+  "Ekonomi / Akuntansi / Kewirausahaan": [
+   "assets/js/kuis.js"
+  ],
+  "Ekonomi / Bisnis Digital": [
+   "assets/js/kuis.js"
+  ],
+  "Ekskul coding / robotik / TIK": [
+   "assets/js/kuis.js"
+  ],
+  "Energi naik saat kerja bareng orang banyak, bukan sendiri di depan layar.": [
+   "assets/js/kuis.js"
+  ],
+  "Estimasi biaya": [
+   "assets/js/favorit-compare.js"
+  ],
+  "Estimasi biaya sampai lulus:": [
+   "assets/js/script.js"
+  ],
+  "Film / Animasi": [
+   "assets/js/kuis.js"
+  ],
+  "Fokus & tenang": [
+   "assets/js/kuis.js"
   ],
   "Gabungan teknologi + bisnis. Cocok kalau suka atur sistem.": [
    "assets/js/script.js"
@@ -1459,11 +1641,19 @@
   "Gagal terhubung ke file API. Gunakan Live Server / localhost, bukan double-click file.": [
    "assets/js/kampus.js"
   ],
+  "Gambar hasil siap dibagikan": [
+   "assets/js/kuis.js"
+  ],
   "Gambar, edit foto/video, desain": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
   ],
   "Hafalan rapi + praktik teliti": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Hal yang paling bikin bangga kalau berhasil?": [
+   "assets/js/kuis.js"
   ],
   "Halo! Saya": [
    "assets/js/kontak.js"
@@ -1471,8 +1661,33 @@
   "Halo! Saya bantu jawab seputar jurusan, biaya, dan jalur masuk. Silakan tanya.": [
    "assets/js/assistant.js"
   ],
+  "Halo! Tanya apa saja soal jurusan, biaya, atau jalur masuk.": [
+   "assets/js/assistant.js"
+  ],
+  "Hapus dari favorit:": [
+   "assets/js/favorit-compare.js"
+  ],
+  "Hapus seluruh riwayat di perangkat ini?": [
+   "assets/js/dashboard.js"
+  ],
+  "Harus aktif bangun portofolio & pengalaman organisasi": [
+   "assets/js/kuis.js"
+  ],
+  "Harus nyaman duduk lama & update teknologi terus": [
+   "assets/js/kuis.js"
+  ],
+  "Harus tahan repetisi & detail kecil": [
+   "assets/js/kuis.js"
+  ],
   "Harus urut & tepat": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Hasil Evaluasi Kuis Minat": [
+   "assets/js/export-word.js"
+  ],
+  "Hasil Evaluasi Kuis Minat — Panduan Jurusan": [
+   "assets/js/export-word.js"
   ],
   "Hasil Kuis Minat": [
    "assets/js/share.js"
@@ -1480,14 +1695,44 @@
   "Hasil Kuis Minat 10 Soal": [
    "assets/js/share.js"
   ],
+  "Hasil Kuis Minat 10 Soal — Panduan Jurusan": [
+   "assets/js/kuis.js"
+  ],
+  "Hasil Kuis Minat Panduan Jurusan%0A%0AAnak cenderung ke: *": [
+   "assets/js/script.js"
+  ],
+  "Hati-hati & teliti": [
+   "assets/js/kuis.js"
+  ],
+  "Hitung risiko & biaya, bikin rencana": [
+   "assets/js/kuis.js"
+  ],
   "ID \"": [
    "assets/js/detail-kampus.js"
   ],
   "ID kampus tidak ada": [
    "assets/js/detail-kampus.js"
   ],
+  "Ikut volunteer 1 hari atau tonton 3 video bedah jurusan + silabus semester 1, lalu tanya: sanggup baca tebal tiap minggu?": [
+   "assets/js/kuis.js"
+  ],
+  "Ilmu Komunikasi": [
+   "assets/js/kuis.js"
+  ],
   "Imajinatif, peka visual, dan suka bereksperimen. Butuh portofolio & jam terbang.": [
    "assets/js/script.js"
+  ],
+  "Info beasiswa": [
+   "assets/js/assistant.js"
+  ],
+  "Ingat kejadian terakhir — bukan yang ideal.": [
+   "assets/js/kuis.js"
+  ],
+  "Ingin dikenal lewat portofolio yang bisa dilihat orang.": [
+   "assets/js/kuis.js"
+  ],
+  "Ini soal energi, bukan kemampuan.": [
+   "assets/js/kuis.js"
   ],
   "Irisan kreatif-teknologi: desain aplikasi.": [
    "assets/js/script.js"
@@ -1498,11 +1743,62 @@
   "JURUSAN YANG COCOK": [
    "assets/js/share.js"
   ],
+  "Jadi tempat cerita": [
+   "assets/js/kuis.js"
+  ],
+  "Jalur karier terstruktur": [
+   "assets/js/kuis.js"
+  ],
+  "Jawaban banyak ke gambar, desain, dan cara baru yang belum dicoba.": [
+   "assets/js/kuis.js"
+  ],
+  "Jawaban dominan ke ngobrol, diskusi, dan memahami orang lain.": [
+   "assets/js/kuis.js"
+  ],
+  "Jawaban jujur, bukan yang diharapkan orang tua.": [
+   "assets/js/kuis.js"
+  ],
+  "Jawaban paling banyak mengarah ke aktivitas coba-coba, angka, dan menyelesaikan masalah langkah demi langkah.": [
+   "assets/js/kuis.js"
+  ],
+  "Jawaban tersebar ke beberapa rumpun — wajar di usia SMA. Fokus eksplor 2 rumpun tertinggi dulu.": [
+   "assets/js/kuis.js"
+  ],
+  "Jika suka bantu lewat mendengarkan.": [
+   "assets/js/kuis.js"
+  ],
+  "Jika suka gambar + fungsi.": [
+   "assets/js/kuis.js"
+  ],
+  "Jika suka menulis & tampil.": [
+   "assets/js/kuis.js"
+  ],
+  "Jika suka tren & hitung peluang.": [
+   "assets/js/kuis.js"
+  ],
+  "Jika suka video & storytelling.": [
+   "assets/js/kuis.js"
+  ],
+  "Jualan & hitung": [
+   "assets/js/kuis.js"
+  ],
+  "Jualan kecil atau atur uang jajan": [
+   "assets/js/kuis.js"
+  ],
   "Jualan kecil, atur uang jajan": [
    "assets/js/script.js"
   ],
+  "Kalau ada waktu luang tanpa tugas, anak paling betah ngapain?": [
+   "assets/js/kuis.js"
+  ],
   "Kalau ada waktu luang, anak paling betah ngapain?": [
    "assets/js/script.js"
+  ],
+  "Kalau error 2 hari, masih mau lanjut atau ganti haluan?": [
+   "assets/js/kuis.js"
+  ],
+  "Kalau sore disuruh pilih kegiatan, lebih milih?": [
+   "assets/js/kuis.js"
   ],
   "Kampus tidak ditemukan": [
    "assets/js/detail-kampus.js"
@@ -1510,17 +1806,81 @@
   "Kantor / perusahaan, kelola keuangan": [
    "assets/js/script.js"
   ],
+  "Kantor / perusahaan, kelola keuangan & strategi": [
+   "assets/js/kuis.js"
+  ],
+  "Karya bisa langsung jadi portofolio": [
+   "assets/js/kuis.js"
+  ],
+  "Karya dipuji & dipajang orang": [
+   "assets/js/kuis.js"
+  ],
+  "Karya mana yang paling mau ditunjukkan ke orang lain?": [
+   "assets/js/kuis.js"
+  ],
+  "Ke testimoni": [
+   "assets/js/script.js"
+  ],
+  "Kebanggaan muncul saat dipuji karena membantu, bukan karena karya visual.": [
+   "assets/js/kuis.js"
+  ],
+  "Kelola keuangan": [
+   "assets/js/kuis.js"
+  ],
+  "Kelola tim & strategi": [
+   "assets/js/kuis.js"
+  ],
+  "Kenapa ingin bantu orang lewat kesehatan?": [
+   "assets/js/kuis.js"
+  ],
+  "Keperawatan / Farmasi": [
+   "assets/js/kuis.js"
+  ],
   "Ketemu banyak orang": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
   ],
   "Keuangan perusahaan. Dicari hampir semua bisnis.": [
    "assets/js/jurusan-data.js"
   ],
+  "Kisaran menengah. Coba bandingkan 2 kampus: satu PTN hemat, satu PTS — lalu lihat selisih per tahunnya.": [
+   "assets/js/script.js"
+  ],
+  "Koperasi / market day / entrepreneur club": [
+   "assets/js/kuis.js"
+  ],
+  "Kreator karya yang dikenal": [
+   "assets/js/kuis.js"
+  ],
+  "Kuat di logika, suka ngoprek, dan tahan mencoba sampai jalan. Cocok untuk jurusan yang banyak praktik di depan komputer dan butuh ketelitian.": [
+   "assets/js/kuis.js"
+  ],
+  "Kuat di soft skill yang dicari kerja": [
+   "assets/js/kuis.js"
+  ],
+  "Kuis 10 soal: dominan": [
+   "assets/js/script.js"
+  ],
+  "Kuis minat:": [
+   "assets/js/script.js"
+  ],
   "Kurangi pertanyaan menekan, bagi keputusan jadi langkah kecil mingguan. Kalau menarik diri terus, ajak bicara guru BK.": [
    "assets/js/assistant.js"
   ],
+  "Langsung coba, pecahkan masalah": [
+   "assets/js/kuis.js"
+  ],
   "Langsung praktik": [
    "assets/js/script.js"
+  ],
+  "Laporan keuangan / business plan": [
+   "assets/js/kuis.js"
+  ],
+  "Lebih dari separuh jawaban mengarah ke 1 rumpun — sinyal minat yang cukup konsisten.": [
+   "assets/js/kuis.js"
+  ],
+  "Lebih suka dengar atau bicara?": [
+   "assets/js/kuis.js"
   ],
   "Lihat FAQ": [
    "assets/js/assistant.js"
@@ -1528,62 +1888,221 @@
   "Lihat Hasil": [
    "assets/js/script.js"
   ],
+  "Lihat Hasil Analisis": [
+   "assets/js/kuis.js"
+  ],
   "Lihat Jadwal": [
    "assets/js/assistant.js"
+  ],
+  "Lihat kuis:": [
+   "assets/js/kuis.js"
+  ],
+  "Lingkungan kerja yang bikin mata berbinar kalau dibayangkan?": [
+   "assets/js/kuis.js"
+  ],
+  "Maaf, ada gangguan. Coba lagi.": [
+   "assets/js/assistant.js"
+  ],
+  "Maksimal 6 skenario": [
+   "assets/js/skenario.js"
+  ],
+  "Masa kuliah panjang & padat praktik": [
+   "assets/js/kuis.js"
   ],
   "Masih bisa dievaluasi: ajak ngobrol kakak tingkat + lihat silabus semester 1, sepakati evaluasi setelah 1 semester.": [
    "assets/js/assistant.js"
   ],
   "Matematika / Fisika / Informatika": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Mau bisnis sendiri atau kelola perusahaan?": [
+   "assets/js/kuis.js"
+  ],
+  "Membantu banyak orang": [
+   "assets/js/kuis.js"
   ],
   "Merancang program, aplikasi, dan website. Banyak praktik logika & proyek.": [
    "assets/js/jurusan-data.js"
   ],
+  "Merawat orang, hewan, atau tanaman": [
+   "assets/js/kuis.js"
+  ],
   "Merawat orang/hewan/tanaman": [
    "assets/js/script.js"
+  ],
+  "Motivasi lebih ke “bikin yang jalan” daripada “tampil di depan orang”.": [
+   "assets/js/kuis.js"
   ],
   "Mulai Kuis": [
    "assets/js/assistant.js"
   ],
+  "Ngobrol, baca, nulis, atau diskusi": [
+   "assets/js/kuis.js"
+  ],
   "Ngobrol, baca, nulis, diskusi": [
    "assets/js/script.js"
+  ],
+  "Ngomong & nulis": [
+   "assets/js/kuis.js"
   ],
   "Ngoprek HP/laptop, bikin sesuatu": [
    "assets/js/script.js"
   ],
+  "Ngoprek HP/laptop, bikin sesuatu yang jalan": [
+   "assets/js/kuis.js"
+  ],
+  "Ngulik teknologi": [
+   "assets/js/kuis.js"
+  ],
   "Nilai bagus saat bikin karya": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Nilai dan kegiatan mengarah ke Biologi/Kimia dan praktik teliti.": [
+   "assets/js/kuis.js"
+  ],
+  "Nyaman dengan pembagian tugas yang terstruktur.": [
+   "assets/js/kuis.js"
+  ],
+  "Opsi jika suka bantu langsung tapi durasi lebih pendek.": [
+   "assets/js/kuis.js"
+  ],
+  "Opsi jika suka teknologi tapi juga visual.": [
+   "assets/js/kuis.js"
+  ],
+  "Orang jadi terbantu": [
+   "assets/js/kuis.js"
+  ],
+  "Orang yang jago bikin solusi digital": [
+   "assets/js/kuis.js"
+  ],
+  "Orang yang paham & bantu orang lain": [
+   "assets/js/kuis.js"
+  ],
+  "PMR / pramuka bakti / volunteering": [
+   "assets/js/kuis.js"
   ],
   "Pahami pikiran & perilaku manusia.": [
    "assets/js/script.js"
   ],
+  "Paling nyaman kerja gimana?": [
+   "assets/js/kuis.js"
+  ],
+  "Pas jika suka atur orang & rencana.": [
+   "assets/js/kuis.js"
+  ],
+  "Pas jika suka atur sistem agar rapi & kepakai orang.": [
+   "assets/js/kuis.js"
+  ],
+  "Pas jika suka baca, debat runtut, dan argumen.": [
+   "assets/js/kuis.js"
+  ],
+  "Peduli orang lain, teliti, dan tahan belajar lama dengan urutan yang harus tepat. Jurusan kesehatan butuh komitmen & empati tinggi.": [
+   "assets/js/kuis.js"
+  ],
   "Peduli orang lain, teliti, dan tahan belajar lama. Jurusan kesehatan butuh komitmen & empati tinggi.": [
    "assets/js/script.js"
+  ],
+  "Peka visual, suka bereksperimen, dan butuh ruang bebas. Hasil dinilai dari karya, bukan hanya ujian.": [
+   "assets/js/kuis.js"
   ],
   "Pelajaran yang paling enak tanpa dipaksa?": [
    "assets/js/script.js"
   ],
+  "Pelajaran yang paling enak tanpa harus dipaksa?": [
+   "assets/js/kuis.js"
+  ],
   "Penasaran tubuh & alam": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Pendengar & penengah": [
+   "assets/js/kuis.js"
+  ],
+  "Pengelola bisnis/keuangan yang rapi": [
+   "assets/js/kuis.js"
+  ],
+  "Penghasilan awal naik-turun — perlu rencana": [
+   "assets/js/kuis.js"
   ],
   "Peraturan & keadilan. Baca, diskusi, argumen runtut.": [
    "assets/js/jurusan-data.js"
   ],
+  "Perawatan & obat": [
+   "assets/js/kuis.js"
+  ],
+  "Pesan & media": [
+   "assets/js/kuis.js"
+  ],
   "Pesan lewat gambar & warna. Dinilai dari karya, bukan ujian.": [
    "assets/js/jurusan-data.js"
+  ],
+  "Pesan lewat visual": [
+   "assets/js/kuis.js"
+  ],
+  "Pikiran & perilaku": [
+   "assets/js/kuis.js"
   ],
   "Pikiran & perilaku manusia. Kuat di mendengar dan memahami orang.": [
    "assets/js/jurusan-data.js"
   ],
+  "Pilih jawaban dulu": [
+   "assets/js/kuis.js"
+  ],
+  "Pilih yang paling sering dilakukan, bukan yang paling keren menurut orang lain.": [
+   "assets/js/kuis.js"
+  ],
   "Pilih yang paling sering — bukan yang paling keren.": [
    "assets/js/script.js"
+  ],
+  "Pilihan banyak ke merawat, membantu, dan memastikan aman — bukan sekadar cepat selesai.": [
+   "assets/js/kuis.js"
+  ],
+  "Pilihan mengarah ke mengatur, menghitung, dan merencanakan dengan checklist.": [
+   "assets/js/kuis.js"
   ],
   "Portofolio & pameran": [
    "assets/js/script.js"
   ],
+  "Portofolio kuat": [
+   "assets/js/kuis.js"
+  ],
+  "Praktikum lab / observasi": [
+   "assets/js/kuis.js"
+  ],
+  "Praktis & terukur": [
+   "assets/js/kuis.js"
+  ],
+  "Presentasi / esai / wawancara": [
+   "assets/js/kuis.js"
+  ],
+  "Problem solver": [
+   "assets/js/kuis.js"
+  ],
+  "Progress tips:": [
+   "assets/js/script.js"
+  ],
+  "Proyek bikin program / alat": [
+   "assets/js/kuis.js"
+  ],
+  "Puas kalau bisa membantu": [
+   "assets/js/kuis.js"
+  ],
   "RUMPUN DOMINAN": [
    "assets/js/share.js"
+  ],
+  "Ramai & kolaboratif": [
+   "assets/js/kuis.js"
+  ],
+  "Rapat & angka": [
+   "assets/js/kuis.js"
+  ],
+  "Rapi & hitung": [
+   "assets/js/kuis.js"
+  ],
+  "Rapi dengan pembagian tugas jelas": [
+   "assets/js/kuis.js"
   ],
   "Rapi, teliti, suka angka.": [
    "assets/js/jurusan-data.js"
@@ -1591,11 +2110,47 @@
   "Rapi, terstruktur, hitung detail": [
    "assets/js/script.js"
   ],
+  "Rapi, terstruktur, pakai checklist": [
+   "assets/js/kuis.js"
+  ],
+  "Relatif terjangkau. Sisipkan dana cadangan 10% untuk buku, praktikum, dan skripsi.": [
+   "assets/js/script.js"
+  ],
+  "Rincian skor:": [
+   "assets/js/kuis.js"
+  ],
+  "Rumah sakit / lab / lapangan, bantu orang sehat": [
+   "assets/js/kuis.js"
+  ],
   "Rumah sakit / lab, bantu orang sehat": [
    "assets/js/script.js"
   ],
+  "Rumpun Bisnis — Rapi & Terstruktur": [
+   "assets/js/kuis.js"
+  ],
+  "Rumpun Kesehatan — Teliti & Peduli": [
+   "assets/js/kuis.js"
+  ],
+  "Rumpun Kreatif — Imajinatif & Visual": [
+   "assets/js/kuis.js"
+  ],
+  "Rumpun Sosial Humaniora — Empati & Komunikasi": [
+   "assets/js/kuis.js"
+  ],
+  "Rumpun Teknologi — Logis & Problem Solver": [
+   "assets/js/kuis.js"
+  ],
   "SKOR PER RUMPUN": [
    "assets/js/share.js"
+  ],
+  "SNBP vs SNBT?": [
+   "assets/js/assistant.js"
+  ],
+  "Saat ada masalah sulit, reaksi pertama anak?": [
+   "assets/js/kuis.js"
+  ],
+  "Saling jaga": [
+   "assets/js/kuis.js"
   ],
   "Sama-sama! Semoga obrolan dengan anak makin nyambung.": [
    "assets/js/assistant.js"
@@ -1603,14 +2158,24 @@
   "Sampaikan pesan lewat gambar & warna.": [
    "assets/js/script.js"
   ],
+  "Sangat bulat": [
+   "assets/js/kuis.js"
+  ],
+  "Sanggup revisi 5×?": [
+   "assets/js/kuis.js"
+  ],
   "Saya belum yakin maksudnya. Coba tanya soal biaya, kuis minat, jalur SNBP/SNBT, atau nama jurusan.": [
    "assets/js/assistant.js"
   ],
   "Sekolah / kantor / lembaga sosial": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
   ],
   "Semua hasil kuis tersimpan otomatis dan bisa dipantau trennya di dashboard.": [
    "assets/js/assistant.js"
+  ],
+  "Senang coba-coba sampai berhasil": [
+   "assets/js/kuis.js"
   ],
   "Senang kalau bisa bantu orang": [
    "assets/js/script.js"
@@ -1621,17 +2186,51 @@
   "Senang memahami orang, membaca, dan berdiskusi. Kuat di komunikasi & analisis sosial.": [
    "assets/js/script.js"
   ],
+  "Senang memahami orang, membaca, menulis, dan berdiskusi. Kuat di komunikasi, mendengarkan, dan analisis sosial.": [
+   "assets/js/kuis.js"
+  ],
   "Senang mendengarkan tanpa menghakimi.": [
    "assets/js/jurusan-data.js"
+  ],
+  "Sendiri fokus, minim gangguan": [
+   "assets/js/kuis.js"
   ],
   "Seni / Prakarya / Desain": [
    "assets/js/script.js"
   ],
+  "Seni / desain / fotografi / musik": [
+   "assets/js/kuis.js"
+  ],
+  "Seni Budaya / Prakarya / Desain": [
+   "assets/js/kuis.js"
+  ],
+  "Seragam & tanggung jawab": [
+   "assets/js/kuis.js"
+  ],
   "Seragam putih, tanggung jawab": [
    "assets/js/script.js"
   ],
+  "Siap dengan jadwal padat & praktik?": [
+   "assets/js/kuis.js"
+  ],
+  "Simpan favorit:": [
+   "assets/js/favorit-compare.js"
+  ],
   "Sistem Informasi": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Skenario tersimpan": [
+   "assets/js/skenario.js"
+  ],
+  "Skill bisa dilatih lewat proyek kecil di rumah": [
+   "assets/js/kuis.js"
+  ],
+  "Skor tertinggi:": [
+   "assets/js/kuis.js"
+  ],
+  "Studio / agensi / kafe, karya visual": [
+   "assets/js/kuis.js"
   ],
   "Studio / agensi, karya visual": [
    "assets/js/script.js"
@@ -1640,6 +2239,7 @@
    "assets/js/script.js"
   ],
   "Suka bikin yang enak dilihat": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
   ],
   "Suka checklist & tabel": [
@@ -1651,11 +2251,17 @@
   "Suka debat & berpikir runtut.": [
    "assets/js/jurusan-data.js"
   ],
+  "Suka logika & angka": [
+   "assets/js/kuis.js"
+  ],
   "Suka logika, ngoprek, dan memecahkan masalah langkah demi langkah. Cocok untuk jurusan yang banyak praktik di depan komputer.": [
    "assets/js/script.js"
   ],
   "Suka logika, ngoprek, tahan debug.": [
    "assets/js/jurusan-data.js"
+  ],
+  "Suka memahami manusia": [
+   "assets/js/kuis.js"
   ],
   "Suka memahami orang": [
    "assets/js/script.js"
@@ -1663,7 +2269,14 @@
   "Suka menggambar & revisi visual.": [
    "assets/js/jurusan-data.js"
   ],
+  "Suka tabel & rencana": [
+   "assets/js/kuis.js"
+  ],
+  "Teknologi + bisnis": [
+   "assets/js/kuis.js"
+  ],
   "Teliti hitung untung-rugi": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
   ],
   "Teliti, empati, siap kuliah panjang.": [
@@ -1672,17 +2285,49 @@
   "Teliti, rapi, dan senang hitungan. Cocok untuk jurusan yang mengelola uang & strategi.": [
    "assets/js/script.js"
   ],
+  "Teliti, rapi, dan senang hitungan. Cocok untuk jurusan yang mengelola uang, data, dan strategi.": [
+   "assets/js/kuis.js"
+  ],
+  "Tenaga kesehatan yang dipercaya": [
+   "assets/js/kuis.js"
+  ],
   "Tertarik uang & usaha": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Tidak harus realistis dulu — pilih yang paling bikin semangat.": [
+   "assets/js/kuis.js"
   ],
   "Tidak harus realistis dulu — yang bikin mata berbinar.": [
    "assets/js/script.js"
   ],
   "Tidak suka dikekang": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Tip jujur:": [
+   "assets/js/script.js"
+  ],
+  "Tipe tugas sekolah yang paling ditunggu?": [
+   "assets/js/kuis.js"
+  ],
+  "Topik sosial apa yang bikin penasaran?": [
+   "assets/js/kuis.js"
+  ],
+  "Trial & error": [
+   "assets/js/kuis.js"
+  ],
+  "Tubuh & penyakit": [
+   "assets/js/kuis.js"
   ],
   "Tubuh manusia & penanganan penyakit. Masa belajar paling lama.": [
    "assets/js/jurusan-data.js"
+  ],
+  "Tugas yang ditunggu adalah bikin karya, bukan laporan angka.": [
+   "assets/js/kuis.js"
+  ],
+  "Tugas yang ditunggu adalah presentasi/esai, bukan hitungan.": [
+   "assets/js/kuis.js"
   ],
   "Tulis pertanyaan dulu, mis. \"biaya kuliah?\" atau \"anak masih bingung\".": [
    "assets/js/assistant.js"
@@ -1696,11 +2341,33 @@
   "Uji minatnya: tanya \"bagian mana yang paling kamu suka?\" lalu coba kelas/proyek gratis 2 minggu.": [
    "assets/js/assistant.js"
   ],
+  "Visual & cerita": [
+   "assets/js/kuis.js"
+  ],
+  "Visual diapresiasi": [
+   "assets/js/kuis.js"
+  ],
+  "Yang bikin cerita ke keluarga dengan semangat.": [
+   "assets/js/kuis.js"
+  ],
+  "Yang deadline-nya justru dikerjakan duluan.": [
+   "assets/js/kuis.js"
+  ],
   "Yang dicari kerja adalah skill terbukti. Minta anak cari 5 lowongan nyata + 1 skill tambahan sejak kuliah.": [
    "assets/js/assistant.js"
   ],
+  "Yang dipilih tanpa disuruh orang tua.": [
+   "assets/js/kuis.js"
+  ],
   "Yang nilainya stabil walau tanpa les tambahan.": [
+   "assets/js/kuis.js",
    "assets/js/script.js"
+  ],
+  "Yuk diskusikan bareng anak — tanya \"bagian mana yang paling bikin betah?\"": [
+   "assets/js/kuis.js"
+  ],
+  "asst-msg asst-": [
+   "assets/js/assistant.js"
   ],
   "beda pilihan": [
    "assets/js/assistant.js"
@@ -1710,6 +2377,12 @@
   ],
   "ikut teman": [
    "assets/js/assistant.js"
+  ],
+  "langkah dibahas": [
+   "assets/js/script.js"
+  ],
+  "langkah sudah dibahas": [
+   "assets/js/script.js"
   ],
   "pilih mana": [
    "assets/js/assistant.js"
@@ -1722,6 +2395,9 @@
   ],
   "seleksi kampus": [
    "assets/js/assistant.js"
+  ],
+  "semester •": [
+   "assets/js/script.js"
   ],
   "semua ke it": [
    "assets/js/assistant.js"
@@ -1757,6 +2433,18 @@
   ],
   "± Rp 50–140 jt": [
    "assets/js/jurusan-data.js"
+  ],
+  "× dari": [
+   "assets/js/dashboard.js"
+  ],
+  "• Hasil kuis 10 soal: dominan": [
+   "assets/js/script.js"
+  ],
+  "• beasiswa": [
+   "assets/js/skenario.js"
+  ],
+  "• sudah termasuk biaya hidup": [
+   "assets/js/script.js"
   ]
  }
 }
