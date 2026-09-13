@@ -186,26 +186,29 @@
       return;
     }
     showLoading();
-    fetch(API_URL, { cache: 'no-store' })
-      .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.json();
-      })
-      .then(function (payload) {
-        list = (payload && Array.isArray(payload.data)) ? payload.data : (Array.isArray(payload) ? payload : []);
+    Promise.all(API_URLS.map(function (url) {
+      return fetch(url, { cache: 'no-store' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(normalize)
+        .catch(function () { return []; });
+    })).then(function (parts) {
+        list = parts.reduce(function (acc, arr) { return acc.concat(arr); }, []);
         var found = null;
         for (var i = 0; i < list.length; i++) {
           if (list[i] && String(list[i].id).toLowerCase() === currentId) { found = list[i]; break; }
         }
         if (!found) {
-          showError('Kampus tidak ditemukan', 'ID "' + currentId + '" tidak ada di data/kampus.json. Periksa kembali id-nya.');
+          showError('Kampus tidak ditemukan', 'ID "' + currentId + '" tidak ada di data/ptn.json maupun data/pts.json. Periksa kembali id-nya.');
           return;
         }
         render(found);
         renderPrevNext();
       })
       .catch(function () {
-        showError('Gagal memuat data', 'File data/kampus.json tidak bisa dibaca. Jalankan lewat local server (Live Server), bukan double-click file.');
+        showError('Gagal memuat data', 'File data/ptn.json & data/pts.json tidak bisa dibaca. Jalankan lewat local server (Live Server), bukan double-click file.');
       });
   }
 
