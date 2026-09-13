@@ -64,7 +64,7 @@
     var alias = { informatika: 'Teknik Informatika', coding: 'Teknik Informatika', program: 'Teknik Informatika', dokter: 'Kedokteran', obat: 'Kedokteran', psikolog: 'Psikologi', akuntan: 'Akuntansi', keuangan: 'Akuntansi', dkv: 'Desain Komunikasi Visual', desain: 'Desain Komunikasi Visual', gambar: 'Desain Komunikasi Visual', hukum: 'Hukum', pengacara: 'Hukum', teknologi: null, kesehatan: null, soshum: null, bisnis: null, kreatif: null };
     var catHit = null;
     ['teknologi', 'kesehatan', 'soshum', 'bisnis', 'kreatif'].forEach(function (c) {
-      if (t.indexOf(' ' + c + ' ') > -1 || t.indexOf(c) > -1 && (' ' + c + ' ').length) { if (t.indexOf(c) > -1) catHit = c; }
+      if (t.indexOf(c) > -1) catHit = c;
     });
     for (var i = 0; i < data.length; i++) {
       if (t.indexOf(data[i].name.toLowerCase()) > -1) return fmtJur(data[i]);
