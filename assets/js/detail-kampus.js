@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var API_URLS = ['../data/ptn.json', '../data/pts.json'];
+  var API_URLS = ['../data/ptn.json', '../data/pts.json', '../data/ptln.json'];
 
   var wrap = document.getElementById('detailWrap');
   var prevBtn = document.getElementById('detailPrev');
@@ -76,7 +76,10 @@
 
   function render(k) {
     setTitle(k);
-    var jenisCls = String(k.jenis || '').toUpperCase() === 'PTS' ? 'pts' : '';
+    var jenisUp = String(k.jenis || '').toUpperCase();
+    var jenisCls = jenisUp === 'PTS' ? 'pts' : (jenisUp === 'PTLN' ? 'ptln' : '');
+    var akredLabel = jenisUp === 'PTLN' ? 'Peringkat' : 'Akreditasi';
+    var biayaLabel = jenisUp === 'PTLN' ? 'Biaya kuliah' : 'UKT / semester';
     var ratingTxt = Number(k.rating) ? Number(k.rating).toFixed(1).replace('.', ',') : '-';
     var img = esc(k.gambar || 'https://picsum.photos/seed/' + esc(k.id) + '/1200/600');
     var cadangan = esc(k.gambar_cadangan || ('https://picsum.photos/seed/' + k.id + '/1200/600'));
@@ -90,10 +93,14 @@
     var prestasi = Array.isArray(k.prestasi_snbp) ? k.prestasi_snbp.map(function (x) { return li('award', x); }).join('') : '';
     var tentang1 = k.tentang_kampus || k.deskripsi_panjang || k.deskripsi_singkat || '';
     var tentang2 = (k.tentang_kampus && k.deskripsi_panjang) ? k.deskripsi_panjang : '';
-    var isPTS = String(k.jenis || '').toUpperCase() === 'PTS';
-    var skorJudul = isPTS ? 'Jalur masuk & beasiswa prestasi' : 'Skor UTBK & syarat SNBP';
-    var skorIkon = isPTS ? 'log-in' : 'target';
-    var skorNote = isPTS
+    var isPTS = jenisUp === 'PTS';
+    var isPTLN = jenisUp === 'PTLN';
+    var skorJudul = isPTLN ? 'Syarat masuk & prestasi global' : (isPTS ? 'Jalur masuk & beasiswa prestasi' : 'Skor UTBK & syarat SNBP');
+    var skorIkon = isPTLN ? 'globe' : (isPTS ? 'log-in' : 'target');
+    var skorLabel = isPTLN ? 'Skor masuk minimal (estimasi aman)' : 'Skor UTBK minimal (estimasi aman)';
+    var skorNote = isPTLN
+      ? 'Tiap kampus punya portal admissions sendiri (link website resmi di bawah) — skor di atas estimasi aman dari profil mahasiswa diterima tahun sebelumnya, bukan syarat resmi. Cek deadline, dokumen & biaya terbaru di website resmi karena berubah tiap tahun.'
+      : (isPTS
       ? 'PTS tidak memakai UTBK sebagai syarat wajib — seleksi lewat rapor/tes mandiri kampus. Prestasi di bawah ini berguna untuk merebut beasiswa masuk.'
       : 'Skor di atas adalah ESTIMASI aman dari pola tahun sebelumnya — SNPMB tidak pernah merilis passing grade resmi. Syarat SNBP: nilai rapor 5 semester + maks. 3 sertifikat prestasi terbaik. Selalu verifikasi syarat terbaru di website resmi kampus & portal SNPMB.';
     var fasilitas = Array.isArray(k.fasilitas) ? k.fasilitas.map(function (x) { return li('check', x); }).join('') : '';
