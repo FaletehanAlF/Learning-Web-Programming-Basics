@@ -200,7 +200,7 @@
     }
   }
 
-  function docFromEntry(x) {
+  function renderAll() {
     if (x.detail) {
       return {
         dateStr: fmtDate(x.ts), topLabel: x.detail.topLabel, topTitle: x.detail.topTitle,
