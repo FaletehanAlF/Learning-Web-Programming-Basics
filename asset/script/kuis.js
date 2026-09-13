@@ -644,7 +644,9 @@
     html += '<a href="../index.html#jurusan" class="btn btn-primary" id="resultToJurusan"><i data-feather="layout" aria-hidden="true"></i> Lihat Jurusan ' + esc(top.meta.label) + '</a>';
     html += '<button class="btn btn-outline" id="resultShareWa" type="button"><i data-feather="share-2" aria-hidden="true"></i> WhatsApp</button>';
     html += '<button class="btn btn-outline" id="resultCopy" type="button"><i data-feather="copy" aria-hidden="true"></i> Salin Hasil</button>';
+    html += '<button class="btn btn-outline" id="resultImage" type="button"><i data-feather="image" aria-hidden="true"></i> Gambar</button>';
     html += '<button class="btn btn-outline" id="resultWord" type="button"><i data-feather="file-text" aria-hidden="true"></i> Unduh Word</button>';
+    html += '<button class="btn btn-outline" id="resultLink" type="button"><i data-feather="link" aria-hidden="true"></i> Salin Link</button>';
     html += '<a href="dashboard.html" class="btn btn-outline" id="resultDash"><i data-feather="bar-chart-2" aria-hidden="true"></i> Dashboard</a>';
     html += '<button class="btn btn-ghost" id="resultRetry" type="button"><i data-feather="refresh-cw" aria-hidden="true"></i> Ulangi Kuis</button>';
     html += '</div>';
@@ -696,6 +698,35 @@
     });
     var copyBtn = document.getElementById('resultCopy');
     if (copyBtn) copyBtn.addEventListener('click', function () { copyText(shareText, copyBtn); });
+    var imgBtn = document.getElementById('resultImage');
+    if (imgBtn) imgBtn.addEventListener('click', function () {
+      if (!window.PanduanJurusanShare) return;
+      var original = imgBtn.innerHTML;
+      imgBtn.disabled = true;
+      imgBtn.innerHTML = 'Membuat…';
+      window.PanduanJurusanShare.shareImage({
+        topLabel: top.meta.label, topColor: top.meta.color, score: top.score, percent: top.percent,
+        rows: list.map(function (x) { return { label: x.meta.label, percent: x.percent, color: x.meta.color }; }),
+        majors: top.meta.jurusan.map(function (j) { return j.name; })
+      }).then(function () {
+        imgBtn.disabled = false;
+        imgBtn.innerHTML = original;
+        feather();
+        try { if (window.PanduanJurusanFav) window.PanduanJurusanFav.toast('Gambar hasil siap dibagikan'); } catch (e) {}
+      });
+    });
+    var linkBtn = document.getElementById('resultLink');
+    if (linkBtn) linkBtn.addEventListener('click', function () {
+      if (!window.PanduanJurusanShare) return;
+      var url = window.PanduanJurusanShare.buildResultLink({ t: top.key, s: scores, c: cons.label });
+      if (!url) return;
+      var original = linkBtn.innerHTML;
+      window.PanduanJurusanShare.copyText(url).then(function (ok) {
+        linkBtn.innerHTML = ok ? '<i data-feather="check" aria-hidden="true"></i> Link tersalin!' : original;
+        feather();
+        if (ok) window.setTimeout(function () { linkBtn.innerHTML = original; feather(); }, 1800);
+      });
+    });
     var wordBtn = document.getElementById('resultWord');
     if (wordBtn) wordBtn.addEventListener('click', function () { downloadResultWord(top, list, cons); });
     var retryBtn = document.getElementById('resultRetry');
