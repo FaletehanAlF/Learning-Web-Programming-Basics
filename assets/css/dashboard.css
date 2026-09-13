@@ -41,6 +41,10 @@
 .trend-val.is-shown { opacity: 1; }
 .trend-empty { padding: 26px 14px; text-align: center; }
 
+/* Panel langkah selanjutnya */
+.dash-next-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.dash-next-actions .btn { flex: 1 1 140px; justify-content: center; }
+
 @media (max-width: 640px) {
   .dash-hero-actions .btn { flex: 1 1 100%; justify-content: center; }
 }
