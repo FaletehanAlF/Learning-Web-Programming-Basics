@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rekomendasi Kampus — 10 Pilihan Terbaik | Panduan Jurusan</title>
+  <meta name="description" content="10 rekomendasi kampus PTN & PTS terbaik: lokasi, akreditasi, UKT, jalur masuk, beasiswa, dan prospek. Klik untuk lihat detail tiap kampus." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/kampus.css" />
+  <link rel="stylesheet" href="../assets/css/assistant.css" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+  <link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <a class="skip-link" href="#konten-kampus">Lompat ke daftar kampus</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-capsule">
+      <a href="../index.html" class="logo" aria-label="Kembali ke beranda">
+        <span class="logo-mark" aria-hidden="true"><i data-feather="compass"></i></span>
+        <span>Panduan Jurusan</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu navigasi">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="navMenu" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="../index.html"><i data-feather="arrow-left" aria-hidden="true"></i>Beranda</a></li>
+          <li><a href="kuis.html"><i data-feather="help-circle" aria-hidden="true"></i>Kuis 10 Soal</a></li>
+          <li><a href="kampus.html" aria-current="page"><i data-feather="book" aria-hidden="true"></i>Kampus</a></li>
+          <li><a href="../index.html#kalkulator-biaya"><i data-feather="dollar-sign" aria-hidden="true"></i>Hitung Biaya</a></li>
+          <li class="nav-mobile-cta">
+            <a class="nav-dicoding-mobile" href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">
+              <span class="dicoding-dot" aria-hidden="true">D</span> Profil Dicoding <i data-feather="external-link" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div class="header-cta">
+        <a class="nav-dicoding" href="https://www.dicoding.com/users/falennn_af" target="_blank" rel="noopener noreferrer">
+          <span class="dicoding-dot" aria-hidden="true">D</span> Profil Dicoding <i data-feather="external-link" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="konten-kampus">
+    <section class="quiz-hero kampus-hero">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="../index.html">Beranda</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Rekomendasi Kampus</span>
+        </nav>
+        <div class="quiz-hero-inner kampus-hero-inner">
+          <div>
+            <p class="section-kicker">10 kampus • PTN & PTS • Data API</p>
+            <h1>Rekomendasi Kampus</h1>
+            <p class="quiz-hero-desc">Klik salah satu kartu untuk <strong>pindah ke halaman detail</strong>: UKT, jalur masuk, beasiswa, fasilitas, sampai prospek karier.</p>
+            <ul class="quiz-hero-meta">
+              <li><i data-feather="book" aria-hidden="true"></i> 10 kampus terkurasi</li>
+              <li><i data-feather="map-pin" aria-hidden="true"></i> Jawa • Sumatra siap tambah</li>
+              <li><i data-feather="check-circle" aria-hidden="true"></i> Mudah dikustom via API</li>
+            </ul>
+          </div>
+          <div class="quiz-hero-card kampus-hero-card" aria-label="Cara custom">
+            <span class="kampus-hero-card-kicker">Mudah dikustom</span>
+            <ul>
+              <li><span class="dot"></span> Ganti foto: edit field <b>gambar</b> di <b>data/kampus.json</b></li>
+              <li><span class="dot"></span> Ubah detail: edit teks di file yang sama, simpan, refresh</li>
+              <li><span class="dot"></span> Tambah kampus: duplikat 1 objek, ganti <b>id</b> unik</li>
+            </ul>
+            <small>Semua gambar memakai URL network (https://...). Ada gambar cadangan otomatis bila link utama gagal.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section quiz-app-section">
+      <div class="container">
+        <div class="kampus-toolbar">
+          <div class="filter-chips" id="kampusChips" role="group" aria-label="Filter jenis kampus">
+            <button class="chip is-active" type="button" data-filter="semua">Semua</button>
+            <button class="chip" type="button" data-filter="ptn">PTN</button>
+            <button class="chip" type="button" data-filter="pts">PTS</button>
+          </div>
+          <label class="kampus-search">
+            <i data-feather="search" aria-hidden="true"></i>
+            <input id="kampusSearch" type="search" placeholder="Cari kampus / kota / jurusan… mis. malang" aria-label="Cari kampus" autocomplete="off" />
+          </label>
+        </div>
+        <p class="kampus-count" id="kampusCount" aria-live="polite">Memuat data kampus…</p>
+
+        <div class="kampus-grid" id="kampusGrid" aria-live="polite"></div>
+        <p class="kampus-empty" id="kampusEmpty" hidden>Tidak ada kampus yang cocok. Coba kata kunci atau filter lain.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo"><span class="logo-mark"><i data-feather="compass"></i></span><span>Panduan Jurusan</span></a>
+        <p>Rekomendasi kampus untuk bahan diskusi keluarga — bukan peringkat resmi pemerintah.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <h3>Navigasi</h3>
+        <ul>
+          <li><a href="kuis.html">Kuis 10 Soal</a></li>
+          <li><a href="kampus.html">Rekomendasi Kampus</a></li>
+          <li><a href="../index.html#kalkulator-biaya">Hitung Biaya</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Footer lain">
+        <h3>Lainnya</h3>
+        <ul>
+          <li><a href="../index.html#jurusan">Daftar Jurusan</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+          <li><a href="dashboard.html">Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom"><p>&copy; 2026 Panduan Jurusan. Data kampus dapat dikustom di data/kampus.json.</p></div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Kembali ke atas"><i data-feather="arrow-up" aria-hidden="true"></i></button>
+
+  <script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js" defer></script>
+  <script src="../assets/js/script.js" defer></script>
+  <script src="../assets/js/kampus.js" defer></script>
+  <script src="../assets/js/assistant.js" defer></script>
+</body>
+</html>
