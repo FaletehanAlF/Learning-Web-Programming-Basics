@@ -11,6 +11,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../asset/style/style.css" />
   <link rel="stylesheet" href="../asset/style/dashboard.css" />
+  <link rel="stylesheet" href="../asset/style/assistant.css" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+  <link rel="icon" href="../asset/image/icon.svg" type="image/svg+xml" />
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -56,6 +59,7 @@
         <div class="dash-hero-actions">
           <a href="kuis.html" class="btn btn-primary"><i data-feather="play" aria-hidden="true"></i> Isi / Ulangi Kuis</a>
           <button class="btn btn-outline" id="dashWord" type="button"><i data-feather="download" aria-hidden="true"></i> Unduh Word</button>
+          <button class="btn btn-outline" id="dashLinkBtn" type="button"><i data-feather="link" aria-hidden="true"></i> Salin Link</button>
           <button class="btn btn-ghost" id="dashClear" type="button"><i data-feather="trash-2" aria-hidden="true"></i> Hapus riwayat</button>
         </div>
       </div>
@@ -63,6 +67,7 @@
 
     <section class="section quiz-app-section">
       <div class="container dash-wrap">
+        <div id="dashLink"></div>
         <div class="dash-stats" id="dashStats"></div>
 
         <div class="dash-panel dash-trend">
@@ -80,6 +85,12 @@
             <h3><i data-feather="clock" aria-hidden="true"></i> Riwayat</h3>
             <div id="dashHistory"></div>
           </div>
+        </div>
+
+        <div class="dash-panel">
+          <h3><i data-feather="bookmark" aria-hidden="true"></i> Jurusan favorit saya</h3>
+          <p class="dash-panel-desc">Ditandai dari katalog di beranda. Buka katalog untuk menambah.</p>
+          <div id="dashFav"></div>
         </div>
       </div>
     </section>
@@ -115,7 +126,10 @@
 
   <script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js" defer></script>
   <script src="../asset/script/script.js" defer></script>
+  <script src="../asset/script/jurusan-data.js" defer></script>
   <script src="../asset/script/export-word.js" defer></script>
+  <script src="../asset/script/share.js" defer></script>
   <script src="../asset/script/dashboard.js" defer></script>
+  <script src="../asset/script/assistant.js" defer></script>
 </body>
 </html>
