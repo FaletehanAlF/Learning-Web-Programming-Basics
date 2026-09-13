@@ -2028,6 +2028,9 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
   .cta-actions .btn, .result-actions .btn { width: 100%; justify-content: center; }
   .stat-row { grid-template-columns: 80px 1fr 36px 36px; gap: 6px; }
   .review-item strong, .review-item span { white-space: normal; }
+  .compare-bar { left: 12px; right: 12px; transform: none; justify-content: center; }
+  .compare-modal { padding: 12px; }
+  .pj-toast { bottom: 130px; max-width: calc(100vw - 32px); white-space: normal; text-align: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
