@@ -331,6 +331,24 @@
     });
   }
 
+  if (linkBtn) {
+    linkBtn.addEventListener('click', function () {
+      var h = getHistory();
+      if (!h.length || !window.PanduanJurusanShare) {
+        try { window.alert('Belum ada hasil. Isi kuis dulu.'); } catch (e) {}
+        return;
+      }
+      var url = window.PanduanJurusanShare.buildResultLink({ t: h[0].top, s: h[0].scores, c: h[0].consistencyLabel });
+      if (!url) return;
+      var original = linkBtn.innerHTML;
+      window.PanduanJurusanShare.copyText(url).then(function (ok) {
+        linkBtn.innerHTML = ok ? '<i data-feather="check" aria-hidden="true"></i> Tersalin!' : original;
+        feather();
+        if (ok) window.setTimeout(function () { linkBtn.innerHTML = original; feather(); }, 1800);
+      });
+    });
+  }
+
   renderAll();
   feather();
   window.addEventListener('load', feather);
