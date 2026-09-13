@@ -668,7 +668,6 @@
     } catch (e) {}
 
     pushHistory({ ts: Date.now(), top: top.key, score: top.score, percent: top.percent, consistency: cons.value, consistencyLabel: cons.label, scores: scores });
-    renderDashboard();
 
     var toJurusan = document.getElementById('resultToJurusan');
     if (toJurusan) toJurusan.addEventListener('click', function () {
@@ -680,15 +679,8 @@
     });
     var copyBtn = document.getElementById('resultCopy');
     if (copyBtn) copyBtn.addEventListener('click', function () { copyText(shareText, copyBtn); });
-    var dlBtn = document.getElementById('resultDownload');
-    if (dlBtn) dlBtn.addEventListener('click', function () { downloadTxt('hasil-kuis-minat.txt', shareText); });
-    var printBtn = document.getElementById('resultPrint');
-    if (printBtn) printBtn.addEventListener('click', function () { try { window.print(); } catch (e) {} });
-    var dashBtn = document.getElementById('resultDash');
-    if (dashBtn) dashBtn.addEventListener('click', function () {
-      var dash = document.getElementById('quizDashboard');
-      if (dash) scrollToEl(dash);
-    });
+    var wordBtn = document.getElementById('resultWord');
+    if (wordBtn) wordBtn.addEventListener('click', function () { downloadResultWord(top, list, cons); });
     var retryBtn = document.getElementById('resultRetry');
     if (retryBtn) retryBtn.addEventListener('click', function () { resetQuiz(); });
   }
