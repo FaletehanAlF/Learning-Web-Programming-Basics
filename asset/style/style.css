@@ -1620,8 +1620,8 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 .quiz-footnote .feather { width: 13px; height: 13px; flex-shrink: 0; }
 
 /* Result — clean stacked, no overlap */
-.quiz-full-result { padding: 0; display: grid; gap: 0; }
-.result-head { padding: 22px 20px; border-bottom: 1px solid var(--line-soft); }
+.quiz-full-result { padding: 0; display: grid; gap: 0; background: #fff; border: 1px solid var(--line); border-radius: var(--radius-md); overflow: hidden; }
+.result-head { padding: 22px 20px; border-bottom: 1px solid var(--line-soft); background: var(--bg-soft); }
 .result-head h2 { display: flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 19px; font-weight: 800; letter-spacing: -0.02em; margin: 10px 0 8px; color: var(--ink); line-height: 1.3; }
 .result-icon { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 10px; color: #fff; flex-shrink: 0; }
 .result-icon .feather { width: 18px; height: 18px; }
