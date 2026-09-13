@@ -614,8 +614,8 @@
     }
 
     html += '<div class="result-jurusan">';
-    html += '<h3><i data-feather="layout" aria-hidden="true"></i> Jurusan yang bisa dilihat dulu</h3>';
-    html += '<p class="result-jurusan-desc">Bukan harus pilih ini — tapi 3 ini paling nyambung dengan pola jawaban. Klik untuk filter katalog di beranda.</p>';
+    html += '<h3><i data-feather="layout" aria-hidden="true"></i> Jurusan yang cocok</h3>';
+    html += '<p class="result-jurusan-desc">3 jurusan paling nyambung dengan pola jawaban.</p>';
     html += '<div class="result-jurusan-grid">';
     top.meta.jurusan.forEach(function (j) {
       html += '<article class="result-jurusan-card"><span class="label">' + esc(top.meta.label) + '</span><h4>' + esc(j.name) + '</h4><small>' + esc(j.sub) + '</small><p>' + esc(j.p) + '</p></article>';
@@ -641,15 +641,14 @@
     html += '</div></div>';
 
     html += '<div class="result-actions">';
-    html += '<a href="../index.html#jurusan" class="btn btn-primary" id="resultToJurusan"><i data-feather="layout" aria-hidden="true"></i> Lihat Jurusan ' + esc(top.meta.label) + ' di Beranda</a>';
-    html += '<button class="btn btn-outline" id="resultShareWa" type="button"><i data-feather="share-2" aria-hidden="true"></i> Bagikan ke WhatsApp</button>';
+    html += '<a href="../index.html#jurusan" class="btn btn-primary" id="resultToJurusan"><i data-feather="layout" aria-hidden="true"></i> Lihat Jurusan ' + esc(top.meta.label) + '</a>';
+    html += '<button class="btn btn-outline" id="resultShareWa" type="button"><i data-feather="share-2" aria-hidden="true"></i> WhatsApp</button>';
     html += '<button class="btn btn-outline" id="resultCopy" type="button"><i data-feather="copy" aria-hidden="true"></i> Salin Hasil</button>';
-    html += '<button class="btn btn-outline" id="resultDownload" type="button"><i data-feather="download" aria-hidden="true"></i> Unduh TXT</button>';
-    html += '<button class="btn btn-outline" id="resultPrint" type="button"><i data-feather="printer" aria-hidden="true"></i> Cetak</button>';
-    html += '<button class="btn btn-outline" id="resultDash" type="button"><i data-feather="bar-chart-2" aria-hidden="true"></i> Lihat Dashboard</button>';
+    html += '<button class="btn btn-outline" id="resultWord" type="button"><i data-feather="file-text" aria-hidden="true"></i> Unduh Word</button>';
+    html += '<a href="dashboard.html" class="btn btn-outline" id="resultDash"><i data-feather="bar-chart-2" aria-hidden="true"></i> Dashboard</a>';
     html += '<button class="btn btn-ghost" id="resultRetry" type="button"><i data-feather="refresh-cw" aria-hidden="true"></i> Ulangi Kuis</button>';
     html += '</div>';
-    html += '<p class="quiz-disclaimer">Bukan tes psikologi formal. Skor = jumlah jawaban per rumpun dari 10 soal. Gunakan untuk membuka obrolan hidup—mis. “kok 4 jawaban ke Teknologi ya? Bagian mana yang bikin betah?”</p>';
+    html += '<p class="quiz-disclaimer">Bukan tes psikologi formal — gunakan sebagai bahan obrolan keluarga.</p>';
 
     resultEl.innerHTML = html;
     resultEl.hidden = false;
