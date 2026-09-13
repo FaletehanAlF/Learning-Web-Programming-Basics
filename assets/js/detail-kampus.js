@@ -88,7 +88,8 @@
       ? k.jalur_masuk.map(function (x) { return '<span class="kampus-pill">' + esc(x) + '</span>'; }).join('') : '';
     var beasiswa = Array.isArray(k.beasiswa) ? k.beasiswa.map(function (x) { return li('award', x); }).join('') : '';
     var prestasi = Array.isArray(k.prestasi_snbp) ? k.prestasi_snbp.map(function (x) { return li('award', x); }).join('') : '';
-    var isPTS = String(k.jenis || '').toUpperCase() === 'PTS';
+    var tentang1 = k.tentang_kampus || k.deskripsi_panjang || k.deskripsi_singkat || '';
+    var tentang2 = (k.tentang_kampus && k.deskripsi_panjang) ? k.deskripsi_panjang : '';
     var skorJudul = isPTS ? 'Jalur masuk & beasiswa prestasi' : 'Skor UTBK & syarat SNBP';
     var skorIkon = isPTS ? 'log-in' : 'target';
     var skorNote = isPTS
