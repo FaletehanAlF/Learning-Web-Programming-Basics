@@ -12,6 +12,8 @@ global.localStorage = {
 global.location = { href: 'http://localhost/views/kuis.html' };
 try { global.navigator = {}; } catch (e) {}
 global.matchMedia = () => ({ matches: false });
+global.addEventListener = () => {};
+global.removeEventListener = () => {};
 global.open = () => {};
 global.confirm = () => true;
 global.print = () => {};
