@@ -2312,3 +2312,260 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 @media print {
   .section { content-visibility: visible; }
 }
+
+/* =====================================================================
+   PATCH 2026-09: dark-mode readability + anti-numpuk + logo kampus
+   1) Semua teks gelap jadi putih/terang di dark mode
+   2) Jarak lega agar tidak numpuk di semua perangkat
+   3) Logo kampus di kanan-bawah foto (bisa diganti via API JSON)
+   ===================================================================== */
+
+/* ---- 1) DARK MODE: paksa teks jadi terang ---- */
+[data-theme="dark"] body { color: #edf2fa; }
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] .quiz-q-title,
+[data-theme="dark"] .quiz-hero h1,
+[data-theme="dark"] .detail-title-wrap h1,
+[data-theme="dark"] .result-head h2,
+[data-theme="dark"] .quiz-result-head h3 {
+  color: #f8fafc;
+}
+[data-theme="dark"] p,
+[data-theme="dark"] .section-desc,
+[data-theme="dark"] .hero-desc,
+[data-theme="dark"] .quiz-hero-desc,
+[data-theme="dark"] .detail-tagline,
+[data-theme="dark"] .testi-quote,
+[data-theme="dark"] .faq-answer > p,
+[data-theme="dark"] .cta-proof p {
+  color: #b8c7df;
+}
+[data-theme="dark"] small,
+[data-theme="dark"] .hero-microcopy,
+[data-theme="dark"] .quiz-teaser-meta,
+[data-theme="dark"] .quiz-teaser-note,
+[data-theme="dark"] .jurusan-count,
+[data-theme="dark"] .kampus-count,
+[data-theme="dark"] .testi-hint,
+[data-theme="dark"] .testi-count,
+[data-theme="dark"] .cta-note,
+[data-theme="dark"] .timeline-note,
+[data-theme="dark"] .quiz-footnote,
+[data-theme="dark"] .calc-hint {
+  color: #9db0ca !important;
+}
+/* Badge rating putih: teks harus gelap agar terbaca */
+[data-theme="dark"] .kampus-rating {
+  background: rgb(255 255 255 / 0.96);
+  border-color: transparent;
+  color: #0f172a !important;
+}
+[data-theme="dark"] .kampus-rating .feather { color: #d97706; fill: #f59e0b; }
+/* Hover yang tadinya putih + teks terang = tak terbaca */
+[data-theme="dark"] .tips-check:hover {
+  background: #1a2c4d;
+  border-color: var(--line-strong);
+  color: #fff;
+}
+[data-theme="dark"] .preset:hover,
+[data-theme="dark"] .chip:hover:not(.is-active),
+[data-theme="dark"] .quiz-option:hover,
+[data-theme="dark"] .quiz-full-body .quiz-option:hover,
+[data-theme="dark"] .quiz-dot:hover {
+  background: #1a2c4d;
+  color: #fff;
+}
+/* Bar mini kuis: teks tetap putih di atas bar gelap */
+[data-theme="dark"] .quiz-mini-bar b { color: #fff !important; }
+/* Catatan kalkulator di atas panel gelap */
+[data-theme="dark"] .calc-note { color: #94a3b8 !important; }
+[data-theme="dark"] .sc-empty { color: #94a3b8 !important; }
+/* Tombol favorit/compare yang tadinya putih transparan */
+[data-theme="dark"] .fav-btn,
+[data-theme="dark"] .cmp-btn {
+  background: rgb(18 32 58 / 0.94);
+  border-color: var(--line-strong);
+  color: #d7e1f2;
+}
+[data-theme="dark"] .fav-btn:hover,
+[data-theme="dark"] .cmp-btn:hover { border-color: #5eead4; color: #fff; }
+/* Bintang: lebih terang di dark */
+[data-theme="dark"] .stars { color: #fbbf24; }
+/* Form: placeholder + option + prefix */
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder { color: #8296b3; opacity: 1; }
+[data-theme="dark"] select option { background: #12203a; color: #edf2fa; }
+[data-theme="dark"] .calc-prefix {
+  background: rgb(255 255 255 / 0.05);
+  border-right-color: var(--line);
+  color: #94a3b8;
+}
+[data-theme="dark"] .calc-input input,
+[data-theme="dark"] .kampus-search input,
+[data-theme="dark"] .jurusan-search input,
+[data-theme="dark"] .asst-input input,
+[data-theme="dark"] .kontak-field input,
+[data-theme="dark"] .kontak-field textarea {
+  color: #f1f5f9;
+  caret-color: #5eead4;
+}
+[data-theme="dark"] .kontak-error {
+  background: rgb(185 28 28 / 0.16);
+  border-color: rgb(248 113 113 / 0.45);
+  color: #fecaca;
+}
+[data-theme="dark"] .asst-input input { background: var(--bg-soft); }
+[data-theme="dark"] .testi-person {
+  background: rgb(255 255 255 / 0.03);
+  border-top-color: var(--line);
+}
+[data-theme="dark"] .compare-table thead th { color: #fff; }
+[data-theme="dark"] .compare-table tbody th { color: #94a3b8; }
+[data-theme="dark"] .compare-table td { color: #d7e1f2; }
+[data-theme="dark"] .detail-contact a { color: #5eead4; }
+[data-theme="dark"] .detail-contact a:hover { color: #99f6e4; }
+[data-theme="dark"] .kampus-akred,
+[data-theme="dark"] .kampus-loc { color: #9db0ca !important; }
+[data-theme="dark"] .kampus-cta { color: #5eead4 !important; }
+[data-theme="dark"] .crumbs { color: #9db0ca; }
+[data-theme="dark"] .crumbs [aria-current="page"] { color: #f1f5f9; }
+[data-theme="dark"] .dash-hist-badge {
+  background: rgb(255 255 255 / 0.06);
+  border-color: var(--line);
+  color: #e2e8f0;
+}
+[data-theme="dark"] .quiz-full-percent,
+[data-theme="dark"] .quiz-step { color: #e2e8f0; }
+/* Logo kampus tetap putih agar terbaca di kedua tema */
+[data-theme="dark"] .kampus-logo,
+[data-theme="dark"] .detail-logo {
+  background: #fff;
+  border-color: #fff;
+  color: #0f172a;
+}
+
+/* ---- 2) ANTI-NUMPUK: napas lega + responsif semua perangkat ---- */
+.section-head { max-width: 680px; }
+.section-head h2 { line-height: 1.25; text-wrap: balance; }
+.section-desc { line-height: 1.7; }
+/* Kartu: jarak konsisten, teks tidak mepet */
+.reason-card, .jurusan-card, .tips-item, .faq-item, .testi-card {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.jurusan-card > p,
+.kampus-card-body > p,
+.testi-quote {
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+.jurusan-card > p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* Hero: badge tidak menimpa konten berikutnya */
+.hero-visual { padding-bottom: 26px; }
+.hero-figure figcaption { padding-bottom: 10px; }
+.hero-badge { line-height: 1.5; }
+/* Toolbar: search tidak mepet chips */
+.jurusan-toolbar, .kampus-toolbar { row-gap: 12px; }
+.jurusan-search, .kampus-search { flex: 1 1 240px; max-width: 340px; }
+/* Kalkulator & CTA: napas antar kolom */
+.calc-wrap, .cta-card, .quiz-teaser, .quiz-hero-inner { gap: 24px; }
+.calc-form { gap: 18px; }
+.calc-result { line-height: 1.6; }
+/* Bar banding: jangan menutupi tombol lain di HP */
+.compare-bar {
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.compare-bar::-webkit-scrollbar { display: none; }
+
+/* ---- 3) LOGO KAMPUS kanan-bawah foto (ganti via field "logo" di JSON) ---- */
+.kampus-card-media { background: var(--bg-soft); }
+.kampus-logo {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #fff;
+  border: 2px solid #fff;
+  box-shadow: 0 4px 14px rgb(2 6 23 / 0.30);
+  object-fit: contain;
+  object-position: center;
+  padding: 4px;
+  z-index: 2;
+}
+span.kampus-logo-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #0f172a;
+  line-height: 1;
+  text-align: center;
+}
+.detail-hero-media { position: relative; }
+.detail-logo {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 78px;
+  height: 78px;
+  border-radius: 18px;
+  background: #fff;
+  border: 3px solid #fff;
+  box-shadow: 0 8px 24px rgb(2 6 23 / 0.30);
+  object-fit: contain;
+  object-position: center;
+  padding: 6px;
+  z-index: 2;
+}
+span.detail-logo-fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+}
+
+/* ---- Responsif tambahan: HP kecil tidak numpuk ---- */
+@media (max-width: 960px) {
+  .jurusan-search, .kampus-search { max-width: none; width: 100%; }
+  .detail-layout { gap: 16px; }
+  .detail-stats { gap: 10px; }
+}
+@media (max-width: 620px) {
+  .detail-stats { grid-template-columns: 1fr; }
+  .kampus-card-body { padding: 14px 14px 16px; }
+  .kampus-card-foot { flex-wrap: wrap; gap: 8px; }
+  .kampus-logo { width: 46px; height: 46px; border-radius: 12px; }
+  .detail-logo { width: 60px; height: 60px; border-radius: 14px; right: 12px; bottom: 12px; }
+  .stat-row { grid-template-columns: 1fr auto; grid-template-areas: "label score" "bar bar"; row-gap: 6px; }
+  .stat-label { grid-area: label; white-space: normal; }
+  .stat-score { grid-area: score; }
+  .stat-percent { display: none; }
+  .stat-bar-track { grid-area: bar; min-width: 0; }
+  .review-item { grid-template-columns: 22px 1fr; }
+  .review-badge { grid-column: 2; justify-self: start; }
+  .why-procons { grid-template-columns: 1fr; }
+  .result-jurusan-grid { grid-template-columns: 1fr; }
+  .hero-visual { padding-bottom: 0; }
+  .compare-bar { font-size: 12.5px; padding: 8px 8px 8px 14px; }
+}
+@media (max-width: 380px) {
+  .container { padding-inline: 16px; }
+  .kampus-logo { width: 42px; height: 42px; }
+  .detail-logo { width: 54px; height: 54px; }
+}
