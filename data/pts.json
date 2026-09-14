@@ -16,6 +16,8 @@
       "jumlah_mahasiswa",
       "gambar",
       "gambar_cadangan",
+      "logo_cadangan",
+      "logo",
       "tagline",
       "deskripsi_singkat",
       "deskripsi_panjang",
@@ -35,7 +37,8 @@
       "prestasi_snbp[]"
     ],
     "catatan_id": "'id' dipakai untuk URL detail, contoh: detail-kampus.html?id=telkom. Jangan pakai spasi.",
-    "sumber_data": "Data disusun merujuk website resmi tiap kampus (field website) dan portal SNPMB. Skor UTBK adalah ESTIMASI aman dari pola tahun sebelumnya — SNPMB tidak merilis passing grade resmi. Selalu verifikasi syarat terbaru di website resmi kampus karena berubah tiap tahun."
+    "sumber_data": "Data disusun merujuk website resmi tiap kampus (field website) dan portal SNPMB. Skor UTBK adalah ESTIMASI aman dari pola tahun sebelumnya — SNPMB tidak merilis passing grade resmi. Selalu verifikasi syarat terbaru di website resmi kampus karena berubah tiap tahun.",
+    "cara_ganti_logo": "Ganti field logo dengan link logo network. Logo tampil di kanan-bawah foto (pojok). Bisa dari Unsplash, Cloudinary, imgbb, Google Drive (link langsung), atau file lokal mis. assets/img/logo-ui.png. Bentuk kotak, ideal 200x200 PNG/JPG. Kosongkan untuk pakai inisial otomatis."
   },
   "jenis": "PTS",
   "data": [
@@ -96,7 +99,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=Tel-U&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-telkom/200/200"
     },
     {
       "id": "binus",
@@ -156,7 +161,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=BINUS&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-binus/200/200"
     },
     {
       "id": "uii",
@@ -216,7 +223,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=UII&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-uii/200/200"
     },
     {
       "id": "umy",
@@ -276,7 +285,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=UMY&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-umy/200/200"
     },
     {
       "id": "petra",
@@ -336,7 +347,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=Petra&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-petra/200/200"
     },
     {
       "id": "uajy",
@@ -396,7 +409,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=UAJY&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-uajy/200/200"
     },
     {
       "id": "unpar",
@@ -456,7 +471,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=UNPAR&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-unpar/200/200"
     },
     {
       "id": "umm",
@@ -516,7 +533,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=UMM&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-umm/200/200"
     },
     {
       "id": "trisakti",
@@ -576,7 +595,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=Trisakti&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-trisakti/200/200"
     },
     {
       "id": "gunadarma",
@@ -636,7 +657,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=Gunadarma&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-gunadarma/200/200"
     },
     {
       "id": "uph",
@@ -696,7 +719,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=UPH&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-uph/200/200"
     },
     {
       "id": "ciputra",
@@ -756,7 +781,9 @@
         "Hafiz Quran/juara lomba untuk beasiswa hingga 100%",
         "Siapkan maks. 3 sertifikat prestasi terbaik (akademik/non-akademik)",
         "Portofolio karya (wajib untuk prodi Desain/Komunikasi)"
-      ]
+      ],
+      "logo": "https://ui-avatars.com/api/?name=UC&background=0f172a&color=fff&size=128&bold=true",
+      "logo_cadangan": "https://picsum.photos/seed/logo-ciputra/200/200"
     }
   ]
 }

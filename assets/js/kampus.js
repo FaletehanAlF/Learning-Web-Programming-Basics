@@ -71,6 +71,15 @@
     var jurusan = Array.isArray(k.jurusan_favorit) ? k.jurusan_favorit.slice(0, 2) : [];
 
     var pills = jurusan.map(function (j) { return '<span class="kampus-pill">' + esc(j) + '</span>'; }).join('');
+    // Logo kustom per kampus (ganti via field "logo" di data/*.json) — tampil kanan-bawah foto
+    var logo = esc(k.logo || '');
+    var logoCad = esc(k.logo_cadangan || FALLBACK_IMG);
+    var singkatan = esc(k.singkatan || k.nama || 'K');
+    var inisial = esc(String(k.singkatan || k.nama || 'K').trim().slice(0, 3).toUpperCase());
+    var logoHTML = logo
+      ? '<img class="kampus-logo" src="' + logo + '" alt="Logo ' + nama + '" loading="lazy" decoding="async" '
+        + 'onerror="this.onerror=null;this.src=\'' + logoCad + '\';this.onerror=function(){this.outerHTML=\'<span class=&quot;kampus-logo kampus-logo-fallback&quot; aria-hidden=&quot;true&quot;>' + inisial + '</span>\';};" />'
+      : '<span class="kampus-logo kampus-logo-fallback" aria-hidden="true">' + inisial + '</span>';
 
     return '<a class="kampus-card" href="detail-kampus.html?id=' + id + '" aria-label="Lihat detail ' + nama + '">'
       + '<span class="kampus-card-media">'
@@ -78,6 +87,7 @@
       + 'onerror="this.onerror=null;this.src=\'' + cadangan + '\';" />'
       + '<span class="kampus-badge-jenis ' + jenisCls + '">' + jenis + '</span>'
       + '<span class="kampus-rating"><i data-feather="star"></i>' + ratingTxt + '</span>'
+      + logoHTML
       + '</span>'
       + '<span class="kampus-card-body">'
       + '<span class="kampus-loc"><i data-feather="map-pin"></i>' + kota + (prov ? ' • ' + prov : '') + '</span>'
