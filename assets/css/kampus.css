@@ -165,11 +165,19 @@
   .kampus-grid { grid-template-columns: repeat(2, 1fr); }
   .detail-stats { grid-template-columns: repeat(2, 1fr); }
   .detail-layout { grid-template-columns: 1fr; }
-  .detail-hero-media img { aspect-ratio: 16/9; }
+  .detail-hero-media .detail-foto { aspect-ratio: 16/9; }
 }
 @media (max-width: 620px) {
-  .kampus-grid { grid-template-columns: 1fr; }
+  .kampus-grid { grid-template-columns: 1fr; gap: 16px; }
   .kampus-hero { padding-top: 20px; }
+  .kampus-card-media img.kampus-logo {
+    width: 46px; height: 46px; min-width: 46px; min-height: 46px; max-width: 46px; max-height: 46px;
+    border-radius: 12px;
+  }
+  .detail-hero-media img.detail-logo {
+    width: 60px; height: 60px; min-width: 60px; min-height: 60px; max-width: 60px; max-height: 60px;
+    border-radius: 14px; right: 12px; bottom: 12px;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .kampus-skeleton .sk-img::after, .kampus-skeleton .sk-line::after { animation: none; }

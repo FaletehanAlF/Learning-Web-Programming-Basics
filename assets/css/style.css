@@ -2486,59 +2486,11 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 }
 .compare-bar::-webkit-scrollbar { display: none; }
 
-/* ---- 3) LOGO KAMPUS kanan-bawah foto (ganti via field "logo" di JSON) ---- */
+/* ---- 3) LOGO KAMPUS kanan-bawah foto (aturan utama di kampus.css; ganti via field "logo" di JSON) ---- */
+/* Ukuran & posisi logo diatur di kampus.css (.kampus-card-media img.kampus-logo & .detail-hero-media img.detail-logo)
+   agar tidak tertimpa aturan foto utama. Blok ini hanya pengaman bila kampus.css tidak termuat. */
 .kampus-card-media { background: var(--bg-soft); }
-.kampus-logo {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: #fff;
-  border: 2px solid #fff;
-  box-shadow: 0 4px 14px rgb(2 6 23 / 0.30);
-  object-fit: contain;
-  object-position: center;
-  padding: 4px;
-  z-index: 2;
-}
-span.kampus-logo-fallback {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  color: #0f172a;
-  line-height: 1;
-  text-align: center;
-}
 .detail-hero-media { position: relative; }
-.detail-logo {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  width: 78px;
-  height: 78px;
-  border-radius: 18px;
-  background: #fff;
-  border: 3px solid #fff;
-  box-shadow: 0 8px 24px rgb(2 6 23 / 0.30);
-  object-fit: contain;
-  object-position: center;
-  padding: 6px;
-  z-index: 2;
-}
-span.detail-logo-fallback {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1;
-}
 
 /* ---- Responsif tambahan: HP kecil tidak numpuk ---- */
 @media (max-width: 960px) {
@@ -2550,8 +2502,6 @@ span.detail-logo-fallback {
   .detail-stats { grid-template-columns: 1fr; }
   .kampus-card-body { padding: 14px 14px 16px; }
   .kampus-card-foot { flex-wrap: wrap; gap: 8px; }
-  .kampus-logo { width: 46px; height: 46px; border-radius: 12px; }
-  .detail-logo { width: 60px; height: 60px; border-radius: 14px; right: 12px; bottom: 12px; }
   .stat-row { grid-template-columns: 1fr auto; grid-template-areas: "label score" "bar bar"; row-gap: 6px; }
   .stat-label { grid-area: label; white-space: normal; }
   .stat-score { grid-area: score; }
