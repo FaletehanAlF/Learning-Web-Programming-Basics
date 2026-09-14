@@ -85,6 +85,14 @@
     var ratingTxt = Number(k.rating) ? Number(k.rating).toFixed(1).replace('.', dec) : '-';
     var img = esc(k.gambar || 'https://picsum.photos/seed/' + esc(k.id) + '/1200/600');
     var cadangan = esc(k.gambar_cadangan || ('https://picsum.photos/seed/' + k.id + '/1200/600'));
+    // Logo kustom per kampus (ganti via field "logo" di data/*.json) — kanan-bawah foto
+    var logo = esc(k.logo || '');
+    var logoCad = esc(k.logo_cadangan || ('https://picsum.photos/seed/logo-' + k.id + '/200/200'));
+    var inisial = esc(String(k.singkatan || k.nama || 'K').trim().slice(0, 3).toUpperCase());
+    var logoHTML = logo
+      ? '<img class="detail-logo" src="' + logo + '" alt="Logo ' + esc(k.nama) + '" fetchpriority="high" decoding="async" '
+        + 'onerror="this.onerror=null;this.src=\'' + logoCad + '\';" />'
+      : '<span class="detail-logo detail-logo-fallback" aria-hidden="true">' + inisial + '</span>';
 
     var unggulan = Array.isArray(k.unggulan) ? k.unggulan.map(function (x) { return li('check-circle', x); }).join('') : '';
     var jurusan = Array.isArray(k.jurusan_favorit)
@@ -117,7 +125,7 @@
       + '<span aria-current="page">' + esc(k.singkatan || k.nama) + '</span></nav>'
 
       + '<div class="detail-hero-media"><img src="' + img + '" alt="Foto kampus ' + esc(k.nama) + '" fetchpriority="high" decoding="async" '
-      + 'onerror="this.onerror=null;this.src=\'' + cadangan + '\';" /></div>'
+      + 'onerror="this.onerror=null;this.src=\'' + cadangan + '\';" />' + logoHTML + '</div>'
 
       + '<div class="detail-title-wrap"><h1>' + esc(k.nama) + '</h1></div>'
       + '<p class="detail-tagline">' + esc(k.tagline || k.deskripsi_singkat || '') + '</p>'
