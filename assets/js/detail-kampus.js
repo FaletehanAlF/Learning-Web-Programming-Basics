@@ -91,7 +91,7 @@
     var inisial = esc(String(k.singkatan || k.nama || 'K').trim().slice(0, 3).toUpperCase());
     var logoHTML = logo
       ? '<img class="detail-logo" src="' + logo + '" alt="Logo ' + esc(k.nama) + '" fetchpriority="high" decoding="async" '
-        + 'onerror="this.onerror=null;this.src=\'' + logoCad + '\';" />'
+        + 'onerror="this.onerror=null;this.src=\'' + logoCad + '\';this.onerror=function(){this.outerHTML=\'<span class=&quot;detail-logo detail-logo-fallback&quot; aria-hidden=&quot;true&quot;>' + inisial + '</span>\';};" />'
       : '<span class="detail-logo detail-logo-fallback" aria-hidden="true">' + inisial + '</span>';
 
     var unggulan = Array.isArray(k.unggulan) ? k.unggulan.map(function (x) { return li('check-circle', x); }).join('') : '';
