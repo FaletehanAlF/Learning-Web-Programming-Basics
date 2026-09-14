@@ -2516,6 +2516,4 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 }
 @media (max-width: 380px) {
   .container { padding-inline: 16px; }
-  .kampus-logo { width: 42px; height: 42px; }
-  .detail-logo { width: 54px; height: 54px; }
 }
