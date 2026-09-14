@@ -83,7 +83,7 @@
 
     return '<a class="kampus-card" href="detail-kampus.html?id=' + id + '" aria-label="Lihat detail ' + nama + '">'
       + '<span class="kampus-card-media">'
-      + '<img src="' + img + '" alt="Foto kampus ' + nama + '" loading="lazy" decoding="async" '
+      + '<img class="kampus-foto" src="' + img + '" alt="Foto kampus ' + nama + '" loading="lazy" decoding="async" '
       + 'onerror="this.onerror=null;this.src=\'' + cadangan + '\';" />'
       + '<span class="kampus-badge-jenis ' + jenisCls + '">' + jenis + '</span>'
       + '<span class="kampus-rating"><i data-feather="star"></i>' + ratingTxt + '</span>'

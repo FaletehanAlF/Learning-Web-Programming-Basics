@@ -124,7 +124,7 @@
       + '<a href="kampus.html">Rekomendasi Kampus</a><span aria-hidden="true">/</span>'
       + '<span aria-current="page">' + esc(k.singkatan || k.nama) + '</span></nav>'
 
-      + '<div class="detail-hero-media"><img src="' + img + '" alt="Foto kampus ' + esc(k.nama) + '" fetchpriority="high" decoding="async" '
+      + '<div class="detail-hero-media"><img class="detail-foto" src="' + img + '" alt="Foto kampus ' + esc(k.nama) + '" fetchpriority="high" decoding="async" '
       + 'onerror="this.onerror=null;this.src=\'' + cadangan + '\';" />' + logoHTML + '</div>'
 
       + '<div class="detail-title-wrap"><h1>' + esc(k.nama) + '</h1></div>'
