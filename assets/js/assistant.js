@@ -47,7 +47,7 @@
     if (who === 'bot' && opts && opts.isAI) {
       html += '<div class="asst-bot-badge">Panduan AI</div>';
     }
-    html += '<p>' + esc(text) + '</p>';
+    html += '<p>' + esc(text).replace(/\n/g, '<br>') + '</p>';
     d.innerHTML = html;
     msgsEl.appendChild(d);
     scrollDown();
@@ -125,8 +125,8 @@
     } catch (err) {
       removeTyping();
       setLoading(false);
-      convo.push({ role: 'assistant', content: 'Maaf, server AI sedang tidak dapat dihubungi. Pastikan server berjalan di localhost:3000, lalu coba lagi.' });
-      createBubble('bot', 'Maaf, server AI sedang tidak dapat dihubungi. Pastikan server berjalan di localhost:3000, lalu coba lagi.', { isAI: true });
+      convo.push({ role: 'assistant', content: 'Maaf, server AI sedang tidak dapat dihubungi.' });
+      createBubble('bot', 'Maaf, Panduan AI sedang tidak dapat dihubungi. Coba lagi beberapa saat.', { isAI: true });
     }
 
     saveSession();
@@ -152,9 +152,13 @@
 
   function showWelcome() {
     createBubble('bot',
-      'Halo! Saya Panduan AI\n' +
-      'Saya bisa membantu kamu memahami dan memilih jurusan kuliah berdasarkan minat, kemampuan, dan tujuanmu.\n\n' +
-      'Coba ceritakan pelajaran atau bidang yang kamu sukai.',
+      'Halo! Saya Panduan AI.\n\n' +
+      'Saya bisa membantu kamu memahami pilihan jurusan berdasarkan minat, kemampuan, dan hal yang ingin kamu pelajari.\n\n' +
+      'Coba ceritakan:\n' +
+      '• pelajaran yang kamu sukai\n' +
+      '• kegiatan yang kamu senangi\n' +
+      '• jurusan yang sedang kamu pertimbangkan\n\n' +
+      'Tidak perlu langsung tahu jawabannya. Kita bisa membahasnya bersama.',
       { isAI: true });
   }
 
