@@ -1,5 +1,5 @@
 /* Panduan Jurusan — service worker (offline-first ringan) */
-var CACHE = 'panduan-jurusan-v10';
+var CACHE = 'panduan-jurusan-v11';
 var CORE = [
   './',
   'index.html',
@@ -36,6 +36,7 @@ var CORE = [
   'assets/js/share.js',
   'assets/js/assistant.js',
   'assets/js/gemini.js',
+  'assets/js/openai.js',
   'assets/js/gemini-settings.js',
   'assets/js/asisten-page.js',
   'assets/js/jurusan-data.js',
