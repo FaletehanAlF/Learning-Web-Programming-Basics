@@ -14,19 +14,52 @@
   if (!msgsEl || !inputEl) return;
 
   var HIST_KEY = 'pj-asisten-history-v1';
+  var PROVIDER_STORE = 'pj-ai-provider';
   var aiStatusEl = document.getElementById('aiStatus');
-  var convo = []; // [{who:'user'|'bot', text}] untuk konteks Gemini (max 10 terkirim)
+  var convo = []; // [{who:'user'|'bot', text}] untuk konteks AI (max 10 terkirim)
 
-  function useAI() {
+  function hasOpenAI() {
+    try { return window.OpenAIChat && window.OpenAIChat.hasKey(); } catch (e) { return false; }
+  }
+  function hasGemini() {
     try { return window.GeminiChat && window.GeminiChat.hasKey(); } catch (e) { return false; }
   }
 
+  // 'openai' | 'gemini' | null. Mode 'auto' = OpenAI dulu, lalu Gemini, lalu offline.
+  function aiProvider() {
+    try {
+      var p = localStorage.getItem(PROVIDER_STORE) || 'auto';
+      if (p === 'offline') return null;
+      if (p === 'openai') return hasOpenAI() ? 'openai' : null;
+      if (p === 'gemini') return hasGemini() ? 'gemini' : null;
+      if (hasOpenAI()) return 'openai';
+      if (hasGemini()) return 'gemini';
+    } catch (e) {}
+    return null;
+  }
+
+  function aiName() {
+    var p = aiProvider();
+    if (p === 'openai') {
+      var m = '';
+      try { m = window.OpenAIChat.getModel(); } catch (e) {}
+      return 'OpenAI ' + m;
+    }
+    if (p === 'gemini') {
+      var g = '';
+      try { g = window.GeminiChat.getModel(); } catch (e) {}
+      return 'Gemini ' + g;
+    }
+    return '';
+  }
+
+  function useAI() { return !!aiProvider(); }
+
   function updateAiStatus() {
     if (!aiStatusEl) return;
-    if (useAI()) {
-      var m = '';
-      try { m = window.GeminiChat.getModel(); } catch (e) {}
-      aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> AI Aktif (' + esc(m) + ') • offline siap cadangan';
+    var p = aiProvider();
+    if (p) {
+      aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> AI Aktif (' + esc(aiName()) + ') • offline siap cadangan';
       aiStatusEl.classList.add('is-ai');
     } else {
       aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> Mode offline • tambah API key untuk AI';
@@ -59,8 +92,9 @@
     d.className = 'asst-msg asst-' + who;
     var html = '<p>' + esc(text) + '</p>';
     if (link && link.h) html += '<a href="' + esc(link.h) + '">' + esc(link.t || 'Buka →') + ' →</a>';
-    var src = (opts && opts.source === 'ai') ? 'AI Gemini' : (who === 'user' ? 'Anda' : (useAI() ? 'Asisten • AI' : 'Asisten • offline'));
+    var src = (who === 'user') ? 'Anda' : (useAI() ? 'Asisten • AI' : 'Asisten • offline');
     if (who === 'user') src = 'Anda';
+    else if (opts && opts.source === 'ai') src = 'AI (' + (opts.aiName || aiName() || 'aktif') + ')';
     else if (opts && opts.source === 'offline-fallback') src = 'Asisten • offline (AI gagal)';
     html += '<span class="chat-meta">' + esc(src) + ' • ' + esc(timeNow()) + '</span>';
     d.innerHTML = html;
