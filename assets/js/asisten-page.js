@@ -120,13 +120,11 @@
   }
 
   var topics = [
-    'Informatika itu belajar apa?',
-    'Anak suka menggambar cocok apa?',
-    'Informatika vs Psikologi',
-    'Kedokteran vs Psikologi',
-    'Biaya kuliah sampai lulus?',
-    'SNBP vs SNBT bedanya?',
-    'Anak masih bingung pilih apa'
+    'Jurusan untuk yang suka coding?'
+    'Kalau suka menggambar, cocok apa?'
+    'Informatika vs Sistem Informasi'
+    'Bagaimana memilih jurusan?'
+    'Biaya kuliah perlu dipertimbangkan?'
   ];
   topics.forEach(function (t) {
     var b = document.createElement('button');
