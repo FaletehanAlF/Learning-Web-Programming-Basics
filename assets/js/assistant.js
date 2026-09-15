@@ -198,7 +198,7 @@
       '<div class="asst-msgs" id="asstMsgs" aria-live="polite" aria-label="Riwayat percakapan"></div>' +
       '<div class="asst-chips" id="asstChips"></div>' +
       '<div class="asst-input">' +
-        '<input id="asstText" type="text" placeholder="Tanya Panduan AI tentang jurusan…" aria-label="Tulis pertanyaan" autocomplete="off" maxlength="500" />' +
+        '<input id="asstText" type="text" placeholder="Ceritakan apa yang sedang kamu pertimbangkan..." aria-label="Tulis pertanyaan" autocomplete="off" maxlength="500" />' +
         '<button type="button" id="asstSend" aria-label="Kirim pertanyaan"><i data-feather="send" aria-hidden="true"></i></button>' +
       '</div>' +
       '<div class="asst-foot"><a id="asstFull" href="' + pageLink('asisten', '') + '">Buka Live Chat penuh →</a></div>';
@@ -212,12 +212,11 @@
     chipsEl = document.getElementById('asstChips');
 
     var quickQuestions = [
-      'Teknik Informatika itu belajar apa?',
-      'Anak suka menggambar cocok apa?',
-      'Informatika vs Psikologi',
-      'Biaya kuliah sampai lulus?',
-      'SNBP vs SNBT bedanya?',
-      'Anak masih bingung pilih apa'
+      'Jurusan untuk yang suka coding?',
+      'Kalau suka menggambar, cocok apa?',
+      'Informatika vs Sistem Informasi',
+      'Bagaimana memilih jurusan?',
+      'Biaya kuliah perlu dipertimbangkan?'
     ];
     quickQuestions.forEach(function (q) {
       var b = document.createElement('button');
