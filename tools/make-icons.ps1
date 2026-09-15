@@ -1,7 +1,7 @@
 # Membuat ikon PWA 192 & 512 dari ./assets/img/icon.svg (fallback gambar vektor)
 # Dijalankan sekali via: powershell -ExecutionPolicy Bypass -File tools/make-icons.ps1
 $ErrorActionPreference = 'Stop'
-$imgDir = Join-Path $PSScriptRoot '..' 'assets' 'img'
+$imgDir = Join-Path (Join-Path (Join-Path $PSScriptRoot '..') 'assets') 'img'
 if (-not (Test-Path -LiteralPath $imgDir)) { throw "Folder tidak ditemukan: $imgDir" }
 Add-Type -AssemblyName System.Drawing
 function New-PwaIcon([int]$size, [string]$out) {
