@@ -2229,6 +2229,13 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 [data-theme="dark"] .sc-row {
   background: var(--card);
 }
+/* Chat-specific dark mode overrides */
+[data-theme="dark"] .asst-error { background: rgb(127 29 29 / 0.15); border-color: rgb(127 29 29 / 0.30); }
+[data-theme="dark"] .asst-error p { color: #fca5a5; }
+[data-theme="dark"] .asst-input button:disabled { background: #2b4066; border-color: #2b4066; }
+[data-theme="dark"] .asst-bot-badge { color: #5eead4; }
+[data-theme="dark"] .chat-status { color: #8296b3; }
+[data-theme="dark"] .chat-avatar { background: #2b4066; }
 /* Latar seksi terang -> latar halaman */
 [data-theme="dark"] .hero,
 [data-theme="dark"] .quiz-hero,
