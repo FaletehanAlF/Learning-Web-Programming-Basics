@@ -2220,8 +2220,6 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 [data-theme="dark"] .asst-head,
 [data-theme="dark"] .chat-msgs,
 [data-theme="dark"] .chat-icon-btn,
-[data-theme="dark"] .ai-field input,
-[data-theme="dark"] .ai-field select,
 [data-theme="dark"] .asst-input input,
 [data-theme="dark"] .dash-empty,
 [data-theme="dark"] .dash-card,
