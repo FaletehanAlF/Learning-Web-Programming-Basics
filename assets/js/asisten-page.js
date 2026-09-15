@@ -138,13 +138,16 @@
     inputEl.value = '';
     var tp = typing();
 
-    // Mode AI: jika ada API key, coba Gemini dulu
-    if (useAI()) {
+    // Mode AI: OpenAI dulu (jika dipilih/tersedia), lalu Gemini, fallback offline
+    var provider = aiProvider();
+    if (provider) {
       var history = convo.slice(0, -1); // tanpa pesan terakhir (dikirim terpisah)
-      window.GeminiChat.sendMessage(text, history).then(function (reply) {
+      var client = provider === 'openai' ? window.OpenAIChat : window.GeminiChat;
+      var label = aiName();
+      client.sendMessage(text, history).then(function (reply) {
         try { tp.remove(); } catch (e) { if (tp.parentNode) tp.parentNode.removeChild(tp); }
         pushConvo('bot', reply);
-        bubble('bot', reply, null, { source: 'ai' });
+        bubble('bot', reply, null, { source: 'ai', aiName: label });
       }).catch(function (err) {
         try { tp.remove(); } catch (e) { if (tp.parentNode) tp.parentNode.removeChild(tp); }
         var msg = (err && err.message) || 'AI gagal.';
@@ -280,13 +283,14 @@
     if (saved) msgsEl.innerHTML = saved;
   } catch (e) {}
   updateAiStatus();
-  document.addEventListener('gemini-key-changed', updateAiStatus);
+  document.addEventListener('ai-settings-changed', updateAiStatus);
+  document.addEventListener('gemini-key-changed', updateAiStatus); // kompatibel panel lama
   window.addEventListener('storage', function (e) {
-    if (e.key === 'pj-gemini-key' || e.key === 'pj-gemini-model') updateAiStatus();
+    if (e.key === 'pj-openai-key' || e.key === 'pj-openai-model' || e.key === 'pj-gemini-key' || e.key === 'pj-gemini-model' || e.key === 'pj-ai-provider') updateAiStatus();
   });
   if (!msgsEl.children.length) {
-    if (useAI()) bubble('bot', 'Halo! Mode AI Gemini aktif. Cerita bebas — mis. "anakku kelas 12 suka biologi tapi takut darah, cocoknya apa?" — saya jawab sesuai konteks.', null, { source: 'ai' });
-    else bubble('bot', 'Halo! Saya Asisten Jurusan (mode offline). Tanya apa saja soal 6 jurusan, mis. "informatika vs hukum". Tambahkan API key Gemini di panel samping untuk jawaban AI yang lebih nyambung.');
+    if (useAI()) bubble('bot', 'Halo! Mode AI (' + aiName() + ') aktif. Cerita bebas — mis. "anakku kelas 12 suka biologi tapi takut darah, cocoknya apa?" — saya jawab sesuai konteks.', null, { source: 'ai', aiName: aiName() });
+    else bubble('bot', 'Halo! Saya Asisten Jurusan (mode offline). Tanya apa saja soal 6 jurusan, mis. "informatika vs hukum". Tambahkan API key OpenAI/Gemini di panel samping untuk jawaban AI yang lebih nyambung.');
   }
   scrollDown();
 })();
