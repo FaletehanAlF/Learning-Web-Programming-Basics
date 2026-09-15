@@ -73,7 +73,7 @@
               <span class="chat-avatar" aria-hidden="true"><i data-feather="message-circle"></i></span>
               <div class="chat-head-info">
                 <strong>Asisten Jurusan</strong>
-                <span class="chat-status" id="aiStatus"><span class="dot-live" aria-hidden="true"></span> Memuat mode…</span>
+                <span class="chat-status" id="aiStatus"><span class="dot-live" aria-hidden="true"></span> Panduan AI Online</span>
               </div>
               <div class="chat-head-actions">
                 <button class="chat-icon-btn" id="chatClear" type="button" aria-label="Hapus riwayat chat" title="Hapus riwayat"><i data-feather="trash-2" aria-hidden="true"></i></button>
@@ -102,103 +102,48 @@
             </div>
           </article>
 
-          <aside class="chat-side" aria-label="Panduan konsultasi">
-            <div class="side-card ai-card" aria-label="Pengaturan AI">
-              <h3><i data-feather="cpu" aria-hidden="true"></i> Mode AI <span class="ai-badge" id="aiBadge">Offline</span></h3>
-              <p>Tanpa key = bot offline (keyword). Isi salah satu key = jawaban AI mengikuti alur obrolan.</p>
-              <label class="ai-field">
-                <span>Pakai AI</span>
-                <select id="aiProvider">
-                  <option value="auto">Otomatis (OpenAI → Gemini → offline)</option>
-                  <option value="openai">OpenAI GPT saja</option>
-                  <option value="gemini">Gemini saja</option>
-                  <option value="offline">Offline saja</option>
-                </select>
-              </label>
-              <label class="ai-field">
-                <span>OpenAI API key</span>
-                <input id="openaiKey" type="password" placeholder="sk-proj-…" autocomplete="off" spellcheck="false" />
-              </label>
-              <div class="ai-row">
-                <label class="ai-field" style="flex:1">
-                  <span>Model OpenAI</span>
-                  <select id="openaiModel">
-                    <option value="gpt-4o-mini">gpt-4o-mini (cepat & murah)</option>
-                    <option value="gpt-4o">gpt-4o (pintar)</option>
-                    <option value="gpt-3.5-turbo">gpt-3.5-turbo (hemat)</option>
-                  </select>
-                </label>
-              </div>
-              <div class="ai-row">
-                <button class="btn btn-primary btn-sm" id="openaiSave" type="button"><i data-feather="key" aria-hidden="true"></i> Simpan key OpenAI</button>
-                <button class="btn btn-outline btn-sm" id="openaiClear" type="button"><i data-feather="trash-2" aria-hidden="true"></i> Hapus</button>
-              </div>
-              <label class="ai-field">
-                <span>Gemini API key</span>
-                <input id="geminiKey" type="password" placeholder="AIza…" autocomplete="off" spellcheck="false" />
-              </label>
-              <div class="ai-row">
-                <label class="ai-field" style="flex:1">
-                  <span>Model Gemini</span>
-                  <select id="geminiModel">
-                    <option value="gemini-2.0-flash">gemini-2.0-flash (cepat)</option>
-                    <option value="gemini-1.5-flash">gemini-1.5-flash</option>
-                    <option value="gemini-1.5-pro">gemini-1.5-pro (pintar)</option>
-                  </select>
-                </label>
-              </div>
-              <div class="ai-row">
-                <button class="btn btn-primary btn-sm" id="geminiSave" type="button"><i data-feather="key" aria-hidden="true"></i> Simpan key Gemini</button>
-                <button class="btn btn-outline btn-sm" id="geminiClear" type="button"><i data-feather="trash-2" aria-hidden="true"></i> Hapus</button>
-              </div>
-              <p class="ai-status" id="aiKeyStatus" aria-live="polite"></p>
-              <details class="ai-help">
-                <summary>Cara dapat key OpenAI (bayar per pakai)</summary>
-                <ol>
-                  <li>Buka <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">platform.openai.com/api-keys</a> → Sign in → <strong>Create new secret key</strong>.</li>
-                  <li>Copy key <code>sk-proj-…</code> → tempel di atas → Simpan. Cek billing & pasang limit di dashboard OpenAI.</li>
-                  <li>Key hanya tersimpan di <code>localStorage</code> HP ini, tidak dikirim ke mana pun selain api.openai.com. Jangan taruh key di kode / commit. Kalau key bocor, revoke di dashboard lalu buat baru.</li>
-                </ol>
-              </details>
-              <details class="ai-help">
-                <summary>Cara dapat key Gemini gratis (1 menit)</summary>
-                <ol>
-                  <li>Buka <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> → Sign in Google → <strong>Create API key</strong>.</li>
-                  <li>Copy key <code>AIza…</code> → tempel di atas → Simpan.</li>
-                  <li>Key hanya tersimpan di <code>localStorage</code> HP ini, tidak dikirim ke mana pun selain Google. Jangan taruh key di kode / commit.</li>
-                </ol>
-              </details>
-            </div>
-            <div class="side-card">
-              <h3><i data-feather="lightbulb" aria-hidden="true"></i> Cara konsultasi biar nyambung</h3>
-              <ol>
-                <li>Ceritakan <strong>hobi + pelajaran favorit</strong> anak, mis. “suka game dan matematika”.</li>
-                <li>Minta <strong>bandingkan 2 jurusan</strong>, mis. “informatika vs DKV”.</li>
-                <li>Uji 2 minggu + <strong>isi kuis</strong> untuk skor objektif.</li>
-              </ol>
-            </div>
-            <div class="side-card">
-              <h3><i data-feather="zap" aria-hidden="true"></i> Topik populer</h3>
-              <p>Klik untuk langsung tanya di chat:</p>
-              <div class="topic-btns">
-                <button class="asst-chip" type="button" data-ask="Teknik Informatika itu belajar apa?">Apa itu Informatika?</button>
-                <button class="asst-chip" type="button" data-ask="Psikologi itu belajar apa dan cocok untuk siapa?">Apa itu Psikologi?</button>
-                <button class="asst-chip" type="button" data-ask="Bandingkan Kedokteran vs Psikologi">Kedokteran vs Psikologi</button>
-                <button class="asst-chip" type="button" data-ask="Anak suka jualan dan hitung uang cocok jurusan apa?">Suka jualan → apa?</button>
-                <button class="asst-chip" type="button" data-ask="Biaya kuliah sampai lulus berapa?">Biaya kuliah?</button>
-                <button class="asst-chip" type="button" data-ask="SNBP vs SNBT bedanya apa?">SNBP vs SNBT?</button>
-              </div>
-            </div>
-            <div class="side-card">
-              <h3><i data-feather="bar-chart-2" aria-hidden="true"></i> Konteks kuis kamu</h3>
-              <div class="quiz-ctx" id="quizCtx">Memuat…</div>
-              <p style="margin-top:10px"><a href="kuis.html" class="btn btn-outline btn-sm"><i data-feather="help-circle" aria-hidden="true"></i> Isi / Ulangi Kuis</a></p>
-            </div>
-            <div class="side-card">
-              <h3><i data-feather="shield" aria-hidden="true"></i> Jujur & netral</h3>
-              <p>Mode offline menjawab dari data jurusan, FAQ, dan info biaya/jalur di web ini. Mode AI Gemini menjawab bebas mengikuti konteks, tetap dibatasi system prompt jurusan + fallback offline jika AI gagal. Bukan pengganti guru BK.</p>
-            </div>
-          </aside>
+<aside class="chat-side" aria-label="Panduan konsultasi">
+             <div class="side-card">
+               <h3><i data-feather="cpu" aria-hidden="true"></i> Panduan AI</h3>
+               <p>Jawaban didukung oleh AI backend server. Tidak perlu API key — semua proses AI berjalan di server.</p>
+               <p style="margin-top:8px"><strong>Panduan AI</strong> bisa membantu:</p>
+               <ol>
+                 <li>Jelaskan setiap jurusan</li>
+                 <li>Bandingkan 2 jurusan ("informatika vs psikologi")</li>
+                 <li>Tebak arah dari hobi ("suka menggambar")</li>
+                 <li>Info biaya & jalur masuk</li>
+               </ol>
+             </div>
+             <div class="side-card">
+               <h3><i data-feather="lightbulb" aria-hidden="true"></i> Cara konsultasi biar nyambung</h3>
+               <ol>
+                 <li>Ceritakan <strong>hobi + pelajaran favorit</strong> anak, mis. "suka game dan matematika".</li>
+                 <li>Minta <strong>bandingkan 2 jurusan</strong>, mis. "informatika vs DKV".</li>
+                 <li>Uji 2 minggu + <strong>isi kuis</strong> untuk skor objektif.</li>
+               </ol>
+             </div>
+             <div class="side-card">
+               <h3><i data-feather="zap" aria-hidden="true"></i> Topik populer</h3>
+               <p>Klik untuk langsung tanya di chat:</p>
+               <div class="topic-btns">
+                 <button class="asst-chip" type="button" data-ask="Teknik Informatika itu belajar apa?">Apa itu Informatika?</button>
+                 <button class="asst-chip" type="button" data-ask="Psikologi itu belajar apa dan cocok untuk siapa?">Apa itu Psikologi?</button>
+                 <button class="asst-chip" type="button" data-ask="Bandingkan Kedokteran vs Psikologi">Kedokteran vs Psikologi</button>
+                 <button class="asst-chip" type="button" data-ask="Anak suka jualan dan hitung uang cocok jurusan apa?">Suka jualan → apa?</button>
+                 <button class="asst-chip" type="button" data-ask="Biaya kuliah sampai lulus berapa?">Biaya kuliah?</button>
+                 <button class="asst-chip" type="button" data-ask="SNBP vs SNBT bedanya apa?">SNBP vs SNBT?</button>
+               </div>
+             </div>
+             <div class="side-card">
+               <h3><i data-feather="bar-chart-2" aria-hidden="true"></i> Konteks kuis kamu</h3>
+               <div class="quiz-ctx" id="quizCtx">Memuat…</div>
+               <p style="margin-top:10px"><a href="kuis.html" class="btn btn-outline btn-sm"><i data-feather="help-circle" aria-hidden="true"></i> Isi / Ulangi Kuis</a></p>
+             </div>
+             <div class="side-card">
+               <h3><i data-feather="shield" aria-hidden="true"></i> Jujur & netral</h3>
+               <p>Semua proses AI berjalan di server backend. Tidak ada API key yang disimpan di browser. Bukan pengganti guru BK.</p>
+             </div>
+           </aside>
         </div>
       </div>
     </section>
@@ -242,10 +187,7 @@
   <script src="../assets/js/i18n-dict5.js" defer></script>
   <script src="../assets/js/lang.js" defer></script>
   <script src="../assets/js/theme.js" defer></script>
-  <script src="../assets/js/assistant.js" defer></script>
-  <script src="../assets/js/gemini.js" defer></script>
-  <script src="../assets/js/openai.js" defer></script>
-  <script src="../assets/js/asisten-page.js" defer></script>
-  <script src="../assets/js/gemini-settings.js" defer></script>
-</body>
+<script src="../assets/js/assistant.js" defer></script>
+   <script src="../assets/js/asisten-page.js" defer></script>
+ </body>
 </html>
