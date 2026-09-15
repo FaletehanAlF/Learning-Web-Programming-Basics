@@ -113,17 +113,17 @@
       removeTyping();
       setLoading(false);
       convo.push({ role: 'assistant', content: 'Maaf, server AI sedang tidak dapat dihubungi.' });
-      bubble('bot', 'Maaf, server AI sedang tidak dapat dihubungi. Pastikan server berjalan di localhost:3000, lalu coba lagi.');
+      bubble('bot', 'Maaf, Panduan AI sedang tidak dapat dihubungi. Coba lagi beberapa saat.');
     }
 
     scrollDown();
   }
 
   var topics = [
-    'Jurusan untuk yang suka coding?'
-    'Kalau suka menggambar, cocok apa?'
-    'Informatika vs Sistem Informasi'
-    'Bagaimana memilih jurusan?'
+    'Jurusan untuk yang suka coding?',
+    'Kalau suka menggambar, cocok apa?',
+    'Informatika vs Sistem Informasi',
+    'Bagaimana memilih jurusan?',
     'Biaya kuliah perlu dipertimbangkan?'
   ];
   topics.forEach(function (t) {
@@ -189,7 +189,7 @@
     try { localStorage.removeItem(HIST_KEY); } catch (e) {}
     if (fallbackEl) fallbackEl.hidden = true;
     setLoading(false);
-    bubble('bot', 'Riwayat dihapus. Yuk mulai lagi — ceritakan hobi / pelajaran favorit anak, mis. "suka matematika dan game".');
+    bubble('bot', 'Riwayat dihapus. Yuk mulai lagi — ceritakan pelajaran atau kegiatan yang kamu sukai.');
   });
   function openWa() {
     var lastUser = '';
