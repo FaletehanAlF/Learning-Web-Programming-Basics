@@ -1,0 +1,20 @@
+# API keys & rahasia lokal — JANGAN PERNAH di-commit.
+# Key cukup ditempel via panel AI di halaman Asisten (tersimpan di localStorage browser).
+.env
+.env.local
+*.key
+assets/js/local-keys.js
+config/secrets.*
+
+# File sementara / percobaan
+*-tmp.js
+*-test-tmp.js
+*.tmp
+*.log
+
+# OS & editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
