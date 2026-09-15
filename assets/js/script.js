@@ -622,7 +622,7 @@
       const text = `Hasil Kuis Minat Panduan Jurusan%0A%0AAnak cenderung ke: *${encodeURIComponent(meta.title)}*%0A${encodeURIComponent(meta.desc)}%0A%0ARekomendasi:%0A- ${encodeURIComponent(meta.reco[0].name)}%0A- ${encodeURIComponent(meta.reco[1].name)}%0A%0ADicoba bareng di: ${encodeURIComponent(location.href)}%0A%0AYuk diskusikan bareng anak malam ini.`;
       // Actually we need to decode? Use plain
       const plain = `Hasil Kuis Minat Panduan Jurusan\n\nAnak cenderung ke: ${meta.title}\n${meta.desc}\n\nRekomendasi:\n- ${meta.reco[0].name}\n- ${meta.reco[1].name}\n\nDicoba di: ${location.href}\n\nYuk diskusikan bareng anak malam ini.`;
-      const url = `https://wa.me/?text=${encodeURIComponent(plain)}`;
+      const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(plain)}`;
       window.open(url, '_blank', 'noopener');
     });
 
@@ -743,7 +743,7 @@
     const total = calcTotal ? calcTotal.textContent : '';
     const beasiswa = calcBeasiswa && calcBeasiswa.checked ? ' (dengan beasiswa 50% UKT)' : '';
     const plain = `Estimasi Biaya Kuliah Panduan Jurusan\n\nUKT: ${ukt} / semester\nBiaya hidup: ${hidup} / bulan\nLama: ${smt} semester${beasiswa}\n\nTotal sampai lulus: ${total}\n\nHitung bareng di: ${location.href}#kalkulator-biaya\n\nBiar obrolan biaya di rumah lebih jelas.`;
-    window.open(`https://wa.me/?text=${encodeURIComponent(plain)}`, '_blank', 'noopener');
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(plain)}`, '_blank', 'noopener');
   });
 
   /* CTA Akhir share + print */
@@ -786,7 +786,7 @@
   }
   if (ctaShareWa) ctaShareWa.addEventListener('click', () => {
     const plain = buildSummaryText();
-    window.open(`https://wa.me/?text=${encodeURIComponent(plain)}`, '_blank', 'noopener');
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(plain)}`, '_blank', 'noopener');
   });
   if (ctaPrint) ctaPrint.addEventListener('click', () => {
     window.print();

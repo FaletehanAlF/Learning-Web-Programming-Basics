@@ -695,7 +695,7 @@
     });
     var shareBtn = document.getElementById('resultShareWa');
     if (shareBtn) shareBtn.addEventListener('click', function () {
-      window.open('https://wa.me/?text=' + encodeURIComponent(shareText), '_blank', 'noopener');
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText), '_blank', 'noopener');
     });
     var copyBtn = document.getElementById('resultCopy');
     if (copyBtn) copyBtn.addEventListener('click', function () { copyText(shareText, copyBtn); });

@@ -53,6 +53,6 @@
 
     var text = 'Halo! Saya ' + nama + ' (pembaca Panduan Jurusan).\n\nMasukan saya:\n' + pesan
       + '\n\nDikirim dari halaman Kontak: ' + window.location.href;
-    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
   });
 })();

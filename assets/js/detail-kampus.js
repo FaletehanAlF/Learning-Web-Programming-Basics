@@ -182,7 +182,7 @@
     var shareBtn = document.getElementById('detailShare');
     if (shareBtn) {
       shareBtn.addEventListener('click', function () {
-        window.open('https://wa.me/?text=' + encodeURIComponent(shareText), '_blank', 'noopener');
+        window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText), '_blank', 'noopener');
       });
     }
   }

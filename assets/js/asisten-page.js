@@ -224,7 +224,7 @@
       if (users.length) lastUser = users[users.length - 1].textContent;
     } catch (e) {}
     var text = 'Halo! Saya konsultasi soal jurusan via Panduan Jurusan.\n\nPertanyaan terakhir saya:\n' + (lastUser || inputEl.value || '-') + '\n\nMohon dibantu ya.';
-    window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener');
+    window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
   }
   if (waBtn) waBtn.addEventListener('click', openWa);
   var fallbackWa = document.getElementById('chatFallbackWa');
