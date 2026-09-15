@@ -65,10 +65,10 @@
         <div class="chat-layout">
           <article class="chat-card" id="chatCard" aria-label="Live chat konsultasi jurusan">
             <div class="chat-head">
-              <span class="chat-avatar" aria-hidden="true"><i data-feather="message-circle"></i></span>
+              <span class="chat-avatar" aria-hidden="true"><i data-feather="compass"></i></span>
               <div class="chat-head-info">
-                <strong>Asisten Jurusan</strong>
-                <span class="chat-status" id="aiStatus"><span class="dot-live" aria-hidden="true"></span> Panduan AI Online</span>
+                <strong>Panduan AI</strong>
+                <span class="chat-status" id="aiStatus"><span class="dot-live" aria-hidden="true"></span> Siap membantu</span>
               </div>
               <div class="chat-head-actions">
                 <button class="chat-icon-btn" id="chatClear" type="button" aria-label="Hapus riwayat chat" title="Hapus riwayat"><i data-feather="trash-2" aria-hidden="true"></i></button>
@@ -86,10 +86,10 @@
             </div>
 
             <div class="chat-input-row">
-              <input id="chatText" type="text" placeholder="mis. anakku suka biologi tapi takut darah, cocoknya apa?" aria-label="Tulis pertanyaan konsultasi" autocomplete="off" maxlength="500" />
+              <input id="chatText" type="text" placeholder="Ceritakan apa yang sedang kamu pertimbangkan..." aria-label="Tulis pertanyaan konsultasi" autocomplete="off" maxlength="500" />
               <button class="chat-send" id="chatSend" type="button" aria-label="Kirim pertanyaan"><i data-feather="send" aria-hidden="true"></i><span>Kirim</span></button>
             </div>
-            <p class="chat-hint">Tekan Enter untuk kirim. Pertanyaan dikirim ke server AI backend untuk diproses.</p>
+            <p class="chat-hint">Tekan Enter untuk kirim. Bebas bertanya tentang jurusan, pelajaran, atau minat.</p>
 
             <div class="chat-fallback" id="chatFallback" hidden>
               <i data-feather="info" aria-hidden="true"></i>
@@ -97,48 +97,17 @@
             </div>
           </article>
 
-<aside class="chat-side" aria-label="Panduan konsultasi">
-             <div class="side-card">
-               <h3><i data-feather="cpu" aria-hidden="true"></i> Panduan AI</h3>
-               <p>Jawaban didukung oleh AI backend server. Tidak perlu API key — semua proses AI berjalan di server.</p>
-               <p style="margin-top:8px"><strong>Panduan AI</strong> bisa membantu:</p>
-               <ol>
-                 <li>Jelaskan setiap jurusan</li>
-                 <li>Bandingkan 2 jurusan ("informatika vs psikologi")</li>
-                 <li>Tebak arah dari hobi ("suka menggambar")</li>
-                 <li>Info biaya & jalur masuk</li>
-               </ol>
-             </div>
-             <div class="side-card">
-               <h3><i data-feather="lightbulb" aria-hidden="true"></i> Cara konsultasi biar nyambung</h3>
-               <ol>
-                 <li>Ceritakan <strong>hobi + pelajaran favorit</strong> anak, mis. "suka game dan matematika".</li>
-                 <li>Minta <strong>bandingkan 2 jurusan</strong>, mis. "informatika vs DKV".</li>
-                 <li>Uji 2 minggu + <strong>isi kuis</strong> untuk skor objektif.</li>
-               </ol>
-             </div>
-             <div class="side-card">
-               <h3><i data-feather="zap" aria-hidden="true"></i> Topik populer</h3>
-               <p>Klik untuk langsung tanya di chat:</p>
-               <div class="topic-btns">
-                 <button class="asst-chip" type="button" data-ask="Teknik Informatika itu belajar apa?">Apa itu Informatika?</button>
-                 <button class="asst-chip" type="button" data-ask="Psikologi itu belajar apa dan cocok untuk siapa?">Apa itu Psikologi?</button>
-                 <button class="asst-chip" type="button" data-ask="Bandingkan Kedokteran vs Psikologi">Kedokteran vs Psikologi</button>
-                 <button class="asst-chip" type="button" data-ask="Anak suka jualan dan hitung uang cocok jurusan apa?">Suka jualan → apa?</button>
-                 <button class="asst-chip" type="button" data-ask="Biaya kuliah sampai lulus berapa?">Biaya kuliah?</button>
-                 <button class="asst-chip" type="button" data-ask="SNBP vs SNBT bedanya apa?">SNBP vs SNBT?</button>
-               </div>
-             </div>
-             <div class="side-card">
-               <h3><i data-feather="bar-chart-2" aria-hidden="true"></i> Konteks kuis kamu</h3>
-               <div class="quiz-ctx" id="quizCtx">Memuat…</div>
-               <p style="margin-top:10px"><a href="kuis.html" class="btn btn-outline btn-sm"><i data-feather="help-circle" aria-hidden="true"></i> Isi / Ulangi Kuis</a></p>
-             </div>
-             <div class="side-card">
-               <h3><i data-feather="shield" aria-hidden="true"></i> Jujur & netral</h3>
-               <p>Semua proses AI berjalan di server backend. Tidak ada API key yang disimpan di browser. Bukan pengganti guru BK.</p>
-             </div>
-           </aside>
+            <aside class="chat-side" aria-label="Informasi tambahan">
+              <div class="side-card">
+                <h3><i data-feather="bar-chart-2" aria-hidden="true"></i> Konteks kuis kamu</h3>
+                <div class="quiz-ctx" id="quizCtx">Memuat…</div>
+                <p style="margin-top:10px"><a href="kuis.html" class="btn btn-outline btn-sm"><i data-feather="help-circle" aria-hidden="true"></i> Isi / Ulangi Kuis</a></p>
+              </div>
+              <div class="side-card">
+                <h3><i data-feather="lightbulb" aria-hidden="true"></i> Tips berkonsultasi</h3>
+                <p>Ceritakan apa yang kamu sukai dan tidak sukai. Semakin jelas ceritamu, semakin mudah kami membantu membandingkan pilihan jurusan.</p>
+              </div>
+            </aside>
         </div>
       </div>
     </section>

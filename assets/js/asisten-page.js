@@ -73,8 +73,8 @@
     if (sendBtn) sendBtn.disabled = on;
     if (inputEl) inputEl.disabled = on;
     if (aiStatusEl) {
-      if (on) aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> Memproses...';
-      else aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> Online';
+      if (on) aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> Sedang berpikir…';
+      else aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> Siap membantu';
     }
   }
 
@@ -212,7 +212,7 @@
 
   try { var saved = localStorage.getItem(HIST_KEY); if (saved) msgsEl.innerHTML = saved; } catch (e) {}
   if (!msgsEl.children.length) {
-    bubble('bot', 'Halo! Saya Panduan AI. Saya bisa membantu kamu memahami dan memilih jurusan kuliah. Coba ceritakan pelajaran atau bidang yang kamu sukai.');
+  bubble('bot', 'Halo! Saya Panduan AI.\n\nSaya bisa membantu kamu memahami pilihan jurusan berdasarkan minat, kemampuan, dan hal yang ingin kamu pelajari.\n\nCoba ceritakan:\n• pelajaran yang kamu sukai\n• kegiatan yang kamu senangi\n• jurusan yang sedang kamu pertimbangkan\n\nTidak perlu langsung tahu jawabannya. Kita bisa membahasnya bersama.');
   }
   scrollDown();
 })();
