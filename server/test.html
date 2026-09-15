@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Test AI Assistant</title>
+</head>
+<body>
+
+  <h1>Test AI Assistant</h1>
+
+  <input
+    type="text"
+    id="message"
+    placeholder="Tulis pertanyaan..."
+  >
+
+  <button id="sendButton">Kirim</button>
+
+  <p id="response"></p>
+
+  <script>
+    const messageInput = document.getElementById("message");
+    const sendButton = document.getElementById("sendButton");
+    const responseElement = document.getElementById("response");
+
+    sendButton.addEventListener("click", async () => {
+      const message = messageInput.value;
+
+      if (!message) {
+        return;
+      }
+
+      responseElement.textContent = "AI sedang berpikir...";
+
+      try {
+        const response = await fetch("http://localhost:3000/api/chat", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: message
+          })
+        });
+
+        const data = await response.json();
+
+        responseElement.textContent = data.reply || data.message;
+      } catch (error) {
+        console.error(error);
+        responseElement.textContent = "Gagal menghubungi server.";
+      }
+    });
+  </script>
+
+</body>
+</html>
