@@ -7,6 +7,15 @@
   var isLoading = false;
   var convo = [];
 
+  function pageLink(page, anchor) {
+    var a = anchor || '';
+    try {
+      var inViews = location.pathname.indexOf('/views/') > -1;
+      if (page === 'asisten') return inViews ? 'asisten.html' + a : 'views/asisten.html' + a;
+    } catch (e) {}
+    return a || '#';
+  }
+
   function getSession() {
     try {
       var raw = sessionStorage.getItem(SESSION_KEY);
@@ -116,8 +125,7 @@
     } catch (err) {
       removeTyping();
       setLoading(false);
-      var userText = text;
-      convo.push({ role: 'assistant', content: 'Maaf, saya tidak bisa terhubung. Pastikan server AI berjalan di localhost:3000.' });
+      convo.push({ role: 'assistant', content: 'Maaf, server AI sedang tidak dapat dihubungi. Pastikan server berjalan di localhost:3000, lalu coba lagi.' });
       createBubble('bot', 'Maaf, server AI sedang tidak dapat dihubungi. Pastikan server berjalan di localhost:3000, lalu coba lagi.', { isAI: true });
     }
 
@@ -188,7 +196,8 @@
       '<div class="asst-input">' +
         '<input id="asstText" type="text" placeholder="Tanya Panduan AI tentang jurusan…" aria-label="Tulis pertanyaan" autocomplete="off" maxlength="500" />' +
         '<button type="button" id="asstSend" aria-label="Kirim pertanyaan"><i data-feather="send" aria-hidden="true"></i></button>' +
-      '</div>';
+      '</div>' +
+      '<div class="asst-foot"><a id="asstFull" href="' + pageLink('asisten', '') + '">Buka Live Chat penuh →</a></div>';
 
     document.body.appendChild(fab);
     document.body.appendChild(panel);
