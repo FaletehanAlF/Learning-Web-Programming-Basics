@@ -7,10 +7,6 @@
   var isLoading = false;
   var convo = [];
 
-  function openaiKeyExists() {
-    try { return !!localStorage.getItem('pj-openai-key'); } catch (e) { return false; }
-  }
-
   function getSession() {
     try {
       var raw = sessionStorage.getItem(SESSION_KEY);
