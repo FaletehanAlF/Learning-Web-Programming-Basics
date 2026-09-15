@@ -148,7 +148,7 @@
 
   function showWelcome() {
     createBubble('bot',
-      'Halo! Saya Panduan AI 🤖\n' +
+      'Halo! Saya Panduan AI\n' +
       'Saya bisa membantu kamu memahami dan memilih jurusan kuliah berdasarkan minat, kemampuan, dan tujuanmu.\n\n' +
       'Coba ceritakan pelajaran atau bidang yang kamu sukai.',
       { isAI: true });
