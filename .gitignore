@@ -1,5 +1,5 @@
 # API keys & rahasia lokal — JANGAN PERNAH di-commit.
-# Key cukup ditempel via panel AI di halaman Asisten (tersimpan di localStorage browser).
+# API key hanya ada di server/.env. Frontend tidak menyimpan atau mengirim API key.
 .env
 .env.local
 *.key
