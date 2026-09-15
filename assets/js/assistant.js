@@ -187,7 +187,7 @@
       '<div class="asst-chips" id="asstChips"></div>' +
       '<div class="asst-input">' +
         '<input id="asstText" type="text" placeholder="Tanya Panduan AI tentang jurusan…" aria-label="Tulis pertanyaan" autocomplete="off" maxlength="500" />' +
-        '<button type="button" id="asstSend" aria-label="Kirim pertanyaan" disabled><i data-feather="send" aria-hidden="true"></i></button>' +
+        '<button type="button" id="asstSend" aria-label="Kirim pertanyaan"><i data-feather="send" aria-hidden="true"></i></button>' +
       '</div>';
 
     document.body.appendChild(fab);
