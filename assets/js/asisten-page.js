@@ -1,7 +1,8 @@
-/* Panduan Jurusan — Live Chat halaman Ask the Assistant (offline, pakai assistant.js) */
 (function () {
   'use strict';
 
+  var API_URL = 'http://localhost:3000/api/chat';
+  var HIST_KEY = 'pj-asisten-history-v1';
   var msgsEl = document.getElementById('chatMsgs');
   var inputEl = document.getElementById('chatText');
   var sendBtn = document.getElementById('chatSend');
@@ -11,61 +12,11 @@
   var waBtn = document.getElementById('chatWaBtn');
   var fallbackEl = document.getElementById('chatFallback');
   var ctxEl = document.getElementById('quizCtx');
-  if (!msgsEl || !inputEl) return;
-
-  var HIST_KEY = 'pj-asisten-history-v1';
-  var PROVIDER_STORE = 'pj-ai-provider';
   var aiStatusEl = document.getElementById('aiStatus');
-  var convo = []; // [{who:'user'|'bot', text}] untuk konteks AI (max 10 terkirim)
+  var isLoading = false;
+  var convo = [];
 
-  function hasOpenAI() {
-    try { return window.OpenAIChat && window.OpenAIChat.hasKey(); } catch (e) { return false; }
-  }
-  function hasGemini() {
-    try { return window.GeminiChat && window.GeminiChat.hasKey(); } catch (e) { return false; }
-  }
-
-  // 'openai' | 'gemini' | null. Mode 'auto' = OpenAI dulu, lalu Gemini, lalu offline.
-  function aiProvider() {
-    try {
-      var p = localStorage.getItem(PROVIDER_STORE) || 'auto';
-      if (p === 'offline') return null;
-      if (p === 'openai') return hasOpenAI() ? 'openai' : null;
-      if (p === 'gemini') return hasGemini() ? 'gemini' : null;
-      if (hasOpenAI()) return 'openai';
-      if (hasGemini()) return 'gemini';
-    } catch (e) {}
-    return null;
-  }
-
-  function aiName() {
-    var p = aiProvider();
-    if (p === 'openai') {
-      var m = '';
-      try { m = window.OpenAIChat.getModel(); } catch (e) {}
-      return 'OpenAI ' + m;
-    }
-    if (p === 'gemini') {
-      var g = '';
-      try { g = window.GeminiChat.getModel(); } catch (e) {}
-      return 'Gemini ' + g;
-    }
-    return '';
-  }
-
-  function useAI() { return !!aiProvider(); }
-
-  function updateAiStatus() {
-    if (!aiStatusEl) return;
-    var p = aiProvider();
-    if (p) {
-      aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> AI Aktif (' + esc(aiName()) + ') • offline siap cadangan';
-      aiStatusEl.classList.add('is-ai');
-    } else {
-      aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> Mode offline • tambah API key untuk AI';
-      aiStatusEl.classList.remove('is-ai');
-    }
-  }
+  if (!msgsEl || !inputEl) return;
 
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -74,9 +25,7 @@
   }
 
   function timeNow() {
-    try {
-      return new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-    } catch (e) { return ''; }
+    try { return new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; }
   }
 
   function save() {
@@ -92,10 +41,7 @@
     d.className = 'asst-msg asst-' + who;
     var html = '<p>' + esc(text) + '</p>';
     if (link && link.h) html += '<a href="' + esc(link.h) + '">' + esc(link.t || 'Buka →') + ' →</a>';
-    var src = (who === 'user') ? 'Anda' : (useAI() ? 'Asisten • AI' : 'Asisten • offline');
-    if (who === 'user') src = 'Anda';
-    else if (opts && opts.source === 'ai') src = 'AI (' + (opts.aiName || aiName() || 'aktif') + ')';
-    else if (opts && opts.source === 'offline-fallback') src = 'Asisten • offline (AI gagal)';
+    var src = (who === 'user') ? 'Anda' : 'Panduan AI';
     html += '<span class="chat-meta">' + esc(src) + ' • ' + esc(timeNow()) + '</span>';
     d.innerHTML = html;
     msgsEl.appendChild(d);
@@ -117,65 +63,62 @@
     return d;
   }
 
-  function askOffline(text) {
-    try {
-      if (window.PanduanJurusanAssistant) return window.PanduanJurusanAssistant.ask(text);
-    } catch (e) {}
-    return { text: 'Maaf, ada gangguan. Coba lagi.' };
+  function removeTyping() {
+    var tp = document.getElementById('chatTyping');
+    if (tp && tp.parentNode) tp.parentNode.removeChild(tp);
   }
 
-  function pushConvo(who, text) {
-    convo.push({ who: who, text: String(text).slice(0, 1000) });
-    if (convo.length > 20) convo = convo.slice(-20);
+  function setLoading(on) {
+    isLoading = on;
+    if (sendBtn) sendBtn.disabled = on;
+    if (inputEl) inputEl.disabled = on;
+    if (aiStatusEl) {
+      if (on) aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> Memproses...';
+      else aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> Online';
+    }
   }
 
-  function send(q) {
+  async function send(q) {
     var text = String(q != null ? q : inputEl.value || '').trim();
-    if (!text) { try { inputEl.focus(); } catch (e) {} return; }
+    if (!text || isLoading) { try { inputEl.focus(); } catch (e) {} return; }
     if (text.length > 500) text = text.slice(0, 500);
+
     bubble('user', text);
-    pushConvo('user', text);
+    convo.push({ role: 'user', content: text });
     inputEl.value = '';
+    setLoading(true);
+
     var tp = typing();
 
-    // Mode AI: OpenAI dulu (jika dipilih/tersedia), lalu Gemini, fallback offline
-    var provider = aiProvider();
-    if (provider) {
-      var history = convo.slice(0, -1); // tanpa pesan terakhir (dikirim terpisah)
-      var client = provider === 'openai' ? window.OpenAIChat : window.GeminiChat;
-      var label = aiName();
-      client.sendMessage(text, history).then(function (reply) {
-        try { tp.remove(); } catch (e) { if (tp.parentNode) tp.parentNode.removeChild(tp); }
-        pushConvo('bot', reply);
-        bubble('bot', reply, null, { source: 'ai', aiName: label });
-      }).catch(function (err) {
-        try { tp.remove(); } catch (e) { if (tp.parentNode) tp.parentNode.removeChild(tp); }
-        var msg = (err && err.message) || 'AI gagal.';
-        if (msg === 'NO_KEY') {
-          var r = askOffline(text);
-          pushConvo('bot', r.text);
-          bubble('bot', r.text, r.link, r);
-        } else {
-          // Fallback offline agar user tetap dapat jawaban
-          var f = askOffline(text);
-          pushConvo('bot', f.text);
-          bubble('bot', 'AI gagal (' + msg + '). Saya jawab mode offline dulu ya.\n\n' + f.text, f.link, { source: 'offline-fallback', lowConfidence: true });
-        }
-        updateAiStatus();
+    try {
+      var response = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
       });
-      return;
+
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+
+      var data = await response.json();
+      removeTyping();
+      setLoading(false);
+
+      if (data.success && data.reply) {
+        convo.push({ role: 'assistant', content: data.reply });
+        bubble('bot', data.reply);
+      } else {
+        throw new Error('Respons tidak valid');
+      }
+    } catch (err) {
+      removeTyping();
+      setLoading(false);
+      convo.push({ role: 'assistant', content: 'Maaf, server AI sedang tidak dapat dihubungi.' });
+      bubble('bot', 'Maaf, server AI sedang tidak dapat dihubungi. Pastikan server berjalan di localhost:3000, lalu coba lagi.');
     }
 
-    var delay = 350 + Math.min(600, text.length * 8);
-    window.setTimeout(function () {
-      try { tp.remove(); } catch (e) { if (tp.parentNode) tp.parentNode.removeChild(tp); }
-      var r = askOffline(text);
-      pushConvo('bot', r.text);
-      bubble('bot', r.text, r.link, r);
-    }, delay);
+    scrollDown();
   }
 
-  // Topik cepat konsultasi jurusan
   var topics = [
     'Informatika itu belajar apa?',
     'Anak suka menggambar cocok apa?',
@@ -194,7 +137,6 @@
     if (chipsEl) chipsEl.appendChild(b);
   });
 
-  // Shortcut semua jurusan dari JURUSAN_DATA
   function renderJurusan() {
     try {
       var data = window.JURUSAN_DATA || [];
@@ -209,7 +151,6 @@
         b.addEventListener('click', function () { send(j.name + ' itu belajar apa?'); });
         jurusanEl.appendChild(b);
       });
-      // Tombol banding cepat
       var cmp = document.createElement('button');
       cmp.type = 'button';
       cmp.className = 'jurusan-quick';
@@ -221,16 +162,13 @@
       if (window.feather) window.feather.replace();
     } catch (e) {}
   }
-  // JURUSAN_DATA dimuat dengan defer, tunggu sebentar
   if (window.JURUSAN_DATA) renderJurusan();
   else window.addEventListener('load', renderJurusan);
 
-  // Konteks hasil kuis terakhir (kalau ada)
   function renderCtx() {
     try {
       if (!ctxEl) return;
       var raw = localStorage.getItem('panduan-jurusan-kuis-10-result');
-      // fallback: filter terakhir
       var filter = localStorage.getItem('panduan-jurusan-quiz-filter');
       if (raw) {
         var parsed = JSON.parse(raw);
@@ -252,14 +190,12 @@
     convo = [];
     try { localStorage.removeItem(HIST_KEY); } catch (e) {}
     if (fallbackEl) fallbackEl.hidden = true;
+    setLoading(false);
     bubble('bot', 'Riwayat dihapus. Yuk mulai lagi — ceritakan hobi / pelajaran favorit anak, mis. "suka matematika dan game".');
   });
   function openWa() {
     var lastUser = '';
-    try {
-      var users = msgsEl.querySelectorAll('.asst-user p');
-      if (users.length) lastUser = users[users.length - 1].textContent;
-    } catch (e) {}
+    try { var users = msgsEl.querySelectorAll('.asst-user p'); if (users.length) lastUser = users[users.length - 1].textContent; } catch (e) {}
     var text = 'Halo! Saya konsultasi soal jurusan via Panduan Jurusan.\n\nPertanyaan terakhir saya:\n' + (lastUser || inputEl.value || '-') + '\n\nMohon dibantu ya.';
     window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
   }
@@ -267,30 +203,16 @@
   var fallbackWa = document.getElementById('chatFallbackWa');
   if (fallbackWa) fallbackWa.addEventListener('click', function (e) { e.preventDefault(); openWa(); });
 
-  // Topik populer di sidebar (pakai event delegation)
   document.addEventListener('click', function (e) {
     var btn = e.target && e.target.closest ? e.target.closest('[data-ask]') : null;
     if (!btn) return;
     send(btn.getAttribute('data-ask'));
-    try {
-      document.getElementById('chatCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } catch (err) {}
+    try { document.getElementById('chatCard').scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (err) {}
   });
 
-  // Restore history
-  try {
-    var saved = localStorage.getItem(HIST_KEY);
-    if (saved) msgsEl.innerHTML = saved;
-  } catch (e) {}
-  updateAiStatus();
-  document.addEventListener('ai-settings-changed', updateAiStatus);
-  document.addEventListener('gemini-key-changed', updateAiStatus); // kompatibel panel lama
-  window.addEventListener('storage', function (e) {
-    if (e.key === 'pj-openai-key' || e.key === 'pj-openai-model' || e.key === 'pj-gemini-key' || e.key === 'pj-gemini-model' || e.key === 'pj-ai-provider') updateAiStatus();
-  });
+  try { var saved = localStorage.getItem(HIST_KEY); if (saved) msgsEl.innerHTML = saved; } catch (e) {}
   if (!msgsEl.children.length) {
-    if (useAI()) bubble('bot', 'Halo! Mode AI (' + aiName() + ') aktif. Cerita bebas — mis. "anakku kelas 12 suka biologi tapi takut darah, cocoknya apa?" — saya jawab sesuai konteks.', null, { source: 'ai', aiName: aiName() });
-    else bubble('bot', 'Halo! Saya Asisten Jurusan (mode offline). Tanya apa saja soal 6 jurusan, mis. "informatika vs hukum". Tambahkan API key OpenAI/Gemini di panel samping untuk jawaban AI yang lebih nyambung.');
+    bubble('bot', 'Halo! Saya Panduan AI. Saya bisa membantu kamu memahami dan memilih jurusan kuliah. Coba ceritakan pelajaran atau bidang yang kamu sukai.');
   }
   scrollDown();
 })();
