@@ -121,7 +121,7 @@
       var cmp = document.createElement('button');
       cmp.type = 'button';
       cmp.className = 'jurusan-quick';
-      cmp.innerHTML = '<i data-feather="git-compare"></i><span>Bandingkan 2 jurusan</span>';
+      cmp.innerHTML = '<i data-feather="layers"></i><span>Bandingkan 2 jurusan</span>';
       cmp.addEventListener('click', function () {
         send('Bandingkan Teknik Informatika vs Desain Komunikasi Visual');
       });
