@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ask the Assistant — Live Chat Konsultasi Jurusan | Panduan Jurusan</title>
+  <meta name="description" content="Live chat konsultasi jurusan: tanya soal 6 jurusan, bandingkan 2 jurusan, tebak arah dari hobi anak. Offline, gratis, jawaban instan." />
+  <meta name="theme-color" content="#0f172a" />
+  <script>try{var t=localStorage.getItem('pj-theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://unpkg.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/assistant.css" />
+  <link rel="stylesheet" href="../assets/css/asisten-page.css" />
+  <link rel="manifest" href="../manifest.webmanifest" />
+  <link rel="icon" href="../assets/img/icon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <a class="skip-link" href="#chatCard">Lompat ke live chat</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="header-capsule">
+      <a href="../index.html" class="logo" aria-label="Kembali ke beranda">
+        <span class="logo-mark" aria-hidden="true"><i data-feather="compass"></i></span>
+        <span>Panduan Jurusan</span>
+      </a>
+      <div class="header-tools">
+        <button class="icon-btn" id="langToggle" type="button" aria-label="Ganti bahasa" title="ID/EN">EN</button>
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Ganti tema"><i data-feather="moon" aria-hidden="true"></i></button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Buka menu navigasi">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+      <nav class="site-nav" id="navMenu" aria-label="Navigasi utama">
+        <ul>
+          <li><a href="../index.html"><i data-feather="arrow-left" aria-hidden="true"></i>Beranda</a></li>
+          <li><a href="kuis.html"><i data-feather="help-circle" aria-hidden="true"></i>Kuis 10 Soal</a></li>
+          <li><a href="kampus.html"><i data-feather="book" aria-hidden="true"></i>Kampus</a></li>
+          <li><a href="asisten.html" aria-current="page"><i data-feather="message-circle" aria-hidden="true"></i>Ask the Assistant</a></li>
+          <li><a href="kontak.html"><i data-feather="mail" aria-hidden="true"></i>Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="konten-asisten">
+    <section class="quiz-hero">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="../index.html">Beranda</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Ask the Assistant</span>
+        </nav>
+        <p class="section-kicker">Live Chat • Konsultasi Jurusan • Offline</p>
+        <h1>Ask the Assistant</h1>
+        <p class="quiz-hero-desc">Tanya apa saja soal <strong>6 jurusan</strong> yang ada di web ini. Bisa jelaskan 1 jurusan, <strong>bandingkan 2 jurusan</strong>, atau tebak arah dari hobi anak.</p>
+        <ul class="quiz-hero-meta">
+          <li><i data-feather="zap" aria-hidden="true"></i> Jawaban instan</li>
+          <li><i data-feather="wifi-off" aria-hidden="true"></i> Offline, gratis</li>
+          <li><i data-feather="lock" aria-hidden="true"></i> Riwayat di HP ini saja</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section quiz-app-section" style="padding-top:22px">
+      <div class="container">
+        <div class="chat-layout">
+          <article class="chat-card" id="chatCard" aria-label="Live chat konsultasi jurusan">
+            <div class="chat-head">
+              <span class="chat-avatar" aria-hidden="true"><i data-feather="message-circle"></i></span>
+              <div class="chat-head-info">
+                <strong>Asisten Jurusan</strong>
+                <span class="chat-status"><span class="dot-live" aria-hidden="true"></span> Online • balas instan</span>
+              </div>
+              <div class="chat-head-actions">
+                <button class="chat-icon-btn" id="chatClear" type="button" aria-label="Hapus riwayat chat" title="Hapus riwayat"><i data-feather="trash-2" aria-hidden="true"></i></button>
+                <button class="chat-icon-btn" id="chatWaBtn" type="button" aria-label="Lanjut konsultasi via WhatsApp" title="Lanjut via WhatsApp"><i data-feather="share-2" aria-hidden="true"></i></button>
+              </div>
+            </div>
+
+            <div class="chat-msgs" id="chatMsgs" aria-live="polite" aria-label="Riwayat percakapan"></div>
+
+            <div class="chat-chips-row asst-chips" id="chatChips" aria-label="Pertanyaan cepat"></div>
+
+            <div class="chat-jurusan">
+              <span>Konsultasi per jurusan — klik untuk tanya:</span>
+              <div class="chat-jurusan-grid" id="jurusanShortcuts"></div>
+            </div>
+
+            <div class="chat-input-row">
+              <input id="chatText" type="text" placeholder="mis. informatika vs psikologi, atau anak suka menggambar…" aria-label="Tulis pertanyaan konsultasi" autocomplete="off" maxlength="300" />
+              <button class="chat-send" id="chatSend" type="button" aria-label="Kirim pertanyaan"><i data-feather="send" aria-hidden="true"></i><span>Kirim</span></button>
+            </div>
+            <p class="chat-hint">Tekan Enter untuk kirim. Coba: “anak suka matematika cocok apa?” • “hukum itu belajar apa?” • “akuntansi vs informatika”.</p>
+
+            <div class="chat-fallback" id="chatFallback" hidden>
+              <i data-feather="info" aria-hidden="true"></i>
+              <div>Kurang puas dengan jawaban bot? <a href="../index.html#faq">Lihat FAQ</a> atau <a href="#" id="chatFallbackWa">lanjut via WhatsApp</a> dengan riwayat chat ini.</div>
+            </div>
+          </article>
+
+          <aside class="chat-side" aria-label="Panduan konsultasi">
+            <div class="side-card">
+              <h3><i data-feather="lightbulb" aria-hidden="true"></i> Cara konsultasi biar nyambung</h3>
+              <ol>
+                <li>Ceritakan <strong>hobi + pelajaran favorit</strong> anak, mis. “suka game dan matematika”.</li>
+                <li>Minta <strong>bandingkan 2 jurusan</strong>, mis. “informatika vs DKV”.</li>
+                <li>Uji 2 minggu + <strong>isi kuis</strong> untuk skor objektif.</li>
+              </ol>
+            </div>
+            <div class="side-card">
+              <h3><i data-feather="zap" aria-hidden="true"></i> Topik populer</h3>
+              <p>Klik untuk langsung tanya di chat:</p>
+              <div class="topic-btns">
+                <button class="asst-chip" type="button" data-ask="Teknik Informatika itu belajar apa?">Apa itu Informatika?</button>
+                <button class="asst-chip" type="button" data-ask="Psikologi itu belajar apa dan cocok untuk siapa?">Apa itu Psikologi?</button>
+                <button class="asst-chip" type="button" data-ask="Bandingkan Kedokteran vs Psikologi">Kedokteran vs Psikologi</button>
+                <button class="asst-chip" type="button" data-ask="Anak suka jualan dan hitung uang cocok jurusan apa?">Suka jualan → apa?</button>
+                <button class="asst-chip" type="button" data-ask="Biaya kuliah sampai lulus berapa?">Biaya kuliah?</button>
+                <button class="asst-chip" type="button" data-ask="SNBP vs SNBT bedanya apa?">SNBP vs SNBT?</button>
+              </div>
+            </div>
+            <div class="side-card">
+              <h3><i data-feather="bar-chart-2" aria-hidden="true"></i> Konteks kuis kamu</h3>
+              <div class="quiz-ctx" id="quizCtx">Memuat…</div>
+              <p style="margin-top:10px"><a href="kuis.html" class="btn btn-outline btn-sm"><i data-feather="help-circle" aria-hidden="true"></i> Isi / Ulangi Kuis</a></p>
+            </div>
+            <div class="side-card">
+              <h3><i data-feather="shield" aria-hidden="true"></i> Jujur & netral</h3>
+              <p>Bot ini rule-based offline: menjawab dari data jurusan, FAQ, dan info biaya/jalur di web ini. Bukan pengganti guru BK — untuk diskusi awal di rumah.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="../index.html" class="logo"><span class="logo-mark"><i data-feather="compass"></i></span><span>Panduan Jurusan</span></a>
+        <p>Membantu orang tua mendampingi anak memilih jurusan dengan tenang.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer">
+        <h3>Navigasi</h3>
+        <ul>
+          <li><a href="kuis.html">Kuis 10 Soal</a></li>
+          <li><a href="kampus.html">Rekomendasi Kampus</a></li>
+          <li><a href="asisten.html" aria-current="page">Ask the Assistant</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-nav" aria-label="Footer lain">
+        <h3>Lainnya</h3>
+        <ul>
+          <li><a href="../index.html#jurusan">Daftar Jurusan</a></li>
+          <li><a href="../index.html#faq">FAQ</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-bottom"><p>&copy; 2026 Panduan Jurusan. Dibuat untuk tujuan pembelajaran.</p></div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Kembali ke atas"><i data-feather="arrow-up" aria-hidden="true"></i></button>
+
+  <script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js" defer></script>
+  <script src="../assets/js/jurusan-data.js" defer></script>
+  <script src="../assets/js/script.js" defer></script>
+  <script src="../assets/js/i18n-dict1.js" defer></script>
+  <script src="../assets/js/i18n-dict2.js" defer></script>
+  <script src="../assets/js/i18n-dict3.js" defer></script>
+  <script src="../assets/js/i18n-dict4.js" defer></script>
+  <script src="../assets/js/i18n-dict5.js" defer></script>
+  <script src="../assets/js/lang.js" defer></script>
+  <script src="../assets/js/theme.js" defer></script>
+  <script src="../assets/js/assistant.js" defer></script>
+  <script src="../assets/js/asisten-page.js" defer></script>
+</body>
+</html>

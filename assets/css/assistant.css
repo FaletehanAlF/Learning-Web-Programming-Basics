@@ -77,6 +77,12 @@
 }
 .asst-input button:hover { background: #1a2744; }
 .asst-input button .feather { width: 16px; height: 16px; }
+.asst-foot {
+  padding: 8px 14px 12px;
+  border-top: 1px dashed var(--line);
+  text-align: center;
+}
+.asst-foot a { font-size: 12.5px; font-weight: 700; color: var(--accent-deep); }
 
 @media (max-width: 480px) {
   .asst-fab { left: 14px; bottom: 14px; }
