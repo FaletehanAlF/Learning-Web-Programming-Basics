@@ -43,7 +43,9 @@ var CORE = [
   'assets/js/skenario.js',
   'assets/img/hero.png',
   'assets/img/avatar.png',
-  'assets/img/icon.svg'
+  'assets/img/icon.svg',
+  'assets/img/icon-192.png',
+  'assets/img/icon-512.png'
 ];
 
 self.addEventListener('install', function (event) {
