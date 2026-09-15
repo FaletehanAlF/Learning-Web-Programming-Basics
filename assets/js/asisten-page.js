@@ -39,7 +39,7 @@
   function bubble(who, text, link, opts) {
     var d = document.createElement('div');
     d.className = 'asst-msg asst-' + who;
-    var html = '<p>' + esc(text) + '</p>';
+    var html = '<p>' + esc(text).replace(/\n/g, '<br>') + '</p>';
     if (link && link.h) html += '<a href="' + esc(link.h) + '">' + esc(link.t || 'Buka →') + ' →</a>';
     var src = (who === 'user') ? 'Anda' : 'Panduan AI';
     html += '<span class="chat-meta">' + esc(src) + ' • ' + esc(timeNow()) + '</span>';
