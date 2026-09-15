@@ -59,7 +59,10 @@
     d.className = 'asst-msg asst-' + who;
     var html = '<p>' + esc(text) + '</p>';
     if (link && link.h) html += '<a href="' + esc(link.h) + '">' + esc(link.t || 'Buka →') + ' →</a>';
-    html += '<span class="chat-meta">' + (who === 'user' ? 'Anda' : 'Asisten') + ' • ' + esc(timeNow()) + '</span>';
+    var src = (opts && opts.source === 'ai') ? 'AI Gemini' : (who === 'user' ? 'Anda' : (useAI() ? 'Asisten • AI' : 'Asisten • offline'));
+    if (who === 'user') src = 'Anda';
+    else if (opts && opts.source === 'offline-fallback') src = 'Asisten • offline (AI gagal)';
+    html += '<span class="chat-meta">' + esc(src) + ' • ' + esc(timeNow()) + '</span>';
     d.innerHTML = html;
     msgsEl.appendChild(d);
     scrollDown();
@@ -80,24 +83,57 @@
     return d;
   }
 
-  function ask(text) {
+  function askOffline(text) {
     try {
       if (window.PanduanJurusanAssistant) return window.PanduanJurusanAssistant.ask(text);
     } catch (e) {}
     return { text: 'Maaf, ada gangguan. Coba lagi.' };
   }
 
+  function pushConvo(who, text) {
+    convo.push({ who: who, text: String(text).slice(0, 1000) });
+    if (convo.length > 20) convo = convo.slice(-20);
+  }
+
   function send(q) {
     var text = String(q != null ? q : inputEl.value || '').trim();
     if (!text) { try { inputEl.focus(); } catch (e) {} return; }
-    if (text.length > 300) text = text.slice(0, 300);
+    if (text.length > 500) text = text.slice(0, 500);
     bubble('user', text);
+    pushConvo('user', text);
     inputEl.value = '';
     var tp = typing();
+
+    // Mode AI: jika ada API key, coba Gemini dulu
+    if (useAI()) {
+      var history = convo.slice(0, -1); // tanpa pesan terakhir (dikirim terpisah)
+      window.GeminiChat.sendMessage(text, history).then(function (reply) {
+        try { tp.remove(); } catch (e) { if (tp.parentNode) tp.parentNode.removeChild(tp); }
+        pushConvo('bot', reply);
+        bubble('bot', reply, null, { source: 'ai' });
+      }).catch(function (err) {
+        try { tp.remove(); } catch (e) { if (tp.parentNode) tp.parentNode.removeChild(tp); }
+        var msg = (err && err.message) || 'AI gagal.';
+        if (msg === 'NO_KEY') {
+          var r = askOffline(text);
+          pushConvo('bot', r.text);
+          bubble('bot', r.text, r.link, r);
+        } else {
+          // Fallback offline agar user tetap dapat jawaban
+          var f = askOffline(text);
+          pushConvo('bot', f.text);
+          bubble('bot', 'AI gagal (' + msg + '). Saya jawab mode offline dulu ya.\n\n' + f.text, f.link, { source: 'offline-fallback', lowConfidence: true });
+        }
+        updateAiStatus();
+      });
+      return;
+    }
+
     var delay = 350 + Math.min(600, text.length * 8);
     window.setTimeout(function () {
       try { tp.remove(); } catch (e) { if (tp.parentNode) tp.parentNode.removeChild(tp); }
-      var r = ask(text);
+      var r = askOffline(text);
+      pushConvo('bot', r.text);
       bubble('bot', r.text, r.link, r);
     }, delay);
   }
