@@ -35,6 +35,8 @@ var CORE = [
   'assets/js/export-word.js',
   'assets/js/share.js',
   'assets/js/assistant.js',
+  'assets/js/gemini.js',
+  'assets/js/gemini-settings.js',
   'assets/js/asisten-page.js',
   'assets/js/jurusan-data.js',
   'assets/js/favorit-compare.js',
