@@ -212,6 +212,7 @@
   if (inputEl) inputEl.addEventListener('keydown', function (e) { if (e.key === 'Enter') send(); });
   if (clearBtn) clearBtn.addEventListener('click', function () {
     msgsEl.innerHTML = '';
+    convo = [];
     try { localStorage.removeItem(HIST_KEY); } catch (e) {}
     if (fallbackEl) fallbackEl.hidden = true;
     bubble('bot', 'Riwayat dihapus. Yuk mulai lagi — ceritakan hobi / pelajaran favorit anak, mis. "suka matematika dan game".');
@@ -244,8 +245,14 @@
     var saved = localStorage.getItem(HIST_KEY);
     if (saved) msgsEl.innerHTML = saved;
   } catch (e) {}
+  updateAiStatus();
+  document.addEventListener('gemini-key-changed', updateAiStatus);
+  window.addEventListener('storage', function (e) {
+    if (e.key === 'pj-gemini-key' || e.key === 'pj-gemini-model') updateAiStatus();
+  });
   if (!msgsEl.children.length) {
-    bubble('bot', 'Halo! Saya Asisten Jurusan. Tanya apa saja soal 6 jurusan, mis. "informatika vs hukum", atau cerita minat anak mis. "suka menggambar dan desain".');
+    if (useAI()) bubble('bot', 'Halo! Mode AI Gemini aktif. Cerita bebas — mis. "anakku kelas 12 suka biologi tapi takut darah, cocoknya apa?" — saya jawab sesuai konteks.', null, { source: 'ai' });
+    else bubble('bot', 'Halo! Saya Asisten Jurusan (mode offline). Tanya apa saja soal 6 jurusan, mis. "informatika vs hukum". Tambahkan API key Gemini di panel samping untuk jawaban AI yang lebih nyambung.');
   }
   scrollDown();
 })();
