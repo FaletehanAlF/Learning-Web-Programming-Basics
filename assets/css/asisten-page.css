@@ -143,31 +143,8 @@
 .quiz-ctx { background: var(--accent-soft); border: 1px solid var(--accent-border); border-radius: 12px; padding: 12px 14px; font-size: 13px; }
 .quiz-ctx strong { display: block; margin-bottom: 4px; color: var(--ink); }
 
-/* Panel AI Gemini */
-.ai-card { border-color: var(--accent-border); background: linear-gradient(180deg, var(--accent-soft), var(--card) 60%); }
-.ai-badge {
-  font-size: 11px; font-weight: 800; letter-spacing: 0.02em;
-  background: #f1f5f9; color: var(--muted);
-  border: 1px solid var(--line); border-radius: 999px;
-  padding: 3px 10px; margin-left: auto;
-}
-.ai-badge.on { background: #dcfce7; color: #166534; border-color: #86efac; }
-.ai-field { display: grid; gap: 6px; margin-top: 10px; }
-.ai-field > span { font-size: 12.5px; font-weight: 700; color: var(--ink); }
-.ai-field input, .ai-field select {
-  font: inherit; font-size: 13.5px; color: var(--ink);
-  border: 1px solid var(--line-strong); border-radius: 10px;
-  padding: 10px 12px; width: 100%; background: #fff; outline: none;
-}
-.ai-field input:focus, .ai-field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
-.ai-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
-.ai-status { font-size: 12.5px; margin-top: 10px; color: var(--muted); }
-.ai-help { margin-top: 8px; font-size: 12.5px; }
-.ai-help summary { cursor: pointer; font-weight: 700; color: var(--accent-deep); }
-.ai-help ol { list-style: decimal; padding-left: 18px; display: grid; gap: 6px; margin: 8px 0 0; color: var(--muted); }
-.ai-help code { background: #f1f5f9; border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; font-size: 12px; }
-.chat-status.is-ai .dot-live { background: #16a34a; }
-.btn-sm { padding: 8px 14px; font-size: 13px; }
+/* Loading state */
+.chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
 
 @media (max-width: 960px) {
   .chat-layout { grid-template-columns: 1fr; }
