@@ -2238,7 +2238,6 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 [data-theme="dark"] .asst-bot-badge { color: #5eead4; }
 [data-theme="dark"] .chat-status { color: #8296b3; }
 [data-theme="dark"] .chat-avatar { background: #2b4066; }
-[data-theme="dark"] .chat-input-row input::placeholder { color: #5eead4; }
 /* Latar seksi terang -> latar halaman */
 [data-theme="dark"] .hero,
 [data-theme="dark"] .quiz-hero,

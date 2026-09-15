@@ -188,10 +188,10 @@
     panel.setAttribute('aria-label', 'Panduan AI Assistant');
     panel.innerHTML =
       '<div class="asst-head">' +
-        '<span class="chat-avatar" aria-hidden="true"><i data-feather="cpu"></i></span>' +
+        '<span class="chat-avatar" aria-hidden="true"><i data-feather="compass"></i></span>' +
         '<div class="chat-head-info">' +
           '<strong>Panduan AI</strong>' +
-          '<span class="chat-status" id="aiStatus"><span class="dot-live" aria-hidden="true"></span> Online</span>' +
+          '<span class="chat-status" id="aiStatus"><span class="dot-live" aria-hidden="true"></span> Siap membantu</span>' +
         '</div>' +
         '<button type="button" class="asst-close" id="asstClose" aria-label="Tutup Panduan AI"><i data-feather="x" aria-hidden="true"></i></button>' +
       '</div>' +
