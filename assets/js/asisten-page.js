@@ -14,6 +14,25 @@
   if (!msgsEl || !inputEl) return;
 
   var HIST_KEY = 'pj-asisten-history-v1';
+  var aiStatusEl = document.getElementById('aiStatus');
+  var convo = []; // [{who:'user'|'bot', text}] untuk konteks Gemini (max 10 terkirim)
+
+  function useAI() {
+    try { return window.GeminiChat && window.GeminiChat.hasKey(); } catch (e) { return false; }
+  }
+
+  function updateAiStatus() {
+    if (!aiStatusEl) return;
+    if (useAI()) {
+      var m = '';
+      try { m = window.GeminiChat.getModel(); } catch (e) {}
+      aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> AI Aktif (' + esc(m) + ') • offline siap cadangan';
+      aiStatusEl.classList.add('is-ai');
+    } else {
+      aiStatusEl.innerHTML = '<span class="dot-live" aria-hidden="true"></span> Mode offline • tambah API key untuk AI';
+      aiStatusEl.classList.remove('is-ai');
+    }
+  }
 
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
