@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 
 app.post("/api/chat", async (req, res) => {
   try {
-    const { message } = req.body;
+    const { message, history } = req.body;
 
     if (!message) {
       return res.status(400).json({
@@ -32,6 +32,26 @@ app.post("/api/chat", async (req, res) => {
         message: "Pertanyaan tidak boleh kosong.",
       });
     }
+
+    // Bangun input percakapan agar AI memahami konteks sebelumnya.
+    // Frontend mengirim history: [{role:"user"|"assistant", content:"..."}].
+    // Tetap kompatibel jika history tidak dikirim (single message).
+    const cleanHistory = Array.isArray(history)
+      ? history
+          .filter(
+            (m) =>
+              m &&
+              (m.role === "user" || m.role === "assistant") &&
+              typeof m.content === "string" &&
+              m.content.trim().length > 0
+          )
+          .slice(-10)
+          .map((m) => ({ role: m.role, content: m.content.slice(0, 2000) }))
+      : [];
+    const input = [
+      ...cleanHistory,
+      { role: "user", content: String(message).slice(0, 2000) },
+    ];
 
     const response = await openai.responses.create({
       model: "gpt-5.6-luna",
