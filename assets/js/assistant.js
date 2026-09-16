@@ -22,8 +22,10 @@
       if (raw) {
         var parsed = JSON.parse(raw);
         if (Array.isArray(parsed.convo)) {
-          convo = parsed.convo;
-          return true;
+          convo = parsed.convo.filter(function (m) {
+            return m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string';
+          }).slice(-20);
+          return convo.length > 0;
         }
       }
     } catch (e) {}
@@ -31,24 +33,185 @@
   }
 
   function saveSession() {
-    try { sessionStorage.setItem(SESSION_KEY, JSON.stringify({ convo: convo.slice(-50) })); } catch (e) {}
+    try { sessionStorage.setItem(SESSION_KEY, JSON.stringify({ convo: convo.slice(-20) })); } catch (e) {}
   }
 
-  function esc(s) {
-    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
+  // ---------- Safe lite-markdown renderer (XSS-safe, tanpa innerHTML dari AI) ----------
+  // Mendukung: **bold**, *italic*, `code`, bullet -, *, •, numbered 1., heading #.
+  // Semua teks AI dimasukkan via textContent / createTextNode, tidak pernah via innerHTML.
+  function appendInline(parent, text) {
+    var s = String(text == null ? '' : text);
+    // Hilangkan sisa marker bold yang gagal dipasangkan supaya tidak terlihat mentah.
+    // Parsing utama di bawah menangani yang berpasangan.
+    var re = /(\*\*[^*\n]+?\*\*|__[^_\n]+?__|`[^`\n]+?`|\*[^*\n]+?\*)/g;
+    var last = 0;
+    var m;
+    while ((m = re.exec(s)) !== null) {
+      if (m.index > last) {
+        parent.appendChild(document.createTextNode(cleanPlain(s.slice(last, m.index))));
+      }
+      var tok = m[0];
+      var inner, el;
+      if (tok.slice(0, 2) === '**' && tok.slice(-2) === '**') {
+        inner = tok.slice(2, -2);
+        el = document.createElement('strong');
+        el.textContent = inner;
+        parent.appendChild(el);
+      } else if (tok.slice(0, 2) === '__' && tok.slice(-2) === '__') {
+        inner = tok.slice(2, -2);
+        el = document.createElement('strong');
+        el.textContent = inner;
+        parent.appendChild(el);
+      } else if (tok.charAt(0) === '`' && tok.charAt(tok.length - 1) === '`') {
+        inner = tok.slice(1, -1);
+        el = document.createElement('code');
+        el.textContent = inner;
+        parent.appendChild(el);
+      } else if (tok.charAt(0) === '*' && tok.charAt(tok.length - 1) === '*') {
+        inner = tok.slice(1, -1);
+        el = document.createElement('em');
+        el.textContent = inner;
+        parent.appendChild(el);
+      } else {
+        parent.appendChild(document.createTextNode(cleanPlain(tok)));
+      }
+      last = m.index + tok.length;
+    }
+    if (last < s.length) {
+      parent.appendChild(document.createTextNode(cleanPlain(s.slice(last))));
+    }
   }
+
+  function cleanPlain(s) {
+    // Hapus marker ** / __ yang tersisa agar tidak tampil mentah. Biarkan teks lain apa adanya.
+    return String(s).replace(/\*\*/g, '').replace(/__/g, '');
+  }
+
+  function isBullet(line) {
+    var m = /^\s*[-*\u2022]\s+(.*\S)\s*$/.exec(line);
+    return m ? m[1] : null;
+  }
+
+  function isNumbered(line) {
+    var m = /^\s*\d{1,2}[.)]\s+(.*\S)\s*$/.exec(line);
+    return m ? m[1] : null;
+  }
+
+  function isHeading(line) {
+    var m = /^\s*#{1,6}\s+(.*\S)\s*$/.exec(line);
+    return m ? m[1] : null;
+  }
+
+  function appendParagraph(container, lines) {
+    var text = lines.join(' ').replace(/\s+/g, ' ').trim();
+    if (!text) return;
+    var p = document.createElement('p');
+    appendInline(p, text);
+    container.appendChild(p);
+  }
+
+  function appendList(container, ordered, items) {
+    if (!items.length) return;
+    var list = document.createElement(ordered ? 'ol' : 'ul');
+    list.className = ordered ? 'asst-list-num' : 'asst-list';
+    items.forEach(function (itemText) {
+      var li = document.createElement('li');
+      appendInline(li, itemText);
+      list.appendChild(li);
+    });
+    container.appendChild(list);
+  }
+
+  function renderBlocks(container, src) {
+    var lines = String(src).split('\n');
+    var para = [];
+    var listItems = [];
+    var listOrdered = false;
+    var inList = false;
+
+    function flushPara() {
+      if (para.length) { appendParagraph(container, para); para = []; }
+    }
+    function flushList() {
+      if (inList && listItems.length) { appendList(container, listOrdered, listItems); }
+      listItems = [];
+      inList = false;
+    }
+
+    lines.forEach(function (line) {
+      var trimmed = line.trim();
+      if (!trimmed) { flushPara(); flushList(); return; }
+
+      var head = isHeading(trimmed);
+      if (head !== null) {
+        flushPara(); flushList();
+        appendParagraph(container, [head]);
+        return;
+      }
+      var b = isBullet(line);
+      if (b !== null) {
+        flushPara();
+        if (!inList || listOrdered) { flushList(); inList = true; listOrdered = false; }
+        listItems.push(b);
+        return;
+      }
+      var n = isNumbered(line);
+      if (n !== null) {
+        flushPara();
+        if (!inList || !listOrdered) { flushList(); inList = true; listOrdered = true; }
+        listItems.push(n);
+        return;
+      }
+      // Baris teks biasa: akhiri list yang sedang berjalan, lanjutkan paragraf.
+      flushList();
+      para.push(trimmed);
+    });
+    flushPara();
+    flushList();
+  }
+
+  function renderAssistantText(container, raw) {
+    var s = String(raw == null ? '' : raw).replace(/\r\n?/g, '\n').trim().slice(0, 4000);
+    if (!s) {
+      var p = document.createElement('p');
+      p.textContent = 'Maaf, saya belum punya jawaban untuk itu. Coba ceritakan sedikit lagi?';
+      container.appendChild(p);
+      return;
+    }
+    // Tangani code fence ```...``` : render sebagai teks polos, bukan markdown.
+    var parts = s.split(/```/);
+    for (var i = 0; i < parts.length; i++) {
+      if (i % 2 === 1) {
+        var pre = document.createElement('p');
+        var code = document.createElement('code');
+        code.textContent = parts[i].trim();
+        pre.appendChild(code);
+        container.appendChild(pre);
+      } else if (parts[i].trim()) {
+        renderBlocks(container, parts[i]);
+      }
+    }
+  }
+  // ---------- akhir renderer ----------
 
   function createBubble(who, text, opts) {
     var d = document.createElement('div');
     d.className = 'asst-msg asst-' + who;
-    var html = '';
     if (who === 'bot' && opts && opts.isAI) {
-      html += '<div class="asst-bot-badge">Panduan AI</div>';
+      var badge = document.createElement('div');
+      badge.className = 'asst-bot-badge';
+      badge.textContent = 'Panduan AI';
+      d.appendChild(badge);
     }
-    html += '<p>' + esc(text).replace(/\n/g, '<br>') + '</p>';
-    d.innerHTML = html;
+    var body = document.createElement('div');
+    body.className = 'asst-text';
+    if (who === 'user') {
+      // Pesan user: tampilkan polos, tanpa parsing markdown.
+      body.textContent = String(text == null ? '' : text);
+    } else {
+      renderAssistantText(body, text);
+    }
+    d.appendChild(body);
     msgsEl.appendChild(d);
     scrollDown();
     return d;
@@ -58,8 +221,8 @@
     var d = document.createElement('div');
     d.className = 'asst-typing';
     d.id = 'asstTyping';
-    d.innerHTML = '<span></span><span></span><span></span>';
     d.setAttribute('aria-label', 'Asisten mengetik');
+    for (var i = 0; i < 3; i++) d.appendChild(document.createElement('span'));
     msgsEl.appendChild(d);
     scrollDown();
     return d;
@@ -73,7 +236,12 @@
   function showError(message) {
     var d = document.createElement('div');
     d.className = 'asst-msg asst-error';
-    d.innerHTML = '<p>' + esc(message) + '</p>';
+    var body = document.createElement('div');
+    body.className = 'asst-text';
+    var p = document.createElement('p');
+    p.textContent = String(message);
+    body.appendChild(p);
+    d.appendChild(body);
     msgsEl.appendChild(d);
     scrollDown();
   }
@@ -93,18 +261,19 @@
     if (!text || isLoading) return;
     if (text.length > 500) text = text.slice(0, 500);
 
-    bubbleUser(text);
-    inputEl.value = '';
+    createBubble('user', text);
+    if (inputEl) inputEl.value = '';
     setLoading(true);
 
-    var typing = showTyping();
+    showTyping();
+    var historyPayload = convo.slice(-10);
     convo.push({ role: 'user', content: text });
 
     try {
       var response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text })
+        body: JSON.stringify({ message: text, history: historyPayload })
       });
 
       if (!response.ok) {
@@ -126,16 +295,11 @@
       removeTyping();
       setLoading(false);
       convo.push({ role: 'assistant', content: 'Maaf, server AI sedang tidak dapat dihubungi.' });
-      createBubble('bot', 'Maaf, Panduan AI sedang tidak dapat dihubungi. Coba lagi beberapa saat.', { isAI: true });
+      showError('Maaf, Panduan AI sedang tidak dapat dihubungi. Coba lagi beberapa saat.');
     }
 
     saveSession();
     try { inputEl.focus(); } catch (e) {}
-  }
-
-  function bubbleUser(text) {
-    createBubble('user', text);
-    if (inputEl) inputEl.value = '';
   }
 
   function togglePanel(open) {
@@ -146,6 +310,7 @@
       if (!msgsEl.children.length) {
         showWelcome();
       }
+      scrollDown();
       try { inputEl.focus(); } catch (e) {}
     }
   }
@@ -153,13 +318,22 @@
   function showWelcome() {
     createBubble('bot',
       'Halo! Saya Panduan AI.\n\n' +
-      'Saya bisa membantu kamu memahami pilihan jurusan berdasarkan minat, kemampuan, dan hal yang ingin kamu pelajari.\n\n' +
-      'Coba ceritakan:\n' +
-      '• pelajaran yang kamu sukai\n' +
-      '• kegiatan yang kamu senangi\n' +
-      '• jurusan yang sedang kamu pertimbangkan\n\n' +
-      'Tidak perlu langsung tahu jawabannya. Kita bisa membahasnya bersama.',
+      'Ceritakan jurusan yang sedang kamu pertimbangkan, pelajaran yang kamu suka, ' +
+      'atau hal yang ingin kamu pelajari. Kita bisa membahasnya bersama.',
       { isAI: true });
+  }
+
+  function restoreHistory() {
+    try { msgsEl.innerHTML = ''; } catch (e) {}
+    var items = convo.slice(-20);
+    if (!items.length) {
+      showWelcome();
+      return;
+    }
+    items.forEach(function (m) {
+      if (m.role === 'user') createBubble('user', m.content);
+      else createBubble('bot', m.content, { isAI: true });
+    });
   }
 
   function handleKeydown(e) {
@@ -213,7 +387,7 @@
 
     var quickQuestions = [
       'Jurusan untuk yang suka coding?',
-      'Kalau suka menggambar, cocok apa?',
+      'Kalau suka menggambar?',
       'Informatika vs Sistem Informasi',
       'Bagaimana memilih jurusan?',
       'Biaya kuliah perlu dipertimbangkan?'
@@ -224,7 +398,7 @@
       b.className = 'asst-chip';
       b.textContent = q;
       b.addEventListener('click', function () {
-        inputEl.value = q;
+        if (inputEl) inputEl.value = q;
         sendMessage();
       });
       chipsEl.appendChild(b);
@@ -238,15 +412,9 @@
       if (e.key === 'Escape' && !panel.hidden) togglePanel(false);
     });
 
-    getSession();
-    if (!msgsEl.children.length) {
-      showWelcome();
-    } else {
-      var botMsgs = msgsEl.querySelectorAll('.asst-bot p');
-      if (botMsgs.length && !botMsgs[0].textContent.startsWith('Halo!')) {
-        showWelcome();
-      }
-    }
+    var hasHistory = getSession();
+    if (hasHistory) restoreHistory();
+    else showWelcome();
     scrollDown();
     renderFeather();
 
