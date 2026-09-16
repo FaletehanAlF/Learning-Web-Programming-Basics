@@ -661,8 +661,8 @@ section { scroll-margin-top: calc(var(--header-h) + 12px); }
 }
 .filter-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
-  min-height: 36px;
-  padding: 7px 14px;
+  min-height: 44px;
+  padding: 9px 16px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: #fff;
@@ -2060,8 +2060,8 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
   .dash-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .dash-grid { grid-template-columns: 1fr; }
   .dash-head { flex-direction: column; }
-  .quiz-dots { gap: 6px; }
-  .quiz-dot { width: 32px; height: 32px; font-size: 12px; }
+  .quiz-dots { gap: 8px; }
+  .quiz-dot { width: 40px; height: 40px; font-size: 13px; }
   .calc-presets { grid-template-columns: 1fr; }
   .calc-row { grid-template-columns: 1fr; }
   .timeline { grid-template-columns: 1fr; }
