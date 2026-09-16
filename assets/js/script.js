@@ -789,6 +789,12 @@
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(plain)}`, '_blank', 'noopener');
   });
   if (ctaPrint) ctaPrint.addEventListener('click', () => {
+    try {
+      if (window.PanduanJurusanRingkasan && window.PanduanJurusanRingkasan.hasAny(window.PanduanJurusanRingkasan.getData())) {
+        window.PanduanJurusanRingkasan.cetak();
+        return;
+      }
+    } catch(e){}
     window.print();
   });
 

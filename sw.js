@@ -1,5 +1,5 @@
 /* Panduan Jurusan — service worker (offline-first ringan) */
-var CACHE = 'panduan-jurusan-v11';
+var CACHE = 'panduan-jurusan-v12';
 var CORE = [
   './',
   'index.html',
@@ -42,6 +42,9 @@ var CORE = [
   'assets/js/jurusan-data.js',
   'assets/js/favorit-compare.js',
   'assets/js/skenario.js',
+  'assets/js/rencana-aksi.js',
+  'assets/js/reminder.js',
+  'assets/js/ringkasan.js',
   'assets/img/hero.png',
   'assets/img/avatar.png',
   'assets/img/icon.svg',

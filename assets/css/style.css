@@ -2633,3 +2633,38 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 @media (prefers-reduced-motion: reduce) {
   .filter-chips { scroll-snap-type: none; }
 }
+
+/* =====================================================================
+   FITUR 2026-09: rencana aksi + pengingat seleksi
+   ===================================================================== */
+.result-aksi { padding: 20px; border-bottom: 1px solid var(--line-soft); }
+.result-aksi h3 {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-size: 15px; font-weight: 750;
+  color: var(--ink); margin-bottom: 10px;
+}
+.result-aksi h3 .feather { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; }
+.aksi-body .tips-list { margin-top: 12px; }
+
+.reminder-row { display: flex; align-items: center; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.reminder-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  min-height: 36px; padding: 6px 12px;
+  border-radius: 999px; border: 1px solid var(--line-strong);
+  background: #fff; color: var(--muted);
+  font-size: 12.5px; font-weight: 700; cursor: pointer;
+  transition: border-color 0.15s var(--ease), color 0.15s var(--ease), background 0.15s var(--ease);
+}
+.reminder-btn .feather { width: 14px; height: 14px; }
+.reminder-btn:hover { border-color: var(--accent); color: var(--accent-deep); }
+.reminder-btn.is-on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-deep); }
+.reminder-cal {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--line); background: #fff; color: var(--muted);
+}
+.reminder-cal:hover { border-color: var(--accent); color: var(--accent-deep); }
+.reminder-cal .feather { width: 15px; height: 15px; }
+.reminder-count { font-size: 12px; color: var(--muted-soft); font-weight: 600; }
+[data-theme="dark"] .reminder-btn,
+[data-theme="dark"] .reminder-cal { background: var(--card); }

@@ -78,6 +78,11 @@
     '# • # • #': '# • # • #',
     'Memuat detail kampus…': 'Loading campus details…',
     '8 semester (4 tahun)': '8 semesters (4 years)',
-    '8 semester (4 thn)': '8 semesters (4 yrs)'
+    '8 semester (4 thn)': '8 semesters (4 yrs)',
+    'PDF Ringkasan': 'PDF Summary',
+    'Cetak Ringkasan (PDF)': 'Print Summary (PDF)',
+    'Rencana aksi 2 minggu': '2-week action plan',
+    'Dibuat otomatis dari hasil kuis terakhir.': 'Auto-generated from your latest quiz result.',
+    'Pengingat seleksi': 'Admission reminders'
   });
 })();
