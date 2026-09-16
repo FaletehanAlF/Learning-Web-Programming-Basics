@@ -19,7 +19,12 @@
   position: fixed;
   left: 20px; bottom: 82px;
   z-index: 120;
-  width: min(380px, calc(100vw - 40px));
+  /* Quick assistant: compact, tidak menutupi hero */
+  width: min(400px, calc(100vw - 28px));
+  height: min(600px, calc(100vh - 110px));
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 16px;
