@@ -146,13 +146,8 @@
           var idx = parseInt(c.getAttribute('data-aksi'), 10);
           toggle(plan, idx, c.checked);
           var fresh = getPlan();
-          if (fresh) {
-            var scope = c.closest('.tips-list, .dash-panel, .result-aksi') || box;
-            renderInto(box, fresh, compact);
-            if (compact) renderAll();
-            else { var dash = document.getElementById('dashAksi'); if (dash) renderDash(dash); }
-            if (c.checked) toast('Langkah ' + (idx + 1) + ' selesai — lanjutkan!');
-          }
+          if (fresh) renderInto(box, fresh, compact);
+          if (c.checked) toast('Langkah ' + (idx + 1) + ' selesai — lanjutkan!');
         });
       })(checks[k]);
     }
