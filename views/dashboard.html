@@ -65,6 +65,7 @@
         <div class="dash-hero-actions">
           <a href="kuis.html" class="btn btn-primary"><i data-feather="play" aria-hidden="true"></i> Isi / Ulangi Kuis</a>
           <button class="btn btn-outline" id="dashWord" type="button"><i data-feather="download" aria-hidden="true"></i> Unduh Word</button>
+          <button class="btn btn-outline" id="dashPdf" type="button"><i data-feather="printer" aria-hidden="true"></i> PDF Ringkasan</button>
           <button class="btn btn-outline" id="dashLinkBtn" type="button"><i data-feather="link" aria-hidden="true"></i> Salin Link</button>
           <button class="btn btn-ghost" id="dashClear" type="button"><i data-feather="trash-2" aria-hidden="true"></i> Hapus riwayat</button>
         </div>
@@ -97,6 +98,17 @@
           <h3><i data-feather="bookmark" aria-hidden="true"></i> Jurusan favorit saya</h3>
           <p class="dash-panel-desc">Ditandai dari katalog di beranda. Buka katalog untuk menambah.</p>
           <div id="dashFav"></div>
+        </div>
+
+        <div class="dash-panel">
+          <h3><i data-feather="clipboard" aria-hidden="true"></i> Rencana aksi 2 minggu</h3>
+          <p class="dash-panel-desc">Dibuat otomatis dari hasil kuis terakhir.</p>
+          <div id="dashAksi"></div>
+        </div>
+
+        <div class="dash-panel">
+          <h3><i data-feather="bell" aria-hidden="true"></i> Pengingat seleksi</h3>
+          <div id="dashReminder"></div>
         </div>
 
         <div class="dash-panel dash-next">
@@ -148,6 +160,9 @@
   <script src="../assets/js/export-word.js" defer></script>
   <script src="../assets/js/share.js" defer></script>
   <script src="../assets/js/dashboard.js" defer></script>
+  <script src="../assets/js/rencana-aksi.js" defer></script>
+  <script src="../assets/js/reminder.js" defer></script>
+  <script src="../assets/js/ringkasan.js" defer></script>
   <script src="../assets/js/i18n-dict1.js" defer></script>
   <script src="../assets/js/i18n-dict2.js" defer></script>
   <script src="../assets/js/i18n-dict3.js" defer></script>

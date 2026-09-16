@@ -648,6 +648,7 @@
     html += '<button class="btn btn-outline" id="resultCopy" type="button"><i data-feather="copy" aria-hidden="true"></i> Salin Hasil</button>';
     html += '<button class="btn btn-outline" id="resultImage" type="button"><i data-feather="image" aria-hidden="true"></i> Gambar</button>';
     html += '<button class="btn btn-outline" id="resultWord" type="button"><i data-feather="file-text" aria-hidden="true"></i> Unduh Word</button>';
+    html += '<button class="btn btn-outline" id="resultPdf" type="button"><i data-feather="printer" aria-hidden="true"></i> PDF Ringkasan</button>';
     html += '<button class="btn btn-outline" id="resultLink" type="button"><i data-feather="link" aria-hidden="true"></i> Salin Link</button>';
     html += '<a href="dashboard.html" class="btn btn-outline" id="resultDash"><i data-feather="bar-chart-2" aria-hidden="true"></i> Dashboard</a>';
     html += '</div></details>';
