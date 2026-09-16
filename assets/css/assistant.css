@@ -147,9 +147,10 @@
   font-size: 12px; font-weight: 600; color: var(--ink);
   padding: 6px 11px; border-radius: 999px;
   border: 1px solid var(--line); background: #fff; cursor: pointer;
+  white-space: nowrap; flex-shrink: 0; scroll-snap-align: start;
 }
 .asst-chip:hover { border-color: var(--accent); color: var(--accent-deep); background: var(--accent-soft); }
-.asst-input { display: flex; gap: 8px; padding: 10px 14px 14px; border-top: 1px solid var(--line-soft); }
+.asst-input { display: flex; gap: 8px; padding: 10px 14px 12px; border-top: 1px solid var(--line-soft); flex-shrink: 0; background: #fff; }
 .asst-input input {
   flex: 1; min-width: 0;
   border: 1px solid var(--line); border-radius: 10px;
