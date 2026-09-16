@@ -2607,3 +2607,29 @@ html.js body.is-loaded .hero-fade { opacity: 1; transition: opacity 0.6s var(--e
 @media (max-width: 640px) {
   .result-more-grid { grid-template-columns: 1fr; }
 }
+
+/* ---- 4) Filter katalog (beranda #jurusan & halaman kampus): geser ke samping di HP ---- */
+@media (max-width: 640px) {
+  .filter-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    margin-inline: -24px;
+    padding-inline: 24px;
+    padding-bottom: 4px;
+  }
+  .filter-chips::-webkit-scrollbar { display: none; }
+  .filter-chips .chip {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+}
+@media (max-width: 380px) {
+  .filter-chips { margin-inline: -16px; padding-inline: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .filter-chips { scroll-snap-type: none; }
+}
