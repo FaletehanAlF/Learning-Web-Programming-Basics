@@ -37,6 +37,7 @@
   padding: 12px 14px;
   background: var(--bg-soft);
   border-bottom: 1px solid var(--line-soft);
+  flex-shrink: 0;
 }
 .asst-head strong { font-size: 14px; color: var(--ink); }
 .asst-head span { font-size: 11px; color: var(--muted-soft); flex: 1; }
@@ -64,12 +65,68 @@
 .asst-close:hover { color: var(--ink); border-color: var(--line-strong); }
 .asst-close .feather { width: 14px; height: 14px; }
 .asst-msgs {
-  display: flex; flex-direction: column; gap: 8px;
-  max-height: 400px; overflow-y: auto;
+  display: flex; flex-direction: column; gap: 10px;
+  flex: 1 1 auto;
+  min-height: 0;
+  min-height: 180px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 12px 14px;
 }
 .asst-msg { max-width: 88%; }
-.asst-msg p { margin: 0; font-size: 13px; line-height: 1.55; }
+/* Typography jawaban AI: nyaman dibaca, tidak padat */
+.asst-msg .asst-text { font-size: 14px; line-height: 1.6; overflow-wrap: break-word; }
+.asst-msg .asst-text p { margin: 0; font-size: 14px; line-height: 1.6; }
+.asst-msg .asst-text p + p { margin-top: 8px; }
+.asst-msg .asst-text strong { font-weight: 700; }
+.asst-msg .asst-text em { font-style: italic; }
+.asst-msg .asst-text code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  background: rgb(15 23 42 / 0.06);
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  padding: 1px 5px;
+}
+.asst-msg .asst-text ul.asst-list,
+.asst-msg .asst-text ol.asst-list-num {
+  margin: 8px 0 0;
+  padding: 0 0 0 2px;
+  display: grid;
+  gap: 4px;
+}
+.asst-msg .asst-text ul.asst-list { list-style: none; }
+.asst-msg .asst-text ul.asst-list > li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.asst-msg .asst-text ul.asst-list > li::before {
+  content: "•";
+  position: absolute;
+  left: 2px;
+  top: 0;
+  font-weight: 800;
+}
+.asst-msg .asst-text ol.asst-list-num { list-style: none; counter-reset: asst-num; }
+.asst-msg .asst-text ol.asst-list-num > li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  counter-increment: asst-num;
+}
+.asst-msg .asst-text ol.asst-list-num > li::before {
+  content: counter(asst-num) ".";
+  position: absolute;
+  left: 2px;
+  top: 0;
+  font-weight: 700;
+  font-size: 13px;
+}
+/* Pesan user: plain text */
+.asst-user .asst-text { white-space: pre-wrap; }
 .asst-bot { align-self: flex-start; background: var(--bg-soft); border: 1px solid var(--line-soft); border-radius: 4px 12px 12px 12px; padding: 9px 12px; }
 .asst-bot p { color: var(--ink-soft); }
 .asst-bot a { display: inline-block; margin-top: 6px; font-size: 12.5px; font-weight: 700; color: var(--accent-deep); }
