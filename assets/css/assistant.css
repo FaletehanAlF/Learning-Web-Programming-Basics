@@ -219,6 +219,13 @@
 
 @media (max-width: 480px) {
   .asst-fab { left: 14px; bottom: 14px; }
-  .asst-panel { left: 14px; bottom: 76px; width: calc(100vw - 28px); }
-  .asst-msgs { max-height: 320px; }
+  .asst-panel {
+    left: 14px; right: 14px; bottom: 76px;
+    width: auto;
+    max-width: calc(100vw - 28px);
+    height: min(600px, 78vh);
+    max-height: 78vh;
+  }
+  .asst-msgs { min-height: 0; }
+  .asst-msg { max-width: 90%; }
 }
