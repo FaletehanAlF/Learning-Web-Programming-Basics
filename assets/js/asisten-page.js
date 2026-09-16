@@ -2,7 +2,8 @@
   'use strict';
 
   var API_URL = 'http://localhost:3000/api/chat';
-  var HIST_KEY = 'pj-asisten-history-v1';
+  var HIST_KEY = 'pj-asisten-history-v2';
+  var OLD_HIST_KEY = 'pj-asisten-history-v1';
   var msgsEl = document.getElementById('chatMsgs');
   var inputEl = document.getElementById('chatText');
   var sendBtn = document.getElementById('chatSend');
@@ -18,6 +19,143 @@
 
   if (!msgsEl || !inputEl) return;
 
+  // ---------- Safe lite-markdown renderer (tanpa innerHTML dari AI) ----------
+  function appendInline(parent, text) {
+    var s = String(text == null ? '' : text);
+    var re = /(\*\*[^*\n]+?\*\*|__[^_\n]+?__|`[^`\n]+?`|\*[^*\n]+?\*)/g;
+    var last = 0;
+    var m;
+    while ((m = re.exec(s)) !== null) {
+      if (m.index > last) {
+        parent.appendChild(document.createTextNode(cleanPlain(s.slice(last, m.index))));
+      }
+      var tok = m[0];
+      var el;
+      if (tok.slice(0, 2) === '**' && tok.slice(-2) === '**') {
+        el = document.createElement('strong');
+        el.textContent = tok.slice(2, -2);
+        parent.appendChild(el);
+      } else if (tok.slice(0, 2) === '__' && tok.slice(-2) === '__') {
+        el = document.createElement('strong');
+        el.textContent = tok.slice(2, -2);
+        parent.appendChild(el);
+      } else if (tok.charAt(0) === '`' && tok.charAt(tok.length - 1) === '`') {
+        el = document.createElement('code');
+        el.textContent = tok.slice(1, -1);
+        parent.appendChild(el);
+      } else if (tok.charAt(0) === '*' && tok.charAt(tok.length - 1) === '*') {
+        el = document.createElement('em');
+        el.textContent = tok.slice(1, -1);
+        parent.appendChild(el);
+      } else {
+        parent.appendChild(document.createTextNode(cleanPlain(tok)));
+      }
+      last = m.index + tok.length;
+    }
+    if (last < s.length) {
+      parent.appendChild(document.createTextNode(cleanPlain(s.slice(last))));
+    }
+  }
+
+  function cleanPlain(s) {
+    return String(s).replace(/\*\*/g, '').replace(/__/g, '');
+  }
+
+  function bulletOf(line) {
+    var m = /^\s*[-*\u2022]\s+(.*\S)\s*$/.exec(line);
+    return m ? m[1] : null;
+  }
+
+  function numberedOf(line) {
+    var m = /^\s*\d{1,2}[.)]\s+(.*\S)\s*$/.exec(line);
+    return m ? m[1] : null;
+  }
+
+  function headingOf(line) {
+    var m = /^\s*#{1,6}\s+(.*\S)\s*$/.exec(line);
+    return m ? m[1] : null;
+  }
+
+  function appendParagraph(container, lines) {
+    var text = lines.join(' ').replace(/\s+/g, ' ').trim();
+    if (!text) return;
+    var p = document.createElement('p');
+    appendInline(p, text);
+    container.appendChild(p);
+  }
+
+  function appendList(container, ordered, items) {
+    if (!items.length) return;
+    var list = document.createElement(ordered ? 'ol' : 'ul');
+    list.className = ordered ? 'asst-list-num' : 'asst-list';
+    items.forEach(function (t) {
+      var li = document.createElement('li');
+      appendInline(li, t);
+      list.appendChild(li);
+    });
+    container.appendChild(list);
+  }
+
+  function renderBlocks(container, src) {
+    var lines = String(src).split('\n');
+    var para = [];
+    var items = [];
+    var ordered = false;
+    var inList = false;
+    function flushPara() { if (para.length) { appendParagraph(container, para); para = []; } }
+    function flushList() {
+      if (inList && items.length) appendList(container, ordered, items);
+      items = []; inList = false;
+    }
+    lines.forEach(function (line) {
+      var trimmed = line.trim();
+      if (!trimmed) { flushPara(); flushList(); return; }
+      var h = headingOf(trimmed);
+      if (h !== null) { flushPara(); flushList(); appendParagraph(container, [h]); return; }
+      var b = bulletOf(line);
+      if (b !== null) {
+        flushPara();
+        if (!inList || ordered) { flushList(); inList = true; ordered = false; }
+        items.push(b);
+        return;
+      }
+      var n = numberedOf(line);
+      if (n !== null) {
+        flushPara();
+        if (!inList || !ordered) { flushList(); inList = true; ordered = true; }
+        items.push(n);
+        return;
+      }
+      flushList();
+      para.push(trimmed);
+    });
+    flushPara();
+    flushList();
+  }
+
+  function renderAssistantText(container, raw) {
+    var s = String(raw == null ? '' : raw).replace(/\r\n?/g, '\n').trim().slice(0, 4000);
+    if (!s) {
+      var p = document.createElement('p');
+      p.textContent = 'Maaf, saya belum punya jawaban untuk itu. Coba ceritakan sedikit lagi?';
+      container.appendChild(p);
+      return;
+    }
+    var parts = s.split(/```/);
+    for (var i = 0; i < parts.length; i++) {
+      if (i % 2 === 1) {
+        var pw = document.createElement('p');
+        var code = document.createElement('code');
+        code.textContent = parts[i].trim();
+        pw.appendChild(code);
+        container.appendChild(pw);
+      } else if (parts[i].trim()) {
+        renderBlocks(container, parts[i]);
+      }
+    }
+  }
+  // ---------- akhir renderer ----------
+
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
@@ -29,21 +167,39 @@
   }
 
   function save() {
-    try { localStorage.setItem(HIST_KEY, msgsEl.innerHTML); } catch (e) {}
+    try { localStorage.setItem(HIST_KEY, JSON.stringify({ convo: convo.slice(-50) })); } catch (e) {}
   }
 
   function scrollDown() {
     try { msgsEl.scrollTop = msgsEl.scrollHeight; } catch (e) {}
   }
 
+  function isSafeHref(h) {
+    return typeof h === 'string' && /^(#|\.\.?\/|views\/|..\/index\.html)/.test(h);
+  }
+
   function bubble(who, text, link, opts) {
     var d = document.createElement('div');
     d.className = 'asst-msg asst-' + who;
-    var html = '<p>' + esc(text).replace(/\n/g, '<br>') + '</p>';
-    if (link && link.h) html += '<a href="' + esc(link.h) + '">' + esc(link.t || 'Buka →') + ' →</a>';
+    var body = document.createElement('div');
+    body.className = 'asst-text';
+    if (who === 'user') {
+      body.textContent = String(text == null ? '' : text);
+    } else {
+      renderAssistantText(body, text);
+    }
+    d.appendChild(body);
+    if (link && link.h && isSafeHref(link.h)) {
+      var a = document.createElement('a');
+      a.setAttribute('href', link.h);
+      a.textContent = link.t || 'Buka →';
+      d.appendChild(a);
+    }
     var src = (who === 'user') ? 'Anda' : 'Panduan AI';
-    html += '<span class="chat-meta">' + esc(src) + ' • ' + esc(timeNow()) + '</span>';
-    d.innerHTML = html;
+    var meta = document.createElement('span');
+    meta.className = 'chat-meta';
+    meta.textContent = src + ' • ' + timeNow();
+    d.appendChild(meta);
     msgsEl.appendChild(d);
     scrollDown();
     save();
@@ -57,7 +213,11 @@
     var d = document.createElement('div');
     d.className = 'asst-msg asst-bot';
     d.id = 'chatTyping';
-    d.innerHTML = '<span class="chat-typing" aria-label="Asisten mengetik"><span></span><span></span><span></span></span>';
+    var wrap = document.createElement('span');
+    wrap.className = 'chat-typing';
+    wrap.setAttribute('aria-label', 'Asisten mengetik');
+    for (var i = 0; i < 3; i++) wrap.appendChild(document.createElement('span'));
+    d.appendChild(wrap);
     msgsEl.appendChild(d);
     scrollDown();
     return d;
@@ -84,17 +244,19 @@
     if (text.length > 500) text = text.slice(0, 500);
 
     bubble('user', text);
+    var historyPayload = convo.slice(-10);
     convo.push({ role: 'user', content: text });
+    save();
     inputEl.value = '';
     setLoading(true);
 
-    var tp = typing();
+    typing();
 
     try {
       var response = await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text })
+        body: JSON.stringify({ message: text, history: historyPayload })
       });
 
       if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -166,17 +328,29 @@
   function renderCtx() {
     try {
       if (!ctxEl) return;
+      ctxEl.innerHTML = '';
       var raw = localStorage.getItem('panduan-jurusan-kuis-10-result');
       var filter = localStorage.getItem('panduan-jurusan-quiz-filter');
+      var strong = document.createElement('strong');
+      var span = document.createElement('span');
       if (raw) {
         var parsed = JSON.parse(raw);
         var top = parsed.top || parsed;
-        ctxEl.innerHTML = '<strong>Hasil kuis terakhir tersimpan</strong><span>Top rumpun: ' + esc(String(top).toUpperCase()) + (filter ? ' • filter: ' + esc(filter) : '') + '. Ceritakan di chat mis. "hasil kuisku teknologi, cocoknya apa?"</span>';
+        strong.textContent = 'Hasil kuis terakhir tersimpan';
+        span.textContent = 'Top rumpun: ' + String(top).toUpperCase() + (filter ? ' • filter: ' + filter : '') + '. Ceritakan di chat mis. "hasil kuisku teknologi, cocoknya apa?"';
       } else if (filter) {
-        ctxEl.innerHTML = '<strong>Ada hasil kuis: ' + esc(filter) + '</strong><span>Ketik "jurusan ' + esc(filter) + ' apa saja?" untuk lanjut konsultasi.</span>';
+        strong.textContent = 'Ada hasil kuis: ' + filter;
+        span.textContent = 'Ketik "jurusan ' + filter + ' apa saja?" untuk lanjut konsultasi.';
       } else {
-        ctxEl.innerHTML = '<strong>Belum ada hasil kuis</strong><span><a href="kuis.html">Isi kuis 10 soal</a> dulu (~3 menit), lalu balik ke sini untuk konsultasi hasilnya.</span>';
+        strong.textContent = 'Belum ada hasil kuis';
+        span.textContent = 'Isi kuis 10 soal dulu (~3 menit), lalu balik ke sini untuk konsultasi hasilnya. ';
+        var a = document.createElement('a');
+        a.setAttribute('href', 'kuis.html');
+        a.textContent = 'Isi kuis 10 soal';
+        span.appendChild(a);
       }
+      ctxEl.appendChild(strong);
+      ctxEl.appendChild(span);
     } catch (e) {}
   }
   renderCtx();
@@ -186,14 +360,17 @@
   if (clearBtn) clearBtn.addEventListener('click', function () {
     msgsEl.innerHTML = '';
     convo = [];
-    try { localStorage.removeItem(HIST_KEY); } catch (e) {}
+    try { localStorage.removeItem(HIST_KEY); localStorage.removeItem(OLD_HIST_KEY); } catch (e) {}
     if (fallbackEl) fallbackEl.hidden = true;
     setLoading(false);
     bubble('bot', 'Riwayat dihapus. Yuk mulai lagi — ceritakan pelajaran atau kegiatan yang kamu sukai.');
   });
   function openWa() {
     var lastUser = '';
-    try { var users = msgsEl.querySelectorAll('.asst-user p'); if (users.length) lastUser = users[users.length - 1].textContent; } catch (e) {}
+    try {
+      var users = msgsEl.querySelectorAll('.asst-user .asst-text');
+      if (users.length) lastUser = users[users.length - 1].textContent;
+    } catch (e) {}
     var text = 'Halo! Saya konsultasi soal jurusan via Panduan Jurusan.\n\nPertanyaan terakhir saya:\n' + (lastUser || inputEl.value || '-') + '\n\nMohon dibantu ya.';
     window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank', 'noopener');
   }
@@ -208,9 +385,25 @@
     try { document.getElementById('chatCard').scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (err) {}
   });
 
-  try { var saved = localStorage.getItem(HIST_KEY); if (saved) msgsEl.innerHTML = saved; } catch (e) {}
-  if (!msgsEl.children.length) {
-  bubble('bot', 'Halo! Saya Panduan AI.\n\nSaya bisa membantu kamu memahami pilihan jurusan berdasarkan minat, kemampuan, dan hal yang ingin kamu pelajari.\n\nCoba ceritakan:\n• pelajaran yang kamu sukai\n• kegiatan yang kamu senangi\n• jurusan yang sedang kamu pertimbangkan\n\nTidak perlu langsung tahu jawabannya. Kita bisa membahasnya bersama.');
+  // Restore: format baru (JSON convo). Format lama (innerHTML) dibuang demi keamanan XSS.
+  var restored = false;
+  try {
+    var saved = localStorage.getItem(HIST_KEY);
+    if (saved) {
+      var parsed = JSON.parse(saved);
+      if (parsed && Array.isArray(parsed.convo) && parsed.convo.length) {
+        convo = parsed.convo.filter(function (m) {
+          return m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string';
+        }).slice(-50);
+        msgsEl.innerHTML = '';
+        convo.forEach(function (m) { bubble(m.role === 'user' ? 'user' : 'bot', m.content); });
+        restored = true;
+      }
+    }
+    if (!restored) localStorage.removeItem(OLD_HIST_KEY);
+  } catch (e) {}
+  if (!restored && !msgsEl.children.length) {
+  bubble('bot', 'Halo! Saya Panduan AI.\n\nCeritakan jurusan yang sedang kamu pertimbangkan, pelajaran yang kamu suka, atau hal yang ingin kamu pelajari. Kita bisa membahasnya bersama.');
   }
   scrollDown();
 })();
