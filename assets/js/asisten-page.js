@@ -319,6 +319,24 @@
         send('Bandingkan Teknik Informatika vs Desain Komunikasi Visual');
       });
       jurusanEl.appendChild(cmp);
+      // HP: tampilkan 6 tombol dulu agar input tidak terdorong jauh ke bawah.
+      try {
+        var total = jurusanEl.querySelectorAll('.jurusan-quick').length;
+        if (total > 7) {
+          jurusanEl.classList.add('is-collapsed');
+          var more = document.createElement('button');
+          more.type = 'button';
+          more.className = 'jurusan-more';
+          more.textContent = 'Lihat semua (' + total + ')';
+          more.setAttribute('aria-expanded', 'false');
+          more.addEventListener('click', function () {
+            var collapsed = jurusanEl.classList.toggle('is-collapsed');
+            more.textContent = collapsed ? 'Lihat semua (' + total + ')' : 'Tutup daftar';
+            more.setAttribute('aria-expanded', String(!collapsed));
+          });
+          jurusanEl.appendChild(more);
+        }
+      } catch (e2) {}
       if (window.feather) window.feather.replace();
     } catch (e) {}
   }

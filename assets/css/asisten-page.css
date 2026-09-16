@@ -211,13 +211,13 @@
 /* ---- Responsive ---- */
 @media (max-width: 960px) {
   .chat-layout { grid-template-columns: 1fr; }
-  .chat-card { min-height: 480px; }
-  .chat-msgs { max-height: 360px; }
+  .chat-card { min-height: 480px; min-height: min(78dvh, 620px); }
+  .chat-msgs { max-height: 360px; max-height: min(52dvh, 420px); min-height: 260px; }
   .chat-send span { display: none; }
   .chat-send { padding: 0; width: 48px; }
 }
 @media (max-width: 480px) {
-  .chat-msgs { padding: 14px; gap: 10px; max-height: 300px; }
+  .chat-msgs { padding: 14px; gap: 10px; max-height: 300px; max-height: min(55dvh, 380px); min-height: 240px; }
   .chat-head { padding: 12px 14px; }
   .chat-input-row { padding: 12px 14px 6px; }
   .chat-chips-row { padding: 0 14px 10px; }
