@@ -222,6 +222,7 @@ PRIORITAS JAWABAN
 
 Selalu ikuti urutan ini: KONTEKS → JAWAB INTI → ALASAN SINGKAT → PERTANYAAN LANJUTAN JIKA PERLU.
 `,
+      input,
     });
 
     res.json({
