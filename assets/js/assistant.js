@@ -307,6 +307,7 @@
   }
 
   function togglePanel(open) {
+    if (!panel || !fab) return;
     var willOpen = open != null ? open : panel.hidden;
     panel.hidden = !willOpen;
     try { panel.classList.toggle('is-open', !!willOpen); } catch (e) {}
@@ -430,8 +431,26 @@
     else showWelcome();
     scrollDown();
     renderFeather();
+    ensureIcons();
+  }
 
-    try { if (window.feather && typeof window.feather.replace === 'function') window.feather.replace(); } catch (e) {}
+  // Fallback jika feather-icons CDN gagal dimuat: ganti <i data-feather> dengan karakter agar tombol tidak kosong.
+  function ensureIcons() {
+    try {
+      if (window.feather && typeof window.feather.replace === 'function') return;
+      var map = { 'message-circle': '💬', compass: '🧭', x: '✕', send: '➤' };
+      ['asstFab', 'asstPanel'].forEach(function (id) {
+        var root = document.getElementById(id);
+        if (!root) return;
+        var icons = root.querySelectorAll ? root.querySelectorAll('i[data-feather]') : [];
+        for (var i = 0; i < icons.length; i++) {
+          var name = icons[i].getAttribute('data-feather');
+          icons[i].textContent = map[name] || '•';
+          icons[i].setAttribute('aria-hidden', 'true');
+        }
+      });
+      if (fab && !fab.querySelector('svg') && !fab.textContent.trim()) fab.textContent = '💬';
+    } catch (e) {}
   }
 
   function renderFeather() {
