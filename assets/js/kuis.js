@@ -643,12 +643,14 @@
 
     html += '<div class="result-actions">';
     html += '<a href="../index.html#jurusan" class="btn btn-primary" id="resultToJurusan"><i data-feather="layout" aria-hidden="true"></i> Lihat Jurusan ' + esc(top.meta.label) + '</a>';
-    html += '<button class="btn btn-outline" id="resultShareWa" type="button"><i data-feather="share-2" aria-hidden="true"></i> WhatsApp</button>';
+    html += '<details class="result-more"><summary><i data-feather="share-2" aria-hidden="true"></i> Bagikan &amp; simpan</summary><div class="result-more-grid">';
+    html += '<button class="btn btn-outline" id="resultShareWa" type="button"><i data-feather="message-circle" aria-hidden="true"></i> WhatsApp</button>';
     html += '<button class="btn btn-outline" id="resultCopy" type="button"><i data-feather="copy" aria-hidden="true"></i> Salin Hasil</button>';
     html += '<button class="btn btn-outline" id="resultImage" type="button"><i data-feather="image" aria-hidden="true"></i> Gambar</button>';
     html += '<button class="btn btn-outline" id="resultWord" type="button"><i data-feather="file-text" aria-hidden="true"></i> Unduh Word</button>';
     html += '<button class="btn btn-outline" id="resultLink" type="button"><i data-feather="link" aria-hidden="true"></i> Salin Link</button>';
     html += '<a href="dashboard.html" class="btn btn-outline" id="resultDash"><i data-feather="bar-chart-2" aria-hidden="true"></i> Dashboard</a>';
+    html += '</div></details>';
     html += '<button class="btn btn-ghost" id="resultRetry" type="button"><i data-feather="refresh-cw" aria-hidden="true"></i> Ulangi Kuis</button>';
     html += '</div>';
     html += '<p class="quiz-disclaimer">Bukan tes psikologi formal — gunakan sebagai bahan obrolan keluarga.</p>';

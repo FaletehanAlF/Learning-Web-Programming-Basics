@@ -97,11 +97,16 @@
 .chat-typing span:nth-child(3) { animation-delay: 0.3s; }
 @keyframes chatBlink { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
 
-/* ---- Quick questions ---- */
+/* ---- Quick questions: satu baris geser, tidak mendorong input ---- */
 .chat-chips-row {
-  display: flex; flex-wrap: wrap; gap: 8px;
+  display: flex; flex-wrap: nowrap; gap: 8px;
   padding: 0 18px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
+.chat-chips-row::-webkit-scrollbar { display: none; }
+.chat-chips-row .asst-chip { flex: 0 0 auto; white-space: nowrap; }
 .asst-chip {
   font-size: 12.5px; font-weight: 600; color: var(--ink);
   padding: 7px 12px; border-radius: 999px;
@@ -118,6 +123,16 @@
 }
 .chat-jurusan > span { font-size: 12px; font-weight: 700; color: var(--muted); display: block; margin-bottom: 8px; }
 .chat-jurusan-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+/* Batasi tombol jurusan: tampilkan 6 dulu, sisanya via "Lihat semua" */
+.chat-jurusan-grid.is-collapsed .jurusan-quick:nth-child(n+7) { display: none; }
+.jurusan-more {
+  font-size: 12.5px; font-weight: 700;
+  border: 1px dashed var(--line-strong); background: transparent;
+  border-radius: 999px; padding: 7px 12px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--accent-deep);
+}
+.jurusan-more:hover { border-color: var(--accent); background: var(--accent-soft); }
 .jurusan-quick {
   font-size: 12.5px; font-weight: 600;
   border: 1px solid var(--line); background: var(--bg-soft);
@@ -128,11 +143,15 @@
 .jurusan-quick:hover { border-color: var(--accent); color: var(--accent-deep); background: var(--accent-soft); }
 .jurusan-quick .feather { width: 13px; height: 13px; }
 
-/* ---- Input ---- */
+/* ---- Input: lengket di bawah kartu saat scroll chat ---- */
 .chat-input-row {
   display: flex; gap: 10px;
   padding: 14px 18px 8px;
   border-top: 1px solid var(--line-soft);
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  background: var(--card);
 }
 .chat-input-row input {
   flex: 1; min-width: 0;
