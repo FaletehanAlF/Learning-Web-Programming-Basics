@@ -257,6 +257,7 @@
   }
 
   async function sendMessage() {
+    if (!msgsEl || !inputEl) return;
     var text = (inputEl ? inputEl.value : '').trim();
     if (!text || isLoading) return;
     if (text.length > 500) text = text.slice(0, 500);
@@ -305,6 +306,7 @@
   function togglePanel(open) {
     var willOpen = open != null ? open : panel.hidden;
     panel.hidden = !willOpen;
+    try { panel.classList.toggle('is-open', !!willOpen); } catch (e) {}
     fab.setAttribute('aria-expanded', String(willOpen));
     if (willOpen) {
       if (!msgsEl.children.length) {
@@ -344,6 +346,14 @@
   }
 
   function mount() {
+    // Jangan tampilkan widget mengambang di halaman live-chat penuh (asisten.html)
+    // untuk menghindari UI ganda / tumpuk seperti di laporan bug.
+    try {
+      if (document.getElementById('chatCard') || document.getElementById('chatMsgs')) {
+        try { document.body.classList.add('has-full-chat'); } catch (e) {}
+        return;
+      }
+    } catch (e) {}
     if (document.getElementById('asstFab')) return;
 
     fab = document.createElement('button');
@@ -362,10 +372,10 @@
     panel.setAttribute('aria-label', 'Panduan AI Assistant');
     panel.innerHTML =
       '<div class="asst-head">' +
-        '<span class="chat-avatar" aria-hidden="true"><i data-feather="compass"></i></span>' +
-        '<div class="chat-head-info">' +
+        '<span class="asst-avatar" aria-hidden="true"><i data-feather="compass"></i></span>' +
+        '<div class="asst-head-info">' +
           '<strong>Panduan AI</strong>' +
-          '<span class="chat-status" id="aiStatus"><span class="dot-live" aria-hidden="true"></span> Siap membantu</span>' +
+          '<span class="asst-status"><span class="dot-live" aria-hidden="true"></span> Siap membantu</span>' +
         '</div>' +
         '<button type="button" class="asst-close" id="asstClose" aria-label="Tutup Panduan AI"><i data-feather="x" aria-hidden="true"></i></button>' +
       '</div>' +
