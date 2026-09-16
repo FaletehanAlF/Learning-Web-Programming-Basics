@@ -171,6 +171,8 @@
   padding: 8px 14px 12px;
   border-top: 1px dashed var(--line);
   text-align: center;
+  flex-shrink: 0;
+  background: #fff;
 }
 .asst-foot a { font-size: 12.5px; font-weight: 700; color: var(--accent-deep); }
 
@@ -197,7 +199,7 @@
   align-self: flex-start; background: #fef2f2; border: 1px solid #fecaca;
   border-radius: 4px 12px 12px 12px; padding: 9px 12px;
 }
-.asst-error p { color: #991b1b; font-size: 13px; line-height: 1.55; }
+.asst-error p, .asst-error .asst-text { color: #991b1b; font-size: 14px; line-height: 1.6; }
 
 /* Bot badge */
 .asst-bot-badge {
