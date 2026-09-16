@@ -195,6 +195,7 @@
   // ---------- akhir renderer ----------
 
   function createBubble(who, text, opts) {
+    if (!msgsEl) return null;
     var d = document.createElement('div');
     d.className = 'asst-msg asst-' + who;
     if (who === 'bot' && opts && opts.isAI) {
@@ -218,6 +219,7 @@
   }
 
   function showTyping() {
+    if (!msgsEl) return null;
     var d = document.createElement('div');
     d.className = 'asst-typing';
     d.id = 'asstTyping';
@@ -234,6 +236,7 @@
   }
 
   function showError(message) {
+    if (!msgsEl) return;
     var d = document.createElement('div');
     d.className = 'asst-msg asst-error';
     var body = document.createElement('div');
