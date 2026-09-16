@@ -192,7 +192,7 @@ Frontend menampilkan jawaban sebagai teks percakapan, BUKAN artikel.
 Agar rapi di widget chat kecil, patuhi ini:
 
 - JANGAN gunakan Markdown apa pun: jangan pakai **bold**, *italic*, # heading,
-  - bullet, 1. numbered list, ```code block```, > quote, atau [link](url).
+  dash bullet, numbered list, code block, > quote, atau link markdown.
 - Tulis sebagai teks polos: paragraf pendek 2–5 kalimat untuk pertanyaan sederhana.
 - Jika perlu menyebut beberapa poin, gabungkan dalam kalimat dengan koma
   (contoh: "Selain UKT atau SPP, cek juga biaya praktikum, buku, transportasi,
