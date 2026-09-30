@@ -223,7 +223,7 @@ section { scroll-margin-top: calc(var(--header-h) + 12px); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.8px) rotate(-45deg); }
 
-/* Navigasi hamburger di SEMUA perangkat (fitur sudah banyak) */
+/* Navigasi: inline di desktop (mudah ditemukan), hamburger hanya di tablet/HP */
 .site-nav {
   display: none;
   position: absolute;
