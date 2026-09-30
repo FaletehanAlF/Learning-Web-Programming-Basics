@@ -788,6 +788,21 @@
     const plain = buildSummaryText();
     window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(plain)}`, '_blank', 'noopener');
   });
+  /* Mode teks besar — untuk orang tua, tersimpan otomatis */
+  const fontToggle = document.getElementById('fontToggle');
+  const FONT_KEY = 'panduan-jurusan-font-big';
+  function applyFont(big) {
+    document.documentElement.classList.toggle('font-big', !!big);
+    if (fontToggle) fontToggle.setAttribute('aria-pressed', String(!!big));
+    try { localStorage.setItem(FONT_KEY, big ? '1' : '0'); } catch (e) {}
+  }
+  try {
+    if (localStorage.getItem(FONT_KEY) === '1') applyFont(true);
+  } catch (e) {}
+  if (fontToggle) fontToggle.addEventListener('click', () => {
+    applyFont(!document.documentElement.classList.contains('font-big'));
+  });
+
   if (ctaPrint) ctaPrint.addEventListener('click', () => {
     try {
       if (window.PanduanJurusanRingkasan && window.PanduanJurusanRingkasan.hasAny(window.PanduanJurusanRingkasan.getData())) {
