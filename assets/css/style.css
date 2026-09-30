@@ -275,6 +275,40 @@ section { scroll-margin-top: calc(var(--header-h) + 12px); }
 .site-nav a.active { color: var(--ink); background: var(--line-soft); font-weight: 650; }
 .site-nav a::after { display: none; }
 
+/* Desktop: tampilkan menu langsung — jangan sembunyikan di balik hamburger */
+@media (min-width: 1024px) {
+  .header-capsule { gap: 16px; }
+  .nav-toggle { display: none; }
+  .site-nav {
+    display: flex;
+    position: static;
+    width: auto;
+    max-height: none;
+    overflow: visible;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    margin-left: auto;
+  }
+  .site-nav ul {
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    flex-wrap: wrap;
+  }
+  .site-nav a {
+    min-height: 44px;
+    padding: 9px 13px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .header-tools { margin-left: 0; }
+}
+
 .header-cta {
   display: flex;
   align-items: center;
@@ -661,14 +695,14 @@ section { scroll-margin-top: calc(var(--header-h) + 12px); }
 }
 .filter-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
-  min-height: 44px;
-  padding: 9px 16px;
+  min-height: 48px;
+  padding: 11px 18px;
   border-radius: 999px;
   border: 1px solid var(--line);
   background: #fff;
   color: var(--muted);
-  font-size: 13.5px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 650;
   cursor: pointer;
   transition: all 0.15s var(--ease);
 }
