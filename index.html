@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DevScope: Jelajahi Teknologi. Pahami Cara Kerjanya.</title>
-  <meta name="description" content="Platform informasi teknologi + panduan jurusan: artikel terstruktur, kuis minat 10 soal, 36 rekomendasi kampus, dashboard evaluasi, dan asisten AI. Gratis, tanpa daftar.">
+  <title>DevScope — Belajar Teknologi + Panduan Jurusan dalam Satu Tempat</title>
+  <meta name="description" content="DevScope: 9 artikel teknologi terstruktur, kuis minat 10 soal, 36 rekomendasi kampus, dashboard evaluasi, dan asisten AI. Gratis, tanpa daftar.">
   <meta property="og:title" content="DevScope">
-  <meta property="og:description" content="Artikel terstruktur + Kuis minat, Kampus, Dashboard, dan Asisten AI dalam satu tempat.">
+  <meta property="og:description" content="Artikel teknologi + Kuis minat + Kampus + Dashboard + Asisten AI. Gratis, tanpa daftar.">
   <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0a5c8f">
+  <meta name="theme-color" content="#2563eb">
   <script>try{var t=localStorage.getItem('devscope-theme')||localStorage.getItem('pj-theme')||(window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./assets/img/icon.svg" type="image/svg+xml">
@@ -20,176 +23,239 @@
 
   <header class="site-header">
     <div class="wrap header-inner">
-      <a class="logo" href="./" aria-label="DevScope, ke beranda"><span>Dev</span>Scope</a>
+      <a class="logo" href="./" aria-label="DevScope — ke beranda">
+        <span class="logo-mark" aria-hidden="true">D</span>
+        <span class="logo-text">Dev<em>Scope</em></span>
+      </a>
       <nav class="site-nav" id="site-nav" aria-label="Navigasi utama">
         <a href="./#artikel">Artikel</a>
         <a href="./#fitur">Fitur</a>
-        <a href="./views/kampus.html">Kampus</a>
         <a href="./views/kuis.html">Kuis</a>
+        <a href="./views/kampus.html">Kampus</a>
         <a href="./views/dashboard.html">Dashboard</a>
         <a href="./views/asisten.html">Asisten&nbsp;AI</a>
-        <a href="./#tersimpan">Tersimpan</a>
         <a href="./#tentang">Tentang</a>
       </nav>
-      <button class="icon-btn" id="theme-btn" type="button" aria-label="Ganti ke mode gelap">Mode gelap</button>
-      <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <div class="header-actions">
+        <button class="icon-btn theme-btn" id="theme-btn" type="button" aria-label="Ganti ke mode gelap">🌙 Gelap</button>
+        <button class="icon-btn menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">☰ Menu</button>
+      </div>
     </div>
   </header>
 
   <main id="konten" tabindex="-1">
     <div id="view-home">
-      <!-- HERO dengan orientasi jelas -->
-      <section class="hero wrap" aria-labelledby="hero-title">
-        <p class="kicker">Platform informasi teknologi • Gratis, tanpa daftar</p>
-        <h1 id="hero-title">Jelajahi Teknologi. Pahami Cara Kerjanya.</h1>
-        <p class="lead">Artikel pemrograman yang disusun bertahap <strong>plus</strong> alat bantu memilih jurusan: kuis minat, rekomendasi kampus, dan asisten AI — semua dalam satu tempat.</p>
-        <form class="search" id="search-form" role="search" aria-label="Cari artikel">
-          <label for="search-input">Cari artikel <span class="helper">— mis. “git”, “API”, “accessibility”</span></label>
-          <div class="search-row">
-            <input id="search-input" type="search" placeholder="Contoh: git, API, accessibility" autocomplete="off" aria-describedby="search-hint">
-            <button type="button" id="search-clear" class="btn" hidden>Hapus</button>
-            <a class="btn btn-primary" href="#artikel">Lihat artikel</a>
+
+      <!-- ============ HERO ============ -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="hero-badge"><span class="pulse" aria-hidden="true"></span> Gratis • Tanpa daftar • Bahasa Indonesia</p>
+            <h1 id="hero-title">Belajar teknologi <span class="hl"> sekaligus </span> menemukan jurusan yang cocok.</h1>
+            <p class="lead">DevScope menggabungkan <strong>artikel pemrograman bertahap</strong> dengan <strong>alat panduan jurusan</strong>. Baca 5 menit, isi kuis 3 menit, langsung dapat arahan kampus.</p>
+
+            <form class="search-card" id="search-form" role="search" aria-label="Cari artikel">
+              <label for="search-input">Cari artikel <span class="helper-inline">— coba “git”, “API”, “database”</span></label>
+              <div class="search-row">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="search-input" type="search" placeholder="Ketik kata kunci… mis. git, API, database" autocomplete="off" aria-describedby="search-hint">
+                <button type="button" id="search-clear" class="btn btn-clear" hidden>Hapus</button>
+                <button type="submit" class="btn btn-primary">Cari</button>
+              </div>
+              <div class="suggest" aria-label="Contoh pencarian">
+                <span>Coba:</span>
+                <button type="button" class="suggest-chip" data-suggest="git">git</button>
+                <button type="button" class="suggest-chip" data-suggest="API">API</button>
+                <button type="button" class="suggest-chip" data-suggest="database">database</button>
+                <button type="button" class="suggest-chip" data-suggest="accessibility">accessibility</button>
+              </div>
+              <p class="helper" id="search-hint">Hasil langsung tersaring di daftar artikel di bawah. Bisa digabung dengan kategori.</p>
+            </form>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary btn-lg" href="./views/kuis.html">Mulai kuis minat <span aria-hidden="true">→</span></a>
+              <a class="btn btn-lg" href="#artikel">Baca artikel <span aria-hidden="true">↓</span></a>
+            </div>
+            <ul class="hero-stats" aria-label="Ringkasan isi DevScope">
+              <li><strong>9</strong> artikel terstruktur</li>
+              <li><strong>36</strong> kampus PTN·PTS·PTLN</li>
+              <li><strong>10</strong> soal kuis ±3 mnt</li>
+            </ul>
           </div>
-          <p class="helper" id="search-hint">Hasil tersaring otomatis saat kamu mengetik. Bisa digabung dengan filter kategori di bawah.</p>
-        </form>
-        <ul class="hero-stats" aria-label="Ringkasan isi">
-          <li>📚 9 artikel terstruktur</li>
-          <li>🏫 36 kampus (PTN • PTS • PTLN)</li>
-          <li>📝 Kuis 10 soal ±3 menit</li>
-        </ul>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="./views/kuis.html">Mulai kuis minat →</a>
-          <a class="btn" href="./views/kampus.html">Lihat kampus</a>
-          <a class="btn btn-ghost" href="#fitur">Pelajari semua fitur ↓</a>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="mock mock-main">
+              <p class="mock-kicker">Hasil kuismu</p>
+              <p class="mock-title">Rekayasa Perangkat Lunak — 86%</p>
+              <div class="bar"><span style="width:86%"></span></div>
+              <div class="bar"><span style="width:72%"></span></div>
+              <div class="bar"><span style="width:64%"></span></div>
+              <p class="mock-foot">+ grafik • analisis • rencana 2 minggu</p>
+            </div>
+            <div class="mock mock-sub">
+              <p class="mock-kicker">Rekomendasi kampus</p>
+              <p class="mock-title">36 kampus terkurasi</p>
+              <p class="mock-foot">PTN • PTS • PTLN — klik untuk detail</p>
+            </div>
+            <p class="mock-float">✓ Tersimpan otomatis di perangkat ini</p>
+          </div>
         </div>
       </section>
 
-      <!-- 3 LANGKAH: onboarding agar fitur mudah dipahami -->
-      <section class="wrap" id="mulai" aria-labelledby="mulai-title">
+      <!-- ============ 3 LANGKAH ============ -->
+      <section class="wrap steps-section" id="mulai" aria-labelledby="mulai-title">
         <div class="section-head">
-          <h2 id="mulai-title" class="section-title">Mulai dalam 3 langkah</h2>
-          <p class="section-desc">Tidak perlu bingung mulai dari mana. Ikuti alur ini:</p>
+          <p class="kicker">Cara pakai — semudah 1, 2, 3</p>
+          <h2 id="mulai-title" class="section-title">Bingung mulai dari mana? Ikuti alur ini</h2>
+          <p class="section-desc">Tidak perlu buka semua halaman. Cukup 3 langkah berurutan ini, total ±10 menit.</p>
         </div>
         <ol class="steps">
-          <li>
-            <strong>1. Kenali minatmu</strong>
-            <p>Isi <a href="./views/kuis.html">kuis 10 soal</a> (±3 menit). Dapat skor 5 rumpun + grafik.</p>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">1</span>
+            <div>
+              <strong>Kenali minatmu <span class="time">±3 mnt</span></strong>
+              <p>Isi <a href="./views/kuis.html">kuis 10 soal</a>. Dapat skor 5 rumpun + grafik + analisis “kenapa cocok”.</p>
+              <a class="step-link" href="./views/kuis.html">Mulai kuis →</a>
+            </div>
           </li>
-          <li>
-            <strong>2. Jelajahi pilihan</strong>
-            <p>Buka <a href="./views/kampus.html">36 rekomendasi kampus</a> atau baca <a href="#artikel">artikel teknologi</a>. Simpan yang menarik.</p>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">2</span>
+            <div>
+              <strong>Jelajahi pilihan <span class="time">±5 mnt</span></strong>
+              <p>Buka <a href="./views/kampus.html">36 rekomendasi kampus</a> atau baca <a href="#artikel">artikel</a>. Tekan ☆ Simpan yang menarik.</p>
+              <a class="step-link" href="./views/kampus.html">Lihat kampus →</a>
+            </div>
           </li>
-          <li>
-            <strong>3. Pantau &amp; diskusikan</strong>
-            <p>Cek <a href="./views/dashboard.html">dashboard evaluasi</a>, unduh Word/PDF, atau <a href="./views/asisten.html">tanya Asisten AI</a>.</p>
+          <li class="step">
+            <span class="step-num" aria-hidden="true">3</span>
+            <div>
+              <strong>Pantau &amp; diskusikan <span class="time">±2 mnt</span></strong>
+              <p>Cek <a href="./views/dashboard.html">dashboard</a>, unduh Word/PDF, atau <a href="./views/asisten.html">tanya Asisten AI</a>.</p>
+              <a class="step-link" href="./views/dashboard.html">Buka dashboard →</a>
+            </div>
           </li>
         </ol>
       </section>
 
-      <!-- FITUR: kartu yang menjelaskan tiap fitur -->
+      <!-- ============ FITUR ============ -->
       <section class="wrap" id="fitur" aria-labelledby="fitur-title">
         <div class="section-head">
-          <h2 id="fitur-title" class="section-title">Semua fitur, satu tempat</h2>
-          <p class="section-desc">Setiap kartu menjelaskan <em>untuk apa</em> fitur itu, <em>berapa lama</em>, dan <em>tombol apa</em> yang harus ditekan.</p>
+          <p class="kicker">Semua fitur</p>
+          <h2 id="fitur-title" class="section-title">Satu tempat, enam kebutuhan</h2>
+          <p class="section-desc">Setiap kartu menjawab: <strong>ini untuk apa</strong>, <strong>butuh berapa lama</strong>, dan <strong>tombol mana yang ditekan</strong>.</p>
         </div>
         <div class="features-grid">
           <article class="feature-card">
-            <div class="feature-top">
-              <span class="feature-icon" aria-hidden="true">📚</span>
-              <h3>Artikel Teknologi</h3>
-            </div>
-            <p>9 artikel pendek &amp; terstruktur: HTML, DOM, REST API, Git, database, aksesibilitas. Ada estimasi menit baca + salin kode.</p>
-            <div class="feature-meta"><span class="mini">9 artikel</span><span class="mini">1–3 mnt / artikel</span><span class="mini">Bisa disimpan</span></div>
+            <span class="feature-icon" aria-hidden="true">📚</span>
+            <h3>Artikel Teknologi</h3>
+            <p>9 panduan pendek &amp; terstruktur: HTML, DOM, REST API, Git, database, aksesibilitas. Ada estimasi baca + tombol salin kode.</p>
+            <p class="feature-meta"><span class="mini">9 artikel</span><span class="mini">1–3 mnt</span><span class="mini">Bisa disimpan</span></p>
             <div class="feature-cta"><a class="btn btn-primary btn-sm" href="#artikel">Baca artikel</a><a class="btn btn-sm" href="#kategori">Pilih kategori</a></div>
           </article>
-          <article class="feature-card">
-            <div class="feature-top">
-              <span class="feature-icon" aria-hidden="true">📝</span>
-              <h3>Kuis Minat 10 Soal</h3>
-            </div>
-            <p>Jawab bareng anak/orang tua. Dapat skor 5 rumpun, grafik batang, analisis “kenapa cocok”, + rencana 2 minggu.</p>
-            <div class="feature-meta"><span class="mini">±3 menit</span><span class="mini">Tanpa daftar</span><span class="mini">Bisa dibagikan ke WA</span></div>
+          <article class="feature-card is-highlight">
+            <span class="flag">Paling dipakai</span>
+            <span class="feature-icon" aria-hidden="true">📝</span>
+            <h3>Kuis Minat — 10 Soal</h3>
+            <p>Jawab bareng anak / orang tua. Dapat skor 5 rumpun, grafik batang, analisis kecocokan + rencana belajar 2 minggu.</p>
+            <p class="feature-meta"><span class="mini">±3 menit</span><span class="mini">Tanpa daftar</span><span class="mini">Bisa share WA</span></p>
             <div class="feature-cta"><a class="btn btn-primary btn-sm" href="./views/kuis.html">Mulai kuis →</a><a class="btn btn-sm" href="./views/dashboard.html">Lihat dashboard</a></div>
           </article>
           <article class="feature-card">
-            <div class="feature-top">
-              <span class="feature-icon" aria-hidden="true">🏫</span>
-              <h3>Rekomendasi Kampus</h3>
-            </div>
-            <p>36 kampus terkurasi: 12 PTN + 12 PTS + 12 PTLN. Filter jenis, cari kota/jurusan, klik kartu untuk detail biaya &amp; beasiswa.</p>
-            <div class="feature-meta"><span class="mini">36 kampus</span><span class="mini">Filter + cari</span><span class="mini">Detail per kampus</span></div>
+            <span class="feature-icon" aria-hidden="true">🏫</span>
+            <h3>Rekomendasi Kampus</h3>
+            <p>36 kampus terkurasi: 12 PTN + 12 PTS + 12 PTLN. Filter jenis, cari kota / jurusan, klik kartu untuk biaya &amp; beasiswa.</p>
+            <p class="feature-meta"><span class="mini">36 kampus</span><span class="mini">Filter + cari</span><span class="mini">Detail per kampus</span></p>
             <div class="feature-cta"><a class="btn btn-primary btn-sm" href="./views/kampus.html">Jelajahi kampus →</a></div>
           </article>
           <article class="feature-card">
-            <div class="feature-top">
-              <span class="feature-icon" aria-hidden="true">📊</span>
-              <h3>Dashboard Evaluasi</h3>
-            </div>
-            <p>Tren skor per percobaan, rata-rata rumpun, riwayat, jurusan favorit, pengingat seleksi. Unduh Word / PDF ringkasan.</p>
-            <div class="feature-meta"><span class="mini">Otomatis tersimpan</span><span class="mini">Di perangkat ini</span><span class="mini">Export Word/PDF</span></div>
+            <span class="feature-icon" aria-hidden="true">📊</span>
+            <h3>Dashboard Evaluasi</h3>
+            <p>Tren skor tiap percobaan, rata-rata rumpun, riwayat, jurusan favorit &amp; pengingat seleksi. Bisa diunduh Word / PDF.</p>
+            <p class="feature-meta"><span class="mini">Otomatis tersimpan</span><span class="mini">Di perangkat ini</span><span class="mini">Export Word/PDF</span></p>
             <div class="feature-cta"><a class="btn btn-primary btn-sm" href="./views/dashboard.html">Buka dashboard →</a></div>
           </article>
           <article class="feature-card">
-            <div class="feature-top">
-              <span class="feature-icon" aria-hidden="true">🤖</span>
-              <h3>Asisten AI</h3>
-            </div>
-            <p>Ceritakan minat &amp; pelajaran favorit. AI membantu membandingkan jurusan dengan bahasa santai. Ada pertanyaan cepat + konteks kuismu.</p>
-            <div class="feature-meta"><span class="mini">Live chat</span><span class="mini">Gratis</span><span class="mini">Lanjut via WA</span></div>
+            <span class="feature-icon" aria-hidden="true">🤖</span>
+            <h3>Asisten AI</h3>
+            <p>Ceritakan minat &amp; pelajaran favoritmu. AI membantu membandingkan jurusan dengan bahasa santai + konteks hasil kuismu.</p>
+            <p class="feature-meta"><span class="mini">Live chat</span><span class="mini">Gratis</span><span class="mini">Lanjut via WA</span></p>
             <div class="feature-cta"><a class="btn btn-primary btn-sm" href="./views/asisten.html">Tanya asisten →</a></div>
           </article>
           <article class="feature-card">
-            <div class="feature-top">
-              <span class="feature-icon" aria-hidden="true">✉️</span>
-              <h3>Kontak &amp; Masukan</h3>
-            </div>
+            <span class="feature-icon" aria-hidden="true">✉️</span>
+            <h3>Kontak &amp; Masukan</h3>
             <p>Ada kampus kurang? Kalimat membingungkan? Kirim masukan via WhatsApp tanpa login. Lihat juga profil pembuat.</p>
-            <div class="feature-meta"><span class="mini">Via WhatsApp</span><span class="mini">Tanpa login</span></div>
+            <p class="feature-meta"><span class="mini">Via WhatsApp</span><span class="mini">Tanpa login</span></p>
             <div class="feature-cta"><a class="btn btn-sm" href="./views/kontak.html">Kirim masukan</a></div>
           </article>
         </div>
       </section>
 
-      <section class="wrap featured-wrap" aria-labelledby="featured-title">
+      <!-- ============ ARTIKEL PILIHAN ============ -->
+      <section class="wrap" aria-labelledby="featured-title">
         <div class="section-head">
-          <h2 id="featured-title" class="section-title">Artikel pilihan <span class="badge">Mulai dari sini</span></h2>
-          <p class="section-desc">Paling cocok untuk pemula. Selesai dalam ±2 menit.</p>
+          <p class="kicker">Mulai dari sini</p>
+          <h2 id="featured-title" class="section-title">Artikel pilihan untuk pemula <span class="badge">±2 menit</span></h2>
         </div>
         <article id="featured" class="featured"></article>
       </section>
 
-      <section class="wrap" id="kategori" aria-labelledby="kategori-title">
+      <!-- ============ EXPLORER ARTIKEL ============ -->
+      <section class="wrap explorer" id="artikel" aria-labelledby="artikel-title">
         <div class="section-head">
-          <h2 id="kategori-title" class="section-title">Kategori</h2>
-          <p class="section-desc">Pilih satu kategori untuk menyaring daftar artikel. Angka = jumlah artikel.</p>
-        </div>
-        <div id="categories" class="categories" role="group" aria-label="Filter kategori"></div>
-      </section>
-
-      <section class="wrap" id="artikel" aria-labelledby="artikel-title">
-        <div class="section-head">
+          <p class="kicker">Jelajahi &amp; saring</p>
           <h2 id="artikel-title" class="section-title">Semua artikel</h2>
-          <p class="section-desc">Klik judul untuk membaca. Tekan “Simpan” untuk membaca nanti di <a href="#tersimpan">Artikel tersimpan</a>.</p>
+          <p class="section-desc">Klik judul untuk membaca. Tekan <strong>☆ Simpan</strong> untuk membaca nanti di <a href="#tersimpan">Artikel tersimpan</a>.</p>
         </div>
-        <p id="status" class="status" role="status" aria-live="polite"></p>
-        <ul id="list" class="article-list"></ul>
+        <div class="explorer-layout">
+          <aside class="explorer-side" id="kategori" aria-labelledby="kategori-title">
+            <h3 id="kategori-title" class="side-title">Kategori <span class="helper-inline">— pilih 1 untuk menyaring</span></h3>
+            <div id="categories" class="categories" role="group" aria-label="Filter kategori"></div>
+            <div class="side-tip">
+              <strong>Tips cepat 💡</strong>
+              <p>Kombinasikan pencarian + kategori. Contoh: ketik “git” lalu pilih “Developer Tools”.</p>
+            </div>
+          </aside>
+          <div class="explorer-main">
+            <p id="status" class="status" role="status" aria-live="polite"></p>
+            <ul id="list" class="article-list"></ul>
+          </div>
+        </div>
       </section>
 
+      <!-- ============ TERSIMPAN ============ -->
       <section class="wrap" id="tersimpan" aria-labelledby="tersimpan-title">
-        <div class="section-head">
-          <h2 id="tersimpan-title" class="section-title">Artikel tersimpan</h2>
-          <p class="section-desc">Daftar ini tersimpan otomatis di browser perangkat ini (localStorage). Belum ada? Tekan “Simpan” pada artikel mana pun.</p>
+        <div class="saved-card">
+          <div class="section-head">
+            <p class="kicker">Baca nanti</p>
+            <h2 id="tersimpan-title" class="section-title">🔖 Artikel tersimpan</h2>
+            <p class="section-desc">Otomatis tersimpan di browser perangkat ini (localStorage). Belum ada? Tekan <strong>☆ Simpan</strong> pada artikel mana pun.</p>
+          </div>
+          <ul id="bookmarks" class="article-list"></ul>
         </div>
-        <ul id="bookmarks" class="article-list"></ul>
       </section>
 
+      <!-- ============ TENTANG ============ -->
       <section class="wrap about" id="tentang" aria-labelledby="tentang-title">
         <div class="section-head">
-          <h2 id="tentang-title" class="section-title">Tentang DevScope</h2>
+          <p class="kicker">Tentang</p>
+          <h2 id="tentang-title" class="section-title">Kenapa DevScope ada?</h2>
         </div>
-        <p>Materi belajar teknologi sering tersebar dan terlalu teknis. DevScope mengumpulkan artikel pendek yang terstruktur, lalu menyediakan <strong>pencarian, kategori, dan penyimpanan</strong> agar kamu bisa menemukan dan membaca ulang materi yang relevan.</p>
-        <p><strong>Cara pakai:</strong> 1) cari atau pilih kategori → 2) baca artikel pilihan → 3) simpan untuk nanti → 4) lanjut ke <a href="./views/kuis.html">kuis</a> / <a href="./views/kampus.html">kampus</a> / <a href="./views/asisten.html">asisten</a> bila butuh panduan jurusan.</p>
-        <p>Ditujukan untuk pelajar pemrograman, pemula, serta calon frontend dan backend developer. Artikel saat ini adalah contoh editorial dari DevScope Editorial dan belum melalui peninjauan pakar.</p>
+        <div class="about-grid">
+          <div>
+            <p>Materi belajar teknologi sering tersebar dan terlalu teknis. DevScope mengumpulkan <strong>artikel pendek yang terstruktur</strong>, lalu menambahkan <strong>pencarian, kategori, dan penyimpanan</strong> agar kamu mudah menemukan dan membaca ulang materi yang relevan.</p>
+            <p>Ditujukan untuk pelajar pemrograman, pemula, serta calon frontend dan backend developer. Artikel saat ini adalah contoh editorial DevScope dan belum melalui peninjauan pakar.</p>
+          </div>
+          <div class="about-steps">
+            <strong>Cara pakai (30 detik):</strong>
+            <ol>
+              <li>Cari atau pilih kategori →</li>
+              <li>Baca artikel pilihan →</li>
+              <li>Simpan untuk nanti →</li>
+              <li>Lanjut ke <a href="./views/kuis.html">kuis</a> / <a href="./views/kampus.html">kampus</a> / <a href="./views/asisten.html">asisten</a>.</li>
+            </ol>
+          </div>
+        </div>
       </section>
     </div>
 
@@ -199,8 +265,8 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div class="footer-brand">
-        <a class="logo" href="./"><span>Dev</span>Scope</a>
-        <p>Jelajahi Teknologi. Pahami Cara Kerjanya. Artikel + alat panduan jurusan dalam satu tempat.</p>
+        <a class="logo" href="./"><span class="logo-mark" aria-hidden="true">D</span><span class="logo-text">Dev<em>Scope</em></span></a>
+        <p>Belajar teknologi + panduan jurusan dalam satu tempat. Gratis, tanpa daftar.</p>
       </div>
       <nav class="footer-nav" aria-label="Navigasi belajar">
         <h3>Belajar</h3>
@@ -211,7 +277,7 @@
         </ul>
       </nav>
       <nav class="footer-nav" aria-label="Navigasi fitur">
-        <h3>Fitur panduan</h3>
+        <h3>Panduan jurusan</h3>
         <ul>
           <li><a href="./views/kuis.html">Kuis 10 Soal</a></li>
           <li><a href="./views/kampus.html">Rekomendasi Kampus</a></li>
@@ -221,11 +287,26 @@
         </ul>
       </nav>
     </div>
-    <div class="wrap footer-bottom"><p>Dibangun dengan HTML, CSS, dan JavaScript vanilla. Dibuat oleh Faletehan Al Farabi.</p></div>
+    <div class="wrap footer-bottom"><p>Dibangun dengan HTML, CSS, dan JavaScript vanilla • Dibuat oleh Faletehan Al Farabi</p></div>
   </footer>
+
   <p id="toast" class="toast" role="status" aria-live="polite"></p>
   <button class="back-to-top" id="backToTop" type="button" aria-label="Kembali ke atas">↑</button>
 
   <script src="./assets/js/script.js" defer></script>
+  <script>
+    // Chip saran pencarian: isi input + picu filter yang sudah ada di script.js
+    document.addEventListener('click', function (e) {
+      var chip = e.target.closest('[data-suggest]');
+      if (!chip) return;
+      var input = document.getElementById('search-input');
+      if (!input) return;
+      input.value = chip.getAttribute('data-suggest');
+      input.dispatchEvent(new Event('input', { bubbles: true }));
+      input.focus();
+      var target = document.getElementById('artikel');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
 </body>
 </html>
