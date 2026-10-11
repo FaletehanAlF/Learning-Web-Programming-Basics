@@ -1,12 +1,12 @@
 {
-  "name": "Panduan Jurusan — Bantu Anak Pilih Jurusan",
-  "short_name": "Panduan Jurusan",
-  "description": "Kuis minat, dashboard evaluasi, kalkulator biaya, dan tips memilih jurusan. Gratis, tanpa daftar.",
+  "name": "DevScope — Artikel Teknologi + Panduan Jurusan",
+  "short_name": "DevScope",
+  "description": "9 artikel terstruktur, kuis minat 10 soal, 36 rekomendasi kampus, dashboard evaluasi, dan asisten AI. Gratis, tanpa daftar.",
   "start_url": "index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0f172a",
+  "background_color": "#f4f6f8",
+  "theme_color": "#0a5c8f",
   "lang": "id",
   "icons": [
     { "src": "assets/img/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },

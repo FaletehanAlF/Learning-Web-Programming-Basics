@@ -1,10 +1,7 @@
 'use strict';
 
 /* ==========================================================
-   1. DATA
-   Konten artikel disimpan sebagai blok (h = heading, p = paragraf,
-   code = kode). Blok dirender dengan textContent, bukan innerHTML,
-   sehingga aman dari injeksi HTML.
+   1. DATA — konten artikel sebagai blok (aman: textContent)
    ========================================================== */
 const CATEGORIES = ['Web Development', 'Frontend Development', 'Backend Development', 'Programming Fundamentals', 'Software Engineering', 'Database', 'Developer Tools', 'Web Accessibility', 'Security dan Performance'];
 const AUTHOR = 'DevScope Editorial';
@@ -91,7 +88,7 @@ const ARTICLES = [
 const FEATURED_ID = 'semantic-html';
 
 /* ==========================================================
-   2. STATE & UTILITAS
+   2. STATE & UTILITAS (defensif: aman di semua halaman)
    ========================================================== */
 const state = { query: '', category: 'Semua' };
 const $ = (id) => document.getElementById(id);
@@ -110,7 +107,9 @@ function readingMinutes(a) {
   return Math.max(1, Math.ceil(articleText(a).split(/\s+/).length / WORDS_PER_MINUTE));
 }
 function formatDate(iso) {
-  return new Date(iso + 'T00:00:00').toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+  try {
+    return new Date(iso + 'T00:00:00').toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch { return iso; }
 }
 function findArticle(id) {
   return ARTICLES.find((a) => a.id === id);
@@ -121,20 +120,21 @@ function articleUrl(id) {
 let toastTimer;
 function announce(message) {
   const toast = $('toast');
+  if (!toast) return;
   toast.textContent = message;
   toast.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('show'), 2000);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
 }
 
 /* ==========================================================
-   3. PENYIMPANAN (tema & bookmark) dengan penanganan error
+   3. PENYIMPANAN (tema & bookmark)
    ========================================================== */
 function readStorage(key) {
   try { return localStorage.getItem(key); } catch { return null; }
 }
 function writeStorage(key, value) {
-  try { localStorage.setItem(key, value); } catch { /* penyimpanan tidak tersedia */ }
+  try { localStorage.setItem(key, value); } catch { /* abaikan */ }
 }
 function loadBookmarks() {
   try {
@@ -150,40 +150,58 @@ function toggleBookmark(id) {
   writeStorage('devscope-bookmarks', JSON.stringify(bookmarks));
   syncBookmarkButtons();
   renderBookmarks();
-  announce(saved ? 'Dihapus dari tersimpan' : 'Disimpan');
+  announce(saved ? 'Dihapus dari tersimpan ✓' : 'Disimpan ✓ — lihat di “Artikel tersimpan”');
 }
-/* Perbarui semua tombol di tempat agar fokus keyboard tidak hilang. */
 function syncBookmarkButtons() {
   document.querySelectorAll('[data-bookmark]').forEach((btn) => {
     const saved = bookmarks.includes(btn.dataset.bookmark);
     btn.setAttribute('aria-pressed', String(saved));
-    btn.textContent = saved ? 'Tersimpan' : 'Simpan';
+    btn.setAttribute('aria-label', saved ? 'Hapus dari tersimpan' : 'Simpan artikel untuk dibaca nanti');
+    btn.textContent = saved ? '✓ Tersimpan' : '☆ Simpan';
   });
 }
 
 /* ==========================================================
-   4. TEMA
+   4. TEMA — sinkron 2 kunci (devscope-theme & pj-theme)
    ========================================================== */
+function paintThemeButton(theme) {
+  const btn = $('theme-btn') || $('themeToggle');
+  if (!btn) return;
+  const dark = theme === 'dark';
+  if (btn.id === 'theme-btn') {
+    btn.textContent = dark ? '☀️ Mode terang' : '🌙 Mode gelap';
+    btn.setAttribute('aria-label', dark ? 'Ganti ke mode terang' : 'Ganti ke mode gelap');
+  } else {
+    btn.setAttribute('aria-pressed', String(dark));
+  }
+  try {
+    if (window.feather && typeof window.feather.replace === 'function') window.feather.replace();
+  } catch { /* abaikan */ }
+}
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
-  $('theme-btn').textContent = theme === 'dark' ? 'Mode terang' : 'Mode gelap';
-  $('theme-btn').setAttribute('aria-label', theme === 'dark' ? 'Ganti ke mode terang' : 'Ganti ke mode gelap');
+  writeStorage('devscope-theme', theme);
+  writeStorage('pj-theme', theme);
+  paintThemeButton(theme);
 }
 function initTheme() {
-  const saved = readStorage('devscope-theme');
-  const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  applyTheme(saved || (systemDark ? 'dark' : 'light'));
+  const saved = readStorage('devscope-theme') || readStorage('pj-theme');
+  let systemDark = false;
+  try { systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches; } catch { /* abaikan */ }
+  const theme = saved === 'dark' || saved === 'light' ? saved : (systemDark ? 'dark' : 'light');
+  document.documentElement.dataset.theme = theme;
+  paintThemeButton(theme);
 }
 
 /* ==========================================================
-   5. RENDER
+   5. RENDER ARTIKEL (hanya jika elemennya ada)
    ========================================================== */
 function metaLine(a) {
   const meta = createEl('p', 'meta');
   meta.append(createEl('span', 'cat', a.category));
   const time = createEl('time', '', formatDate(PUBLISHED));
-  time.dateTime = PUBLISHED;
-  meta.append(time, createEl('span', '', readingMinutes(a) + ' menit baca'));
+  try { time.dateTime = PUBLISHED; } catch { /* abaikan */ }
+  meta.append(time, createEl('span', '', readingMinutes(a) + ' mnt baca • Oleh ' + AUTHOR));
   return meta;
 }
 function bookmarkButton(id) {
@@ -200,13 +218,16 @@ function titleLink(tag, a) {
   return heading;
 }
 function renderFeatured() {
-  const a = findArticle(FEATURED_ID);
   const box = $('featured');
+  if (!box) return;
+  const a = findArticle(FEATURED_ID);
+  if (!a) return;
   box.replaceChildren(metaLine(a), titleLink('h3', a), createEl('p', 'summary', a.summary));
   const actions = createEl('div', 'row-actions');
-  const open = createEl('a', 'btn btn-primary', 'Baca artikel');
+  const open = createEl('a', 'btn btn-primary', 'Baca artikel →');
   open.href = articleUrl(a.id);
-  actions.append(open, bookmarkButton(a.id));
+  const bm = bookmarkButton(a.id);
+  actions.append(open, bm);
   box.append(actions);
 }
 function articleItem(a) {
@@ -225,16 +246,25 @@ function getFilteredArticles() {
   return ARTICLES.filter((a) => (state.category === 'Semua' || a.category === state.category) && matchesQuery(a, query));
 }
 function renderList() {
-  const results = getFilteredArticles();
   const list = $('list');
+  if (!list) return;
+  const results = getFilteredArticles();
   list.replaceChildren(...results.map(articleItem));
-  $('status').textContent = results.length
-    ? results.length + ' artikel ditemukan.'
-    : 'Tidak ada artikel yang cocok. Ubah kata kunci atau pilih kategori "Semua".';
+  const status = $('status');
+  if (status) {
+    if (results.length) {
+      const cat = state.category === 'Semua' ? '' : ' di kategori “' + state.category + '”';
+      const q = state.query.trim() ? ' untuk “' + state.query.trim() + '”' : '';
+      status.textContent = 'Menampilkan ' + results.length + ' dari ' + ARTICLES.length + ' artikel' + cat + q + '.';
+    } else {
+      status.textContent = 'Tidak ada artikel yang cocok. Coba hapus kata kunci atau pilih kategori "Semua".';
+    }
+  }
   syncBookmarkButtons();
 }
 function renderCategories() {
   const box = $('categories');
+  if (!box) return;
   const names = ['Semua', ...CATEGORIES];
   box.replaceChildren(...names.map((name) => {
     const count = name === 'Semua' ? ARTICLES.length : ARTICLES.filter((a) => a.category === name).length;
@@ -242,15 +272,20 @@ function renderCategories() {
     btn.type = 'button';
     btn.dataset.category = name;
     btn.setAttribute('aria-pressed', String(state.category === name));
-    btn.append(createEl('span', '', name), createEl('span', '', String(count)));
+    btn.setAttribute('aria-label', 'Tampilkan kategori ' + name + ', ' + count + ' artikel');
+    const label = createEl('span', '', name);
+    const c = createEl('span', 'cat-count', String(count));
+    btn.append(label, c);
     return btn;
   }));
 }
 function renderBookmarks() {
   const list = $('bookmarks');
+  if (!list) return;
   const saved = bookmarks.map(findArticle).filter(Boolean);
   if (!saved.length) {
-    const li = createEl('li', 'empty', 'Belum ada artikel tersimpan. Tekan "Simpan" pada artikel untuk menambahkannya di sini.');
+    const li = createEl('li', 'empty');
+    li.textContent = 'Belum ada artikel tersimpan. Tekan “☆ Simpan” pada artikel mana pun — daftar ini tersimpan otomatis di perangkat ini.';
     list.replaceChildren(li);
     return;
   }
@@ -266,6 +301,7 @@ function renderBlock(block) {
   const wrap = createEl('div', 'code-block');
   const pre = createEl('pre');
   pre.tabIndex = 0;
+  pre.setAttribute('aria-label', 'Contoh kode');
   pre.append(createEl('code', '', text));
   const copy = createEl('button', 'copy-btn', 'Salin kode');
   copy.type = 'button';
@@ -276,39 +312,52 @@ function renderBlock(block) {
 function renderToc(headings) {
   const nav = createEl('nav', 'toc');
   nav.setAttribute('aria-label', 'Daftar isi');
-  nav.append(createEl('strong', '', 'Daftar isi'));
+  nav.append(createEl('strong', '', '📑 Daftar isi — klik untuk lompat ke bagian'));
   const ul = createEl('ul');
   headings.forEach((h) => {
+    const li = createEl('li');
     const a = createEl('a', '', h.textContent);
     a.href = '#' + h.id;
-    ul.append(createEl('li')).appendChild(a);
+    li.append(a);
+    ul.append(li);
   });
   nav.append(ul);
   return nav;
 }
 function renderArticleView(a) {
   const view = $('view-article');
-  const back = createEl('a', 'btn', 'Kembali ke daftar artikel');
+  const back = createEl('a', 'btn', '← Kembali ke daftar artikel');
   back.href = './#artikel';
   const article = createEl('article');
   const head = createEl('header', 'article-head');
+  const crumbs = createEl('nav', 'crumbs');
+  crumbs.setAttribute('aria-label', 'Breadcrumb');
+  const home = createEl('a', '', 'Beranda');
+  home.href = './';
+  crumbs.append(home, createEl('span', '', '/'), createEl('span', '', a.title));
   const h1 = createEl('h1', '', a.title);
   h1.tabIndex = -1;
   h1.id = 'article-title';
-  head.append(metaLine(a), h1, createEl('p', 'meta', 'Oleh ' + AUTHOR));
+  head.append(crumbs, metaLine(a), h1, createEl('p', 'meta', 'Oleh ' + AUTHOR + ' • ' + formatDate(PUBLISHED)));
   const actions = createEl('div', 'row-actions');
-  actions.append(bookmarkButton(a.id));
+  const bm = bookmarkButton(a.id);
+  const share = createEl('button', 'btn', '🔗 Salin link');
+  share.type = 'button';
+  share.dataset.share = articleUrl(a.id);
+  actions.append(bm, share);
   head.append(actions);
   const body = createEl('div', 'article-body');
   body.append(...a.blocks.map(renderBlock));
   const headings = [...body.querySelectorAll('h2')];
   headings.forEach((h, i) => { h.id = 'bagian-' + (i + 1); });
-  article.append(head, renderToc(headings), body);
+  article.append(head, headings.length ? renderToc(headings) : createEl('p'), body);
 
-  const related = ARTICLES.filter((r) => r.id !== a.id).slice(0, 3);
+  const related = ARTICLES.filter((r) => r.id !== a.id && r.category === a.category)
+    .concat(ARTICLES.filter((r) => r.id !== a.id && r.category !== a.category))
+    .slice(0, 3);
   const aside = createEl('aside', 'related');
   aside.setAttribute('aria-labelledby', 'related-title');
-  const rh = createEl('h2', '', 'Baca selanjutnya');
+  const rh = createEl('h2', '', '📖 Baca selanjutnya');
   rh.id = 'related-title';
   const ul = createEl('ul', 'article-list');
   ul.append(...related.map(articleItem));
@@ -319,7 +368,8 @@ function renderArticleView(a) {
 }
 function renderNotFound(id) {
   const view = $('view-article');
-  const h1 = createEl('h1', '', 'Artikel tidak ditemukan');
+  if (!view) return null;
+  const h1 = createEl('h1', '', 'Artikel tidak ditemukan 😕');
   h1.tabIndex = -1;
   const back = createEl('a', 'btn btn-primary', 'Lihat semua artikel');
   back.href = './#artikel';
@@ -328,12 +378,13 @@ function renderNotFound(id) {
 }
 
 /* ==========================================================
-   6. ROUTING (?article=id pada satu file HTML)
+   6. ROUTING (?article=id)
    ========================================================== */
 function route() {
-  const id = new URLSearchParams(location.search).get('article');
   const home = $('view-home');
   const view = $('view-article');
+  if (!home || !view) return;
+  const id = new URLSearchParams(location.search).get('article');
   if (id === null) {
     home.hidden = false;
     view.hidden = true;
@@ -346,7 +397,7 @@ function route() {
   const heading = article ? renderArticleView(article) : renderNotFound(id);
   document.title = (article ? article.title : 'Artikel tidak ditemukan') + ' | DevScope';
   window.scrollTo(0, 0);
-  heading.focus({ preventScroll: true });
+  if (heading && heading.focus) heading.focus({ preventScroll: true });
 }
 function navigateTo(url) {
   history.pushState(null, '', url);
@@ -354,16 +405,22 @@ function navigateTo(url) {
 }
 
 /* ==========================================================
-   7. EVENT HANDLING (delegasi bila memungkinkan)
+   7. EVENT HANDLING
    ========================================================== */
 function copyCode(button) {
   const done = (ok) => {
-    button.textContent = ok ? 'Tersalin' : 'Gagal menyalin';
-    announce(ok ? 'Kode tersalin' : 'Kode tidak bisa disalin');
+    button.textContent = ok ? '✓ Tersalin' : 'Gagal menyalin';
+    announce(ok ? 'Kode tersalin ke clipboard ✓' : 'Kode tidak bisa disalin');
     setTimeout(() => { button.textContent = 'Salin kode'; }, 1800);
   };
   if (!navigator.clipboard) return done(false);
   navigator.clipboard.writeText(button.dataset.copy).then(() => done(true), () => done(false));
+}
+function shareArticle(button) {
+  const url = new URL(button.dataset.share, location.href).href;
+  const done = (ok) => announce(ok ? 'Link artikel tersalin ✓' : 'Gagal menyalin link');
+  if (navigator.clipboard) navigator.clipboard.writeText(url).then(() => done(true), () => done(false));
+  else done(false);
 }
 function handleClick(event) {
   const target = event.target;
@@ -371,12 +428,15 @@ function handleClick(event) {
   if (bm) return toggleBookmark(bm.dataset.bookmark);
   const copy = target.closest('[data-copy]');
   if (copy) return copyCode(copy);
+  const share = target.closest('[data-share]');
+  if (share) return shareArticle(share);
   const cat = target.closest('[data-category]');
   if (cat) {
     state.category = cat.dataset.category;
     renderCategories();
     renderList();
-    return $('categories').querySelector('[aria-pressed="true"]').focus();
+    announce('Menampilkan kategori ' + state.category);
+    return;
   }
   const link = target.closest('a[href^="?article="]');
   if (link && !event.metaKey && !event.ctrlKey) {
@@ -386,48 +446,96 @@ function handleClick(event) {
 }
 function handleSearchInput(event) {
   state.query = event.target.value;
-  $('search-clear').hidden = !state.query;
+  const clear = $('search-clear');
+  if (clear) clear.hidden = !state.query;
   renderList();
 }
 function clearSearch() {
   state.query = '';
-  $('search-input').value = '';
-  $('search-clear').hidden = true;
+  const input = $('search-input');
+  if (input) input.value = '';
+  const clear = $('search-clear');
+  if (clear) clear.hidden = true;
   renderList();
-  $('search-input').focus();
+  if (input) input.focus();
+}
+function getNav() {
+  return $('site-nav') || $('navMenu');
+}
+function getMenuBtn() {
+  return $('menu-btn') || $('navToggle');
 }
 function setMenu(open) {
-  $('site-nav').classList.toggle('open', open);
-  $('menu-btn').setAttribute('aria-expanded', String(open));
+  const nav = getNav();
+  const btn = getMenuBtn();
+  if (!nav || !btn) return;
+  nav.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', String(open));
+  btn.setAttribute('aria-label', open ? 'Tutup menu navigasi' : 'Buka menu navigasi');
+  if (btn.id === 'menu-btn') btn.textContent = open ? 'Tutup' : 'Menu';
+}
+function initShell() {
+  // Scroll progress + back-to-top (jika ada)
+  const progress = $('scrollProgress');
+  const toTop = $('backToTop');
+  const onScroll = () => {
+    const y = window.scrollY || 0;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (progress) progress.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+    if (toTop) toTop.classList.toggle('show', y > 600);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  if (toTop) toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+  // Menu
+  const menuBtn = getMenuBtn();
+  if (menuBtn) menuBtn.addEventListener('click', () => {
+    const nav = getNav();
+    const open = nav ? !nav.classList.contains('open') : false;
+    setMenu(open);
+  });
+  const nav = getNav();
+  if (nav) nav.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const b = getMenuBtn();
+      if (b && b.getAttribute('aria-expanded') === 'true') { setMenu(false); b.focus(); }
+    }
+  });
+
+  // Tema: dukung kedua ID tombol
+  const themeBtn = $('theme-btn');
+  if (themeBtn) themeBtn.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    announce(next === 'dark' ? 'Mode gelap aktif 🌙' : 'Mode terang aktif ☀️');
+  });
 }
 function bindEvents() {
   document.addEventListener('click', handleClick);
   window.addEventListener('popstate', route);
-  $('search-input').addEventListener('input', handleSearchInput);
-  $('search-form').addEventListener('submit', (e) => { e.preventDefault(); location.hash = 'artikel'; });
-  $('search-clear').addEventListener('click', clearSearch);
-  $('theme-btn').addEventListener('click', () => {
-    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    writeStorage('devscope-theme', next);
-    applyTheme(next);
-  });
-  $('menu-btn').addEventListener('click', () => setMenu($('menu-btn').getAttribute('aria-expanded') !== 'true'));
-  $('site-nav').addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && $('menu-btn').getAttribute('aria-expanded') === 'true') { setMenu(false); $('menu-btn').focus(); }
-  });
+  const input = $('search-input');
+  if (input) input.addEventListener('input', handleSearchInput);
+  const form = $('search-form');
+  if (form) form.addEventListener('submit', (e) => { e.preventDefault(); location.hash = 'artikel'; });
+  const clear = $('search-clear');
+  if (clear) clear.addEventListener('click', clearSearch);
 }
 
 /* ==========================================================
-   8. INISIALISASI
+   8. INISIALISASI — aman dipanggil dari halaman mana pun
    ========================================================== */
 function init() {
   initTheme();
-  renderFeatured();
-  renderCategories();
-  renderList();
-  renderBookmarks();
-  bindEvents();
-  route();
+  initShell();
+  if ($('featured') || $('list') || $('categories') || $('bookmarks') || $('view-article')) {
+    renderFeatured();
+    renderCategories();
+    renderList();
+    renderBookmarks();
+    bindEvents();
+    route();
+  }
 }
 init();

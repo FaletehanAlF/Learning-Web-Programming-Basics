@@ -1,5 +1,5 @@
-/* Panduan Jurusan — service worker (offline-first ringan) */
-var CACHE = 'panduan-jurusan-v12';
+/* DevScope v2 — service worker (offline-first ringan) */
+var CACHE = 'devscope-v2-ux-redesign';
 var CORE = [
   './',
   'index.html',
